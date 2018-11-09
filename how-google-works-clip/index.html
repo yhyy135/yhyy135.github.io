@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+  <meta name="description" content="第 27 页科技對消費者產生重大影響，對企業的影響更大。以經濟學的術語來說，當產業的主要生產要素成本曲線下移時這個產業就將面臨大規模的變化。今天，有三項生產要素變得更便宜了：資訊（Information）、連接性（Connectivity）、電腦運算能力（Computing power），這影響每個涉及這三項生產要素的成本曲線，勢必造成破壞性的結果。許多原來就在市場的公司（也就是網際網路問世前成立">
+<meta name="keywords" content="读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Google模式》读书笔记">
+<meta property="og:url" content="https://acuario.xyz/how-google-works-clip/index.html">
+<meta property="og:site_name" content="Acuario">
+<meta property="og:description" content="第 27 页科技對消費者產生重大影響，對企業的影響更大。以經濟學的術語來說，當產業的主要生產要素成本曲線下移時這個產業就將面臨大規模的變化。今天，有三項生產要素變得更便宜了：資訊（Information）、連接性（Connectivity）、電腦運算能力（Computing power），這影響每個涉及這三項生產要素的成本曲線，勢必造成破壞性的結果。許多原來就在市場的公司（也就是網際網路問世前成立">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img3.doubanio.com/lpic/s27874405.jpg">
+<meta property="og:updated_time" content="2017-12-10T17:43:14.306Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Google模式》读书笔记">
+<meta name="twitter:description" content="第 27 页科技對消費者產生重大影響，對企業的影響更大。以經濟學的術語來說，當產業的主要生產要素成本曲線下移時這個產業就將面臨大規模的變化。今天，有三項生產要素變得更便宜了：資訊（Information）、連接性（Connectivity）、電腦運算能力（Computing power），這影響每個涉及這三項生產要素的成本曲線，勢必造成破壞性的結果。許多原來就在市場的公司（也就是網際網路問世前成立">
+<meta name="twitter:image" content="https://img3.doubanio.com/lpic/s27874405.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://acuario.xyz/how-google-works-clip/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《Google模式》读书笔记 | Acuario</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-83619854-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-83619854-1');
+</script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Acuario</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/how-google-works-clip/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Google模式》读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-11 01:21:24 / 修改时间：01:43:14" itemprop="dateCreated datePublished" datetime="2017-12-11T01:21:24+08:00">2017-12-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/how-google-works-clip/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-google-works-clip/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>第 27 页<br>科技對消費者產生重大影響，對企業的影響更大。以經濟學的術語來說，當產業的主要生產要素成本曲線下移時這個產業就將面臨大規模的變化。今天，有三項生產要素變得更便宜了：資訊（Information）、連接性（Connectivity）、電腦運算能力（Computing power），這影響每個涉及這三項生產要素的成本曲線，勢必造成破壞性的結果。許多原來就在市場的公司（也就是網際網路問世前成立的公司）以往建立及發展事業的基本假設是稀有性：稀有的資訊，稀有的通路資源和市場研究，或是稀有的選擇和貨架空間。但如今這些生產要素非常充裕，降低或消除產業與市場的進入障礙，使整個產業來到徹底改變的成熟時機。      </p>
+<hr>
+<p>第 41 页<br>你可能不認為自己是創業家，但其實你是。你可能有個構想，你相信這個構想會改變一切；你可能有一個雛型概念，甚至有一項產品的第一個版本。你聰明、有抱負，獨自或和你的小團隊委身在會議室、車庫、辦公室、餐廳、公寓或宿舍裡，就算你做著某些事，不管是讀書、工作，或和小孩及配偶相處的時候，你仍然在想著你的那個構想。      </p>
+<a id="more"></a>
+<hr>
+<p>第 42 页<br>所以，就算你不是習慣穿著連帽運動衫的科技人，就算你沒有取得創投提供的七位數美元支票，也不代表你無法創造出下一個盛事。你需要洞悉產業正在快速轉變，你要有勇氣冒險，成為這轉變中的一分子，願意而且吸引到最優秀的智慧創做者，領導他們實現轉變。      </p>
+<hr>
+<p>第 49 页<br>請你做個小小的思考實驗：想想你曾經任職過的一家公司，接著，請你詳述它的使命，你說得出來嗎？如果說得出來，你相信嗎？你覺得它確實、誠實反映公司與員工的行動和文化嗎？還是它像是一群行銷和公關人員在一個晚上邊喝啤酒、邊查詞庫所想出來的文詞？這些字句類似這樣：「我們的使命是透過知識、創造力與我們員工的努力，和我們的客戶建立至高無上的夥伴關倸，為我們的客戶創造價值，並為我們的股東創造優異成果。」哇，面面俱到，不是嗎？提到了客戶，提到了員工，提到了股東。提出這份使命的是雷曼兄弟公司（Lehman brothers），至少在 2008 年破產之前是這麼說的。      </p>
+<hr>
+<p>第 56 页<br>當你伸手就可以觸碰到某個人的脣膀時，就不會有什麼東西會阻礙溝通和點子意見交流。傳統的辦公室安排有個別隔間和辦公室，目的是保持穩定安靜狀態。團隊的人際互動大多是計劃性的互動（聚集在會議室裡開會），或是偶然的互動（在走廊、茶水間或停車場相遇）。這其實是倒行逆施，穩定狀態應該是高度互動，喧譁、擁擠的辦公室，充滿興奮的活力。而員工覺得受過團體刺激後，可以選擇退避至安靜的地方。正因此，我們的辦公室有很多僻靜設施：餐廳和小廚房裡有隱蔽的角落、小會議室、戶外露臺與空間，甚至還有打盹艙。但是，當員工回到辦公座位時，他們周遭應該充斥著自己的隊友。      </p>
+<hr>
+<p>第 61 页<br>河馬（Hippo）是世界上最危險的一種動物，跑步速度遠超乎你的想象，牠們性格凶暴，能把侵犯領域或出現在行進途中的敵人踩死或咬成兩截。公司裡的河馬也很危險，它們是所謂「最高薪資的人的意見」（ Highest-Paid Person’s Opinion，HIPPO）。說到決策品質，基本上和薪資高低無關，經驗固然重要，但前提是要構成一個有說服力的勝出論據，經驗才會被採用。不幸的是，在多數公司，經驗本身被當成有說服力的勝出論據，經驗多的人說了算，我們稱這種組織為「年資統治體制」（tenurocracy），因為在這些組織權力來自年資，不是功績或創造的價值。這使我們想昔日網景公司（ Netscape）執行長吉姆·巴克斯戴爾（Jim Barksdale）說過的話：「如果有資料的話，我們就看資料；如果我們沒有資料，只有意見的話，那就照我的意見去做吧！」<br>當一個組織停止只聽「河馬」的意見時，就會開始形成功績體制，我們的同仁修娜·布朗（Shona Brown）簡單清楚地描述這種組織：「最重要的是意見或點子的品質，而不是誰提出的建議。」這聽起來很容易，其實不然。想建立功績體制，必須讓可以只靠命令來指揮統治的「河馬」和那些冒著被踩死的危險丶勇於支持品質和功績制的智慧創做者都有平等参與權。      </p>
+<hr>
+<p>第 64 页<br>「組織改造」是企業詞彙當中最受鄙視的一個名詞，大概只有「外包」和「80 張投影片簡報」可以比得上。一位高階主管認定問題根源是公司的組織架構，所以如果改變組織架構，一切就能迎刃而解。於是，公司突然從中央集權架構改變成地方分權架構，或是從功能部門架構改變成事業單位架構。結果，一些主管是「赢家」，其他主管變「輸家」，同時大部分員工心神不定，不知道自己是否還有飯碗，如果有的話，還有煩惱他們的新上司是誰，他們還能不能保住靠窗的好座位。過了一、兩年，某位主管（或者，很有可能仍然是那位主管）發現，公司仍然有問題，於是下令再來一場組織改造。這就是企業界可怕的「指定執行次數迴圈」（for loop）。      </p>
+<hr>
+<p>第 76 页<br>你可以透過賦予員工職責和自由來管理這個層面，無需下令他們工作到更晚，或是早點下班和家人相處，只要叫他們管好自己分內的事給予他們空間和自由，他們自己會安排時間，把工作做好。前 Google 高階主管、2012 年接掌雅虎執行長的瑪麗莎·梅伊爾（Marissa Mayer）是矽谷最知名的職業婦女，她提到，導致職業倦怠的不是工作過度，而是必須放棄對你而言重要的事所產生的憤怒。讓你的智慧創做者自我控管，他們通常會對工作與生活的平衡作出最佳決定。      </p>
+<hr>
+<p>第 77 页<br>人的時間與精力有限，工作超過負荷的確會導致職業倦怠，但是有關於職業倦怠的研究顯示，缺乏自我控管也是一個主因：其他原因還包括薪資不足、社區問題、欠缺公平性、價值觀衝突。職業倦怠這個主題的知名研究者、心理學家克莉絲汀娜·馬斯拉奇（Christina maslach）認為你，職業倦怠是人不適合他的工作的一種徵狀，她也認為，組織有責任創造更人性化的工作環境。参見 Christina Maslach and Michael P.Leiter, The Truth about Burnout: How Organizations Cause Personal Stress and What to Do About It, (Jossey-Bass, 1997).      </p>
+<hr>
+<p>第 77 页<br>我們雖然不提倡「工作與生活平衡」，但我們鼓勵員工好好休假。如果有人認為他對公司重要到令他不能休假一、兩週，認為這會導致公司運作停擺的話，那就代表公司有更大的問題需要解決。一家公司不可能、也不應該有任何一個不可缺少的人。偶爾會遇到有員工故意創造這種情況，也許是他們的自負心理作祟，或是誤以為「不可缺少」就能保障飯碗。遇到這種人，務必讓他們好好休個假，並且安排代班人。等他們休假回來，精神與鬥志恢復，也體認到自己並不是那麼「必不可缺」，而代班人也會變得更有信心。      </p>
+<hr>
+<p>第 80 页<br>一家傑出的新創公司、一個出色的計劃、一份好工作應該充滿樂趣，如果你賣力工作，卻完全無法從中獲得任何樂趣，那一定有問題。樂趣有部分是來自期望未來成功的心情，但有很大的部分來自和公司同仁共事，一起開玩笑。<br>多數公司嘗試製造玩樂，比方說，舉辦年度公司野餐（節慶派對、週五在公司外舉辦的活動）、有玩樂的音樂、有玩樂的獎品、有可以讓同事出糗的趣味竸賽、有顔面彩繪／小丑／算命、供應玩樂的食物（但不供應玩樂的酒品）。你參加這些活動，在這之中玩樂。不過，這類玩樂活動有個問題：它們很無趣。      </p>
+<hr>
+<p>第 91 页<br>施密特進入 Google 約 6 個月後，此時的他相當熟知公司「賺錢不必為惡」（Don’t be evil）的座右銘，這是工程師保羅·布海（Paul buchheit）和阿密·帕泰爾（Amit patel）在公司開創初期的一次會議提出的。不過，施密特完全低估這句簡單座右銘在 Google 公司文化中深植内化的程度。施密特出席公司的一場會議，與會者辯論應不應該對廣告制度做出一項改變，這項改變的優點有可能為公司帶來相當可觀的收入。其中一位工程領導人捶桌子說：「我們不能這麼做，這是惡行。」會議室突然鴉雀無聲，這個場面就像在美國舊西部世界的撲克牌牌局中，有個玩家指挫另一個玩家是老千，然後其他的人停止出牌，等候某個人說話。施密特心想，哇，這些傢伙對這種事很認真呢。接下來是冗長的討論，最終這項改變沒通過。      </p>
+<hr>
+<p>第 102 页<br>當市場調查詢問潛在顧客最在意的事中，排名第一的是速度時，公司便在其行銷中凸顯這一點。但是，儘管有線寬頻的速度的確很快，但用戶在開始使用這份服務後，他們真正喜愛的特性是「隨時上線」；他們不需要等候撥接，不想聽到數據機發出的嘶嘶聲，也不想等伺服器用來讓他們連結上網品質達到最佳點。羅森柏格與他的同事針對用戶說的需求來行銷，但市場研究不會告訴你該解決顧客無法想到、但可以解決的問題。為顧客提供他們想要的東西，重要性與價值比不上為顧客提供他們還不知道自己會想要的東西。      </p>
+<hr>
+<p>第 106 页<br>我們很喜歡用成人娛樂產業的例子來解釋，如何把原本用來解決狹隘問題的方法當作基礎，進一步發揚光大，這個例子跟早期技術採納者有關。當 Google 搜尋引擎事業規模開始飛速成長時·這個搜尋引擎平台上最熱門的一些搜尋是成人相關主題。在當時，色情過濾功能非常缺乏成效，因此我們讓一小群工程師根據美國聯邦最高法院法官波特·史都華（ Potter Stewart）對色情的定義：「看到它時，我就知道它是色情」，研究「Google 它時，我就知道它是色情」的問題。他們最終成功了，靠的是多項技術洞見的組合：他們變得很善於了解一張圖像的「内容」（應該說是「膚色」），而且只需看用戶和圖像互動的情形，就能判斷「背景」（當某人搜尋色情相關字詞，有個影像來自醫學教科書時，他們不太可能點選它，就算點選了，也不會在這個網站停留很久）。我們很快就發展出一個「安全搜尋」（ Safe Search）的過濾功能，遠比當時網路上的任何過濾器更能有效攔截不適當的影像。這就是對一個狹隘問題（過濾成人内容）發展出的解決方法（安全搜尋）。<br>但為何要就此打住呢？接下來幾年，我們把用來解決色情問題的技術應用於更廣泛的用途。我們使用安全搜尋發展出的數百萬種內容搜尋模式（也就是使用者對各種影像的反應模式），改善對搜尋影像（任何影像，不一定是色情影像）關聯性高低評估的能力。我們增加功能，讓使用者可以進一步搜尋和搜尋結果相似的影像，例如：「我喜歡那張優勝美地（Yosemite）的照片，請幫我搜尋和這相似的照片」。我們後來還開發岀另一種能力：不以輸入關鍵字（例如「Half dome，yosemite」）來搜尋，改用一張相片（你去優勝美地時拍攝的半圓頂〔Half dome〕相片）來搜尋。這些功能全都衍生自我們一開始為安全搜尋色情過濾功能發展的技術，所以當你在螢幕上看到幾乎和你拍攝的優勝美地相片模一樣的相片時，你應該感謝成人娛樂產業，是這個產業促使我們發展出的技術能夠進一步應用在你身上。      </p>
+<hr>
+<p>第 112 页<br>網際網路有一個極具吸引力、且被低估的層面：它大幅擴展建立平台的潛力，這並非僅指科技業的平台，而是指任何一個產業的平台。<br>……<br>平台的例子不勝枚舉，Square 為小型企業提供支付系锍服務、Nike FuelBand 提供運動資訊的手環、 Kickstarter 是創意專案的群眾集資平台、MyFitnessPal 是减肥者的平台、耐飛利（Netflix）是影片娛樂平台、Spotify 是線上音樂平台。這些公司以新方式結合現有技術元件，重新想像現有事業，它們為顧客和事業夥伴建立互動平台，並使用這些平台來創造高度差異化的產品與服務。這種模式幾乎可以應用在每個產業，包括旅遊、汽車、服飾、餐廳、食品、零售，隨著更多人使用，每個產業幾乎都可以創造出更好的產品。<br>20 世紀的經濟和 21 世紀的經濟不同，20 世紀由巨大封閉的網絡宰制，21 世紀則是由全球性的開放網路引領風騷。我們周遭充斥著平台機會，成功的領導人是那些能夠發掘這些機會的領導人。      </p>
+<hr>
+<p>第 139 页<br>多數人在為一個職缺徴才時，總是尋找過去在這種職務角色上有優異表現的人，這不是去尋找學習型動物。幾乎所有徵人啟事列出的首要絛件裡都是「有相關經驗」，比方說，有個職缺是機件設計師，開出的首要資格是要求是 5 到 10 年的機件設計經驗，並擁有大學相關學系學位。<br>其实，把專業看得比才智重要是錯的，尤其是在高科技業。每一個產業及行業的變化速度太快了，這造成你要招募的職務角色也持續在改變；昨天的機件到了明天就過時了，在如此不斷孌化的環境下，招募專才很可能會適得其反。專才往往帶著固有成見來解決問題，但這個問題就是衍生自他擅長的那個專門知識與技術，而且需要新專門技術的新型解決方法也會讓專才覺得是威脅。聰明的通才不會有成見，所以會放開心胸地去探究廣泛的解決方法，並傾向找出最好的一個。      </p>
+<hr>
+<p>第 140 页<br>尋找學習型動物有時是個挑戰。羅森柏格一貫使用的方法是請應徴者反省一個過去的缺失，2000 年代初期，他慣問應徴者：「你還記得 1996 年時的什麼網際網路大趨勢？你當時做對了什麽？做錯了什麽？」這是一個暗藏機關的問題，它讓應徵者去定義自己的期待，將這個期待與他們當時觀察到的事和探索出的啟示做連結，然後迫使他們去承認錯誤，不是那種「我最大的弱點在於我是個完美主義者」之類蹩腳的說詞。這是一個不可能捏造回答的問題。<br>你可以根據近期的任何大事件來修改這個提問，這個問題的目的不是要看這個人有沒有優異的先見之明，而是要看他如何推論思考，如何從錯誤中學習。很少人能把這個問題回答得很好，但那些回答得不錯的人，有相當高的可能性是學習型動物。當然，他們可能會告訴你：「我沒什麼特殊才能，我只是有熾烈熱忱的好奇心（ passionately curious）罷了！」這是愛因斯坦說的話，我們會立刻錄用他（儘管他用了「熱忱」這個字眼，他提出了相對論，有這張王牌就不必計較這一點了）。      </p>
+<hr>
+<p>第 147 页<br>當然啦，我們也有搞砸的時候。薩拉·卡曼加很欣賞我們的一位行銷同仁，想把這位年輕人轉入「產品襄理」計劃，不幸的是，這個計劃只收擁有電腦學位的人，這位年輕同仁沒有電腦學位。雖然，卡曼加力爭說這位年輕同仁是個自學的程式設計師，而且曾經和工程師共事過，但包括羅森柏格在內的幾名主管堅決不放大光圈，拒絕讓這位年輕同仁轉入。這位年輕的行銷部同仁凱文·希斯卓姆（Kevin Systrom）最終離開 Google，和其他人共同創辦成功的 Instagram，後來被臉書以 10 億美元收購。      </p>
+<hr>
+<p>第 174 页<br>給自己一項測試：如果你能解屋團隊中表現最差的 10％ 成員，招募一批新人，你的組織會不會因此改善？如果會的話，那麼你必須檢靚你當初錄用這些表現差的人員時的招募流程，謀求改進。再來一個測試：你的團隊裡有沒有這樣的成員，如果他們說要離職，你不會努力留住他們？如果有的話那麽你或許該讓他們離去。      </p>
+<hr>
+<p>第 176 页<br>在商業界，尤其是高科技業，光是在你目前所做的事情上很傑出是不夠的，你必須追上至少一波大浪，乘著它一路向岸邊衝。很多人剛踏出校門找工作時，往往把公司擺在第一位，接著考慮職務，之後才考慮產業。其實在規劃職業生涯時，這種考慮順序是錯的。應該考量的第一順位是選擇正確產業，因為在你的職業生涯很可能會換幾次公司，但換產業就困難得多了。你應該把產業視為衝浪地點（在北加州最棒的衝浪地點是 Mavericks），把公司視為你要追的浪，你首先應該選擇有最大、最棒波浪的衝浪地點。      </p>
+<hr>
+<p>第 179 页<br>以下是規劃職業生涯的一些簡單步驟：<br>思考 5 年後你希望從事的理想工作，你希望在哪裡工作？你想做什麼？希望賺多少錢？敘述這個職務：如果你在網路上看到這個工作機會，徵才內容會是什麼？現在，快轉到 4、5 年後，假設你在做這份工作，你這 5 年間的履歷表內容是什麼模樣？從現在起，你經過哪些途徑，到達那個時候的理想工作？<br>持續想著這份理想工作，根據它來評估你目前的長處與缺點，你需要做出哪些改進？這一步需要外人提供的意見，因此和你的經理或同儕談談，徵詢他們的意見。最後，你要如何獲得這份理想工作？你需要哪些訓練？需要什麼工作經驗？<br>順便一提的是，如果你的結論是目前的工作就是理想工作，那代表你想得不夠遠大，再重做一次，思考一份遠大對你具有挑戰性、但不是貪心的理想工作。<br>依循這些步驟應該會有用。如果你不依循這些步驟來規劃你的職業生涯，你很可能會證明美國職棒知名捕手暨教練尤吉·貝拉（ Yogi berra）說的話：「如果你不知道自己要往何處去，就得當心了，因為你很可能無法到達那裡。」      </p>
+<hr>
+<p>第 187 页<br>2009年12月，我們得知 Google 遭到駭客攻擊。Google 遭攻擊並不是什麼不尋常的事，事實上這種事幾乎天天都有。不過這次不同，攻擊的複雜程度前所未見，攻擊的目的也是。某個罪犯（或很可能的是一群罪犯）找到方法進入 Google 的伺服器。在此之前，絕大多數攻擊我們的壞傢伙是要破壞 Google 的服務，令我們停擺，或是令使用者更難連到我們的網站。但這一次，這些壤傢伙想竊取 Google 的機密資訊。<br>布林立即著手攔阻攻擊，追查罪犯與他們的入侵方法。他在幾小時內召集所能找到最精明的電腦安全性專家，組成一支團隊，他們在靠近 Google 總部的一棟單調建築物内聚集起來。接下來幾星期，這個團隊建立起一套系統，可以觀看攻擊行動過程，他們看到的情形令人不寒而慄。這些駭客不僅竊取智慧財產，還試圖進入 Gmail 帳戶，包括人權人士的帳戶。這些駭客來自全球經濟成長最快速的一個國家：中國。      </p>
+<hr>
+<p>第 210 页<br>【每場會議都需要主人】<br>会议應該有一位決策者或主人。<br>決策者應該親自做事。<br>縱使不是決策會議，例如資訊交流會議或解決方案腦力激盪會議，也應該有一位明確的會議主人。<br>會議不像政府機構，不必要的會議不需要開。<br>會議規模應該控制在容易運作的範圍內。<br>出席會議並不是身分重要性的象徵。<br>守時很重要。<br>出席會議時，請專注在會議上。      </p>
+<hr>
+<p>第 232 页<br>由佩吉和布林主持的這個每週全員會議必定有一段百無禁忌的問題與回答，但隨著公司規模成長，會議這部分變得愈來愈難管理。於是，我們發展一個名為「多莉」（Dory）的系統，（以電影《海底總動員》〔 Finding Nemo〕裡患有短暫失憶症的藍色帝王魚多莉來命名，但為何用這個名字，因為我們和多莉樣，忘了！）不能或不想親自詢問問題的員工可以把問題提交到多莉系統上，其他人可以投票表達這是不是一個好問題。一個問題獲得支持的票數愈高，排名就愈高，一些較艱難的問題往往獲得很多支持。在至員會議上，員工在多莉系統裡提出的問題被顯示在螢幕上，佩吉和布林不能挑選他們想回答哪些問題，他們必須依照得票數高低順序逐一回答，不分問題的難易程度。多莉系統讓人人可以直接向執行長及團隊提出最艱難的問題，其眾包（crowdsourcing）的性質會使蹩腳問題減至最少。至於問題回答得好不好，就以比較低科技的形式來判決：全員會議的與會者持有紅色和綠色牌子，如果他們覺得一個問題沒有獲得充分回答，他們可以舉起紅色牌子。      </p>
+<hr>
+<p>第 252 页<br>亨利·季辛吉（Heny Kissinger）在 1969 年擔任美國國家安全顧問時提到：「我們向來言明，我們沒有永遠的敵人，而且我們會根據其他國家的行動來評判它們，而非根據它們的意識型態來評判它們，包括共產主義國家，確切地說，就是像共產主義中國這樣的國家。」在他祕密造訪中國後不到兩年，中國和美國便重啟外交關係，這是自二次大戰結束後，兩國首度建交。      </p>
+<hr>
+<p>第 273 页<br>2004年，羅森柏格和 Google 同事傑夫·胡柏（Jef Huber）帶布林去造訪一家小型新創公司 Keyhole，胡柏是羅森柏格在 Excitet＠Home 雇用的第一位產品經理，後來加入 Google 的廣告團隊，成為首席工程師。Keyhole 的共同創辦人布萊恩·麥克蘭登（ Brian McClendon）是羅森柏格和胡柏在 Excite＠Home 的同事，Keyhole已經開發出一些很酷的地圖視覺與互動方式，布林立刻決定 Google應該買下這家公司。<br>幾星期後，布林把這項收購案提呈給董事會核准，當董事們詢問他，公司要如何靠這項技術賺錢時，他的回答很簡單：「我讓羅森柏格來回答這個問題，他是生意人。」羅森柏格一直輕輕鬆鬆地觀看布林的簡報，也從未思考過買下 Keyhole 之後如何使 Google 賺錢（已經加入 Google 兩年的羅森柏格，此時正在暢飲 Google Kool-Aid 飲料機的飲料）。被布林點名後，羅森柏格說出一些說完就忘記的回答胡亂應付，之後就忘了。事實是，我們根本不知道買下 Keyhole 對 Google 的獲利有何助益。<br>董事會決定信賴布林的判斷，讓他進行這樁收購案。大約 8 個月後，以 Keyhole 的技術為基礎的 Google 地球（ Google Earth）問市，立刻大受使用者的喜愛，也為公司創造數百萬美元的收入。這個應用程式沒有廣告收入，又是免費使用，哪來的收入呢？在推出這項產品後不久，我們的一位智慧創做者山達·皮恰心想，那些下載及安裝 Google 地球應用程式的人可能也會對 Google 工具列（Google Toolbar）感興趣。工具列是簡單實用的程式，會整合進瀏覽器，為使用者提供許多有趣的功能，其中一項功能是一個小小的 Google 搜尋方框，一直掛在瀏覽器的介面上。 Google 工具列的使用者可以直接在小方框上執行 Google 搜尋，不需要進入 Google.com 網站，這往往使他們執行更多的搜尋，點選更多廣告，進而創造更多廣告收入。皮恰的構想遭到一些反對，但在烏爾斯·霍澤的推促下，這個構想快速付諸執行。   </p>
+<hr>
+<p>第 291 页<br>保羅·布海認為可以發展出好更多的電子郵件系統，於是展開一項取名為「馴鹿」（ Caribou）的 20％ 時間計劃。後來，他認為這項新產品（現在稱為 Gmail，已有數億用戶）應該可以創造收入，於是建議根據電子郵件內容，在旁邊張貼廣告。我們起初不同意，要他只管專注在把 Gmail 打造得很出色就行了，至於營收，以後再來傷腦筋。<br>但是，Gmail 是布海的小孩，他不理會我們的意見。他駭入公司内部系統，和 AdWords 關鍵字廣告伺服器交談（Gmail + AdWords = 結合性創新）。某天早上，我們上班後發現，我們的電子郵件旁邊張貼了廣告。一開始大家很生氣，但不久，我們開始注意到，這些廣告其實還滿有用的。當時羅森柏格正好透過電子郵件和兄弟姊妹討論要為父母結婚 50 週年紀念日買禮物，他的 Gmail 信件旁邊出現高級居家用品零售商威廉索諾瑪（Williams-Sonoma）的廣告。羅森柏格的妹妹提到媽媽喜愛園藝，這個廣告建議可以買個放在庭院的長椅，羅森柏格便向他的兄弟姊妹提議這個構想，結果不僅父母獲得了一份好禮物，大家還稱讚羅森柏格很細心、考慮周到呢！（其實羅森柏格根本不是這樣的人！）<br>幾個月後， Gmail 問市，它的廣告並沒有創造很多收入，但布海發展出來的「廣告搭配電子郵件」技術後來被用來改善我們的 AdSense 出版内容廣告產品；如今，這項產品每年創造數十億美元營收。不用說，布海並未因為他的一意孤行而受到處罰。      </p>
+<hr>
+<p>第 326 页<br>英國在 1865 年通過「機動車法」（Locomotive Acts），規定汽車在行駛時，前面必須有一個步行者揮舞紅色旗子，向騎馬者示警有個新玩意兒（汽車）要開來了。此法還規定這些「路上的機動車」在城鎮中行駛的速限為時速 3.2 公里，在鄉間的速限為時速 6.4 公里。該法在 1896 年被廢止。   </p>
+<hr>
+<p>以上摘自：<br><img src="https://img3.doubanio.com/lpic/s27874405.jpg" alt="《Google模式》"><br><a href="https://book.douban.com/subject/26236445/" target="_blank" rel="noopener">《Google模式》</a><br>副标题: 挑戰瘋狂變化世界的經營思維與工作邏輯<br>原作名: How Google Works<br>作者: Eric Schmidt / Jonathan Rosenberg<br>译者: 李芳齡<br>出版社：天下雜誌出版社<br>ISBN: 9789862419724</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Acuario</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://acuario.xyz/how-google-works-clip/" title="《Google模式》读书笔记">https://acuario.xyz/how-google-works-clip/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/读书笔记/" rel="tag"># 读书笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/readers-clip/" rel="next" title="《读者》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《读者》读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/a-clockwork-orange-clip/" rel="prev" title="《发条橙》读书笔记">
+                《发条橙》读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+<script src="/js/src/baffle.min.js"></script>
+<script>
+  let b = baffle(document.querySelectorAll('.post-title'));
+  b.set({
+    speed: 100,
+    characters: '/>░░▒▒▓▓██锟斤拷烫'
+  });
+  b.reveal(3500, 1000);
+</script>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Acuario">
+            
+              <p class="site-author-name" itemprop="name">Acuario</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/1760954321" title="Weibo &rarr; http://weibo.com/1760954321" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/yhyy135" title="Instagram &rarr; https://instagram.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://songf.me/" title="http://songf.me/" rel="noopener" target="_blank">bennxs</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://meteoritey.github.io/" title="http://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Acuario</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://acuraioo.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://acuario.xyz/how-google-works-clip/';
+        this.page.identifier = 'how-google-works-clip/';
+        this.page.title = '《Google模式》读书笔记';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://acuraioo.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+  <meta name="description" content="RabbitMQ 入门指南 PHP 版系列文章：RabbitMQ 入门指南 PHP 版（一） 发布／订阅 Publish/Subscribe分发一个消息给多个消费者（consumers）的模式称为「发布 / 订阅」。若要构建一个简单的日志系统用于发送日志消息和获取消息并输出内容，可利用发布 / 订阅模式实现。">
+<meta name="keywords" content="教程,RabbitMQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RabbitMQ入门指南PHP版（二）">
+<meta property="og:url" content="https://acuario.xyz/rabbitmq-guide-2/index.html">
+<meta property="og:site_name" content="Acuario">
+<meta property="og:description" content="RabbitMQ 入门指南 PHP 版系列文章：RabbitMQ 入门指南 PHP 版（一） 发布／订阅 Publish/Subscribe分发一个消息给多个消费者（consumers）的模式称为「发布 / 订阅」。若要构建一个简单的日志系统用于发送日志消息和获取消息并输出内容，可利用发布 / 订阅模式实现。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.rabbitmq.com/img/tutorials/exchanges.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2016/10/29/58142048a263f.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2016/10/29/5814205ccb445.png">
+<meta property="og:image" content="https://www.rabbitmq.com/img/tutorials/direct-exchange.png">
+<meta property="og:image" content="https://www.rabbitmq.com/img/tutorials/direct-exchange-multiple.png">
+<meta property="og:updated_time" content="2016-11-27T08:30:23.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RabbitMQ入门指南PHP版（二）">
+<meta name="twitter:description" content="RabbitMQ 入门指南 PHP 版系列文章：RabbitMQ 入门指南 PHP 版（一） 发布／订阅 Publish/Subscribe分发一个消息给多个消费者（consumers）的模式称为「发布 / 订阅」。若要构建一个简单的日志系统用于发送日志消息和获取消息并输出内容，可利用发布 / 订阅模式实现。">
+<meta name="twitter:image" content="https://www.rabbitmq.com/img/tutorials/exchanges.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://acuario.xyz/rabbitmq-guide-2/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>RabbitMQ入门指南PHP版（二） | Acuario</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-83619854-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-83619854-1');
+</script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Acuario</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/rabbitmq-guide-2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RabbitMQ入门指南PHP版（二）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-09-16 00:46:39" itemprop="dateCreated datePublished" datetime="2016-09-16T00:46:39+08:00">2016-09-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2016-11-27 16:30:23" itemprop="dateModified" datetime="2016-11-27T16:30:23+08:00">2016-11-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/rabbitmq-guide-2/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="rabbitmq-guide-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>RabbitMQ 入门指南 PHP 版系列文章：<br><a href="https://yhyy135.github.io/rabbitmq-guide-1/" target="_blank" rel="noopener">RabbitMQ 入门指南 PHP 版（一）</a></p>
+<h1 id="发布／订阅-Publish-Subscribe"><a href="#发布／订阅-Publish-Subscribe" class="headerlink" title="发布／订阅 Publish/Subscribe"></a>发布／订阅 Publish/Subscribe</h1><p>分发一个消息给多个消费者（consumers）的模式称为「发布 / 订阅」。若要构建一个简单的日志系统用于发送日志消息和获取消息并输出内容，可利用发布 / 订阅模式实现。</p>
+<a id="more"></a>
+<h2 id="交换机-Exchanges"><a href="#交换机-Exchanges" class="headerlink" title="交换机 Exchanges"></a>交换机 Exchanges</h2><p>RabbitMQ 中完整的消息模型:</p>
+<ul>
+<li>生产者（producer）是发布消息的应用程序。</li>
+<li>队列（queue）用于消息存储的缓冲。</li>
+<li>消费者（consumer）是接收消息的应用程序。</li>
+</ul>
+<p>RabbitMQ 消息模型的核心理念是：发布者（producer）不会直接发送任何消息给队列，其只需要把消息发送给一个交换机（exchange）代为处理。消息处理规则通过交换机类型（exchange type）来定义。</p>
+<p>交换机类型：</p>
+<ul>
+<li>直连交换机（direct）</li>
+<li>主题交换机（topic）</li>
+<li>头交换机（headers）</li>
+<li>扇型交换机（fanout）</li>
+</ul>
+<p><img src="https://www.rabbitmq.com/img/tutorials/exchanges.png" alt="交换机"></p>
+<p>先创建一个名为 logs 的扇型交换机，它将把消息发送给它所知道的所有队列：<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$channel</span>-&gt;exchange_declare(<span class="string">'logs'</span>, <span class="string">'fanout'</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</span><br><span class="line"><span class="variable">$channel</span>-&gt;basic_publish(<span class="variable">$msg</span>, <span class="string">'logs'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>其中 basic_publish() 的第一个变量为发送消息的目标队列。<br>其中 basic_publish() 的第二个变量为交换机设置 routing_key。</p>
+<h3 id="交换机列表"><a href="#交换机列表" class="headerlink" title="交换机列表"></a>交换机列表</h3><p>使用 rabbitmqctl 命令可列出服务器上所有的交换机：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ sudo rabbitmqctl list_exchanges</span><br><span class="line">Listing exchanges ...</span><br><span class="line">        direct</span><br><span class="line">amq<span class="selector-class">.direct</span>      direct</span><br><span class="line">amq<span class="selector-class">.fanout</span>      fanout</span><br><span class="line">amq<span class="selector-class">.headers</span>     headers</span><br><span class="line">amq<span class="selector-class">.match</span>       headers</span><br><span class="line">amq<span class="selector-class">.rabbitmq</span><span class="selector-class">.log</span>        topic</span><br><span class="line">amq<span class="selector-class">.rabbitmq</span><span class="selector-class">.trace</span>      topic</span><br><span class="line">amq<span class="selector-class">.topic</span>       topic</span><br><span class="line">logs    fanout</span><br><span class="line">..<span class="selector-class">.done</span>.</span><br></pre></td></tr></table></figure></p>
+<p>其中名为 amq.* 的交换机是 RabbitMQ 默认创建的。</p>
+<h3 id="匿名的交换机"><a href="#匿名的交换机" class="headerlink" title="匿名的交换机"></a>匿名的交换机</h3><p>在介绍发送消息 Sending 时举例的 <a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/send.php" target="_blank" rel="noopener">send.php</a> 中有如下代码：<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$channel</span>-&gt;basic_publish(<span class="variable">$msg</span>, <span class="string">''</span>, <span class="string">'hello'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>在该例中我们使用空字符串 ‘’ 设置使用默认交换机。</p>
+<h2 id="临时队列-Temporary-queues"><a href="#临时队列-Temporary-queues" class="headerlink" title="临时队列 Temporary queues"></a>临时队列 Temporary queues</h2><p>调用 queue_declare 方法时，函数参数 queue 的值为空可使 RabbitMQ 创建一个随机命名的队列：<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">list</span>($queue_name, ,) = $channel-&gt;queue_declare(<span class="string">""</span>);</span><br></pre></td></tr></table></figure></p>
+<p>若要使其与消费者（consumer）断开连接时被立即删除，可声明该队列为 exclusive。</p>
+<h2 id="绑定-Bindings"><a href="#绑定-Bindings" class="headerlink" title="绑定 Bindings"></a>绑定 Bindings</h2><p><img src="https://ooo.0o0.ooo/2016/10/29/58142048a263f.png" alt="绑定"></p>
+<p>交换机和队列之间的联系我们称之为绑定（binding），绑定时可添加 routing_key 参数。为避免与 basic_publish 的 routing_key 参数混淆，将此处的 routing_key 称为绑定键（binding key）。绑定键将会影响交换机对消息进行的路由操作。扇型交换机会忽略该值。</p>
+<p>不带绑定键的绑定：<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$channel</span>-&gt;queue_bind(<span class="variable">$queue_name</span>, <span class="string">'logs'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>带绑定键为 black 的绑定：<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$binding_key</span> = <span class="string">'black'</span>;</span><br><span class="line"><span class="variable">$channel</span>-&gt;queue_bind(<span class="variable">$queue_name</span>, <span class="variable">$exchange_name</span>, <span class="variable">$binding_key</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="绑定列表"><a href="#绑定列表" class="headerlink" title="绑定列表"></a>绑定列表</h3><p>使用 rabbitmqctl 命令可列出所有现存的绑定。<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo rabbitmqctl list_bindings</span><br></pre></td></tr></table></figure></p>
+<h2 id="运行代码"><a href="#运行代码" class="headerlink" title="运行代码"></a>运行代码</h2><p><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/emit_log.php" target="_blank" rel="noopener">emit_log.php</a><br><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/receive_logs.php" target="_blank" rel="noopener">receive_logs.php</a></p>
+<p><img src="https://ooo.0o0.ooo/2016/10/29/5814205ccb445.png" alt=""></p>
+<p>由于发布消息要求确定存在的交换机，故在 RabbitMQ 连接成功后声明一个交换机。日志消息发布程序把消息发送给 logs 交换机而不是匿名交换机。若未绑定队列到交换机，消息将丢失。若没有消费者监听，则消息会被忽略。执行下列命令将实现 logs 交换机把数据发送给两个系统命名的队列。</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ php receive_logs<span class="selector-class">.php</span> &gt; logs_from_rabbit<span class="selector-class">.log</span>               <span class="comment">//将日志存入文件</span></span><br><span class="line">$ php receive_logs<span class="selector-class">.php</span>                                     <span class="comment">//查看日志</span></span><br><span class="line">$ php emit_log<span class="selector-class">.php</span>                                         <span class="comment">//发送日志</span></span><br><span class="line">$ sudo rabbitmqctl list_bindings                          <span class="comment">//确认已创建的队列绑定</span></span><br><span class="line">Listing bindings ...</span><br><span class="line"> ...</span><br><span class="line">logs    amq.gen-TJWkez28YpImbWdRKMa8sg==                []</span><br><span class="line">logs    amq.gen-x0kymA4yPzAT6BoC/YP+zw==                []</span><br><span class="line">..<span class="selector-class">.done</span>.</span><br></pre></td></tr></table></figure>
+<h1 id="路由-Routing"><a href="#路由-Routing" class="headerlink" title="路由 Routing"></a>路由 Routing</h1><h2 id="直连交换机-Direct-exchange"><a href="#直连交换机-Direct-exchange" class="headerlink" title="直连交换机 Direct exchange"></a>直连交换机 Direct exchange</h2><p>直连交换机将会对绑定键（binding key）和路由键（routing key）进行精确匹配，从而确定消息该分发到哪个队列。<br>举个栗子：</p>
+<p><img src="https://www.rabbitmq.com/img/tutorials/direct-exchange.png" alt="直连交换机"></p>
+<p>上图中直连交换机 X 和 Q1，Q2 两个队列进行了绑定。<br>第一个队列有一个绑定，绑定键为 orange。<br>第二个队列有两个绑定，绑定键为 black 和 green。<br>当路由键为 orange 的消息发布到交换机，会被路由到队列 Q1。<br>当路由键为 black 者 green 的消息发布到交换机，会路由到 Q2。<br>其他的所有消息都将会被丢弃。</p>
+<h2 id="多重绑定-Multiple-bindings"><a href="#多重绑定-Multiple-bindings" class="headerlink" title="多重绑定 Multiple bindings"></a>多重绑定 Multiple bindings</h2><p><img src="https://www.rabbitmq.com/img/tutorials/direct-exchange-multiple.png" alt="多重绑定"></p>
+<p>可使用相同的绑定键绑定多个队列。使用 black 绑定键添加 X 和 Q1、Q2 之间的绑定，则带有 black 路由键的消息会同时发送到 Q1 和 Q2。</p>
+<h2 id="情景应用"><a href="#情景应用" class="headerlink" title="情景应用"></a>情景应用</h2><p>如需把严重的错误日志信息写入日志文件（存储到磁盘），同时仍把所有日志信息输出到控制台中，可利用路由功能实现：将消息发送到直连交换机，以日志级别作为路由键。日志级别 severity 的值是 info、warning、error。接收日志的脚本可根据日志级别来选择其要处理的日志。</p>
+<h3 id="发送日志"><a href="#发送日志" class="headerlink" title="发送日志"></a>发送日志</h3><p>创建一个交换机（exchange）：<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$channel</span>-&gt;exchange_declare(<span class="string">'direct_logs'</span>, <span class="string">'direct'</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</span><br></pre></td></tr></table></figure></p>
+<p>发送消息：<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$channel</span>-&gt;exchange_declare(<span class="string">'direct_logs'</span>, <span class="string">'direct'</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</span><br><span class="line"><span class="variable">$channel</span>-&gt;basic_publish(<span class="variable">$msg</span>, <span class="string">'direct_logs'</span>, <span class="variable">$severity</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h3><p>根据严重级别分别创建绑定：<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span>($severities <span class="keyword">as</span> $severity) &#123;</span><br><span class="line">    $channel-&gt;queue_bind($queue_name, <span class="string">'direct_logs'</span>, $severity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="运行代码-1"><a href="#运行代码-1" class="headerlink" title="运行代码"></a>运行代码</h2><p>源代码：<br><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/emit_log_direct.php" target="_blank" rel="noopener">emit_log_direct.php</a><br><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/receive_logs_direct.php" target="_blank" rel="noopener">receive_logs_direct.php</a></p>
+<p>若只需保存 warning 和 error 级别的日志到磁盘：<br><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">$ php receive_logs_direct.php <span class="builtin-name">warning</span> <span class="builtin-name">error</span> &gt; logs_from_rabbit.log</span><br></pre></td></tr></table></figure></p>
+<p>在新终端中输出所有日志信息：<br><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">$ php receive_logs_direct.php info warning error</span><br><span class="line"> [*] Waiting <span class="keyword">for</span> logs. To <span class="keyword">exit</span> press CTRL+C</span><br></pre></td></tr></table></figure></p>
+<p>输出 error 级别的日志：<br><figure class="highlight gauss"><table><tr><td class="code"><pre><span class="line">$ php emit_log_direct.php <span class="built_in">error</span> <span class="string">"Run. Run. Or it will explode."</span></span><br><span class="line"> [x] Sent '<span class="built_in">error</span>':'<span class="keyword">Run</span>. <span class="keyword">Run</span>. <span class="keyword">Or</span> it will explode.'</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><strong>相关文章</strong><br><a href="https://www.rabbitmq.com/tutorials/tutorial-three-php.html" target="_blank" rel="noopener">RabbitMQ - RabbitMQ tutorial - Publish/Subscribe</a><br><a href="https://www.rabbitmq.com/tutorials/tutorial-four-php.html" target="_blank" rel="noopener">RabbitMQ - RabbitMQ tutorial - Routing</a><br><a href="http://wiki.jikexueyuan.com/project/rabbitmq/publish-subscribe.html" target="_blank" rel="noopener">RabbitMQ 能为你做些什么？ - 发布／订阅</a><br><a href="http://wiki.jikexueyuan.com/project/rabbitmq/routing.html" target="_blank" rel="noopener">RabbitMQ 能为你做些什么？ - 路由</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Acuario</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://acuario.xyz/rabbitmq-guide-2/" title="RabbitMQ入门指南PHP版（二）">https://acuario.xyz/rabbitmq-guide-2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/教程/" rel="tag"># 教程</a>
+          
+            <a href="/tags/RabbitMQ/" rel="tag"># RabbitMQ</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/rabbitmq-guide-1/" rel="next" title="RabbitMQ入门指南PHP版（一）">
+                <i class="fa fa-chevron-left"></i> RabbitMQ入门指南PHP版（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/rabbitmq-guide-3/" rel="prev" title="RabbitMQ入门指南PHP版（三）">
+                RabbitMQ入门指南PHP版（三） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+<script src="/js/src/baffle.min.js"></script>
+<script>
+  let b = baffle(document.querySelectorAll('.post-title'));
+  b.set({
+    speed: 100,
+    characters: '/>░░▒▒▓▓██锟斤拷烫'
+  });
+  b.reveal(3500, 1000);
+</script>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Acuario">
+            
+              <p class="site-author-name" itemprop="name">Acuario</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/1760954321" title="Weibo &rarr; http://weibo.com/1760954321" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/yhyy135" title="Instagram &rarr; https://instagram.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://songf.me/" title="http://songf.me/" rel="noopener" target="_blank">bennxs</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://meteoritey.github.io/" title="http://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#发布／订阅-Publish-Subscribe"><span class="nav-number">1.</span> <span class="nav-text">发布／订阅 Publish/Subscribe</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#交换机-Exchanges"><span class="nav-number">1.1.</span> <span class="nav-text">交换机 Exchanges</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#交换机列表"><span class="nav-number">1.1.1.</span> <span class="nav-text">交换机列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名的交换机"><span class="nav-number">1.1.2.</span> <span class="nav-text">匿名的交换机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#临时队列-Temporary-queues"><span class="nav-number">1.2.</span> <span class="nav-text">临时队列 Temporary queues</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定-Bindings"><span class="nav-number">1.3.</span> <span class="nav-text">绑定 Bindings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定列表"><span class="nav-number">1.3.1.</span> <span class="nav-text">绑定列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行代码"><span class="nav-number">1.4.</span> <span class="nav-text">运行代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由-Routing"><span class="nav-number">2.</span> <span class="nav-text">路由 Routing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#直连交换机-Direct-exchange"><span class="nav-number">2.1.</span> <span class="nav-text">直连交换机 Direct exchange</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多重绑定-Multiple-bindings"><span class="nav-number">2.2.</span> <span class="nav-text">多重绑定 Multiple bindings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#情景应用"><span class="nav-number">2.3.</span> <span class="nav-text">情景应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发送日志"><span class="nav-number">2.3.1.</span> <span class="nav-text">发送日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#订阅"><span class="nav-number">2.3.2.</span> <span class="nav-text">订阅</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行代码-1"><span class="nav-number">2.4.</span> <span class="nav-text">运行代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Acuario</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://acuraioo.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://acuario.xyz/rabbitmq-guide-2/';
+        this.page.identifier = 'rabbitmq-guide-2/';
+        this.page.title = 'RabbitMQ入门指南PHP版（二）';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://acuraioo.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+</body>
+</html>

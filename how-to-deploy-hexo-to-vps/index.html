@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+  <meta name="description" content="前言最早接触 Hexo 的时候，是通过 Github Pages 进行搭建的，后来遂琢磨着如何才能将博客部署到属于自己 VPS 上去。早前曾尝试过一次，磕磕绊绊，最终卡在了 VPS 部署 Git Hook 的步骤上。经过一段时间的积累，对 Linux 和相关命令行操作有了粗浅的认识，最近再次尝试 VPS 部署 Hexo 博客，操作起来流畅了很多，也很快搭建成功。打算把这个过程记录下来。下文是基于">
+<meta name="keywords" content="教程,Hexo,Git,Linux,命令行,Windows,VPS,Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="部署Hexo到VPS">
+<meta property="og:url" content="https://acuario.xyz/how-to-deploy-hexo-to-vps/index.html">
+<meta property="og:site_name" content="Acuario">
+<meta property="og:description" content="前言最早接触 Hexo 的时候，是通过 Github Pages 进行搭建的，后来遂琢磨着如何才能将博客部署到属于自己 VPS 上去。早前曾尝试过一次，磕磕绊绊，最终卡在了 VPS 部署 Git Hook 的步骤上。经过一段时间的积累，对 Linux 和相关命令行操作有了粗浅的认识，最近再次尝试 VPS 部署 Hexo 博客，操作起来流畅了很多，也很快搭建成功。打算把这个过程记录下来。下文是基于">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ooo.0o0.ooo/2016/11/15/582ad4c8c3e6d.png">
+<meta property="og:updated_time" content="2016-12-11T16:20:14.141Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="部署Hexo到VPS">
+<meta name="twitter:description" content="前言最早接触 Hexo 的时候，是通过 Github Pages 进行搭建的，后来遂琢磨着如何才能将博客部署到属于自己 VPS 上去。早前曾尝试过一次，磕磕绊绊，最终卡在了 VPS 部署 Git Hook 的步骤上。经过一段时间的积累，对 Linux 和相关命令行操作有了粗浅的认识，最近再次尝试 VPS 部署 Hexo 博客，操作起来流畅了很多，也很快搭建成功。打算把这个过程记录下来。下文是基于">
+<meta name="twitter:image" content="https://ooo.0o0.ooo/2016/11/15/582ad4c8c3e6d.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://acuario.xyz/how-to-deploy-hexo-to-vps/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>部署Hexo到VPS | Acuario</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-83619854-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-83619854-1');
+</script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Acuario</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/how-to-deploy-hexo-to-vps/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">部署Hexo到VPS
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-12-11 23:55:21" itemprop="dateCreated datePublished" datetime="2016-12-11T23:55:21+08:00">2016-12-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2016-12-12 00:20:14" itemprop="dateModified" datetime="2016-12-12T00:20:14+08:00">2016-12-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/how-to-deploy-hexo-to-vps/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-to-deploy-hexo-to-vps/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最早接触 Hexo 的时候，是通过 Github Pages 进行搭建的，后来遂琢磨着如何才能将博客部署到属于自己 VPS 上去。早前曾尝试过一次，磕磕绊绊，最终卡在了 VPS 部署 Git Hook 的步骤上。<br>经过一段时间的积累，对 Linux 和相关命令行操作有了粗浅的认识，最近再次尝试 VPS 部署 Hexo 博客，操作起来流畅了很多，也很快搭建成功。打算把这个过程记录下来。<br>下文是基于 Ubuntu 进行搭建的，CentOS 搭建过程基本一致，只需将安装程序的 <code>apt-get</code> 命令换成 <code>yum</code> 命令即可。文中 <code>$</code> 后均为执行的命令，<code>#</code> 后均为注释，<code>&lt;IP地址&gt;</code> 均为 VPS 的 IP 地址</p>
+<a id="more"></a>
+<h1 id="本地配置"><a href="#本地配置" class="headerlink" title="本地配置"></a>本地配置</h1><ol>
+<li>安装 Git</li>
+<li>安装 Node.js</li>
+<li><p>运行 <code>Git Bash</code> 或 <code>CMD</code>：</p>
+ <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>--global user.email <span class="string">"&lt;邮箱&gt;"</span></span><br><span class="line">$ git<span class="built_in"> config </span>--global user.name <span class="string">"&lt;用户名&gt;"</span></span><br><span class="line">$ ssh-keygen -t rsa -b 4096 -C <span class="string">"&lt;邮箱&gt;"</span>  #默认全部设置最终生成 ssh 密钥 id_rsa.pub</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>%userprofile%/.ssh/</code> 文件夹下（也就是生成公钥的文件夹）创建 <code>config</code> 文件，输入如下内容：</p>
+ <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Hexo Blog</span></span><br><span class="line">Host &lt;IP地址&gt;</span><br><span class="line">HostName &lt;IP地址&gt;</span><br><span class="line">User git</span><br><span class="line">Port &lt;SSH端口&gt;              #默认为 22</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>p.s. Hexo 本地部署相关教程可参考 <a href="/hello-hexo/">Hello Hexo</a>，Git 相关教程可参考 <a href="/how-to-use-git/">Git 简明教程</a></p>
+<h1 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">$ apt-<span class="builtin-name">get</span> update           #更新 apt-<span class="builtin-name">get</span> 源</span><br><span class="line">$ apt-<span class="builtin-name">get</span><span class="built_in"> upgrade </span>-y       #升级已有软件</span><br><span class="line">$ apt-<span class="builtin-name">get</span> install libpcre3 libpcre3-dev openssl libssl-dev g++ build-essential git -y    #安装各种程序和依赖</span><br><span class="line">$ adduser git              #密码自己设置，其他可选空</span><br><span class="line">$ chmod 740 /etc/sudoers   #变更用户权限设置文件权限</span><br><span class="line">$ vi /etc/sudoers          #编辑用户权限设置文件</span><br></pre></td></tr></table></figure>
+<p>在 <code>/etc/sudoers</code> 文件的用户权限部分添加 <code>git</code> 用户权限：<br><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="comment">## Allow root to run any commands anywhere</span></span><br><span class="line"><span class="attribute">root</span>    <span class="literal">ALL</span>=(<span class="literal">ALL</span>)     <span class="literal">ALL</span>             #原有部分</span><br><span class="line"><span class="attribute">git</span>     <span class="literal">ALL</span>=(<span class="literal">ALL</span>)     <span class="literal">ALL</span>             #添加部分</span><br></pre></td></tr></table></figure></p>
+<p>保存并退出编辑，并还原用户权限设置文件权限：<br><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">$ chmod <span class="number">440</span> <span class="regexp">/etc/</span>sudoers</span><br></pre></td></tr></table></figure></p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">$ useradd www -s <span class="string">/sbin/nologin</span> -M            <span class="comment">#添加用户 www 并禁止 SSH 登录</span></span><br><span class="line">$ mkdir -p <span class="string">/data/software/</span>                   <span class="comment">#建立一个放各种软件的目录</span></span><br><span class="line">$ <span class="keyword">cd</span> <span class="string">/data/software/</span>                         <span class="comment">#进入目录</span></span><br><span class="line">$ wget http:<span class="string">//nginx.org/download/nginx-1.10.1.tar.gz</span>    <span class="comment">#下载 Nginx 软件包</span></span><br><span class="line">$ tar zxvf nginx-1.10.1.tar.gz                          <span class="comment">#解压</span></span><br><span class="line">$ <span class="keyword">cd</span> nginx-1.10.1                                       <span class="comment">#进入目录</span></span><br><span class="line">$ <span class="string">./configure</span> <span class="params">--user=www</span> <span class="params">--group=www</span> <span class="params">--prefix=/usr/local/nginx</span> <span class="params">--with-http_stub_status_module</span> <span class="params">--with-http_ssl_module</span>   <span class="comment">#配置编译</span></span><br><span class="line">$ make                                                  <span class="comment">#编译</span></span><br><span class="line">$ make install                                          <span class="comment">#安装</span></span><br></pre></td></tr></table></figure>
+<p>检查 Nginx 是否安装成功：<br><figure class="highlight tap"><table><tr><td class="code"><pre><span class="line">$ ll /usr/local/nginx/</span><br><span class="line">total 24</span><br><span class="line">drwxr-xr-x <span class="number"> 2 </span>root root<span class="number"> 4096 </span>Dec <span class="number"> 5 </span>14:48 conf/       <span class="comment">#显示结果</span></span><br><span class="line">drwxr-xr-x <span class="number"> 2 </span>root root<span class="number"> 4096 </span>Dec <span class="number"> 5 </span>14:48 html/       <span class="comment">#显示结果</span></span><br><span class="line">drwxr-xr-x <span class="number"> 2 </span>root root<span class="number"> 4096 </span>Dec <span class="number"> 5 </span>14:48 logs/       <span class="comment">#显示结果</span></span><br><span class="line">drwxr-xr-x <span class="number"> 2 </span>root root<span class="number"> 4096 </span>Dec <span class="number"> 5 </span>14:48 sbin/       <span class="comment">#显示结果</span></span><br></pre></td></tr></table></figure></p>
+<p>Nginx 安装到此完成</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>仅仅安装是远远不够的，还需要测试一下是否配置正常并启动 Nginx：<br><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">$ /usr/local/nginx/sbin/nginx -t         #启动前检查配置文件语法</span><br><span class="line">nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok    #显示结果</span><br><span class="line">nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful  #显示结果</span><br><span class="line"></span><br><span class="line">$ /usr/local/nginx/sbin/nginx            #启动 Nginx</span><br><span class="line"></span><br><span class="line">$ lsof -i :80                            #查看 nginx 服务对应的端口是否成功启动</span><br><span class="line">COMMAND   PID<span class="built_in"> USER </span>  FD  <span class="built_in"> TYPE </span>DEVICE SIZE/OFF NODE NAME</span><br><span class="line">nginx   34317 root    6u  IPv4  39180      0t0  TCP *:http (LISTEN)     #显示结果</span><br><span class="line">nginx   34318  www    6u  IPv4  39180      0t0  TCP *:http (LISTEN)     #显示结果</span><br><span class="line"></span><br><span class="line">$ netstat -lntup | grep 80                #查看 80 端口的设置</span><br><span class="line">tcp     0     0 0.0.0.0:80     0.0.0.0:*     LISTEN     34317/nginx     #显示结果</span><br></pre></td></tr></table></figure></p>
+<p>使用 Web 方式访问本机的外网 IP 时显示如下图：</p>
+<p><img src="https://ooo.0o0.ooo/2016/11/15/582ad4c8c3e6d.png" alt="Nginx 初始界面"></p>
+<p>如上图正常显示，则表示 Nginx 已成功安装并能正常使用</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="配置文件说明"><a href="#配置文件说明" class="headerlink" title="配置文件说明"></a>配置文件说明</h4><p>Nginx 的主配置文件为 <code>/usr/local/nginx/conf/nginx.conf</code>，其配置<strong>详细含义</strong>如下：<br><figure class="highlight puppet"><table><tr><td class="code"><pre><span class="line">worker_processes  1;                              <span class="comment">#worker进程的数量</span></span><br><span class="line"><span class="keyword">events</span> &#123;</span><br><span class="line">    worker_connections  <span class="number">1024</span>;                     <span class="comment">#每个worker进程支持的最大连接数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">http</span> &#123;</span><br><span class="line">    <span class="literal">include</span>       mime.types;                     <span class="comment">#nginx支持的媒体类型库文件</span></span><br><span class="line">    default_type  application/octet-stream;       <span class="comment">#默认的媒体类型</span></span><br><span class="line">    sendfile        on;                           <span class="comment">#开启高效传输模式</span></span><br><span class="line">    keepalive_timeout  <span class="number">65</span>;                        <span class="comment">#连接超时</span></span><br><span class="line"></span><br><span class="line">    server &#123;                                      <span class="comment">#第一个server区块，</span></span><br><span class="line">                                                   表示一个独立的虚拟主机站点</span><br><span class="line">        listen       <span class="number">80</span>;                          <span class="comment">#提供服务的端口，默认80</span></span><br><span class="line">        server_name  localhost;                   <span class="comment">#提供服务的域名主机名</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            <span class="literal">root</span>   html;                          <span class="comment">#站点的根目录</span></span><br><span class="line">            index  index.html index.htm;          <span class="comment">#默认的首页文件，多个用空格分开</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">error_page</span>   500 502 503 504  /50x.html;  <span class="comment">#出现对应的http状态码时，使用50x.html回应客户</span></span><br><span class="line">        location = /50x.<span class="keyword">html</span> &#123;                    <span class="comment">#location区块，访问50x.html</span></span><br><span class="line">            <span class="literal">root</span>   html;                          <span class="comment">#指定对应的站点目录</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="规范配置文件"><a href="#规范配置文件" class="headerlink" title="规范配置文件"></a>规范配置文件</h4><p>一般来说，为了便于各虚拟主机的管理，我们将所有虚拟主机的自配置文件会统一放入 <code>vhost</code> 目录中，并在 Nginx 的主配置文件中添加配置 <code>include vhost/*.conf;</code> 来使 <code>vhost</code> 目录中的虚拟主机的自配置文件加载进来。公共的配置项写在主配置文件中，各虚拟主机的自配置文件则用于差异化，比如规定虚拟主机配置的网站域名或功能取名等等。</p>
+<p>先编辑主配置文件 <code>/usr/local/nginx/conf/nginx.conf</code> ：<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">""</span> &gt; /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf      <span class="comment">#清空配置文件</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vi /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf             <span class="comment">#编辑主配置文件</span></span></span><br></pre></td></tr></table></figure></p>
+<p>内容如下：<br><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">log_format</span>  main  <span class="string">'<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] "<span class="variable">$request</span>" '</span></span><br><span class="line">                      <span class="string">'<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> "<span class="variable">$http_referer</span>" '</span></span><br><span class="line">                      <span class="string">'"<span class="variable">$http_user_agent</span>" "<span class="variable">$http_x_forwarded_for</span>"'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">include</span> vhost/<span class="regexp">*.conf</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如下提供一个 host 为 VPS &lt;IP地址&gt; 的虚拟主机的配置文件 <code>/usr/local/nginx/conf/vhost/&lt;IP&gt;.conf</code> 的规范化模板，仅供参考：<br><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line">$ mkdir vhost                                     <span class="meta">#新建 vhost 目录</span></span><br><span class="line">$ vi <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/nginx/</span>conf<span class="meta-keyword">/vhost/</span><span class="params">&lt;IP地址&gt;</span>.conf    <span class="meta">#编辑子配置文件</span></span><br></pre></td></tr></table></figure></p>
+<p>内容如下：<br><figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        <span class="section">listen</span>       <span class="number">80</span>;</span><br><span class="line">        server_name  &lt;IP地址&gt;;</span><br><span class="line">        root /data/web/&lt;IP地址&gt;/;</span><br><span class="line">        index index.html index.htm;</span><br><span class="line">        access_log  logs/access.log main;</span><br><span class="line">        error_page   <span class="number">404</span>  /<span class="number">404.</span>html;</span><br><span class="line">        error_page   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /<span class="number">50</span>x.html;</span><br><span class="line">        location = /<span class="number">50</span>x.html &#123;</span><br><span class="line">        root   html;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line">$ <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/nginx/</span>sbin/nginx -t         <span class="meta">#检查配置文件语法，报错说明配置文件语法有误</span></span><br><span class="line"><span class="symbol">nginx:</span> the configuration file <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/nginx/</span>conf/nginx.conf syntax is ok    <span class="meta">#显示结果</span></span><br><span class="line"><span class="symbol">nginx:</span> configuration file <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/nginx/</span>conf/nginx.conf test is successful  <span class="meta">#显示结果</span></span><br><span class="line"></span><br><span class="line">$ <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/nginx/</span>sbin/nginx -s reload      <span class="meta">#重启 Nginx，使配置文件生效</span></span><br><span class="line">$ mkdir <span class="meta-keyword">/data/</span>web &amp;&amp; cd <span class="meta-keyword">/data/</span>web            <span class="meta">#新建 web 目录用于 Web 访问</span></span><br><span class="line">$ mkdir <span class="params">&lt;IP地址&gt;</span> &amp;&amp; cd <span class="params">&lt;IP地址&gt;</span>               <span class="meta">#新建虚拟主机对应的 Web 目录</span></span><br><span class="line">$ chown git:git -R <span class="params">&lt;IP地址&gt;</span>                  <span class="meta">#授权给 git 该目录权限</span></span><br></pre></td></tr></table></figure>
+<h2 id="设置-Hexo-对应的-Git-仓库"><a href="#设置-Hexo-对应的-Git-仓库" class="headerlink" title="设置 Hexo 对应的 Git 仓库"></a>设置 Hexo 对应的 Git 仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su git                           <span class="comment">#切换到 git 用户</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~                             <span class="comment">#进入用户根目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir .ssh &amp;&amp; <span class="built_in">cd</span> .ssh            <span class="comment">#新建并进入 .ssh 目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> touch authorized_keys            <span class="comment">#新建 authorized_keys 文件用于识别 ssh 访问者身份</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vi authorized_keys               <span class="comment">#复制粘贴 Windows 的 %userprofile%/.ssh/id_rsa.pub 文件内容</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~                             <span class="comment">#进入用户根目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir hexo.git &amp;&amp; <span class="built_in">cd</span> hexo.git    <span class="comment">#新建并进入 hexo.git 目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git init --bare                  <span class="comment">#初始化仓库</span></span></span><br></pre></td></tr></table></figure>
+<p>在 <strong>Windows</strong> 的 <code>Git Bash</code> 或 <code>CMD</code> 中输入 <code>ssh git@&lt;IP地址&gt;</code>, 显示如下则表示设置成功：<br><figure class="highlight vhdl"><table><tr><td class="code"><pre><span class="line">Are you sure you want <span class="keyword">to</span> continue connecting (yes/no)? yes</span><br><span class="line"><span class="literal">Warning</span>: Permanently added '<span class="number">45.76</span>.<span class="number">211.104</span>' (ECDSA) <span class="keyword">to</span> the list <span class="keyword">of</span> known hosts.</span><br><span class="line">Welcome <span class="keyword">to</span> Ubuntu <span class="number">14.04</span>.<span class="number">5</span> LTS (GNU/Linux <span class="number">3.13</span>.<span class="number">0</span>-<span class="number">100</span>-<span class="keyword">generic</span> x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com/</span><br><span class="line"><span class="keyword">New</span> <span class="keyword">release</span> '<span class="number">16.04</span>.<span class="number">1</span> LTS' available.</span><br><span class="line">Run <span class="symbol">'do</span>-<span class="keyword">release</span>-upgrade' <span class="keyword">to</span> upgrade <span class="keyword">to</span> it.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">The programs included <span class="keyword">with</span> the Ubuntu system are free software;</span><br><span class="line">the exact distribution terms <span class="keyword">for</span> each program are described <span class="keyword">in</span> the</span><br><span class="line">individual files <span class="keyword">in</span> /usr/share/doc<span class="comment">/*/copyright.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by</span></span><br><span class="line"><span class="comment">applicable law.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">git@vultr:~$                       #这里表示 SSH 成功登录 VPS</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> su git                          <span class="comment">#切换到 git 用户</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /home/git/hexo.git/hooks     <span class="comment">#进入仓库的钩子目录</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vi post-receive                 <span class="comment">#编辑钩子设置转发，实现仓库内容同步到 Web 目录</span></span></span><br></pre></td></tr></table></figure>
+<p>编辑内容如下：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">GIT_REPO=/home/git/hexo.git</span><br><span class="line">TMP_GIT_CLONE=/tmp/hexo</span><br><span class="line">PUBLIC_WWW=/data/web/&lt;IP地址&gt;</span><br><span class="line">rm -rf <span class="variable">$&#123;TMP_GIT_CLONE&#125;</span></span><br><span class="line">git <span class="built_in">clone</span> <span class="variable">$GIT_REPO</span> <span class="variable">$TMP_GIT_CLONE</span></span><br><span class="line">rm -rf <span class="variable">$&#123;PUBLIC_WWW&#125;</span>/*</span><br><span class="line">cp -rf <span class="variable">$&#123;TMP_GIT_CLONE&#125;</span>/* <span class="variable">$&#123;PUBLIC_WWW&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>授权 <code>post-receive</code> 文件可执行权限：<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>chmod +x post-receive</span><br></pre></td></tr></table></figure></p>
+<h1 id="Hexo-发布到-VPS"><a href="#Hexo-发布到-VPS" class="headerlink" title="Hexo 发布到 VPS"></a>Hexo 发布到 VPS</h1><p>修改 hexo 配置文件：<br><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> git@<span class="params">&lt;IP地址&gt;</span>:hexo.git</span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure></p>
+<p>发布时进入 Windows 中 hexo 目录，<code>CMD</code> 或 <code>Git Bash</code> 运行发布命令即可：<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo d</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Acuario</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://acuario.xyz/how-to-deploy-hexo-to-vps/" title="部署Hexo到VPS">https://acuario.xyz/how-to-deploy-hexo-to-vps/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/教程/" rel="tag"># 教程</a>
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/命令行/" rel="tag"># 命令行</a>
+          
+            <a href="/tags/Windows/" rel="tag"># Windows</a>
+          
+            <a href="/tags/VPS/" rel="tag"># VPS</a>
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/corruption-and-anti-corruption-in-nazi-germany-clip/" rel="next" title="《纳粹德国的腐败与反腐》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《纳粹德国的腐败与反腐》读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/tag-plugins-of-theme-next/" rel="prev" title="Hexo Next 扩展标签说明书">
+                Hexo Next 扩展标签说明书 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+<script src="/js/src/baffle.min.js"></script>
+<script>
+  let b = baffle(document.querySelectorAll('.post-title'));
+  b.set({
+    speed: 100,
+    characters: '/>░░▒▒▓▓██锟斤拷烫'
+  });
+  b.reveal(3500, 1000);
+</script>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Acuario">
+            
+              <p class="site-author-name" itemprop="name">Acuario</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/1760954321" title="Weibo &rarr; http://weibo.com/1760954321" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/yhyy135" title="Instagram &rarr; https://instagram.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://songf.me/" title="http://songf.me/" rel="noopener" target="_blank">bennxs</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://meteoritey.github.io/" title="http://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本地配置"><span class="nav-number">2.</span> <span class="nav-text">本地配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务端配置"><span class="nav-number">3.</span> <span class="nav-text">服务端配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">3.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx"><span class="nav-number">3.2.</span> <span class="nav-text">Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">3.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">3.2.2.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">3.2.3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置文件说明"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">配置文件说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规范配置文件"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">规范配置文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置-Hexo-对应的-Git-仓库"><span class="nav-number">3.3.</span> <span class="nav-text">设置 Hexo 对应的 Git 仓库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-发布到-VPS"><span class="nav-number">4.</span> <span class="nav-text">Hexo 发布到 VPS</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Acuario</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://acuraioo.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://acuario.xyz/how-to-deploy-hexo-to-vps/';
+        this.page.identifier = 'how-to-deploy-hexo-to-vps/';
+        this.page.title = '部署Hexo到VPS';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://acuraioo.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
