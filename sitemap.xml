@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://acuario.xyz/set-up-tiny-tiny-rss-with-hyperapp/</loc>
+    
+    <lastmod>2019-02-26T07:32:03.135Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://acuario.xyz/create-simple-http-server-with-python3/</loc>
+    
+    <lastmod>2019-02-26T06:41:15.749Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://acuario.xyz/how-to-get-source/</loc>
     
-    <lastmod>2019-01-18T13:39:47.398Z</lastmod>
+    <lastmod>2019-02-26T05:43:38.666Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://acuario.xyz/how-to-use-nano/</loc>
+    
+    <lastmod>2019-01-18T14:12:35.349Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://acuario.xyz/replace-package-source-to-china-mirror/</loc>
+    
+    <lastmod>2019-01-18T14:11:07.734Z</lastmod>
     
   </url>
   
@@ -145,13 +173,6 @@
     <loc>https://acuario.xyz/learn-to-unforgettable/</loc>
     
     <lastmod>2017-04-13T16:08:04.950Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://acuario.xyz/how-to-use-nano/</loc>
-    
-    <lastmod>2017-04-06T13:58:59.315Z</lastmod>
     
   </url>
   

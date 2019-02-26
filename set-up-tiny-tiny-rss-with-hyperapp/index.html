@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+  <meta name="description" content="准备 VPS 需要先安装好 docker-ce HyperApp 一个已经解析正确的域名（ping 验证） 耐心。仔细。认真  HyperApp 服务端配置安装 PostgreSQL虽然 HyperApp 提供了相应的 PostgreSQL 应用一键安装，但是由于安装 Tiny Tiny RSS 时无法与其衔接，所以一并使用 Docker Image 方法进行安装。">
+<meta name="keywords" content="教程,Linux,docker,HyperApp,Tiny Tiny RSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用HyperApp搭建Tiny Tiny RSS">
+<meta property="og:url" content="https://acuario.xyz/set-up-tiny-tiny-rss-with-hyperapp/index.html">
+<meta property="og:site_name" content="Acuario">
+<meta property="og:description" content="准备 VPS 需要先安装好 docker-ce HyperApp 一个已经解析正确的域名（ping 验证） 耐心。仔细。认真  HyperApp 服务端配置安装 PostgreSQL虽然 HyperApp 提供了相应的 PostgreSQL 应用一键安装，但是由于安装 Tiny Tiny RSS 时无法与其衔接，所以一并使用 Docker Image 方法进行安装。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/02/26/5c74e8c180d1d.png">
+<meta property="og:updated_time" content="2019-02-26T07:32:03.135Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用HyperApp搭建Tiny Tiny RSS">
+<meta name="twitter:description" content="准备 VPS 需要先安装好 docker-ce HyperApp 一个已经解析正确的域名（ping 验证） 耐心。仔细。认真  HyperApp 服务端配置安装 PostgreSQL虽然 HyperApp 提供了相应的 PostgreSQL 应用一键安装，但是由于安装 Tiny Tiny RSS 时无法与其衔接，所以一并使用 Docker Image 方法进行安装。">
+<meta name="twitter:image" content="https://i.loli.net/2019/02/26/5c74e8c180d1d.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://acuario.xyz/set-up-tiny-tiny-rss-with-hyperapp/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用HyperApp搭建Tiny Tiny RSS | Acuario</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-83619854-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-83619854-1');
+</script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Acuario</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/set-up-tiny-tiny-rss-with-hyperapp/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用HyperApp搭建Tiny Tiny RSS
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-26 15:22:31 / 修改时间：15:32:03" itemprop="dateCreated datePublished" datetime="2019-02-26T15:22:31+08:00">2019-02-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/软件使用/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/set-up-tiny-tiny-rss-with-hyperapp/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="set-up-tiny-tiny-rss-with-hyperapp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
+<li>VPS 需要先安装好 <code>docker-ce</code></li>
+<li><a href="https://itunes.apple.com/app/apple-store/id1179750280?pt=118260435&amp;ct=guide&amp;mt=8" target="_blank" rel="noopener">HyperApp</a></li>
+<li>一个已经解析正确的域名（ping 验证）</li>
+<li>耐心。仔细。认真</li>
+</ul>
+<h1 id="HyperApp-服务端配置"><a href="#HyperApp-服务端配置" class="headerlink" title="HyperApp 服务端配置"></a>HyperApp 服务端配置</h1><h2 id="安装-PostgreSQL"><a href="#安装-PostgreSQL" class="headerlink" title="安装 PostgreSQL"></a>安装 PostgreSQL</h2><p>虽然 HyperApp 提供了相应的 PostgreSQL 应用一键安装，但是由于安装 Tiny Tiny RSS 时无法与其衔接，所以一并使用 <code>Docker Image</code> 方法进行安装。</p>
+<a id="more"></a>
+<ol>
+<li>转到商店页面。找到 <code>Docker Image</code> 然后选择服务器并且保存进入配置界面</li>
+<li>请完全按照下图配置进行填写！</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>应用设置名称</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>sameersbn/postgresql:latest</td>
+</tr>
+<tr>
+<td>Options</td>
+<td><code>--name postgres --restart=always -v /srv/docker/postgres/data/:/var/lib/postgresql/ -e PG_PASSWORD=mydbpass -e DB_EXTENSION=pg_trgm -p 5432:5432</code></td>
+</tr>
+<tr>
+<td>Command</td>
+<td></td>
+</tr>
+<tr>
+<td>Args</td>
+<td></td>
+</tr>
+<tr>
+<td>其他</td>
+<td>所有其他设置均为空</td>
+</tr>
+</tbody>
+</table>
+<h2 id="安装-Tiny-Tiny-RSS"><a href="#安装-Tiny-Tiny-RSS" class="headerlink" title="安装 Tiny Tiny RSS"></a>安装 Tiny Tiny RSS</h2><ol>
+<li>转到商店页面。找到 <code>Docker Image</code> 然后选择服务器并且保存进入配置界面</li>
+<li>请完全按照下图配置进行填写！</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>应用设置名称</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>wangqiru/ttrss</td>
+</tr>
+<tr>
+<td>Options</td>
+<td><code>--name ttrss --restart=always -e SELF_URL_PATH=https://你要给镜像站点的域名 -e DB_HOST=postgres -e DB_PORT=5432 -e DB_NAME=myttrss -e DB_USER=postgres -e DB_PASS=mydbpass</code></td>
+</tr>
+<tr>
+<td>Command</td>
+<td></td>
+</tr>
+<tr>
+<td>Args</td>
+<td></td>
+</tr>
+<tr>
+<td>Nginx 设置名称</td>
+<td>内容</td>
+</tr>
+<tr>
+<td>域名</td>
+<td>你要给镜像站点的域名</td>
+</tr>
+<tr>
+<td>应用端口</td>
+<td></td>
+</tr>
+<tr>
+<td>Https</td>
+<td>将 http 重定向到 https</td>
+</tr>
+<tr>
+<td>域名</td>
+<td>你要给镜像站点的域名（自动填写）</td>
+</tr>
+<tr>
+<td>邮箱</td>
+<td>域名所对应的邮箱</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>保存并且进行安装。请确保这时候 <code>Nginx Proxy</code> 以及 <code>Nginx SSL Support</code> 正常默认安装并且启动了</li>
+</ul>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p>安装 PostgreSQL 和 Tiny Tiny RSS 后还不能正常使用，还需要将两者连接起来。进入 VPS 的 SSH 窗口执行命令：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">docker<span class="built_in"> network </span>create ttrss_network</span><br><span class="line">docker<span class="built_in"> network </span>connect ttrss_network postgres</span><br><span class="line">docker<span class="built_in"> network </span>connect ttrss_network ttrss</span><br><span class="line">docker restart ttrss</span><br></pre></td></tr></table></figure>
+<p>上述命令建立了一个名为 <code>ttrss_network</code> 的 docker 通讯网络，并将名为 <code>postgres</code> 和 <code>ttrss</code> 的容器连接到了这个网络内部。最后重启 Tiny Tiny RSS 容器。</p>
+<h1 id="配置使用-Tiny-Tiny-RSS"><a href="#配置使用-Tiny-Tiny-RSS" class="headerlink" title="配置使用 Tiny Tiny RSS"></a>配置使用 Tiny Tiny RSS</h1><p><img src="https://i.loli.net/2019/02/26/5c74e8c180d1d.png" alt="Tiny Tiny RSS"></p>
+<p>安装完成后，访问你给镜像站点设置的域名即可进入 Tiny Tiny RSS 登陆页面。默认账号是 <code>admin</code>，密码是 <code>password</code>。登录后务必修改密码。Tiny Tiny RSS 的其他设置技巧，可以参阅少数派的<a href="https://sspai.com/post/41302" target="_blank" rel="noopener">这篇文章</a>。</p>
+<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><ol>
+<li><p>使用 HyperApp 安装两个镜像后为何还是显示尚未安装？<br>由于 HyperApp 是通过内部生成的容器名称自动识别的，但是安装镜像时我们指定了容器的 name，所以无法正常识别到容器，即显示尚未安装。</p>
+</li>
+<li><p>那么安装时可否不指定容器的 name？<br>指定容器的 name 是为了方便连接数据库，如果自己知道如何查找容器名称（前面命令中的 <code>--name</code> 参数），那么安装时不指定容器的 name 也是可行的。具体可以参阅使用 docker 的 <code>--link</code> 参数来连接两个容器。</p>
+</li>
+</ol>
+<hr>
+<p>参考链接：<br><a href="https://github.com/HenryQW/docker-ttrss-plugins" target="_blank" rel="noopener">Tiny Tiny RSS 容器镜像</a><br><a href="https://henry.wang/2018/04/25/ttrss-docker-plugins-guide.html" target="_blank" rel="noopener">A ttrss setup guide - Start your own RSS aggregator today</a><br><a href="https://sspai.com/post/41302" target="_blank" rel="noopener">如何搭建属于自己的 RSS 服务，高效精准获取信息</a><br><a href="https://www.hyperapp.fun/zh/advanced/docker-image-introduction.html" target="_blank" rel="noopener">Docker-image 介绍</a><br><a href="https://www.hyperapp.fun/zh/mirror.html" target="_blank" rel="noopener">超简单搭建常见 404 站点镜像</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Acuario</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://acuario.xyz/set-up-tiny-tiny-rss-with-hyperapp/" title="使用HyperApp搭建Tiny Tiny RSS">https://acuario.xyz/set-up-tiny-tiny-rss-with-hyperapp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/教程/" rel="tag"># 教程</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+            <a href="/tags/HyperApp/" rel="tag"># HyperApp</a>
+          
+            <a href="/tags/Tiny-Tiny-RSS/" rel="tag"># Tiny Tiny RSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/create-simple-http-server-with-python3/" rel="next" title="非常简单的Python3 HTTP服务">
+                <i class="fa fa-chevron-left"></i> 非常简单的Python3 HTTP服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+<script src="/js/src/baffle.min.js"></script>
+<script>
+  let b = baffle(document.querySelectorAll('.post-title'));
+  b.set({
+    speed: 100,
+    characters: '/>░░▒▒▓▓██锟斤拷烫'
+  });
+  b.reveal(3500, 1000);
+</script>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Acuario">
+            
+              <p class="site-author-name" itemprop="name">Acuario</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/1760954321" title="Weibo &rarr; http://weibo.com/1760954321" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/yhyy135" title="Instagram &rarr; https://instagram.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://songf.me/" title="http://songf.me/" rel="noopener" target="_blank">bennxs</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://meteoritey.github.io/" title="http://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HyperApp-服务端配置"><span class="nav-number">2.</span> <span class="nav-text">HyperApp 服务端配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-PostgreSQL"><span class="nav-number">2.1.</span> <span class="nav-text">安装 PostgreSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Tiny-Tiny-RSS"><span class="nav-number">2.2.</span> <span class="nav-text">安装 Tiny Tiny RSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接数据库"><span class="nav-number">2.3.</span> <span class="nav-text">连接数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置使用-Tiny-Tiny-RSS"><span class="nav-number">3.</span> <span class="nav-text">配置使用 Tiny Tiny RSS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">4.</span> <span class="nav-text">Q&amp;A</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Acuario</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://acuraioo.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://acuario.xyz/set-up-tiny-tiny-rss-with-hyperapp/';
+        this.page.identifier = 'set-up-tiny-tiny-rss-with-hyperapp/';
+        this.page.title = '使用HyperApp搭建Tiny Tiny RSS';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://acuraioo.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+</body>
+</html>

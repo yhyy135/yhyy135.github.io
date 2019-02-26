@@ -361,6 +361,578 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/set-mtproto-for-telegram-via-v2ray/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/set-mtproto-for-telegram-via-v2ray/" class="post-title-link" itemprop="https://acuario.xyz/page/2/index.html">V2ray配置Telegram的MTProto协议</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-16 06:58:28" itemprop="dateCreated datePublished" datetime="2018-08-16T06:58:28+08:00">2018-08-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-18 21:32:34" itemprop="dateModified" datetime="2019-01-18T21:32:34+08:00">2019-01-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/软件使用/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/set-mtproto-for-telegram-via-v2ray/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="set-mtproto-for-telegram-via-v2ray/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>V2ray 是继 ShadowSocks 后又一个蓬勃发展、欣欣向荣的代理利器，目前支持多种传输协议。现在可以使用它设置 MTProto 协议，搭建 Telegram 的内部代理服务器，实现无需打开其他突破网络封锁的客户端即可正常通讯的目的。</p>
+<h1 id="V2ray-的代理原理"><a href="#V2ray-的代理原理" class="headerlink" title="V2ray 的代理原理"></a>V2ray 的代理原理</h1><p>v2ray 的代理原理和配置项的关系如下图：<br><img src="https://i.loli.net/2018/08/15/5b73c180d5ef0.png" alt="v2ray原理图及配置关系"></p>
+<p>p.s.上图为 v2ray v4.0 之前的代理原理图。v2ray v4.1+ 合并了输入输出配置项：</p>
+<ul>
+<li><code>inbounds = inbound + inboundDetour</code></li>
+<li><code>outbounds = outbound + outboundDetour</code></li>
+<li>为便于理解，你可以将上图 <code>inbound</code>、<code>inboundDetour</code> 视为各种不同的代理方式，全部定义在新版配置文件的 <code>inbounds</code> 配置项中，<code>outbounds</code> 亦同理。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/set-mtproto-for-telegram-via-v2ray/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/july-is-gone/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/july-is-gone/" class="post-title-link" itemprop="https://acuario.xyz/page/2/index.html">七月，已经溜走了</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-31 23:51:12" itemprop="dateCreated datePublished" datetime="2018-07-31T23:51:12+08:00">2018-07-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-08-01 00:01:20" itemprop="dateModified" datetime="2018-08-01T00:01:20+08:00">2018-08-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/july-is-gone/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="july-is-gone/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="https://i.loli.net/2018/07/31/5b608698e9572.jpg" alt="joined-screenshot4.jpg"><br>(IMG Source: <a href="https://en.wikiquote.org/wiki/Fight_Club_%28film%29" target="_blank" rel="noopener">Fight Club</a>)</p>
+<p>我好像已经忘了这个月是怎么开始的了。我试着从屏幕右下角的几个数字向前回溯，然后试图写下点什么无病呻吟的东西，用来给「时间」这把尺子多加一个叫做七月的刻度。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/july-is-gone/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/the-portrait-of-revolution-clip/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/the-portrait-of-revolution-clip/" class="post-title-link" itemprop="https://acuario.xyz/page/2/index.html">《拜訪革命》读书笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-06 22:04:25 / 修改时间：22:11:58" itemprop="dateCreated datePublished" datetime="2018-06-06T22:04:25+08:00">2018-06-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/the-portrait-of-revolution-clip/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="the-portrait-of-revolution-clip/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>第 11 頁<br>似曾相識的開端，踏出截然不同的路徑，兩厢對照，變革的命運更加清晰。對當權者而言，如果開放可以延續權力，他便鬆手，如果鐵腕能夠穩固執政，他便握拳。然覆手雲雨之間，時機、地理、民意、外力，多少偶然互相撞擊，革命的軌道像雲霄飛車一樣不知道下一秒的起落。</p>
+<hr>
+<p>第 12 頁<br>許多美國人不關心世界，連護照都沒有，但這並不妨礙美國成為頭號自由之邦。但是否正因如此，以強烈排外為面貌的右翼風潮，近些年在美國、在歐洲急速抬頭？外交政策的制訂雖是精英之事，若大眾與精英之間嚴重脫節，英國脫歐、川普上台之類的事情就會一再震驚世界。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/the-portrait-of-revolution-clip/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/how-to-use-scp-cmd-to-transfer-linux-file/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -723,536 +1295,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/how-to-use-reverse-proxy-to-hide-server-port/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Acuario">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Acuario">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/how-to-use-reverse-proxy-to-hide-server-port/" class="post-title-link" itemprop="https://acuario.xyz/page/2/index.html">Nginx配置反向代理隐藏服务端口</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-05-17 23:16:42 / 修改时间：23:23:21" itemprop="dateCreated datePublished" datetime="2018-05-17T23:16:42+08:00">2018-05-17</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/how-to-use-reverse-proxy-to-hide-server-port/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-to-use-reverse-proxy-to-hide-server-port/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于个人开发者来说，在一台 Linux 服务器或自己的 VPS 上，通常会部署多个 Web 服务，有的服务默认监听的是 80/443 端口，只需对 Nginx 进行简单的配置、设置伪静态等等即可完成，而有的服务既非静态网页，也不使用 Linux 中既有的 PHP 等程序，而是使用自己项目内部构建的程序（比如 Node.js、Tomcat 等），这些服务往往监听的是非 80/443 端口，在配置个人域名后，不得不在域名后加上服务器端口才能访问，既不美观，也不方便。是否有办法可以隐藏 URL 中的服务器端口，使用域名进行区分？</p>
-<p>例如：<br><a href="http://1.1.1.1:1111" target="_blank" rel="noopener">http://1.1.1.1:1111</a> -&gt; <a href="http://1.example.com" target="_blank" rel="noopener">http://1.example.com</a><br><a href="http://1.1.1.1:2222" target="_blank" rel="noopener">http://1.1.1.1:2222</a> -&gt; <a href="http://2.example.com" target="_blank" rel="noopener">http://2.example.com</a><br><a href="http://example.com:3333" target="_blank" rel="noopener">http://example.com:3333</a> -&gt; <a href="http://3.example.com" target="_blank" rel="noopener">http://3.example.com</a></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/how-to-use-reverse-proxy-to-hide-server-port/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/language-level-of-pork-mushrooms-and-cabbage-clip/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Acuario">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Acuario">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/language-level-of-pork-mushrooms-and-cabbage-clip/" class="post-title-link" itemprop="https://acuario.xyz/page/2/index.html">《回锅肉和香菇菜心的语言等级》读书笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-05-04 17:36:07 / 修改时间：17:41:31" itemprop="dateCreated datePublished" datetime="2018-05-04T17:36:07+08:00">2018-05-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/language-level-of-pork-mushrooms-and-cabbage-clip/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="language-level-of-pork-mushrooms-and-cabbage-clip/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>第 4 页<br>以北京的地名来论，老北京口中，以前北京内城的九大门：正阳门、崇文门、宣武门、东直门、朝阳门、西直门、阜成门、德胜门、安定门和皇宫里的天安门、午门、前门，都是不能加“儿”的，一来这些门体量颇大，高耸巍峨；二来，它们还常常跟皇权神权紧密相关，是高高在上万民敬仰的所在，断没有皇上说：“来呀——把这乱臣贼子拖出午门儿斩首！”那也太不严肃了。相反，东便门、西便门则常常在口语里听到儿化。这就是隐藏在语言背后的文化秩序。如今北京城的大门拆得所剩无几，外地人又如何分得出哪门大哪门小？也就越说越乱了，不讨再乱地没人说天安门儿。</p>
-<hr>
-<p>第 6 页<br>中国人对于数字的概念，从个、十、百、千数到万跟亿，最多到兆，再往上一般人不大知道还有京、垓、秭、穰、沟、涧、正、载、极……那么大，生活中也的确用不上。但无论怎么大，递进规律是一样的，早在东汉，《数述记遗》一书中就有记载，万万为亿、万亿为兆、万兆为京……所以按照中文的计数方式，若是四位一隔，立时眉目清楚。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/language-level-of-pork-mushrooms-and-cabbage-clip/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/life-in-the-middle-east-clip/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Acuario">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Acuario">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/life-in-the-middle-east-clip/" class="post-title-link" itemprop="https://acuario.xyz/page/2/index.html">《中东死生门》读书笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-04-19 16:38:46 / 修改时间：16:45:17" itemprop="dateCreated datePublished" datetime="2018-04-19T16:38:46+08:00">2018-04-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/life-in-the-middle-east-clip/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="life-in-the-middle-east-clip/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>第 IV 页<br>以色列与巴勒斯坦冲突的故事似乎陷于循环，死结除了政治复杂角力，还在于敌对双方的主流叙述，都拒绝视对方为“人”，而限定为魔鬼。发动大众跟魔鬼作战是容易的，围剿人，则会遭遇各种道义束缚。在我两年的拍摄中，从没有见过纯粹的魔鬼或天使，流泪的流血的都是人。“妖魔化”对方的手法，在全世界各种冲突中都可以见到。</p>
-<hr>
-<p>第 38 页<br>在加沙，日常生活与突然死亡之间，赴死是一个特殊的状态，可以延展，可以重复。它是舞台上的一记亮相，是日常生活发生的一次核聚变，它的光芒照亮了日常，令之神圣，但也足以顷刻间摧毁生活。就像观察中国人怎么吃，法国人怎么恋爱，要了解巴勒斯坦人和以色列人，就要看他们怎样对待死亡。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/life-in-the-middle-east-clip/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1297,7 +1344,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1326,9 +1373,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1413,7 +1458,47 @@
                     
                       
                     
-                    <span class="site-state-item-count">36</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">56</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
