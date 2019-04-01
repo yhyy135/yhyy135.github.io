@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+  <meta name="description" content="本文目标读者：  拥有自建 V2Ray 代理 有机场使用经验 没钱买高价机场 / 乐于使(bái)用(piáo)公益机场 使用机场服务，但忌惮流量安全  前言目前市面上已经有很多机场（提供 SS/SSR 服务的网站），且不乏众多公益机场，这些机场因为拥有一些好线路的服务器，所以在使用的时候可以获得较好的突破网络封锁的体验。比起自己购买一个垃圾服务器，使用时的龟速；以及购买一个优质线路服务器，承受每">
+<meta name="keywords" content="教程,VPS,ShadowsocksR,v2ray,Shadowsocks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SS&#x2F;SSR中转V2ray起飞教程">
+<meta property="og:url" content="https://acuario.xyz/delegate-v2ray-traffic-to-ss-or-ssr/index.html">
+<meta property="og:site_name" content="Acuario">
+<meta property="og:description" content="本文目标读者：  拥有自建 V2Ray 代理 有机场使用经验 没钱买高价机场 / 乐于使(bái)用(piáo)公益机场 使用机场服务，但忌惮流量安全  前言目前市面上已经有很多机场（提供 SS/SSR 服务的网站），且不乏众多公益机场，这些机场因为拥有一些好线路的服务器，所以在使用的时候可以获得较好的突破网络封锁的体验。比起自己购买一个垃圾服务器，使用时的龟速；以及购买一个优质线路服务器，承受每">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/04/01/5ca1b95248225.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/01/5ca1b95b997fe.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/01/5ca1b95d2597b.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/01/5ca1b95e30487.png">
+<meta property="og:updated_time" content="2019-04-01T08:46:51.826Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SS&#x2F;SSR中转V2ray起飞教程">
+<meta name="twitter:description" content="本文目标读者：  拥有自建 V2Ray 代理 有机场使用经验 没钱买高价机场 / 乐于使(bái)用(piáo)公益机场 使用机场服务，但忌惮流量安全  前言目前市面上已经有很多机场（提供 SS/SSR 服务的网站），且不乏众多公益机场，这些机场因为拥有一些好线路的服务器，所以在使用的时候可以获得较好的突破网络封锁的体验。比起自己购买一个垃圾服务器，使用时的龟速；以及购买一个优质线路服务器，承受每">
+<meta name="twitter:image" content="https://i.loli.net/2019/04/01/5ca1b95248225.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://acuario.xyz/delegate-v2ray-traffic-to-ss-or-ssr/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SS/SSR中转V2ray起飞教程 | Acuario</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-83619854-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Acuario</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/delegate-v2ray-traffic-to-ss-or-ssr/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SS/SSR中转V2ray起飞教程
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-01 15:58:18 / 修改时间：16:46:51" itemprop="dateCreated datePublished" datetime="2019-04-01T15:58:18+08:00">2019-04-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/软件使用/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/delegate-v2ray-traffic-to-ss-or-ssr/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="delegate-v2ray-traffic-to-ss-or-ssr/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文目标读者：</p>
+<ul>
+<li>拥有自建 V2Ray 代理</li>
+<li>有机场使用经验</li>
+<li>没钱买高价机场 / 乐于使(bái)用(piáo)公益机场</li>
+<li>使用机场服务，但忌惮流量安全</li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>目前市面上已经有很多机场（提供 SS/SSR 服务的网站），且不乏众多公益机场，这些机场因为拥有一些好线路的服务器，所以在使用的时候可以获得较好的突破网络封锁的体验。比起自己购买一个垃圾服务器，使用时的龟速；以及购买一个优质线路服务器，承受每月高额费用；更不用说还要担心自己服务器被 GFW 认证的风险——使用机场真是省钱省心。但是隐私问题也不容小觑，支付时的隐私泄露按下不表，本文的初衷是规避使用机场时流量隐私泄露的问题——如何使用机场服务的同时不暴露自己的流量隐私。</p>
+<p>V2Ray 除了支持自有协议 VMess 之外，还支持 Socks、Shadowsocks 等协议，配合自带的流量中转功能，可以在保护流量隐私的同时，借助机场起飞，最大程度上提升代理使用体验。</p>
+<p>前面说这么多，说人话就是——花最少的钱，用最好的线路，让偷窥流量 / 监控流量的机场见鬼去吧。</p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><img src="https://i.loli.net/2019/04/01/5ca1b95248225.png" alt="无标题.png"></p>
+<a id="more"></a>
+<p>基本原理大致如下：</p>
+<ol>
+<li>V2Ray 客户端先将流量使用 VMess 协议加密</li>
+<li>按照不同的加密方法：<br> SS 中转：V2Ray 客户端再使用 SS 协议加密，把两次加密后的流量发送到机场服务器进行中转<br> SSR 中转：V2Ray 客户端把 VMess 加密流量发给 SSR 客户端，SSR 客户端再使用 SSR 协议加密，把两次加密后的流量发送到机场服务器进行中转</li>
+<li>机场服务器对流量进行 SS/SSR 解密后再把流量（VMess 协议加密流量）发往我们自建的 V2Ray 服务器</li>
+<li>V2Ray 服务器正常访问网站</li>
+<li>网站返回的数据按上述步骤和处理方式原路返回</li>
+</ol>
+<p>由于机场服务器收到的是 VMess 协议加密后的流量，加密方法又是我们自定义的，所以机场几无可能掌握我们的真实流量。下面动手实操。</p>
+<h1 id="SS-中转-V2Ray-流量"><a href="#SS-中转-V2Ray-流量" class="headerlink" title="SS 中转 V2Ray 流量"></a>SS 中转 V2Ray 流量</h1><p>V2Ray 自身支持 Shadowsocks 协议，所以 SS 中转 V2Ray 流量按照官方的<a href="[https://toutyrater.github.io/advanced/outboundproxy.html](https://toutyrater.github.io/advanced/outboundproxy.html">白话文教程</a>来操作就行了。简单来说就是把配置文件中的 <code>outbounds</code> 部分设置为这样：<br><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处根据自己的V2Ray设置修改</span><br><span class="line">        <span class="string">"vnext"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"1.1.1.1"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">8888</span>,</span><br><span class="line">            <span class="string">"users"</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="string">"alterId"</span>: <span class="number">64</span>,</span><br><span class="line">                <span class="string">"id"</span>: <span class="string">"b12614c5-5ca4-4eba-a215-c61d642116ce"</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"proxySettings"</span>: &#123;</span><br><span class="line">          <span class="string">"tag"</span>: <span class="string">"transit"</span>  // 把 V2Ray 流量发给 tag 名为 transit 的代理进行转发</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"shadowsocks"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处填上机场某个 SS 服务器的配置</span><br><span class="line">        <span class="string">"servers"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"2.2.2.2"</span>,</span><br><span class="line">            <span class="string">"method"</span>: <span class="string">"aes-256-cfb"</span>,</span><br><span class="line">            <span class="string">"ota"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">"password"</span>: <span class="string">"password"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">1024</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transit"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p>
+<h1 id="SSR-中转-V2Ray-流量"><a href="#SSR-中转-V2Ray-流量" class="headerlink" title="SSR 中转 V2Ray 流量"></a>SSR 中转 V2Ray 流量</h1><p>但是很多机场都是 SSR 机场，没有提供 SS 配置，那岂不是就不能用上面的骚操作了？既然 SSR 支持监听本地的 Socks 流量，V2Ray 又支持 Socks 协议传出，那我们只需要在本地同时打开 V2Ray 和 SSR 客户端，然后用 Socks 协议连接二者通信即可，相当于把上一节中 V2Ray 传出目标从服务器改为本地 SSR。那么配置文件中的 <code>outbounds</code> 部分就设置为这样：<br><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处根据自己的V2Ray设置修改</span><br><span class="line">        <span class="string">"vnext"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"1.1.1.1"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">8888</span>,</span><br><span class="line">            <span class="string">"users"</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="string">"alterId"</span>: <span class="number">64</span>,</span><br><span class="line">                <span class="string">"id"</span>: <span class="string">"b12614c5-5ca4-4eba-a215-c61d642116ce"</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"proxySettings"</span>: &#123;</span><br><span class="line">          <span class="string">"tag"</span>: <span class="string">"transit"</span>  // 把 V2Ray 流量发给 tag 名为 transit 的代理进行转发</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"socks"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"servers"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">          <span class="string">"address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">          <span class="string">"port"</span>: <span class="number">1080</span>  // 此处填写 SSR 客户端监听的本地端口</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transit"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p>
+<p>以 Windows 平台为例，我们可以在客户端的「选项设置」中「允许来自局域网的连接」，并且设置 SSR 客户端监听的本地端口：</p>
+<p><img src="https://i.loli.net/2019/04/01/5ca1b95b997fe.png" alt="SSR设置"></p>
+<p>完成设置后，在 SSR 客户端中选择想要使用的服务器节点，并且打开 V2Ray，需要代理的流量全部访问 <strong>V2Ray 客户端监听的端口</strong>即可。</p>
+<p><img src="https://i.loli.net/2019/04/01/5ca1b95d2597b.png" alt="选择SSR服务器节点"></p>
+<p>如果设置正确，访问不存在的网站时，可以在 V2Ray 服务端日志中看到流量全部来自于我们选择机场服务器节点。</p>
+<p><img src="https://i.loli.net/2019/04/01/5ca1b95e30487.png" alt="V2Ray服务端日志"></p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="V2Ray-配置文件"><a href="#V2Ray-配置文件" class="headerlink" title="V2Ray 配置文件"></a>V2Ray 配置文件</h2><p>刚开始使用 V2Ray 的人可能会困惑于 V2Ray 配置文件的繁琐，下面提供几个与本文相关的，本人目前正在使用的 V2Ray 完整配置文件，其中客户端配置文件集成了基本的广告屏蔽和大陆直连，本地监听端口为 <code>1082</code>，可根据自己需要进行修改。同时也提供了最简单的服务端配置文件，仅供参考：</p>
+<ul>
+<li><a href="https://gist.github.com/yhyy135/667251599e3e762ca6d86517d39554c8/raw/ba48ac317c5b658b55b4834516d897a4a201a473/ss-vmess-config.json" target="_blank" rel="noopener">SS 中转 V2Ray 客户端配置文件</a></li>
+<li><a href="https://gist.github.com/yhyy135/667251599e3e762ca6d86517d39554c8/raw/ba48ac317c5b658b55b4834516d897a4a201a473/ssr-vmess-config.json" target="_blank" rel="noopener">SSR 中转 V2Ray 客户端配置文件</a></li>
+<li><a href="https://gist.github.com/yhyy135/667251599e3e762ca6d86517d39554c8/raw/ba48ac317c5b658b55b4834516d897a4a201a473/server-config.json" target="_blank" rel="noopener">V2Ray 服务端配置文件</a></li>
+</ul>
+<p>另外，由于 SSR 中转 V2Ray 流量需要同时使用 SSR 客户端和 V2Ray 客户端，所以目前暂时无法在移动设备上实现，略有遗憾。但是既然都可以如此白嫖机场了，还是知足吧。如果你有什么好想法，不妨在评论区交流。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Acuario</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://acuario.xyz/delegate-v2ray-traffic-to-ss-or-ssr/" title="SS/SSR中转V2ray起飞教程">https://acuario.xyz/delegate-v2ray-traffic-to-ss-or-ssr/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/教程/" rel="tag"># 教程</a>
+          
+            <a href="/tags/VPS/" rel="tag"># VPS</a>
+          
+            <a href="/tags/ShadowsocksR/" rel="tag"># ShadowsocksR</a>
+          
+            <a href="/tags/v2ray/" rel="tag"># v2ray</a>
+          
+            <a href="/tags/Shadowsocks/" rel="tag"># Shadowsocks</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/set-up-tiny-tiny-rss-with-hyperapp/" rel="next" title="使用HyperApp搭建Tiny Tiny RSS">
+                <i class="fa fa-chevron-left"></i> 使用HyperApp搭建Tiny Tiny RSS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+<script src="/js/src/baffle.min.js"></script>
+<script>
+  let b = baffle(document.querySelectorAll('.post-title'));
+  b.set({
+    speed: 100,
+    characters: '/>░░▒▒▓▓██锟斤拷烫'
+  });
+  b.reveal(3500, 1000);
+</script>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Acuario">
+            
+              <p class="site-author-name" itemprop="name">Acuario</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/1760954321" title="Weibo &rarr; http://weibo.com/1760954321" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/yhyy135" title="Instagram &rarr; https://instagram.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://songf.me/" title="https://songf.me/" rel="noopener" target="_blank">bennxs</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://meteoritey.github.io/" title="https://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本原理"><span class="nav-number">2.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SS-中转-V2Ray-流量"><span class="nav-number">3.</span> <span class="nav-text">SS 中转 V2Ray 流量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSR-中转-V2Ray-流量"><span class="nav-number">4.</span> <span class="nav-text">SSR 中转 V2Ray 流量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#V2Ray-配置文件"><span class="nav-number">5.1.</span> <span class="nav-text">V2Ray 配置文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Acuario</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://acuraioo.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://acuario.xyz/delegate-v2ray-traffic-to-ss-or-ssr/";
+    this.page.identifier = "delegate-v2ray-traffic-to-ss-or-ssr/";
+    this.page.title = 'SS/SSR中转V2ray起飞教程';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://acuraioo.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script>pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      
+        background-color: #eee;
+        background-image: linear-gradient(#fcfcfc, #eee);
+        border: 1px solid #d5d5d5;
+        border-radius: 3px;
+      
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      
+        right: 4px;
+        top: 8px;
+      
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1;
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; // Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.readOnly = true;
+        ta.value = code;
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, code.length);
+        ta.readOnly = false;
+        var result = document.execCommand('copy');
+        
+        ta.blur(); // For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+</body>
+</html>

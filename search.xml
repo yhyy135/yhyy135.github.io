@@ -3,6 +3,39 @@
   
     
     <entry>
+      <title>SS/SSR中转V2ray起飞教程</title>
+      <link href="/delegate-v2ray-traffic-to-ss-or-ssr/"/>
+      <url>/delegate-v2ray-traffic-to-ss-or-ssr/</url>
+      
+        <content type="html"><![CDATA[<p>本文目标读者：</p><ul><li>拥有自建 V2Ray 代理</li><li>有机场使用经验</li><li>没钱买高价机场 / 乐于使(bái)用(piáo)公益机场</li><li>使用机场服务，但忌惮流量安全</li></ul><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>目前市面上已经有很多机场（提供 SS/SSR 服务的网站），且不乏众多公益机场，这些机场因为拥有一些好线路的服务器，所以在使用的时候可以获得较好的突破网络封锁的体验。比起自己购买一个垃圾服务器，使用时的龟速；以及购买一个优质线路服务器，承受每月高额费用；更不用说还要担心自己服务器被 GFW 认证的风险——使用机场真是省钱省心。但是隐私问题也不容小觑，支付时的隐私泄露按下不表，本文的初衷是规避使用机场时流量隐私泄露的问题——如何使用机场服务的同时不暴露自己的流量隐私。</p><p>V2Ray 除了支持自有协议 VMess 之外，还支持 Socks、Shadowsocks 等协议，配合自带的流量中转功能，可以在保护流量隐私的同时，借助机场起飞，最大程度上提升代理使用体验。</p><p>前面说这么多，说人话就是——花最少的钱，用最好的线路，让偷窥流量 / 监控流量的机场见鬼去吧。</p><h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><img src="https://i.loli.net/2019/04/01/5ca1b95248225.png" alt="无标题.png"></p><a id="more"></a><p>基本原理大致如下：</p><ol><li>V2Ray 客户端先将流量使用 VMess 协议加密</li><li>按照不同的加密方法：<br> SS 中转：V2Ray 客户端再使用 SS 协议加密，把两次加密后的流量发送到机场服务器进行中转<br> SSR 中转：V2Ray 客户端把 VMess 加密流量发给 SSR 客户端，SSR 客户端再使用 SSR 协议加密，把两次加密后的流量发送到机场服务器进行中转</li><li>机场服务器对流量进行 SS/SSR 解密后再把流量（VMess 协议加密流量）发往我们自建的 V2Ray 服务器</li><li>V2Ray 服务器正常访问网站</li><li>网站返回的数据按上述步骤和处理方式原路返回</li></ol><p>由于机场服务器收到的是 VMess 协议加密后的流量，加密方法又是我们自定义的，所以机场几无可能掌握我们的真实流量。下面动手实操。</p><h1 id="SS-中转-V2Ray-流量"><a href="#SS-中转-V2Ray-流量" class="headerlink" title="SS 中转 V2Ray 流量"></a>SS 中转 V2Ray 流量</h1><p>V2Ray 自身支持 Shadowsocks 协议，所以 SS 中转 V2Ray 流量按照官方的<a href="[https://toutyrater.github.io/advanced/outboundproxy.html](https://toutyrater.github.io/advanced/outboundproxy.html">白话文教程</a>来操作就行了。简单来说就是把配置文件中的 <code>outbounds</code> 部分设置为这样：<br><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处根据自己的V2Ray设置修改</span><br><span class="line">        <span class="string">"vnext"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"1.1.1.1"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">8888</span>,</span><br><span class="line">            <span class="string">"users"</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="string">"alterId"</span>: <span class="number">64</span>,</span><br><span class="line">                <span class="string">"id"</span>: <span class="string">"b12614c5-5ca4-4eba-a215-c61d642116ce"</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"proxySettings"</span>: &#123;</span><br><span class="line">          <span class="string">"tag"</span>: <span class="string">"transit"</span>  // 把 V2Ray 流量发给 tag 名为 transit 的代理进行转发</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"shadowsocks"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处填上机场某个 SS 服务器的配置</span><br><span class="line">        <span class="string">"servers"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"2.2.2.2"</span>,</span><br><span class="line">            <span class="string">"method"</span>: <span class="string">"aes-256-cfb"</span>,</span><br><span class="line">            <span class="string">"ota"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">"password"</span>: <span class="string">"password"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">1024</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transit"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p><h1 id="SSR-中转-V2Ray-流量"><a href="#SSR-中转-V2Ray-流量" class="headerlink" title="SSR 中转 V2Ray 流量"></a>SSR 中转 V2Ray 流量</h1><p>但是很多机场都是 SSR 机场，没有提供 SS 配置，那岂不是就不能用上面的骚操作了？既然 SSR 支持监听本地的 Socks 流量，V2Ray 又支持 Socks 协议传出，那我们只需要在本地同时打开 V2Ray 和 SSR 客户端，然后用 Socks 协议连接二者通信即可，相当于把上一节中 V2Ray 传出目标从服务器改为本地 SSR。那么配置文件中的 <code>outbounds</code> 部分就设置为这样：<br><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处根据自己的V2Ray设置修改</span><br><span class="line">        <span class="string">"vnext"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"1.1.1.1"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">8888</span>,</span><br><span class="line">            <span class="string">"users"</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="string">"alterId"</span>: <span class="number">64</span>,</span><br><span class="line">                <span class="string">"id"</span>: <span class="string">"b12614c5-5ca4-4eba-a215-c61d642116ce"</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"proxySettings"</span>: &#123;</span><br><span class="line">          <span class="string">"tag"</span>: <span class="string">"transit"</span>  // 把 V2Ray 流量发给 tag 名为 transit 的代理进行转发</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"socks"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"servers"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">          <span class="string">"address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">          <span class="string">"port"</span>: <span class="number">1080</span>  // 此处填写 SSR 客户端监听的本地端口</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transit"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p><p>以 Windows 平台为例，我们可以在客户端的「选项设置」中「允许来自局域网的连接」，并且设置 SSR 客户端监听的本地端口：</p><p><img src="https://i.loli.net/2019/04/01/5ca1b95b997fe.png" alt="SSR设置"></p><p>完成设置后，在 SSR 客户端中选择想要使用的服务器节点，并且打开 V2Ray，需要代理的流量全部访问 <strong>V2Ray 客户端监听的端口</strong>即可。</p><p><img src="https://i.loli.net/2019/04/01/5ca1b95d2597b.png" alt="选择SSR服务器节点"></p><p>如果设置正确，访问不存在的网站时，可以在 V2Ray 服务端日志中看到流量全部来自于我们选择机场服务器节点。</p><p><img src="https://i.loli.net/2019/04/01/5ca1b95e30487.png" alt="V2Ray服务端日志"></p><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="V2Ray-配置文件"><a href="#V2Ray-配置文件" class="headerlink" title="V2Ray 配置文件"></a>V2Ray 配置文件</h2><p>刚开始使用 V2Ray 的人可能会困惑于 V2Ray 配置文件的繁琐，下面提供几个与本文相关的，本人目前正在使用的 V2Ray 完整配置文件，其中客户端配置文件集成了基本的广告屏蔽和大陆直连，本地监听端口为 <code>1082</code>，可根据自己需要进行修改。同时也提供了最简单的服务端配置文件，仅供参考：</p><ul><li><a href="https://gist.github.com/yhyy135/667251599e3e762ca6d86517d39554c8/raw/ba48ac317c5b658b55b4834516d897a4a201a473/ss-vmess-config.json" target="_blank" rel="noopener">SS 中转 V2Ray 客户端配置文件</a></li><li><a href="https://gist.github.com/yhyy135/667251599e3e762ca6d86517d39554c8/raw/ba48ac317c5b658b55b4834516d897a4a201a473/ssr-vmess-config.json" target="_blank" rel="noopener">SSR 中转 V2Ray 客户端配置文件</a></li><li><a href="https://gist.github.com/yhyy135/667251599e3e762ca6d86517d39554c8/raw/ba48ac317c5b658b55b4834516d897a4a201a473/server-config.json" target="_blank" rel="noopener">V2Ray 服务端配置文件</a></li></ul><p>另外，由于 SSR 中转 V2Ray 流量需要同时使用 SSR 客户端和 V2Ray 客户端，所以目前暂时无法在移动设备上实现，略有遗憾。但是既然都可以如此白嫖机场了，还是知足吧。如果你有什么好想法，不妨在评论区交流。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+          <category> 软件使用 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> VPS </tag>
+            
+            <tag> ShadowsocksR </tag>
+            
+            <tag> v2ray </tag>
+            
+            <tag> Shadowsocks </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>使用HyperApp搭建Tiny Tiny RSS</title>
       <link href="/set-up-tiny-tiny-rss-with-hyperapp/"/>
       <url>/set-up-tiny-tiny-rss-with-hyperapp/</url>
@@ -287,9 +320,9 @@
             
             <tag> 运维 </tag>
             
-            <tag> 命令行 </tag>
-            
             <tag> VPS </tag>
+            
+            <tag> 命令行 </tag>
             
         </tags>
       
@@ -685,6 +718,8 @@
             
             <tag> Linux </tag>
             
+            <tag> VPS </tag>
+            
             <tag> Hexo </tag>
             
             <tag> Git </tag>
@@ -692,8 +727,6 @@
             <tag> 命令行 </tag>
             
             <tag> Windows </tag>
-            
-            <tag> VPS </tag>
             
             <tag> Nginx </tag>
             
@@ -774,9 +807,9 @@
             
             <tag> 教程 </tag>
             
-            <tag> Windows </tag>
-            
             <tag> ShadowsocksR </tag>
+            
+            <tag> Windows </tag>
             
         </tags>
       
@@ -803,9 +836,9 @@
             
             <tag> 教程 </tag>
             
-            <tag> iOS </tag>
-            
             <tag> ShadowsocksR </tag>
+            
+            <tag> iOS </tag>
             
         </tags>
       

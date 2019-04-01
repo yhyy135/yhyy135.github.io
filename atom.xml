@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://acuario.xyz/"/>
-  <updated>2019-02-26T07:32:03.135Z</updated>
+  <updated>2019-04-01T08:46:51.826Z</updated>
   <id>https://acuario.xyz/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SS/SSR中转V2ray起飞教程</title>
+    <link href="https://acuario.xyz/delegate-v2ray-traffic-to-ss-or-ssr/"/>
+    <id>https://acuario.xyz/delegate-v2ray-traffic-to-ss-or-ssr/</id>
+    <published>2019-04-01T07:58:18.000Z</published>
+    <updated>2019-04-01T08:46:51.826Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文目标读者：</p><ul><li>拥有自建 V2Ray 代理</li><li>有机场使用经验</li><li>没钱买高价机场 / 乐于使(bái)用(piáo)公益机场</li><li>使用机场服务，但忌惮流量安全</li></ul><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>目前市面上已经有很多机场（提供 SS/SSR 服务的网站），且不乏众多公益机场，这些机场因为拥有一些好线路的服务器，所以在使用的时候可以获得较好的突破网络封锁的体验。比起自己购买一个垃圾服务器，使用时的龟速；以及购买一个优质线路服务器，承受每月高额费用；更不用说还要担心自己服务器被 GFW 认证的风险——使用机场真是省钱省心。但是隐私问题也不容小觑，支付时的隐私泄露按下不表，本文的初衷是规避使用机场时流量隐私泄露的问题——如何使用机场服务的同时不暴露自己的流量隐私。</p><p>V2Ray 除了支持自有协议 VMess 之外，还支持 Socks、Shadowsocks 等协议，配合自带的流量中转功能，可以在保护流量隐私的同时，借助机场起飞，最大程度上提升代理使用体验。</p><p>前面说这么多，说人话就是——花最少的钱，用最好的线路，让偷窥流量 / 监控流量的机场见鬼去吧。</p><h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p><img src="https://i.loli.net/2019/04/01/5ca1b95248225.png" alt="无标题.png"></p><a id="more"></a><p>基本原理大致如下：</p><ol><li>V2Ray 客户端先将流量使用 VMess 协议加密</li><li>按照不同的加密方法：<br> SS 中转：V2Ray 客户端再使用 SS 协议加密，把两次加密后的流量发送到机场服务器进行中转<br> SSR 中转：V2Ray 客户端把 VMess 加密流量发给 SSR 客户端，SSR 客户端再使用 SSR 协议加密，把两次加密后的流量发送到机场服务器进行中转</li><li>机场服务器对流量进行 SS/SSR 解密后再把流量（VMess 协议加密流量）发往我们自建的 V2Ray 服务器</li><li>V2Ray 服务器正常访问网站</li><li>网站返回的数据按上述步骤和处理方式原路返回</li></ol><p>由于机场服务器收到的是 VMess 协议加密后的流量，加密方法又是我们自定义的，所以机场几无可能掌握我们的真实流量。下面动手实操。</p><h1 id="SS-中转-V2Ray-流量"><a href="#SS-中转-V2Ray-流量" class="headerlink" title="SS 中转 V2Ray 流量"></a>SS 中转 V2Ray 流量</h1><p>V2Ray 自身支持 Shadowsocks 协议，所以 SS 中转 V2Ray 流量按照官方的<a href="[https://toutyrater.github.io/advanced/outboundproxy.html](https://toutyrater.github.io/advanced/outboundproxy.html">白话文教程</a>来操作就行了。简单来说就是把配置文件中的 <code>outbounds</code> 部分设置为这样：<br><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处根据自己的V2Ray设置修改</span><br><span class="line">        <span class="string">"vnext"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"1.1.1.1"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">8888</span>,</span><br><span class="line">            <span class="string">"users"</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="string">"alterId"</span>: <span class="number">64</span>,</span><br><span class="line">                <span class="string">"id"</span>: <span class="string">"b12614c5-5ca4-4eba-a215-c61d642116ce"</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"proxySettings"</span>: &#123;</span><br><span class="line">          <span class="string">"tag"</span>: <span class="string">"transit"</span>  // 把 V2Ray 流量发给 tag 名为 transit 的代理进行转发</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"shadowsocks"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处填上机场某个 SS 服务器的配置</span><br><span class="line">        <span class="string">"servers"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"2.2.2.2"</span>,</span><br><span class="line">            <span class="string">"method"</span>: <span class="string">"aes-256-cfb"</span>,</span><br><span class="line">            <span class="string">"ota"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">"password"</span>: <span class="string">"password"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">1024</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transit"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p><h1 id="SSR-中转-V2Ray-流量"><a href="#SSR-中转-V2Ray-流量" class="headerlink" title="SSR 中转 V2Ray 流量"></a>SSR 中转 V2Ray 流量</h1><p>但是很多机场都是 SSR 机场，没有提供 SS 配置，那岂不是就不能用上面的骚操作了？既然 SSR 支持监听本地的 Socks 流量，V2Ray 又支持 Socks 协议传出，那我们只需要在本地同时打开 V2Ray 和 SSR 客户端，然后用 Socks 协议连接二者通信即可，相当于把上一节中 V2Ray 传出目标从服务器改为本地 SSR。那么配置文件中的 <code>outbounds</code> 部分就设置为这样：<br><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处根据自己的V2Ray设置修改</span><br><span class="line">        <span class="string">"vnext"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"1.1.1.1"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">8888</span>,</span><br><span class="line">            <span class="string">"users"</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="string">"alterId"</span>: <span class="number">64</span>,</span><br><span class="line">                <span class="string">"id"</span>: <span class="string">"b12614c5-5ca4-4eba-a215-c61d642116ce"</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"proxySettings"</span>: &#123;</span><br><span class="line">          <span class="string">"tag"</span>: <span class="string">"transit"</span>  // 把 V2Ray 流量发给 tag 名为 transit 的代理进行转发</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"socks"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"servers"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">          <span class="string">"address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">          <span class="string">"port"</span>: <span class="number">1080</span>  // 此处填写 SSR 客户端监听的本地端口</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transit"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p><p>以 Windows 平台为例，我们可以在客户端的「选项设置」中「允许来自局域网的连接」，并且设置 SSR 客户端监听的本地端口：</p><p><img src="https://i.loli.net/2019/04/01/5ca1b95b997fe.png" alt="SSR设置"></p><p>完成设置后，在 SSR 客户端中选择想要使用的服务器节点，并且打开 V2Ray，需要代理的流量全部访问 <strong>V2Ray 客户端监听的端口</strong>即可。</p><p><img src="https://i.loli.net/2019/04/01/5ca1b95d2597b.png" alt="选择SSR服务器节点"></p><p>如果设置正确，访问不存在的网站时，可以在 V2Ray 服务端日志中看到流量全部来自于我们选择机场服务器节点。</p><p><img src="https://i.loli.net/2019/04/01/5ca1b95e30487.png" alt="V2Ray服务端日志"></p><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="V2Ray-配置文件"><a href="#V2Ray-配置文件" class="headerlink" title="V2Ray 配置文件"></a>V2Ray 配置文件</h2><p>刚开始使用 V2Ray 的人可能会困惑于 V2Ray 配置文件的繁琐，下面提供几个与本文相关的，本人目前正在使用的 V2Ray 完整配置文件，其中客户端配置文件集成了基本的广告屏蔽和大陆直连，本地监听端口为 <code>1082</code>，可根据自己需要进行修改。同时也提供了最简单的服务端配置文件，仅供参考：</p><ul><li><a href="https://gist.github.com/yhyy135/667251599e3e762ca6d86517d39554c8/raw/ba48ac317c5b658b55b4834516d897a4a201a473/ss-vmess-config.json" target="_blank" rel="noopener">SS 中转 V2Ray 客户端配置文件</a></li><li><a href="https://gist.github.com/yhyy135/667251599e3e762ca6d86517d39554c8/raw/ba48ac317c5b658b55b4834516d897a4a201a473/ssr-vmess-config.json" target="_blank" rel="noopener">SSR 中转 V2Ray 客户端配置文件</a></li><li><a href="https://gist.github.com/yhyy135/667251599e3e762ca6d86517d39554c8/raw/ba48ac317c5b658b55b4834516d897a4a201a473/server-config.json" target="_blank" rel="noopener">V2Ray 服务端配置文件</a></li></ul><p>另外，由于 SSR 中转 V2Ray 流量需要同时使用 SSR 客户端和 V2Ray 客户端，所以目前暂时无法在移动设备上实现，略有遗憾。但是既然都可以如此白嫖机场了，还是知足吧。如果你有什么好想法，不妨在评论区交流。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文目标读者：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;拥有自建 V2Ray 代理&lt;/li&gt;
+&lt;li&gt;有机场使用经验&lt;/li&gt;
+&lt;li&gt;没钱买高价机场 / 乐于使(bái)用(piáo)公益机场&lt;/li&gt;
+&lt;li&gt;使用机场服务，但忌惮流量安全&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;目前市面上已经有很多机场（提供 SS/SSR 服务的网站），且不乏众多公益机场，这些机场因为拥有一些好线路的服务器，所以在使用的时候可以获得较好的突破网络封锁的体验。比起自己购买一个垃圾服务器，使用时的龟速；以及购买一个优质线路服务器，承受每月高额费用；更不用说还要担心自己服务器被 GFW 认证的风险——使用机场真是省钱省心。但是隐私问题也不容小觑，支付时的隐私泄露按下不表，本文的初衷是规避使用机场时流量隐私泄露的问题——如何使用机场服务的同时不暴露自己的流量隐私。&lt;/p&gt;
+&lt;p&gt;V2Ray 除了支持自有协议 VMess 之外，还支持 Socks、Shadowsocks 等协议，配合自带的流量中转功能，可以在保护流量隐私的同时，借助机场起飞，最大程度上提升代理使用体验。&lt;/p&gt;
+&lt;p&gt;前面说这么多，说人话就是——花最少的钱，用最好的线路，让偷窥流量 / 监控流量的机场见鬼去吧。&lt;/p&gt;
+&lt;h1 id=&quot;基本原理&quot;&gt;&lt;a href=&quot;#基本原理&quot; class=&quot;headerlink&quot; title=&quot;基本原理&quot;&gt;&lt;/a&gt;基本原理&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2019/04/01/5ca1b95248225.png&quot; alt=&quot;无标题.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="教程" scheme="https://acuario.xyz/categories/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="软件使用" scheme="https://acuario.xyz/categories/%E6%95%99%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/"/>
+    
+    
+      <category term="教程" scheme="https://acuario.xyz/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="VPS" scheme="https://acuario.xyz/tags/VPS/"/>
+    
+      <category term="ShadowsocksR" scheme="https://acuario.xyz/tags/ShadowsocksR/"/>
+    
+      <category term="v2ray" scheme="https://acuario.xyz/tags/v2ray/"/>
+    
+      <category term="Shadowsocks" scheme="https://acuario.xyz/tags/Shadowsocks/"/>
+    
+  </entry>
   
   <entry>
     <title>使用HyperApp搭建Tiny Tiny RSS</title>
@@ -320,9 +362,9 @@
     
       <category term="运维" scheme="https://acuario.xyz/tags/%E8%BF%90%E7%BB%B4/"/>
     
-      <category term="命令行" scheme="https://acuario.xyz/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
-    
       <category term="VPS" scheme="https://acuario.xyz/tags/VPS/"/>
+    
+      <category term="命令行" scheme="https://acuario.xyz/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
     
   </entry>
   
@@ -586,37 +628,6 @@
       <category term="学习笔记" scheme="https://acuario.xyz/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
       <category term="RegEx" scheme="https://acuario.xyz/tags/RegEx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[转]学到不会忘</title>
-    <link href="https://acuario.xyz/learn-to-unforgettable/"/>
-    <id>https://acuario.xyz/learn-to-unforgettable/</id>
-    <published>2017-04-13T15:52:47.000Z</published>
-    <updated>2017-04-13T16:08:04.950Z</updated>
-    
-    <content type="html"><![CDATA[<p>近几日重新拿起《精通正则表达式》，重读前言的时候觉得感同身受，在作者博客看到可以转载，遂转至此以自勉。</p><p>本文由 Yurii 原创，来源：<a href="http://www.luanxiang.org/blog/" target="_blank" rel="noopener">乱象，印迹</a><br>原文链接 <a href="http://www.luanxiang.org/blog/archives/1249.html" target="_blank" rel="noopener">学到不会忘</a></p><p>原文如下</p><hr><p>博文视点的张春雨编辑告诉我，八次印刷的《精通正则表达式》已经全部售罄了， O’Reilly 与电子工业出版社续签了版权合同，准备重新上市，让我写一点东西。</p><p>该写什么好呢？</p><p>2007 年 《精通》上市时，我还在中关村，天气好的时候可以望见颐和园的佛香阁；而现在，窗外景色已经换成了珠江边的小蛮腰；对正则表达式的使用，也从随手拈来变得生疏——许多问题需要翻查《精通》，翻查自己写的《正则指引》。究其原因，与正则表达式直接相关的开发做得少了，古话说“勤则立，嬉则荒”，就是这个道理。</p><p>荒是荒了，毕竟还没荒废，虽然有很多细节需要查阅，但是我很清楚，某个问题能不能用正则表达式解决，该怎样解决。或者说，虽然手上生疏了，心里其实没有忘记，而这一切，归源都是之前死啃过《精通》的缘故。</p> <a id="more"></a><p>在阅读《精通》之前，我已经查阅了网上的不少资料，对正则表达式有了基本了解，能像模像样地解决一些实际问题，可算“够用”了。这时候遇见《精通》这样“现实价值不那么大”的书，能静下心去阅读，其实带着点毕业不久的傻气，只是单纯想把它弄懂搞透。所以，遇到匹配原理这类看来没多少实用价值的知识，还会愿意花时间去揣摩、研习。回头想想，也正是因为当时有这种傻气，可算是意外的收获：工作中经常需要学习一些工具和原理，虽然当时也“学会”了，但不久就忘个精光；相比之下，正则表达式却是学到了“不会忘”的程度。更典型的例子是游泳，几乎人人都可以做到“一朝学会，终身不忘”。同样是“学会”，为什么差距这么大呢？</p><p>这个问题我想了很久，最后的答案是，“学会”的定义是不同的。</p><p>通常我们说“学会”了某项技术、某门语言，意思是“凑合能用”，或者说“可以对照文档（ Google ）解决问题”的程度——你用 Python 解决了一个问题，就说明你“学会”了Python ，哪管是步步 Google ，还是照抄现成的代码。而我们说“学会”了游泳，意思是可以在水里行动而不沉下去，更重要的是在游泳时不需要时刻背诵各种口诀：吸气—伸手—划水—蹬腿—抬头—呼气……，如果你在泳池里还要时时谨记这些口诀，是绝对谈不上“学会”的。</p><p>两者虽然都叫“学会”，其实相差迥异：第一种“学会”是“照猫画虎”，第二种“学会”是“融会贯通”，虽然都可以解决问题，但从第一种“学会”到达第二种“学会”，其实需要经历漫长的过程。而且，两种“学会”都能解决问题，所以在达到第二种“学会”的漫长过程中，你很可能感觉不到自己的进步，反而会困惑继续学习的意义乃至放弃——既然能对着文档操作，既然有现成的资料，为什么要去理解背后的原理呢。</p><p>对我来说，第二种“学会”的好处是显而易见的，最重要的一点就是不会忘记——学习的时间增长一倍，遗忘的难度将会增加十倍、二十倍甚至一百倍。这些年来，我见到了太多这样的例子：有人每次用到正则表达式都会抓狂，都要四处极力搜索、反复盲目尝试，花很长时间才能凑出、蒙对解决方案；另一方面，他们又不愿意花时间潜心学习《精通》这样的经典。因为反复遗忘，需要反复学习，最终浪费了大量的时间。</p><p>许多人不愿意专门花时间来学习正则表达式，是认为它属于奇技淫巧，并非工作必须。但这理由是不成立的：我们大部分人不是作家，但为了在需要的时候写得出文章，还是必须专门花时间来练习写作。而且，专门花时间来学习“非必要”的技能，以后往往能有意想不到的收获。我真切体会到并且懂得这个道理，恰好也是与《精通》的翻译有缘。</p><p>在翻译《精通》时，为了省却重新编排索引的麻烦，需要做到中英文版页页对应，于是我专门学习了侯捷老师写的《Word排版艺术》，并且亲手尝试了每个例子，记熟了有关的概念和术语，从此学会了格式和样式的角度定义文档，再不用为格式之类的问题烦恼。这些年来虽然用得并不 多，却没有忘记。去年写作《正则指引》时，我事先完整定义了各种格式、样式、引用等等，交稿时节省了自己和出版社大量的时间。</p><p>另一个例子仍然与正则表达式有关。去年，为了写作《正则指引》中Unicode的章节，我专门花了时间研读Unicode规范，虽然最终《指引》中没有列出学到的全部知识，但我对Unicode的理解已经不再限于“在程序中设定Unicode编码即可”。前几天，有位同事遇到Unicode字符Ä （U+00C4）无法打印的问题，于是我建议他使用A和¨ （U+0041和U+0308）的两个Unicode字符来表示（按照Unicode规范，两个字符可以“组合”成一个字符），果然解决了问题。这段经历再次证明，真的学会了，就真的不会忘。</p><p>亚里士多德曾说：所谓幸 福，就是尽情地施展我们掌握的技能，等待期望的结果。然而很多时候，我们以为自己可以解决，但是之前学过的技能已经遗忘，于是施展起来步履沉重、举步维艰，最后只能精疲力竭地等待结果，自然与幸福绝缘。相反，如果我们能把重要的技能都真正学会，学到不会忘的程度，自然可以接近幸福。如果你想收获自如驾驭 正则表达式的幸福，不妨从这本书开始吧。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;近几日重新拿起《精通正则表达式》，重读前言的时候觉得感同身受，在作者博客看到可以转载，遂转至此以自勉。&lt;/p&gt;
-&lt;p&gt;本文由 Yurii 原创，来源：&lt;a href=&quot;http://www.luanxiang.org/blog/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;乱象，印迹&lt;/a&gt;&lt;br&gt;原文链接 &lt;a href=&quot;http://www.luanxiang.org/blog/archives/1249.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;学到不会忘&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;原文如下&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;博文视点的张春雨编辑告诉我，八次印刷的《精通正则表达式》已经全部售罄了， O’Reilly 与电子工业出版社续签了版权合同，准备重新上市，让我写一点东西。&lt;/p&gt;
-&lt;p&gt;该写什么好呢？&lt;/p&gt;
-&lt;p&gt;2007 年 《精通》上市时，我还在中关村，天气好的时候可以望见颐和园的佛香阁；而现在，窗外景色已经换成了珠江边的小蛮腰；对正则表达式的使用，也从随手拈来变得生疏——许多问题需要翻查《精通》，翻查自己写的《正则指引》。究其原因，与正则表达式直接相关的开发做得少了，古话说“勤则立，嬉则荒”，就是这个道理。&lt;/p&gt;
-&lt;p&gt;荒是荒了，毕竟还没荒废，虽然有很多细节需要查阅，但是我很清楚，某个问题能不能用正则表达式解决，该怎样解决。或者说，虽然手上生疏了，心里其实没有忘记，而这一切，归源都是之前死啃过《精通》的缘故。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="分享" scheme="https://acuario.xyz/categories/%E5%88%86%E4%BA%AB/"/>
-    
-    
-      <category term="正则表达式" scheme="https://acuario.xyz/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-      <category term="精通正则表达式" scheme="https://acuario.xyz/tags/%E7%B2%BE%E9%80%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     
   </entry>
   
