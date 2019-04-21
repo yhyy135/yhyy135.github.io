@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://acuario.xyz/"/>
-  <updated>2019-04-01T08:46:51.826Z</updated>
+  <updated>2019-04-21T10:12:49.618Z</updated>
   <id>https://acuario.xyz/</id>
   
   <author>
@@ -15,6 +15,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>InnoDB 与 MyISAM 的区别</title>
+    <link href="https://acuario.xyz/differences-between-innodb-and-myisam/"/>
+    <id>https://acuario.xyz/differences-between-innodb-and-myisam/</id>
+    <published>2019-04-21T09:24:56.000Z</published>
+    <updated>2019-04-21T10:12:49.618Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前 MySQL 的数据库引擎一般使用 InnoDB 和 MyISAM，但两者存在一些差别。网上零零散散的文章看起来比较麻烦，这里以表格汇总对比二者区别。如有纰漏，还望读者在评论区指正。</p><table><thead><tr><th></th><th>InnoDB</th><th>MyISAM</th></tr></thead><tbody><tr><td>MySQL 默认引擎</td><td>✅</td><td>❌</td></tr><tr><td>事务</td><td>✅</td><td>❌</td></tr><tr><td>并发</td><td>表级锁 ✅<br>行级锁 ✅，采用 MVCC 来支持高并发，有可能死锁</td><td>表级锁 ✅<br>行级锁 ❌</td></tr><tr><td>外键</td><td>✅</td><td>❌</td></tr><tr><td>在线热备份</td><td>✅</td><td>❌</td></tr><tr><td>COUNT (*)</td><td>无 meta-data 缓存，查全表获取</td><td>有 meta-data 缓存，直接获取</td></tr><tr><td>崩溃恢复</td><td>通过事务日志来恢复数据库</td><td>损坏率高，恢复速度慢，不能安全恢复</td></tr><tr><td>其他</td><td>默认隔离级别是可重复读（REPEATABLE READ），通过多版本并发控制（MVCC）+ 间隙锁（Next-Key Locking）防止幻影读</td><td>设计简单，数据以紧密格式存储</td></tr><tr><td>索引特性</td><td>主索引是聚簇索引，在索引中保存了数据，从而避免直接读取磁盘，因此对查询性能有很大的提升。</td><td>DELAY_KEY_WRITE 选项：修改后，新索引数据写入内存中的键缓冲区，清理键缓冲区或者关闭表时才写入磁盘。极大提升写入性能，但崩溃时会造成索引损坏</td></tr><tr><td>全文索引</td><td>>= MySQL 5.6.4 ✅<br>  &lt; MySQL 5.6.4 ❌</td><td>✅<br>支持 BLOB 和 TEXT 的前 500 个字符索引</td></tr><tr><td>自有特性</td><td>内部优化：<br>1. 可预测性读加快读操作<br>2. 自适应哈希索引加速插入操作的插入缓冲区</td><td>1. 支持压缩表和空间数据索引<br>2.并发插入（CONCURRENT INSERT）：在表有读取操作的同时，也可以往表中插入新的记录</td></tr></tbody></table><hr><p>参考链接：<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/MySQL.md#%E4%B8%89%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E" target="_blank" rel="noopener">技术面试必备基础知识：MySQL</a><br><a href="http://cxymrzero.github.io/blog/2015/08/17/myisam-innodb/" target="_blank" rel="noopener">MyISAM 与 InnoDB 区别</a><br><a href="https://juejin.im/post/5b1685bef265da6e5c3c1c34" target="_blank" rel="noopener">MySQL 常见的两种存储引擎：MyISAM 与 InnoDB 的爱恨情仇</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;目前 MySQL 的数据库引擎一般使用 InnoDB 和 MyISAM，但两者存在一些差别。网上零零散散的文章看起来比较麻烦，这里以表格汇总对比二者区别。如有纰漏，还望读者在评论区指正。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Inno
+      
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="https://acuario.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="MySQL" scheme="https://acuario.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/MySQL/"/>
+    
+    
+      <category term="MySQL" scheme="https://acuario.xyz/tags/MySQL/"/>
+    
+      <category term="数据库" scheme="https://acuario.xyz/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="学习笔记" scheme="https://acuario.xyz/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>播客札记（一）</title>
+    <link href="https://acuario.xyz/podcast-note-1/"/>
+    <id>https://acuario.xyz/podcast-note-1/</id>
+    <published>2019-04-01T16:00:00.000Z</published>
+    <updated>2019-04-21T10:12:34.674Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="翻转问答-VOL8-亲密关系"><a href="#翻转问答-VOL8-亲密关系" class="headerlink" title="翻转问答 VOL8 | 亲密关系"></a>翻转问答 VOL8 | 亲密关系</h1><p><a href="https://player.fm/series/flip-radio/fan-zhuan-wen-da-vol8-lai-ba-ni-men-zui-guan-xin-de-na-ge-wen-ti-qin-mi-guan-xi" target="_blank" rel="noopener">Episode Archive</a></p><h2 id="亲密关系的特点"><a href="#亲密关系的特点" class="headerlink" title="亲密关系的特点"></a>亲密关系的特点</h2><ul><li>个人主义社会——代表排除共同体、排除外部主张的合理性，关注自我的合理性，且自我合理性不与所处共同体相关，是一种纯粹的根本的自我。</li><li>亲密关系是一种纯粹关系，与个人主义的自我产生关联，过去的亲密关系属于共同体（家庭、集体），如今属于自我</li><li>现代自我拥有物理和心理意义上更多的私人空间，亲密关系与私人空间的冲突恰是其特殊性。</li><li>亲密关系可以充分满足自我认可。因为：<ol><li>亲密关系是自信心和基础安全感的来源</li><li>亲密关系是制度化社会中几乎唯一的非制度要素的情景，用以释放制度压抑（福柯提出性和药物释放制度压抑）</li><li>荣格心理学认为，亲密关系是人与自身异性人格（anima 和 animus）达成和解的要素，即是自身自信</li></ol></li></ul><h2 id="亲密关系为何脆弱"><a href="#亲密关系为何脆弱" class="headerlink" title="亲密关系为何脆弱"></a>亲密关系为何脆弱</h2><ul><li>现代生活中，维系亲密关系的外部必然性消失，促使人反思自身的亲密关系，但亲密关系本身禁不起反思</li><li>社会流动性越来越大，增加了更多亲密关系的选择</li><li>亲密关系博弈成为囚徒困境博弈，结合亲密关系边际效应使人更愿意考虑成本和收益而做出选择。</li><li>开放式关系看似消解了亲密关系的囚徒困境，但依旧无法达成 anima 和 animus 和解，且个人主义的本质下，亲密关系是一对一的。</li></ul><a id="more"></a><h2 id="现代知识异化中对亲密关系的-5-种关键隐喻"><a href="#现代知识异化中对亲密关系的-5-种关键隐喻" class="headerlink" title="现代知识异化中对亲密关系的 5 种关键隐喻"></a>现代知识异化中对亲密关系的 5 种关键隐喻</h2><ol><li>健康——感情健康。根本原因是纯粹的亲密关系失去了基础。难免被套用到客观评判体系，引入制度和技术对亲密关系进行调和。</li><li>企业——如何「经营」感情。</li><li>镜像神经元——充分了解对方、完全换位思考理解对方。</li><li>信仰——亲密关系是心诚则灵的东西。信仰在宗教中只照顾生活中与自我存在相关的绝对要素，如救赎——而不是现实功利主义在乎的东西。</li><li>自我——爱别人首先要爱自己。这是纯粹个人主义对亲密关系的排除。但除了自恋之外的「爱」本身就是否定自我的过程，要爱自己，不得不承认宾我与主我的存在，并反对接受宾我的反思。能够做到彻底的自爱的人，定是一个绝对自私的人。</li></ol><h2 id="如何保卫亲密关系"><a href="#如何保卫亲密关系" class="headerlink" title="如何保卫亲密关系"></a>如何保卫亲密关系</h2><ol><li>不仅保卫亲密关系，也要保卫其他真正的关系——如亲情关系、友情关系</li><li>通过其他真正的关系来锻炼自己承担人际风险的能力，从而减弱自己的胆怯和容易在亲密关系中收到的伤害。</li></ol><h1 id="翻转问答-VOL9-中医"><a href="#翻转问答-VOL9-中医" class="headerlink" title="翻转问答 VOL9 | 中医"></a>翻转问答 VOL9 | 中医</h1><p><a href="https://player.fm/series/flip-radio/fan-zhuan-wen-da-vol10-zhong-yi-ying-gai-ru-he-kan-dai-zhong-yi-he-xi-yi-de-dui-bi" target="_blank" rel="noopener">Episode Archive</a></p><ul><li>伪科学是指任何经宣称为科学，或描述方式看起来像科学，但实际上并不符合科学方法基本要求的知识、缺乏支持证据，经不起可信性测试，或缺乏科学形式，伪科学常常使用模糊的、自相矛盾的、夸张的或无法证明的主张，过度依赖确认而不是严格的反驳，缺乏其它专家的公开确认，缺乏系统化、理性化的理论过程。</li><li>中医是“伪科学”还是“非科学”？</li><li>科学还原论试图将各种领域完全祛魅，进行彻底的科学化。中医是否需要像艺术、宗教一样进行科学化？人的身体和医学一定要“科学化”吗？</li></ul><h2 id="物理世界是否必须科学化？"><a href="#物理世界是否必须科学化？" class="headerlink" title="物理世界是否必须科学化？"></a>物理世界是否必须科学化？</h2><ul><li>物理世界的分类：<ol><li>真实感受建构的世界：食物-味觉，按摩-触觉</li><li>目的建构的世界：与目的高度相关——交通、建筑</li><li>数学建构的世界：完全的抽象世界</li></ol></li><li>真实感受的物理世界的语汇与科学的语汇存在范式差异：如味觉「鲜」（厨师烹饪时加糖提鲜）实际并非用科学语境下的「鲜味」。所以并非所有场景都要用科学语汇来替代真实感受的物理世界的语汇。</li><li>目的的物理世界由于存在理论与实践的差异，但并非所有实践都需要确切的理论认识：如鸟的飞行行为本身并不依赖于理论认识；部分尖端科技的发现（认识）是实践（实验）中的偶然，并非现有认识才有实践。</li><li>数学（及其相关）的物理世界由于完全抽象而进行了科学化：如天文学的观测结果、基因层面的理论等。</li></ul><h2 id="医学是否应该属于数学的物理世界？"><a href="#医学是否应该属于数学的物理世界？" class="headerlink" title="医学是否应该属于数学的物理世界？"></a>医学是否应该属于数学的物理世界？</h2><ul><li>基础假设：科学构筑了现象世界以外的不能被感官感知的现象，这些东西是比被感官感知的东西更本质的原因。即如果能找到非无感现象的原因，则五感现象基本都是偏见和错误。</li><li>相信科学即相信上述基础假设。</li><li>现代医学的专业化细分使其可以属于数学的物理世界这一范畴。西医对细节化学现象的分析、对人体化学还原的做法是逻辑自洽的。</li><li>医学自洽是对细节化学现象的自洽，而非对人整体的自洽。</li><li>副作用的存在没有证伪任何化学理论，而是提出了更多难以解释的现象。</li></ul><h2 id="证伪是什么意思？证伪很重要吗？"><a href="#证伪是什么意思？证伪很重要吗？" class="headerlink" title="证伪是什么意思？证伪很重要吗？"></a>证伪是什么意思？证伪很重要吗？</h2><ul><li>「证伪 = 求真」是语言误用。</li><li>被证伪不代表因果性不存在。</li><li>只有科学可以被证伪，但日常医学实践并未以证伪的方式推进科学。</li><li>证伪、实证并非最重要的方法论。</li></ul><h2 id="西医的现状和逻辑问题"><a href="#西医的现状和逻辑问题" class="headerlink" title="西医的现状和逻辑问题"></a>西医的现状和逻辑问题</h2><ul><li>西医治疗的是微观的现象（症状），而非整个人体本身。</li><li>人体的健康状况不是细节现象，而整体宏观秩序。</li><li>西医的统计学基础决定了受众是社会整体，而非单个个体，西医以社会工程学为基础，而非个体研究为基础。临床检验流程，是从社会工程学角度确定药物对社会的安全性，而非对独立个体的安全性。同时，统计样本的选取，也左右着西医实际参考价值。个体差异的复杂性导致个体参与医学治疗的差异性。</li></ul><h2 id="中医有没有理论？"><a href="#中医有没有理论？" class="headerlink" title="中医有没有理论？"></a>中医有没有理论？</h2><ul><li>专家崇拜是现代性的一大问题。以信托的方式相信专家，是存在实际风险和问题的。</li><li>中医并非没有理论，而是非科学理论。</li><li>中医的理论前提是阴阳五行的信念，西医的理论前提是数学理论的实在。</li><li>实用主义角度来看，阴阳五行理论在某种程度上阐释了身体的现象和关系。我们承认其有理，但为何我们否认其「真」？</li></ul><h2 id="我们需要的一种“本体论”清醒"><a href="#我们需要的一种“本体论”清醒" class="headerlink" title="我们需要的一种“本体论”清醒"></a>我们需要的一种“本体论”清醒</h2><ul><li>认为科学发展可以一往无前，将有科学宗教和科学迷信的风险。</li><li>大多数科学的发现是应用领域的新应用，而非原理领域的新发现。</li><li>科学意义的「存在」和我们五感的「存在」并非相同意义，我们虽未以五感方式认知其科学「存在」，但我们对其有信任。这与阴阳五行理论的「存在」并无本质差异。</li><li>真理掌握我们，而非我们掌握真理。</li></ul><h2 id="为何中医话题敏感？"><a href="#为何中医话题敏感？" class="headerlink" title="为何中医话题敏感？"></a>为何中医话题敏感？</h2><ul><li>以公共说理和公共舆论为重要基础，科学的公共话题变得比较敏感。</li><li>人被隔绝的日常实践，通过口头表达和表达被人承认获得自我认知和实现。</li><li>随着互联网发展，公共言论和公共舆论与权力高度相关。</li><li>在公共说理领域，面对多变的环境和不确定性的受众，我们需要一种货币一样的硬通货来说理——普遍主义。</li><li>启蒙理性和科学，诞生于对神学的批判，但在批驳的同时继承了神学的确定性和普遍主义。</li><li>科学无法争取的普遍主义的领域，将被权力斥为不重要和无意义。如艺术、形而上学、人生价值。</li><li>认为「一个领域必须留给其专业的、有其实践经验的人」的想法，是十分傲慢、不负责任、导致社会进一步切割的观念。专家崇拜是现代性涌现的巨大问题，它带来社会盲目和个体自信心和安全感的丧失。</li><li></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;翻转问答-VOL8-亲密关系&quot;&gt;&lt;a href=&quot;#翻转问答-VOL8-亲密关系&quot; class=&quot;headerlink&quot; title=&quot;翻转问答 VOL8 | 亲密关系&quot;&gt;&lt;/a&gt;翻转问答 VOL8 | 亲密关系&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://player.fm/series/flip-radio/fan-zhuan-wen-da-vol8-lai-ba-ni-men-zui-guan-xin-de-na-ge-wen-ti-qin-mi-guan-xi&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Episode Archive&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;亲密关系的特点&quot;&gt;&lt;a href=&quot;#亲密关系的特点&quot; class=&quot;headerlink&quot; title=&quot;亲密关系的特点&quot;&gt;&lt;/a&gt;亲密关系的特点&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;个人主义社会——代表排除共同体、排除外部主张的合理性，关注自我的合理性，且自我合理性不与所处共同体相关，是一种纯粹的根本的自我。&lt;/li&gt;
+&lt;li&gt;亲密关系是一种纯粹关系，与个人主义的自我产生关联，过去的亲密关系属于共同体（家庭、集体），如今属于自我&lt;/li&gt;
+&lt;li&gt;现代自我拥有物理和心理意义上更多的私人空间，亲密关系与私人空间的冲突恰是其特殊性。&lt;/li&gt;
+&lt;li&gt;亲密关系可以充分满足自我认可。因为：&lt;ol&gt;
+&lt;li&gt;亲密关系是自信心和基础安全感的来源&lt;/li&gt;
+&lt;li&gt;亲密关系是制度化社会中几乎唯一的非制度要素的情景，用以释放制度压抑（福柯提出性和药物释放制度压抑）&lt;/li&gt;
+&lt;li&gt;荣格心理学认为，亲密关系是人与自身异性人格（anima 和 animus）达成和解的要素，即是自身自信&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;亲密关系为何脆弱&quot;&gt;&lt;a href=&quot;#亲密关系为何脆弱&quot; class=&quot;headerlink&quot; title=&quot;亲密关系为何脆弱&quot;&gt;&lt;/a&gt;亲密关系为何脆弱&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;现代生活中，维系亲密关系的外部必然性消失，促使人反思自身的亲密关系，但亲密关系本身禁不起反思&lt;/li&gt;
+&lt;li&gt;社会流动性越来越大，增加了更多亲密关系的选择&lt;/li&gt;
+&lt;li&gt;亲密关系博弈成为囚徒困境博弈，结合亲密关系边际效应使人更愿意考虑成本和收益而做出选择。&lt;/li&gt;
+&lt;li&gt;开放式关系看似消解了亲密关系的囚徒困境，但依旧无法达成 anima 和 animus 和解，且个人主义的本质下，亲密关系是一对一的。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="播客札记" scheme="https://acuario.xyz/categories/%E6%92%AD%E5%AE%A2%E6%9C%AD%E8%AE%B0/"/>
+    
+    
+      <category term="Podcast" scheme="https://acuario.xyz/tags/Podcast/"/>
+    
+      <category term="播客" scheme="https://acuario.xyz/tags/%E6%92%AD%E5%AE%A2/"/>
+    
+      <category term="翻转电台" scheme="https://acuario.xyz/tags/%E7%BF%BB%E8%BD%AC%E7%94%B5%E5%8F%B0/"/>
+    
+      <category term="亲密关系" scheme="https://acuario.xyz/tags/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/"/>
+    
+      <category term="中医" scheme="https://acuario.xyz/tags/%E4%B8%AD%E5%8C%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>SS/SSR中转V2ray起飞教程</title>
@@ -563,71 +646,6 @@
     
     
       <category term="读书笔记" scheme="https://acuario.xyz/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RegEx折腾之路（一）</title>
-    <link href="https://acuario.xyz/regex-tricks-1/"/>
-    <id>https://acuario.xyz/regex-tricks-1/</id>
-    <published>2017-04-27T16:00:33.000Z</published>
-    <updated>2017-06-22T14:29:04.404Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于 RegEx，一直记得一句话：</p><blockquote><p>好的 RegEx 是短而精的。</p></blockquote><p>近来在研究 RegEx 的折腾之路上走来走去。决定把自己所遇到的一些小例子记下来。<br>一方面方便自己回顾、反思，另一方面给大家参考、指正。<br>想起前段时间工作上遇到的一个 situation。</p> <a id="more"></a><p>源文本如下：<br><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">(通用,单选,非必填)BRAND<span class="string">||常规品牌</span></span><br><span class="line">(通用,单选,非必填)DESIGNER<span class="string">||设计师品牌</span></span><br><span class="line">(通用,多选,非必填)MATERIAL<span class="string">||面料（1）</span></span><br><span class="line">(通用,多选,非必填)MATERIAL<span class="string">||面料（2）</span></span><br><span class="line">(特定,多选,非必填)NECKLINE<span class="string">||领口</span></span><br><span class="line">(特定,多选,非必填)SLEEVE LENGTH<span class="string">||袖长</span></span><br><span class="line">(特定,多选,非必填)SLEEVE TYPE<span class="string">||袖型</span></span><br><span class="line">(特定,多选,非必填)WAISTLINE<span class="string">||腰线</span></span><br><span class="line">(特定,多选,非必填)DRESS LENGTH<span class="string">||裙长（1）</span></span><br><span class="line">(特定,多选,非必填)DRESS LENGTH<span class="string">||裙长（2）</span></span><br><span class="line">(特定,多选,非必填)FIT<span class="string">||体型</span></span><br><span class="line">(特定,多选,非必填)OCCASION<span class="string">||场合（1）</span></span><br><span class="line">(特定,多选,非必填)OCCASION<span class="string">||场合（2）</span></span><br><span class="line">(特定,多选,非必填)STYLE<span class="string">||款式（1）</span></span><br><span class="line">(特定,多选,非必填)STYLE<span class="string">||款式（2）</span></span><br><span class="line">(特定,多选,非必填)ACCENT<span class="string">||特色（1）</span></span><br><span class="line">(特定,多选,非必填)ACCENT<span class="string">||特色（2）</span></span><br><span class="line">(特定,多选,非必填)ACCENT<span class="string">||特色（3）</span></span><br></pre></td></tr></table></figure></p><p>需要匹配出每一行中对应的中、英文标题：<br>如英文标题「SLEEVE LENGTH」，及对应的中文标题「袖长」<br>如英文标题「DRESS LENGTH」，及对应的中文标题「裙长」</p><p>乍一看很简单，但是实际做起来却没有那么容易。写出的 RegEx 总会受到行末的序号所影响。最后使用两个 RegEx 分情况进行匹配：</p><ul><li>使用下式匹配无序号的情况：<figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">(?:<span class="symbol">\)</span>)(.+)(?:<span class="symbol">\|</span><span class="symbol">\|</span>)(.+(?:[^<span class="symbol">\u</span>FF09<span class="symbol">\s</span>]$))</span><br></pre></td></tr></table></figure></li></ul><p>例如能够匹配出 <code>DESIGNER 设计师品牌</code>, <code>FIT 体型</code></p><ul><li>使用下式匹配有序号的情况：<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(?:\)</span>)<span class="comment">(.+)</span><span class="comment">(?:\|\|)</span><span class="comment">(.+)</span><span class="comment">(?:\s*\uFF08)</span></span><br></pre></td></tr></table></figure></li></ul><p>例如能够匹配出 <code>MATERIAL 面料</code>, <code>STYLE 款式</code></p><p>然后使用或关系进行合并：<br><figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">(?:<span class="symbol">\)</span>)(.+)(?:<span class="symbol">\|</span><span class="symbol">\|</span>)(?:(.+(?:[^<span class="symbol">\u</span>FF09<span class="symbol">\s</span>]$))|(.+)(?:<span class="symbol">\s</span>*<span class="symbol">\u</span>FF08))</span><br></pre></td></tr></table></figure></p><p>匹配结果如下图：<br><img src="https://ooo.0o0.ooo/2017/04/27/590213c8359e1.png" alt=""></p><p>这段正则的释意如下：<br><figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">(?:<span class="string">\))</span>                           <span class="comment">#分组但不捕获「非必填」后面的右括号</span></span><br><span class="line">(.+)                             <span class="comment">#分组1匹配任意内容（即英文）</span></span><br><span class="line">(?:<span class="string">\|\|)</span>                         <span class="comment">#分组但不捕获双竖线</span></span><br><span class="line">(?:                              <span class="comment">#分组但不捕获</span></span><br><span class="line">    (.+                          <span class="comment">#分组2匹配任意内容（即无序号中文）</span></span><br><span class="line">    (?:[^<span class="string">\uFF09\s]$)</span>             <span class="comment">#分组但不捕获空白符和右括号外的字符</span></span><br><span class="line">    )                            <span class="comment">#分组2结束</span></span><br><span class="line">|                                <span class="comment">#分组或关系</span></span><br><span class="line">    (.+)                         <span class="comment">#分组3匹配任意内容（即有序号中文）</span></span><br><span class="line">    (?:<span class="string">\s*\uFF08)</span>                <span class="comment">#分组但不捕获空白符和左括号</span></span><br><span class="line">)                                <span class="comment">#分组结束</span></span><br></pre></td></tr></table></figure></p><p><img src="https://ooo.0o0.ooo/2017/04/27/590213c83591a.png" alt=""></p><p>一直没有想到什么好的解决办法能够在一个简短的正则表达式中完美实现这一个需求。如果读者有什么好想法（好吧其实并没什么读者）请评论分享你的 idea。</p><hr><p>2017.6.22 更新</p><p>感谢 Inoreader 读者 <a href="http://www.inoreader.com/u/icery" target="_blank" rel="noopener">Andy</a> 的评论和建议，其提供的 RegEx 如下：<br><figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">(?:<span class="symbol">\)</span>)([^<span class="symbol">\)</span>]+)<span class="symbol">\|</span><span class="symbol">\|</span>([^<span class="symbol">\s</span><span class="symbol">\u</span>FF09<span class="symbol">\n</span>]+)</span><br></pre></td></tr></table></figure></p><p>释意如下：<br><figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">(?:<span class="string">\))</span>              <span class="comment">#分组但不捕获「非必填」后面的右括号</span></span><br><span class="line">([^<span class="string">\)]+)</span>            <span class="comment">#分组捕获除右括号之外的内容</span></span><br><span class="line"><span class="string">\|\|</span>                <span class="comment">#双竖线</span></span><br><span class="line">([^<span class="string">\s\uFF09\n]+)</span>    <span class="comment">#分组捕获除空白符、右括号和换行符外的字符</span></span><br></pre></td></tr></table></figure></p><p><img src="https://ooo.0o0.ooo/2017/06/22/594b68f251ea7.png" alt=""></p><p>更近一步精简的版本如下：<br><figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">([^<span class="symbol">\)</span>]+)<span class="symbol">\|</span><span class="symbol">\|</span>([^<span class="symbol">\s</span><span class="symbol">\u</span>FF09<span class="symbol">\n</span>]+)</span><br></pre></td></tr></table></figure></p><p>释意如下：<br><figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">([^<span class="string">\)]+)</span>            <span class="comment">#分组捕获除右括号之外的内容</span></span><br><span class="line"><span class="string">\|\|</span>                <span class="comment">#双竖线</span></span><br><span class="line">([^<span class="string">\s\uFF09\n]+)</span>    <span class="comment">#分组捕获除空白符、右括号和换行符外的字符</span></span><br></pre></td></tr></table></figure></p><p><img src="https://ooo.0o0.ooo/2017/06/22/594b68f22a636.png" alt=""></p><hr><p><strong>总结</strong><br><figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">(?:<span class="symbol">\)</span>)(.+)(?:<span class="symbol">\|</span><span class="symbol">\|</span>)(?:(.+(?:[^<span class="symbol">\u</span>FF09<span class="symbol">\s</span>]$))|(.+)(?:<span class="symbol">\s</span>*<span class="symbol">\u</span>FF08))</span><br><span class="line">(?:<span class="symbol">\)</span>)([^<span class="symbol">\)</span>]+)<span class="symbol">\|</span><span class="symbol">\|</span>([^<span class="symbol">\s</span><span class="symbol">\u</span>FF09<span class="symbol">\n</span>]+)</span><br><span class="line">([^<span class="symbol">\)</span>]+)<span class="symbol">\|</span><span class="symbol">\|</span>([^<span class="symbol">\s</span><span class="symbol">\u</span>FF09<span class="symbol">\n</span>]+)</span><br></pre></td></tr></table></figure></p><p>对比上文的三个 RegEx，可以总结出编写 RegEx 的些许技巧：</p><ol><li>匹配时有正向和反向两种思路，不一定要写出完整匹配目标文本的特定 RegEx，而可以选择使用排除法进行优化。（如「[1-8]」匹配数字 1-8,，亦可写为「[^90]」匹配除 9 和 0 外的字符）</li><li>「分组不捕获」无需滥用，如果只提取分组内的内容，则无关未分组内容也无需使用「分组不捕获」，以精简 RegEx。（如本文中的双竖线其实是无需使用分组不捕获的）</li><li><strong>好的 RegEx 是短而精的。</strong></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于 RegEx，一直记得一句话：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;好的 RegEx 是短而精的。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;近来在研究 RegEx 的折腾之路上走来走去。决定把自己所遇到的一些小例子记下来。&lt;br&gt;一方面方便自己回顾、反思，另一方面给大家参考、指正。&lt;br&gt;想起前段时间工作上遇到的一个 situation。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="https://acuario.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="RegEx" scheme="https://acuario.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RegEx/"/>
-    
-    
-      <category term="精通正则表达式" scheme="https://acuario.xyz/tags/%E7%B2%BE%E9%80%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-      <category term="RegEx" scheme="https://acuario.xyz/tags/RegEx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《精通正则表达式》学习笔记（一）</title>
-    <link href="https://acuario.xyz/mastering-regex-summary-1/"/>
-    <id>https://acuario.xyz/mastering-regex-summary-1/</id>
-    <published>2017-04-17T16:29:18.000Z</published>
-    <updated>2017-04-17T16:43:27.724Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Ch-1-正则表达式入门"><a href="#Ch-1-正则表达式入门" class="headerlink" title="Ch.1 正则表达式入门"></a>Ch.1 正则表达式入门</h1><h2 id="正则表达式介绍"><a href="#正则表达式介绍" class="headerlink" title="正则表达式介绍"></a>正则表达式介绍</h2><ul><li>正则表达式（Regular Expression）是经过专门编写的文本字符串，用来匹配字符串（尤其是文件内字符串）集合中符合该模式的所有字符串。RegEx 能够添加、删除、分离、叠加、插入和修整各种类型的文本和数据。</li><li>完整的正则表达式由两种字符构成：<ol><li>特殊字符（如 *），称为 <strong>元字符</strong>（metacharacters）</li><li>其他字符为称为 <strong>文字</strong>（literal），或是普通文本字符（normal text characters）</li></ol></li><li><p>写正则表达式时，我们需要在对欲检索文本的了解程度与检索精确性之间求得平衡。针对某个检索文本，正则表达式基本不可能匹配不期望的结果，使用它就是合理的。</p><a id="more"></a></li></ul><h2 id="RegEx-语法基础"><a href="#RegEx-语法基础" class="headerlink" title="RegEx 语法基础"></a>RegEx 语法基础</h2><p><img src="https://ooo.0o0.ooo/2017/04/17/58f4bbe62a242.png" alt="元字符总结"></p><ul><li>只有在字符组内部，连字符 <code>-</code> 才用来表示范围。</li><li>只有在字符组内部（且在字符组首位），脱字符 <code>^</code> 才作为一个元字符。</li><li>只有在在字符组外部，脱字符 <code>^</code> 用来表示一个行锚点（line anchor）</li><li>只有在在字符组外部，点号 <code>.</code> 才作为一个元字符。</li><li><code>[^x]</code> 的含义不是「只有当这个位置不是 x 时才能匹配」，而是「匹配一个不等于 x 的字符」。前者含义可以匹配空行，后者不可。</li></ul><h1 id="Ch-2-入门示例拓展"><a href="#Ch-2-入门示例拓展" class="headerlink" title="Ch.2 入门示例拓展"></a>Ch.2 入门示例拓展</h1><h2 id="Prel-语法基础"><a href="#Prel-语法基础" class="headerlink" title="Prel 语法基础"></a>Prel 语法基础</h2><ul><li>Perl 表达式及运行参数</li></ul><table><thead><tr><th>字符</th><th>含义</th></tr></thead><tbody><tr><td><code>=~</code></td><td>连接 RegEx 和待搜索的目标字符串</td></tr><tr><td><code>=</code></td><td>运算符，变量赋值</td></tr><tr><td><code>==</code></td><td>运算符，测试两个数值是否相等</td></tr><tr><td><code>-p</code></td><td>表示对目标文件的每一行进行查找和替换</td></tr><tr><td><code>-i</code></td><td>表示整个程序接在命令后面</td></tr><tr><td><code>-e</code></td><td>表示将替换结果写回文件</td></tr><tr><td><code>-w</code></td><td>表示严格检查语法并显示警告</td></tr></tbody></table><pre><code>举个栗子，下面的 Perl 程序用于将所有 sysread 替换为 read。<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">% <span class="keyword">perl</span> -<span class="keyword">p</span> -i -<span class="keyword">e</span> -<span class="keyword">w</span> <span class="string">'s/sysread/read/g'</span> <span class="keyword">file</span></span><br></pre></td></tr></table></figure></code></pre><h2 id="Prel-中-RegEx-的使用"><a href="#Prel-中-RegEx-的使用" class="headerlink" title="Prel 中 RegEx 的使用"></a>Prel 中 RegEx 的使用</h2><ul><li><p>Perl 语句说明</p><ol><li><code>$var =~ m/regex/</code> 将判断一个正则表达式是否能匹配某个字符串。<br><code>m</code> 表示匹配（match），斜线用来标注正则表达式的边界（其本身不属于正则表达式）。整个测试语句作为一个单元，返回 true 或 false 值。类似的，</li><li><code>$var =~ s/regex/replacement/</code> 将使用一个正则表达式来匹配并替换某个字符串。<br><code>s</code> 表示替换（substitution，也叫查找和替换（search and replace））。</li><li><p><code>$var =~ qr/regex/</code> 将一个正则表达式生成为一个“regex 对象（regex object）”，作为变量保存，供后续使用。</p><p>举个栗子：</p><figure class="highlight perl"><table><tr><td class="code"><pre><span class="line">$reply =~ <span class="regexp">m/^[0-9]+$/</span></span><br><span class="line">$reply =~ <span class="regexp">s/Jeff/Jeffrey/</span></span><br></pre></td></tr></table></figure></li></ol></li><li><p>Perl 的模式修饰符<br>模式修饰符，跟在表示结尾的斜线之后的参数。</p></li></ul><table><thead><tr><th>字符</th><th>含义</th></tr></thead><tbody><tr><td><code>/i</code></td><td>表示此测试不区分大小写（ignore）</td></tr><tr><td><code>/g</code></td><td>表示全局匹配（global match/replacement）</td></tr><tr><td><code>/m</code></td><td>表示允许使用增强的行锚点（emhanced line anchor），可将 <code>^</code> 和 <code>$</code> 从字符串模式切换到逻辑行模式，即以逻辑换行进行锚位匹配。</td></tr><tr><td><code>/x</code></td><td>表示宽松排列的表达式（free-form expressions），可用于多行正则表达式增强可读性</td></tr></tbody></table><pre><code>举个栗子：<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="variable">$reply</span> =~ m<span class="regexp">/^[0-9]+$/i</span></span><br><span class="line"><span class="variable">$reply</span> =~ m<span class="regexp">/^[0-9]+$/g</span></span><br><span class="line"><span class="variable">$reply</span> =~ m<span class="regexp">/^[0-9]+$/</span>x</span><br></pre></td></tr></table></figure></code></pre><h2 id="RegEx-语法基础-1"><a href="#RegEx-语法基础-1" class="headerlink" title="RegEx 语法基础"></a>RegEx 语法基础</h2><h3 id="正则匹配符"><a href="#正则匹配符" class="headerlink" title="正则匹配符"></a>正则匹配符</h3><table><thead><tr><th>字符</th><th>含义</th></tr></thead><tbody><tr><td><code>\t</code></td><td>制表符</td></tr><tr><td><code>\n</code></td><td>换行符</td></tr><tr><td><code>\r</code></td><td>回车符</td></tr><tr><td><code>\s</code></td><td>任何 <code>空白</code> 字符（如空格符、制表符、进纸符等）</td></tr><tr><td><code>\S</code></td><td>除 <code>\s</code> 之外的任何字符</td></tr><tr><td><code>\w</code></td><td><code>[a-zA-Z0-9]</code>（在 <code>\w+</code> 中很有用，可以用来匹配一个单词）</td></tr><tr><td><code>\W</code></td><td>除 <code>\w</code> 之外的任何字符</td></tr><tr><td><code>\d</code></td><td><code>[0-9]</code>，即数字</td></tr><tr><td><code>\D</code></td><td>除 <code>\d</code> 之外的任何字符</td></tr><tr><td><code>^</code></td><td>行起始锚位符</td></tr><tr><td><code>$</code></td><td>行结束锚位符</td></tr></tbody></table><p>ps.<code>^$</code> 可用来匹配空行，因为空行的行起始和行结束是相连的。</p><h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><p>使用 <code>(…)</code> 用来分组并捕获，使用 <code>(?:…)</code> 来分组但不捕获。<br><strong>捕获顺序按照括号出现的先后顺序依次进行</strong>，而非内外顺序。<br><img src="https://ws1.sinaimg.cn/large/68f607d1gy1feehtcbgxjj20kx0a1ta6.jpg" alt="捕获型括号"><br><img src="https://ws1.sinaimg.cn/large/68f607d1gy1feehtp4kp3j20m508hgn5.jpg" alt="嵌套型括号"></p><ul><li>思考</li></ul><ol><li><code>$var =~ s/\bJeff\b/Jeff/i</code><br>上述 Perl 表达式中 <code>i</code> 仅对所有匹配的字符串生效，对 replacement 的文本没有影响。即匹配所有 jeff、Jeff、jEFF……替换为 Jeff。</li><li><code>$price =~ s/(\.\d\d[1-9]?)\d*/$1/</code><br>上述 Perl 表达式将数字文本格式化为保留两位小数，且如果第三位非零则保留第三位。即 12.375000000564 =&gt; 12.375，12.375 =&gt; 12.375，37.5000 =&gt; 37.50。</li></ol><h3 id="环视"><a href="#环视" class="headerlink" title="环视"></a>环视</h3><p>环视结构不匹配任何字符，只匹配文本中的<strong>特定位置</strong>，类似单词分界符 <code>\b</code>，锚点 <code>^</code> 和 <code>$</code>。<br>环视结构的主体为要求的文本，而非匹配的文本，即使用环视时，环视结构内的文本将不会被匹配，而是作为标记文本位置的特殊语法进行使用。</p><table><thead><tr><th>字符</th><th>名称</th><th>别名</th><th>作用</th><th>条件</th></tr></thead><tbody><tr><td><code>(?:…)</code></td><td>非捕获型分组</td><td></td><td>分组但不捕获</td><td></td></tr><tr><td><code>(?=…)</code></td><td>肯定顺序环视</td><td>正前瞻</td><td>环视文本后的文本是否为要求文本</td><td>子表达式能够匹配右侧文本</td></tr><tr><td><code>(?!…)</code></td><td>否定顺序环视</td><td>反前瞻</td><td>环视文本后的文本是否非要求文本</td><td>子表达式不能匹配右侧文本</td></tr><tr><td><code>(?&lt;=…)</code></td><td>肯定逆序环视</td><td>正后顾</td><td>环视文本前的文本是否为要求文本</td><td>子表达式能够匹配左侧文本</td></tr><tr><td><code>(?&lt;!…)</code></td><td>否定逆序环视</td><td>反后顾</td><td>环视文本前的文本是否非要求文本</td><td>子表达式不能匹配左侧文本</td></tr></tbody></table><p>环视在检查子表达式能否匹配的过程中，其本身不会 <code>占用</code> 任何文本。<br>e.g.匹配文本为 <strong><code>Jeffrey</code></strong>，使用如下 RegEx 时匹配结果不同：<br><figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Jeffrey </span>             <span class="comment">#匹配 Jeffrey</span></span><br><span class="line">(?=<span class="keyword">Jeffrey)Jeff </span>     <span class="comment">#定位 Jeffrey 中 Jeff 和 rey 的中间位置，匹配 Jeffrey 中的 Jeff</span></span><br><span class="line"><span class="keyword">Jeff(?=rey) </span>         <span class="comment">#与上式等价</span></span><br><span class="line">\<span class="keyword">bJeff(?=s\b) </span>       <span class="comment">#定位 Jeffs 中 Jeff 和 s 的中间位置，匹配 Jeffs 中的 Jeff</span></span><br><span class="line">(?&lt;=\<span class="keyword">bJeff)(?=s\b) </span>  <span class="comment">#定位 Jeffs 中 Jeff 和 s 的中间位置，且并未匹配任何内容</span></span><br></pre></td></tr></table></figure></p><p><img src="https://ooo.0o0.ooo/2016/11/22/5833c2a23571a.png" alt="(?=Jeffrey)Jeff的匹配"><br><code>(?=Jeffrey)Jeff</code> 的匹配</p><p><img src="https://ooo.0o0.ooo/2016/11/22/5833c2a234c2a.png" alt="\bJeff(?=s\b)的匹配"><br><code>\bJeff(?=s\b)</code> 的匹配</p><p><img src="https://ooo.0o0.ooo/2016/11/22/5833c2a23bf20.png" alt="(?&lt;=\bJeff)(Jeff的匹配"><br><code>(?&lt;=\bJeff)(?=s\b)</code> 的匹配</p><ul><li>思考<br>如何使用 Perl 表达式将数字文本格式化为右起三位数逗号分隔的数字。即 375000000564 =&gt; 375,000,000,564？</li></ul><ol><li><p><code>$var =~ s/(?&lt;=\d)(?=(\d\d\d)+$)/,/g;</code><br><code>(?&lt;=\d)</code> 表示左侧必须有数字，方式出现 ,375,000,000,564<br><code>(?=(\d\d\d)+$)</code> 表示从最右方进行肯定逆序环视（正后顾），每看到三个数字进行一次环视标记。</p></li><li><p><code>$var =~ s/(\d)(?=(\d\d\d)+$)/$1,/g;</code><br><code>(\d)</code> 使用捕获型括号实现逗号前的内容分组，然后保持 $1 内容不变，在其后添加逗号</p></li><li><p><code>$var =~ s/(\d)((\d\d\d)+\b)/$1,$2/g;</code><br>上式不使用环视，但无法实现期望。最终得到类似 375000000564 =&gt; 375,000000564。<br><code>((\d\d\d)+\b)</code> 匹配的数字属于最终匹配文本，不能作为“未匹配的部分”，供 <code>/g</code> 的下一次匹配迭代使用。<br>如欲使用该式进行实现，可配合循环结构：</p><figure class="highlight perl"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> ($var =~ <span class="regexp">s/(\d)((\d\d\d)+\b)/$1,$2/g</span>) &#123;</span><br><span class="line"><span class="comment">#空结构体，使用条件操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p><code>\b([a-z]+)((?:\s|&lt;[^&gt;]+&gt;)+)(\1\b)</code><br>上适用于匹配一段文本中连续出现的重复单词，具体示意如下图：<br><img src="https://ws1.sinaimg.cn/large/68f607d1gy1felfe6zi3rj20gr077dhk.jpg" alt="示意图"></p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Ch-1-正则表达式入门&quot;&gt;&lt;a href=&quot;#Ch-1-正则表达式入门&quot; class=&quot;headerlink&quot; title=&quot;Ch.1 正则表达式入门&quot;&gt;&lt;/a&gt;Ch.1 正则表达式入门&lt;/h1&gt;&lt;h2 id=&quot;正则表达式介绍&quot;&gt;&lt;a href=&quot;#正则表达式介绍&quot; class=&quot;headerlink&quot; title=&quot;正则表达式介绍&quot;&gt;&lt;/a&gt;正则表达式介绍&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;正则表达式（Regular Expression）是经过专门编写的文本字符串，用来匹配字符串（尤其是文件内字符串）集合中符合该模式的所有字符串。RegEx 能够添加、删除、分离、叠加、插入和修整各种类型的文本和数据。&lt;/li&gt;
-&lt;li&gt;完整的正则表达式由两种字符构成：&lt;ol&gt;
-&lt;li&gt;特殊字符（如 *），称为 &lt;strong&gt;元字符&lt;/strong&gt;（metacharacters）&lt;/li&gt;
-&lt;li&gt;其他字符为称为 &lt;strong&gt;文字&lt;/strong&gt;（literal），或是普通文本字符（normal text characters）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;写正则表达式时，我们需要在对欲检索文本的了解程度与检索精确性之间求得平衡。针对某个检索文本，正则表达式基本不可能匹配不期望的结果，使用它就是合理的。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="https://acuario.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="RegEx" scheme="https://acuario.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RegEx/"/>
-    
-    
-      <category term="精通正则表达式" scheme="https://acuario.xyz/tags/%E7%B2%BE%E9%80%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-      <category term="学习笔记" scheme="https://acuario.xyz/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="RegEx" scheme="https://acuario.xyz/tags/RegEx/"/>
     
   </entry>
   
