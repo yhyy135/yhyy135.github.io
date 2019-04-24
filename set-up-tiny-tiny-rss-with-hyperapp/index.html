@@ -124,7 +124,7 @@
 <meta property="og:description" content="准备 VPS 需要先安装好 docker-ce HyperApp 一个已经解析正确的域名（ping 验证） 耐心。仔细。认真  HyperApp 服务端配置安装 PostgreSQL虽然 HyperApp 提供了相应的 PostgreSQL 应用一键安装，但是由于安装 Tiny Tiny RSS 时无法与其衔接，所以一并使用 Docker Image 方法进行安装。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/02/26/5c74e8c180d1d.png">
-<meta property="og:updated_time" content="2019-02-26T07:32:03.135Z">
+<meta property="og:updated_time" content="2019-04-24T07:38:04.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用HyperApp搭建Tiny Tiny RSS">
 <meta name="twitter:description" content="准备 VPS 需要先安装好 docker-ce HyperApp 一个已经解析正确的域名（ping 验证） 耐心。仔细。认真  HyperApp 服务端配置安装 PostgreSQL虽然 HyperApp 提供了相应的 PostgreSQL 应用一键安装，但是由于安装 Tiny Tiny RSS 时无法与其衔接，所以一并使用 Docker Image 方法进行安装。">
@@ -400,12 +400,24 @@
                 
               
 
-              <time title="创建时间：2019-02-26 15:22:31 / 修改时间：15:32:03" itemprop="dateCreated datePublished" datetime="2019-02-26T15:22:31+08:00">2019-02-26</time>
+              <time title="创建时间：2019-02-26 15:22:31" itemprop="dateCreated datePublished" datetime="2019-02-26T15:22:31+08:00">2019-02-26</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-24 15:38:04" itemprop="dateModified" datetime="2019-04-24T15:38:04+08:00">2019-04-24</time>
               
             
           </span>
@@ -568,7 +580,7 @@
 </tr>
 <tr>
 <td>Https</td>
-<td>将 http 重定向到 https</td>
+<td>不重定向 HTTP 请求</td>
 </tr>
 <tr>
 <td>域名</td>
@@ -586,12 +598,73 @@
 <h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p>安装 PostgreSQL 和 Tiny Tiny RSS 后还不能正常使用，还需要将两者连接起来。进入 VPS 的 SSH 窗口执行命令：</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">docker<span class="built_in"> network </span>create ttrss_network</span><br><span class="line">docker<span class="built_in"> network </span>connect ttrss_network postgres</span><br><span class="line">docker<span class="built_in"> network </span>connect ttrss_network ttrss</span><br><span class="line">docker restart ttrss</span><br></pre></td></tr></table></figure>
 <p>上述命令建立了一个名为 <code>ttrss_network</code> 的 docker 通讯网络，并将名为 <code>postgres</code> 和 <code>ttrss</code> 的容器连接到了这个网络内部。最后重启 Tiny Tiny RSS 容器。</p>
-<h1 id="配置使用-Tiny-Tiny-RSS"><a href="#配置使用-Tiny-Tiny-RSS" class="headerlink" title="配置使用 Tiny Tiny RSS"></a>配置使用 Tiny Tiny RSS</h1><p><img src="https://i.loli.net/2019/02/26/5c74e8c180d1d.png" alt="Tiny Tiny RSS"></p>
+<h2 id="防火墙设置"><a href="#防火墙设置" class="headerlink" title="防火墙设置"></a>防火墙设置</h2><ul>
+<li><p>CentOS</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --add-port=80/tcp --permanent</span></span><br><span class="line"><span class="bash">firewall-cmd --add-port=443/tcp --permanent</span></span><br><span class="line"><span class="bash">firewall-cmd --reload</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Ubuntu</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">sudo ufw allow <span class="number">80</span></span><br><span class="line">sudo ufw allow <span class="number">443</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="配置使用-Tiny-Tiny-RSS"><a href="#配置使用-Tiny-Tiny-RSS" class="headerlink" title="配置使用 Tiny Tiny RSS"></a>配置使用 Tiny Tiny RSS</h1><h2 id="登录使用"><a href="#登录使用" class="headerlink" title="登录使用"></a>登录使用</h2><p><img src="https://i.loli.net/2019/02/26/5c74e8c180d1d.png" alt="Tiny Tiny RSS"></p>
 <p>安装完成后，访问你给镜像站点设置的域名即可进入 Tiny Tiny RSS 登陆页面。默认账号是 <code>admin</code>，密码是 <code>password</code>。登录后务必修改密码。Tiny Tiny RSS 的其他设置技巧，可以参阅少数派的<a href="https://sspai.com/post/41302" target="_blank" rel="noopener">这篇文章</a>。</p>
+<h2 id="全文输出"><a href="#全文输出" class="headerlink" title="全文输出"></a>全文输出</h2><p>一些网站并未提供完整的全文 RSS 源，而只提供了文章的摘要内容，阅读起来十分不便。作为 RSS 的重度用户，跳转到网站进行阅读实在是浪费时间。遇到这样的 RSS 源，除了可以使用内置了 Mercury 全文输出功能的客户端（iOS 平台 Reeder、Unread 等主流 RSS 阅读器支持）以外，还可以为自己搭建的 Tiny Tiny RSS 安装插件以支持 Mercury 功能。<br>下面还是使用 HyperApp 来操作，一步到位。</p>
+<h3 id="安装-Mercury"><a href="#安装-Mercury" class="headerlink" title="安装 Mercury"></a>安装 Mercury</h3><ol>
+<li>转到商店页面。找到 <code>Docker Image</code> 然后选择服务器并且保存进入配置界面</li>
+<li>请完全按照下图配置进行填写！</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>应用设置名称</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>wangqiru/mercury-parser-api</td>
+</tr>
+<tr>
+<td>Options</td>
+<td><code>-p 3000:3000</code></td>
+</tr>
+<tr>
+<td>Command</td>
+<td></td>
+</tr>
+<tr>
+<td>Args</td>
+<td></td>
+</tr>
+<tr>
+<td>其他</td>
+<td>所有其他设置均为空</td>
+</tr>
+</tbody>
+</table>
+<h3 id="防火墙设置-1"><a href="#防火墙设置-1" class="headerlink" title="防火墙设置"></a>防火墙设置</h3><ul>
+<li><p>CentOS</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --add-port=3000/tcp --permanent</span></span><br><span class="line"><span class="bash">firewall-cmd --reload</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Ubuntu</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">sudo ufw allow <span class="number">3000</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="配置-Mercury-插件"><a href="#配置-Mercury-插件" class="headerlink" title="配置 Mercury 插件"></a>配置 Mercury 插件</h3><ol>
+<li>登陆 Tiny Tiny RSS，进入偏好设置（Preferences） - 插件（Plugins），启用 mercury_fulltext 的插件</li>
+<li>登陆 Tiny Tiny RSS，进入偏好设置（Preferences） - 信息源（Feeds） -  Mercury_fulltext settings (mercury_fulltext) 选项卡。填入 <code>http://你要给镜像站点的域名或IP地址:3000</code> ，保存配置</li>
+</ol>
+<h3 id="开始使用-Mercury"><a href="#开始使用-Mercury" class="headerlink" title="开始使用 Mercury"></a>开始使用 Mercury</h3><ol>
+<li>首先正常订阅一个 RSS 源</li>
+<li>在首页左侧导航或订阅源管理中找到需要获取全文的订阅源，点击编辑订阅源（Edit Feed）</li>
+<li>进入编辑订阅源（Edit Feed）窗口中的插件（Plugins）选项卡，勾选 <code>Get fulltext via Mercury Parser</code></li>
+</ol>
+<p>设置完成后，Tiny Tiny RSS 将根据你的自定义设定，对特殊 RSS 源使用 Mercury 拉取全文内容后再生成 RSS 内容。这样可以摆脱客户端的限制，在任何客户端上都能直接浏览全文 RSS 的文章。</p>
 <h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><ol>
 <li><p>使用 HyperApp 安装两个镜像后为何还是显示尚未安装？<br>由于 HyperApp 是通过内部生成的容器名称自动识别的，但是安装镜像时我们指定了容器的 name，所以无法正常识别到容器，即显示尚未安装。</p>
 </li>
-<li><p>那么安装时可否不指定容器的 name？<br>指定容器的 name 是为了方便连接数据库，如果自己知道如何查找容器名称（前面命令中的 <code>--name</code> 参数），那么安装时不指定容器的 name 也是可行的。具体可以参阅使用 docker 的 <code>--link</code> 参数来连接两个容器。</p>
+<li><p>安装时可否不指定容器的 name？<br>指定容器的 name 是为了方便连接数据库，如果自己知道如何查找容器名称（前面命令中的 <code>--name</code> 参数），那么安装时不指定容器的 name 也是可行的。具体可以参阅使用 docker 的 <code>--link</code> 参数来连接两个容器。</p>
 </li>
 </ol>
 <hr>
@@ -1064,7 +1137,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HyperApp-服务端配置"><span class="nav-number">2.</span> <span class="nav-text">HyperApp 服务端配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-PostgreSQL"><span class="nav-number">2.1.</span> <span class="nav-text">安装 PostgreSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Tiny-Tiny-RSS"><span class="nav-number">2.2.</span> <span class="nav-text">安装 Tiny Tiny RSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接数据库"><span class="nav-number">2.3.</span> <span class="nav-text">连接数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置使用-Tiny-Tiny-RSS"><span class="nav-number">3.</span> <span class="nav-text">配置使用 Tiny Tiny RSS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">4.</span> <span class="nav-text">Q&amp;A</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HyperApp-服务端配置"><span class="nav-number">2.</span> <span class="nav-text">HyperApp 服务端配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-PostgreSQL"><span class="nav-number">2.1.</span> <span class="nav-text">安装 PostgreSQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Tiny-Tiny-RSS"><span class="nav-number">2.2.</span> <span class="nav-text">安装 Tiny Tiny RSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接数据库"><span class="nav-number">2.3.</span> <span class="nav-text">连接数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙设置"><span class="nav-number">2.4.</span> <span class="nav-text">防火墙设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置使用-Tiny-Tiny-RSS"><span class="nav-number">3.</span> <span class="nav-text">配置使用 Tiny Tiny RSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#登录使用"><span class="nav-number">3.1.</span> <span class="nav-text">登录使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全文输出"><span class="nav-number">3.2.</span> <span class="nav-text">全文输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Mercury"><span class="nav-number">3.2.1.</span> <span class="nav-text">安装 Mercury</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防火墙设置-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">防火墙设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置-Mercury-插件"><span class="nav-number">3.2.3.</span> <span class="nav-text">配置 Mercury 插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始使用-Mercury"><span class="nav-number">3.2.4.</span> <span class="nav-text">开始使用 Mercury</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">4.</span> <span class="nav-text">Q&amp;A</span></a></li></ol></div>
             
 
           </div>
