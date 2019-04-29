@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+  <meta name="description" content="原文 How To Secure Your Linux Server In 7 Easy Steps 由 Brian Mutende 发布于 Medium，翻译转载已获作者允许。为配合博客目录系统显示，对原文章节名略有修改。  大多数服务器经常会被黑客攻击。所以我决定写一篇简短的教程，让读者轻松加固自己的 Linux 服务器。 这并不是一篇完整的安全指南，但是它可以帮你阻断近九成常见的后端攻击，例">
+<meta name="keywords" content="教程,Linux,命令行,服务器安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何加固Linux服务器[译]">
+<meta property="og:url" content="https://acuario.xyz/how-to-secure-your-linux-server/index.html">
+<meta property="og:site_name" content="Acuario">
+<meta property="og:description" content="原文 How To Secure Your Linux Server In 7 Easy Steps 由 Brian Mutende 发布于 Medium，翻译转载已获作者允许。为配合博客目录系统显示，对原文章节名略有修改。  大多数服务器经常会被黑客攻击。所以我决定写一篇简短的教程，让读者轻松加固自己的 Linux 服务器。 这并不是一篇完整的安全指南，但是它可以帮你阻断近九成常见的后端攻击，例">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-29T14:53:29.810Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何加固Linux服务器[译]">
+<meta name="twitter:description" content="原文 How To Secure Your Linux Server In 7 Easy Steps 由 Brian Mutende 发布于 Medium，翻译转载已获作者允许。为配合博客目录系统显示，对原文章节名略有修改。  大多数服务器经常会被黑客攻击。所以我决定写一篇简短的教程，让读者轻松加固自己的 Linux 服务器。 这并不是一篇完整的安全指南，但是它可以帮你阻断近九成常见的后端攻击，例">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://acuario.xyz/how-to-secure-your-linux-server/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>如何加固Linux服务器[译] | Acuario</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-83619854-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Acuario</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/how-to-secure-your-linux-server/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何加固Linux服务器[译]
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-27 16:54:32" itemprop="dateCreated datePublished" datetime="2019-04-27T16:54:32+08:00">2019-04-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-29 22:53:29" itemprop="dateModified" datetime="2019-04-29T22:53:29+08:00">2019-04-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/how-to-secure-your-linux-server/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-to-secure-your-linux-server/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>原文 <a href="https://medium.com/servers-101/how-to-secure-your-linux-server-6026cfcdefd8" target="_blank" rel="noopener">How To Secure Your Linux Server In 7 Easy Steps</a> 由 <a href="https://medium.com/@mutendebrian" target="_blank" rel="noopener">Brian Mutende</a> 发布于 Medium，翻译转载已获作者允许。<br>为配合博客目录系统显示，对原文章节名略有修改。</em></p>
+<hr>
+<p>大多数服务器经常会被黑客攻击。所以我决定写一篇简短的教程，让读者轻松加固自己的 Linux 服务器。</p>
+<p>这并不是一篇完整的安全指南，但是它可以帮你阻断近九成常见的后端攻击，例如<strong>暴力破解</strong>和 <strong>DDoS</strong>。</p>
+<p>最棒的是，你可以在一两个小时内就完成操作。</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ol>
+<li>你需要一台Linux服务器。</li>
+<li>你需要对命令行有基本的了解。<a href="https://learncodethehardway.org/unix/bash_cheat_sheet.pdf" target="_blank" rel="noopener">这里</a>提供一份 cheet sheet 供你使用。</li>
+</ol>
+<p>如果你已万事俱备，那就开始吧。</p>
+<a id="more"></a>
+<h1 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h1><h2 id="配置-SSH-密钥"><a href="#配置-SSH-密钥" class="headerlink" title="配置 SSH 密钥"></a>配置 SSH 密钥</h2><p>要访问远程服务器，你务必使用 SSH 密钥登录而不是使用密码登录。</p>
+<p>密码登录的问题在于其很容易被暴力破解（你将在下文学到如何进一步防止这种情况）。另外，在每次访问服务器时，你都必须输入密码。为避免上述缺点，你必须设置 <strong>SSH 密钥验证</strong>。它比使用密码更安全，因为黑客无法将其暴力破解。除此以外，使用密钥也可以更方便和快速地连接服务器，而无需输入密码。</p>
+<p>下面介绍如何为服务器设置 SSH 身份验证。</p>
+<ul>
+<li><p>在本地计算机上，运行下列命令生成 SSH 密钥对：</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ssh-keygen</span></span><br></pre></td></tr></table></figure>
+<p>上述命令将引导你在几步之内生成 SSH 密钥。当然别忘了记住你保存密钥文件的位置。</p>
+</li>
+<li><p>使用以下命令将公钥添加到服务器：</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">ssh-<span class="keyword">copy</span>-<span class="built_in">id</span> username@remote_host</span><br></pre></td></tr></table></figure>
+<p>务必使用你的用户名和服务器的 IP 地址替换 <em>username</em> 和 <em>remote_host</em>。系统将提示你输入密码。</p>
+</li>
+<li><p>尝试使用以下命令登录服务器：</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ssh</span> username<span class="variable">@remote_host</span></span><br></pre></td></tr></table></figure>
+<p>别忘了将 <em>username</em> 和 <em>remote_host</em> 替换为服务器的详细信息。这时你会注意到，本次登录不再提示你输入密码。</p>
+</li>
+</ul>
+<h2 id="保持系统时间最新"><a href="#保持系统时间最新" class="headerlink" title="保持系统时间最新"></a>保持系统时间最新</h2><p>许多安全协议依托于你的系统时间来执行定时任务，生成当天的日志和执行其他关键任务。</p>
+<p>如果你的系统时间有误，可能会对你的服务器造成危害。为防止这种情况发生，你可以安装 NTP 客户端。该程序将使你的系统时间与全球 NTP 服务器保持同步。</p>
+<p>安装 NTP 客户端命令如下：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> ntp</span><br></pre></td></tr></table></figure>
+<p>之后你再也不用担心设置系统日期。</p>
+<h2 id="查看活动端口"><a href="#查看活动端口" class="headerlink" title="查看活动端口"></a>查看活动端口</h2><p>服务器程序会暴露某些端口，以便于网络中的其他应用程序对其进行访问。黑客也可以在你的服务器上安装后门并暴露端口，从而控制你的服务器。因此，我们不希望服务器上的未知端口被请求侦听。</p>
+<p>要查看活动端口，可以使用以下命令：</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo ss -lntup</span></span><br></pre></td></tr></table></figure>
+<p>查看输出并检查任何你并不熟悉的端口或进程。尝试发现并追踪可能有害的服务和流程。如果你不知从何下手，请可以查看这份<a href="https://www.garykessler.net/library/bad_ports.html" target="_blank" rel="noopener">《「糟糕的」TCP/UDP 端口列表》</a>。</p>
+<h2 id="设置防火墙"><a href="#设置防火墙" class="headerlink" title="设置防火墙"></a>设置防火墙</h2><p>防火墙允许你控制服务器上传入 / 传出特定端口的网络流量。通常我使用 UFW（<em>uncomplicated firewall</em>，简单防火墙）。（译者注：UFW 是 Ubuntu 系统上默认的防火墙组件）</p>
+<p>你可以配置下述规则来控制 UFW 的运行：</p>
+<ul>
+<li>允许 / 禁止</li>
+<li>传入流量 / 传出流量</li>
+<li>流量目的地 / 流量源</li>
+<li>特定端口 / 所有端口</li>
+</ul>
+<p>完成下面的例子，你将阻止白名单之外的所有网络流量。如果之后安装了其他程序，别忘了将运行所需的必要端口加入白名单。</p>
+<h3 id="设置-UFW"><a href="#设置-UFW" class="headerlink" title="设置 UFW"></a>设置 UFW</h3><ul>
+<li>安装ufw。</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install ufw</span><br></pre></td></tr></table></figure>
+<ul>
+<li>你可以禁止所有传出流量</li>
+</ul>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="keyword">default</span> deny outgoing <span class="built_in">comment</span> <span class="string">'deny all outgoing traffic'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>或者允许所有传出流量</li>
+</ul>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="keyword">default</span> allow outgoing <span class="built_in">comment</span> <span class="string">'allow all outgoing traffic'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>接下来，我们要禁止所有传入的流量……</li>
+</ul>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="keyword">default</span> deny incoming <span class="built_in">comment</span> <span class="string">'deny all incoming traffic'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>…将 SSH 连接加入例外，以便访问系统。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="built_in">limit</span> <span class="keyword">in</span> ssh comment <span class="string">'allow SSH connections in'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果你将 UFW 配置为禁止所有传出流量，别忘了根据需要允许特定流量。比如：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">#允许端口 53 的流量输出 -  DNS </span></span><br><span class="line">sudo ufw allow out 53 <span class="keyword">comment</span> <span class="string">'allow DNS calls out'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许端口 123 的流量输出 -  NTP </span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> <span class="number">123</span> <span class="keyword">comment</span> <span class="string">'allow NTP out'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许 HTTP，HTTPS 或 FTP 的流量</span></span><br><span class="line"><span class="comment">#根据你使用的 apt 源的不同，apt 可能需要如下设置</span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> <span class="keyword">http</span> <span class="keyword">comment</span> <span class="string">'allow HTTP traffic out'</span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> https <span class="keyword">comment</span> <span class="string">'allow HTTPS traffic out'</span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> <span class="keyword">ftp</span> <span class="keyword">comment</span> <span class="string">'allow FTP traffic out'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许 whois</span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> whois <span class="keyword">comment</span> <span class="string">'allow whois'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许端口 68 的流量输出 -  DHCP 客户端</span></span><br><span class="line"><span class="comment">#如果你正在使用 DHCP，则需要如下设置</span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> <span class="number">68</span> <span class="keyword">comment</span> <span class="string">'allow the DHCP client to update'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如需拒绝端口 99 上的任何流量，可使用以下命令：</li>
+</ul>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="keyword">deny</span> <span class="number">99</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>最后，使用以下命令启动 UFW：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
+<p>你还可以使用以下命令查看 UFW 状态：</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo ufw status</span></span><br></pre></td></tr></table></figure>
+<h2 id="防止自动化攻击"><a href="#防止自动化攻击" class="headerlink" title="防止自动化攻击"></a>防止自动化攻击</h2><p>你可以使用两个程序来阻止大多数自动化攻击：</p>
+<ul>
+<li><a href="http://www.cipherdyne.org/psad/" target="_blank" rel="noopener">PSAD</a></li>
+<li><a href="https://www.fail2ban.org/" target="_blank" rel="noopener">Fail2Ban</a></li>
+</ul>
+<h3 id="PSAD-和-Fail2Ban-之间的区别"><a href="#PSAD-和-Fail2Ban-之间的区别" class="headerlink" title="PSAD 和 Fail2Ban 之间的区别"></a>PSAD 和 Fail2Ban 之间的区别</h3><p>我们知道，端口可以提供给服务器上的应用程序进行访问。攻击者为了访问你的服务器，也许会扫描你的服务器目前开放的端口。</p>
+<p><strong>PSAD</strong> 监视网络活动，以检测并自定义阻止端口扫描和其他类型的可疑流量，如 DDoS 攻击或操作系统指纹识别尝试。</p>
+<p><strong>Fail2Ban</strong> 扫描各种应用程序（如 FTP）的日志文件，并自动封禁有明显恶意行为（如自动登录尝试）的 IP。</p>
+<p>以下指南将向你展示如何安装和配置 PSAD 和 Fail2Ban，以便它们与 UFW 一起使用。</p>
+<ul>
+<li><a href="https://zaiste.net/intro_fail2ban_with_ufw/" target="_blank" rel="noopener">安装 Fail2Ban</a></li>
+<li><a href="https://gist.github.com/netson/c45b2dc4e835761fbccc" target="_blank" rel="noopener">安装 PSAD</a></li>
+</ul>
+<h2 id="安装-logwatch"><a href="#安装-logwatch" class="headerlink" title="安装 logwatch"></a>安装 logwatch</h2><p>服务器上的应用程序通常会将日志消息保存到日志文件中。除非你要手动监控日志文件，否则需要安装 logwatch。logwatch 将扫描系统日志文件并对其进行汇总。</p>
+<p>你可以直接从命令行或计划任务运行 logwatch。例如，你可以配置 logwatch 将日志文件的每日摘要以电子邮件的形式发送给你。注意确保你的服务器可以正常发送电子邮件。</p>
+<p>logwatch 通过 service 文件来获取读取和汇总日志文件的方式。你可以在 <code>/usr/share/logwatch/scripts/services</code> 中查看所有 service 文件。</p>
+<p>logwatch 默认配置文件是 <code>/usr/share/logwatch/default.conf/logwatch.conf</code>。你可以通过使用命令行参数更改配置。</p>
+<p>在 Ubuntu 或 Debian 上安装 logwatch，可运行以下命令：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">apt-<span class="builtin-name">get</span> install logwatch</span><br></pre></td></tr></table></figure>
+<p>对于其他 Linux 发行版的用户，请查看 Linode 的<a href="https://www.linode.com/docs/uptime/monitoring/monitor-systems-logwatch/" target="_blank" rel="noopener">这篇指南</a>。</p>
+<p>如果你需要查看 logwatch 收集的日志样本，你可以尝试直接运行 logwatch。</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">sudo <span class="string">/usr/sbin/logwatch</span> <span class="params">--output</span> stdout <span class="params">--format</span> text <span class="params">--range</span> yesterday <span class="params">--service</span> all</span><br></pre></td></tr></table></figure>
+<p>最后，然后 logwatch 每天发送一封电子邮件，其中包含我们日志文件的摘要。为实现此需求，可以打开文件 <em>/etc/cron.daily/00logwatch</em> 并找到 <em>execute</em> 行，然后将其更改为以下内容：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="string">/usr/sbin/logwatch</span> <span class="params">--output</span> mail <span class="params">--format</span> html <span class="params">--mailto</span> root <span class="params">--range</span> yesterday <span class="params">--service</span> all</span><br></pre></td></tr></table></figure>
+<h2 id="执行安全审计"><a href="#执行安全审计" class="headerlink" title="执行安全审计"></a>执行安全审计</h2><p>在加固 Linux 服务器后，你应该进行安全审计，以便排查任何可能被忽视的安全漏洞。为此，你可以使用 Lynis，这是一个可以实现以下功能的开源软件：</p>
+<ul>
+<li>安全审计。</li>
+<li>一致性测试（例如 PCI，HIPAA，SOx）。</li>
+<li>渗透测试。</li>
+<li>漏洞检测。</li>
+<li>系统强化。</li>
+</ul>
+<h3 id="如何使用-Lynis"><a href="#如何使用-Lynis" class="headerlink" title="如何使用 Lynis"></a>如何使用 Lynis</h3><p>首先，通过克隆其 Github 仓库来安装 Lynis。这可确保安装的是最新版本的 Lynis。</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/CISOfy/lynis</span><br></pre></td></tr></table></figure>
+<p>切换到我们克隆 Lynis 的目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> lynis</span><br></pre></td></tr></table></figure>
+<p>最后，使用以下命令运行第一次安全审计：</p>
+<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line">lynis audit <span class="keyword">system</span></span><br></pre></td></tr></table></figure>
+<p>你可以在 Lynis 的<a href="https://cisofy.com/lynis/" target="_blank" rel="noopener">官方网站</a>上了解更多相关信息。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>很高兴你能阅读这篇有关加固 Linux 服务器的 how-to 指南。希望你能从中获益。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Acuario</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://acuario.xyz/how-to-secure-your-linux-server/" title="如何加固Linux服务器[译]">https://acuario.xyz/how-to-secure-your-linux-server/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/教程/" rel="tag"># 教程</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/命令行/" rel="tag"># 命令行</a>
+          
+            <a href="/tags/服务器安全/" rel="tag"># 服务器安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/podcast-note-2/" rel="next" title="播客札记（二）">
+                <i class="fa fa-chevron-left"></i> 播客札记（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+<script src="/js/src/baffle.min.js"></script>
+<script>
+  let b = baffle(document.querySelectorAll('.post-title'));
+  b.set({
+    speed: 100,
+    characters: '/>░░▒▒▓▓██锟斤拷烫'
+  });
+  b.reveal(3500, 1000);
+</script>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Acuario">
+            
+              <p class="site-author-name" itemprop="name">Acuario</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/1760954321" title="Weibo &rarr; http://weibo.com/1760954321" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/yhyy135" title="Instagram &rarr; https://instagram.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://songf.me/" title="https://songf.me/" rel="noopener" target="_blank">bennxs</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://meteoritey.github.io/" title="https://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体步骤"><span class="nav-number">2.</span> <span class="nav-text">具体步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-SSH-密钥"><span class="nav-number">2.1.</span> <span class="nav-text">配置 SSH 密钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保持系统时间最新"><span class="nav-number">2.2.</span> <span class="nav-text">保持系统时间最新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看活动端口"><span class="nav-number">2.3.</span> <span class="nav-text">查看活动端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置防火墙"><span class="nav-number">2.4.</span> <span class="nav-text">设置防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-UFW"><span class="nav-number">2.4.1.</span> <span class="nav-text">设置 UFW</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防止自动化攻击"><span class="nav-number">2.5.</span> <span class="nav-text">防止自动化攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PSAD-和-Fail2Ban-之间的区别"><span class="nav-number">2.5.1.</span> <span class="nav-text">PSAD 和 Fail2Ban 之间的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-logwatch"><span class="nav-number">2.6.</span> <span class="nav-text">安装 logwatch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行安全审计"><span class="nav-number">2.7.</span> <span class="nav-text">执行安全审计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用-Lynis"><span class="nav-number">2.7.1.</span> <span class="nav-text">如何使用 Lynis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Acuario</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+  
+  <script id="dsq-count-scr" src="https://acuraioo.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://acuario.xyz/how-to-secure-your-linux-server/";
+    this.page.identifier = "how-to-secure-your-linux-server/";
+    this.page.title = '如何加固Linux服务器[译]';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://acuraioo.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script>pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      
+        background-color: #eee;
+        background-image: linear-gradient(#fcfcfc, #eee);
+        border: 1px solid #d5d5d5;
+        border-radius: 3px;
+      
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      
+        right: 4px;
+        top: 8px;
+      
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1;
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; // Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.readOnly = true;
+        ta.value = code;
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, code.length);
+        ta.readOnly = false;
+        var result = document.execCommand('copy');
+        
+        ta.blur(); // For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+</body>
+</html>

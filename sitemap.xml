@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://acuario.xyz/how-to-secure-your-linux-server/</loc>
+    
+    <lastmod>2019-04-29T14:53:29.810Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://acuario.xyz/set-up-tiny-tiny-rss-with-hyperapp/</loc>
+    
+    <lastmod>2019-04-29T14:16:35.001Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://acuario.xyz/podcast-note-2/</loc>
     
     <lastmod>2019-04-28T09:23:43.218Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>https://acuario.xyz/podcast-note-1/</loc>
     
     <lastmod>2019-04-28T09:22:12.282Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://acuario.xyz/set-up-tiny-tiny-rss-with-hyperapp/</loc>
-    
-    <lastmod>2019-04-24T07:38:04.688Z</lastmod>
     
   </url>
   
