@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://acuario.xyz/mount-windir-in-linux-for-LAN/</loc>
+    
+    <lastmod>2019-06-05T15:13:28.689Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://acuario.xyz/mastering-regex-summary-2/</loc>
+    
+    <lastmod>2019-06-05T15:04:43.384Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://acuario.xyz/how-to-secure-your-linux-server/</loc>
     
     <lastmod>2019-04-29T14:53:29.810Z</lastmod>
@@ -299,13 +313,6 @@
     <loc>https://acuario.xyz/rabbitmq-guide-1/</loc>
     
     <lastmod>2016-10-29T04:05:52.758Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://acuario.xyz/mount-windir-in-linux-for-LAN/</loc>
-    
-    <lastmod>2016-10-05T14:35:44.557Z</lastmod>
     
   </url>
   
