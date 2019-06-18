@@ -131,13 +131,13 @@
 <meta property="og:description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览  Ch.1 正则表达式入门正则表达式介绍 正则表达式（Regular Expression）是经过专门编写的文本字符串，用来匹配字符串（尤其是文件内字符串）集合中符合该模式的所有字符串。RegEx 能够添加、删除、分离、叠加、插入和修整各种类型的文">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ooo.0o0.ooo/2017/04/17/58f4bbe62a242.png">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/68f607d1gy1feehtcbgxjj20kx0a1ta6.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/68f607d1gy1feehtp4kp3j20m508hgn5.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/06/18/5d08395268c0328493.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/06/18/5d0839526882d45916.jpg">
 <meta property="og:image" content="https://ooo.0o0.ooo/2016/11/22/5833c2a23571a.png">
 <meta property="og:image" content="https://ooo.0o0.ooo/2016/11/22/5833c2a234c2a.png">
 <meta property="og:image" content="https://ooo.0o0.ooo/2016/11/22/5833c2a23bf20.png">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/68f607d1gy1felfe6zi3rj20gr077dhk.jpg">
-<meta property="og:updated_time" content="2019-06-07T05:28:21.396Z">
+<meta property="og:image" content="https://i.loli.net/2019/06/18/5d0839b053ca014873.jpg">
+<meta property="og:updated_time" content="2019-06-18T16:50:29.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《精通正则表达式》学习笔记（一）">
 <meta name="twitter:description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览  Ch.1 正则表达式入门正则表达式介绍 正则表达式（Regular Expression）是经过专门编写的文本字符串，用来匹配字符串（尤其是文件内字符串）集合中符合该模式的所有字符串。RegEx 能够添加、删除、分离、叠加、插入和修整各种类型的文">
@@ -431,7 +431,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-07 13:28:21" itemprop="dateModified" datetime="2019-06-07T13:28:21+08:00">2019-06-07</time>
+                <time title="修改时间：2019-06-19 00:50:29" itemprop="dateModified" datetime="2019-06-19T00:50:29+08:00">2019-06-19</time>
               
             
           </span>
@@ -672,7 +672,7 @@
 </tbody>
 </table>
 <p>ps.<code>^$</code> 可用来匹配空行，因为空行的行起始和行结束是相连的。</p>
-<h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><p>使用 <code>(…)</code> 用来分组并捕获，使用 <code>(?:…)</code> 来分组但不捕获。<br><strong>捕获顺序按照括号出现的先后顺序依次进行</strong>，而非内外顺序。<br><img src="https://ws1.sinaimg.cn/large/68f607d1gy1feehtcbgxjj20kx0a1ta6.jpg" alt="捕获型括号"><br><img src="https://ws1.sinaimg.cn/large/68f607d1gy1feehtp4kp3j20m508hgn5.jpg" alt="嵌套型括号"></p>
+<h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><p>使用 <code>(…)</code> 用来分组并捕获，使用 <code>(?:…)</code> 来分组但不捕获。<br><strong>捕获顺序按照括号出现的先后顺序依次进行</strong>，而非内外顺序。<br><img src="https://i.loli.net/2019/06/18/5d08395268c0328493.jpg" alt="捕获型括号"><br><img src="https://i.loli.net/2019/06/18/5d0839526882d45916.jpg" alt="嵌套型括号"></p>
 <ul>
 <li>思考</li>
 </ul>
@@ -744,7 +744,7 @@
 <li><p><code>$var =~ s/(\d)((\d\d\d)+\b)/$1,$2/g;</code><br>上式不使用环视，但无法实现期望。最终得到类似 375000000564 =&gt; 375,000000564。<br><code>((\d\d\d)+\b)</code> 匹配的数字属于最终匹配文本，不能作为“未匹配的部分”，供 <code>/g</code> 的下一次匹配迭代使用。<br>如欲使用该式进行实现，可配合循环结构：</p>
 <figure class="highlight perl"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> ($var =~ <span class="regexp">s/(\d)((\d\d\d)+\b)/$1,$2/g</span>) &#123;</span><br><span class="line">	<span class="comment">#空结构体，使用条件操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><code>\b([a-z]+)((?:\s|&lt;[^&gt;]+&gt;)+)(\1\b)</code><br>上适用于匹配一段文本中连续出现的重复单词，具体示意如下图：<br><img src="https://ws1.sinaimg.cn/large/68f607d1gy1felfe6zi3rj20gr077dhk.jpg" alt="示意图"></p>
+<li><p><code>\b([a-z]+)((?:\s|&lt;[^&gt;]+&gt;)+)(\1\b)</code><br>上适用于匹配一段文本中连续出现的重复单词，具体示意如下图：<br><img src="https://i.loli.net/2019/06/18/5d0839b053ca014873.jpg" alt="示意图"></p>
 </li>
 </ol>
 
