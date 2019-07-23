@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+  <meta name="description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览 《精通正则表达式》学习笔记（三）Ch.4 表达式的匹配原理 《精通正则表达式》学习笔记（四）Ch.5 正则表达式实用技巧    编写巧妙的正则表达式不仅仅是一种手艺(skill) 而且还是一种艺术(art)。  正则引擎的平衡法则 只匹配期望的文本">
+<meta name="keywords" content="学习笔记,精通正则表达式,RegEx,正则引擎,平衡法则,正则表达式实例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《精通正则表达式》学习笔记（四）">
+<meta property="og:url" content="https://acuario.xyz/mastering-regex-summary-4/index.html">
+<meta property="og:site_name" content="Acuario">
+<meta property="og:description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览 《精通正则表达式》学习笔记（三）Ch.4 表达式的匹配原理 《精通正则表达式》学习笔记（四）Ch.5 正则表达式实用技巧    编写巧妙的正则表达式不仅仅是一种手艺(skill) 而且还是一种艺术(art)。  正则引擎的平衡法则 只匹配期望的文本">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/07/17/5d2e05fe2848445405.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/20/5d31ec5ad68a949796.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/20/5d31f0a71ac2934742.png">
+<meta property="og:image" content="https://i.loli.net/2019/07/22/5d34a44a170a511410.png">
+<meta property="og:updated_time" content="2019-07-23T13:50:23.825Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《精通正则表达式》学习笔记（四）">
+<meta name="twitter:description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览 《精通正则表达式》学习笔记（三）Ch.4 表达式的匹配原理 《精通正则表达式》学习笔记（四）Ch.5 正则表达式实用技巧    编写巧妙的正则表达式不仅仅是一种手艺(skill) 而且还是一种艺术(art)。  正则引擎的平衡法则 只匹配期望的文本">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/17/5d2e05fe2848445405.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://acuario.xyz/mastering-regex-summary-4/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《精通正则表达式》学习笔记（四） | Acuario</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-83619854-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-83619854-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Acuario</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/mastering-regex-summary-4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《精通正则表达式》学习笔记（四）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-23 21:44:11 / 修改时间：21:50:23" itemprop="dateCreated datePublished" datetime="2019-07-23T21:44:11+08:00">2019-07-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/RegEx/" itemprop="url" rel="index"><span itemprop="name">RegEx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/mastering-regex-summary-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mastering-regex-summary-4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><a href="/mastering-regex-summary-1/">《精通正则表达式》学习笔记（一）</a><br>Ch.1 正则表达式入门<br>Ch.2 入门示例拓展</li>
+<li><a href="/mastering-regex-summary-2/">《精通正则表达式》学习笔记（二）</a><br>Ch.3 正则表达式的特性和流派概览</li>
+<li><a href="/mastering-regex-summary-3/">《精通正则表达式》学习笔记（三）</a><br>Ch.4 表达式的匹配原理</li>
+<li><a href="/mastering-regex-summary-4/">《精通正则表达式》学习笔记（四）</a><br>Ch.5 正则表达式实用技巧</li>
+</ul>
+<hr>
+<blockquote>
+<p>编写巧妙的正则表达式不仅仅是一种手艺(skill) 而且还是一种艺术(art)。</p>
+</blockquote>
+<h1 id="正则引擎的平衡法则"><a href="#正则引擎的平衡法则" class="headerlink" title="正则引擎的平衡法则"></a>正则引擎的平衡法则</h1><ul>
+<li>只匹配期望的文本，排除不期望的文本。</li>
+<li>易于控制和理解。</li>
+<li>使用NFA引擎时必须保证效率——能够匹配时立即返回匹配结果，不能匹配时尽快报告匹配失败。</li>
+</ul>
+<a id="more"></a>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><h2 id="匹配-IP-地址"><a href="#匹配-IP-地址" class="headerlink" title="匹配 IP 地址"></a>匹配 IP 地址</h2><ul>
+<li>「<code>[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*</code>」会匹配 <code>and then ......</code></li>
+<li>「<code>^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$</code>」字符组书写重复</li>
+<li>「<code>^\d+\.\d+\.\d+\.\d+$</code>」会匹配非 IP 地址文本如：<code>1234.5678.9101112.131415</code></li>
+<li>「<code>^\d\d\d\.\d\d\d\.\d\d\d\.\d\d\d$</code>」数字部分匹配不够灵活，仅能匹配 3 位数字</li>
+<li>下面三个表达式会匹配非法 IP 地址数字 <code>999</code><ul>
+<li>「<code>^\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}$</code>」</li>
+<li>「<code>\d\d?\d?.\d\d?\d?.\d\d?\d?.\d\d?\d?$</code>」</li>
+<li>「<code>\d(\d\d?)?.\d(\d\d?)?.\d(\d\d?)?.\d(\d\d?)?$</code>」</li>
+</ul>
+</li>
+<li>分析 IP 地址结构可以得出以下规律：<ul>
+<li>只包含一个或两个数字的字段，无需考虑合法性，即「<code>\d|\d\d</code>」。</li>
+<li><code>0</code> 或 <code>1</code> 开头的三位数（<code>000</code>-<code>199</code>）都合法。即「<code>[01]\d\d</code>」。</li>
+<li><code>2</code> 开头的三位数字，第二位数字小于 <code>5</code> 则合法（<code>255</code>），即「<code>2[0-4]\d</code>」。</li>
+<li>若第二位数字是 <code>5</code>，第三位数字就必须小于 <code>6</code>（<code>256</code>），即「<code>25[0-5]</code>」。</li>
+<li>上述结果为「<code>\d|\d\d|[01]\d\d|2[0-4]\d|25[0-5]</code>」</li>
+<li>合并前三个多选分支「<code>\d|\d\d|[01]\d\d</code>」为「<code>[01]?\d\d?</code>」</li>
+<li>综上，一个 IP 地址数字的表达式结果为「<code>[01]?\d\d?|2[0-4]\d|25[0-5]</code>」</li>
+</ul>
+</li>
+<li><p>匹配一个 IP 地址的表达式为：</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">「^([<span class="number">01</span>]?\d\d?|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>]\d|<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>])\.([<span class="number">01</span>]?\d\d?|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>]\d|<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>])\.([<span class="number">01</span>]?\d\d?|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>]\d|<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>])\.([<span class="number">01</span>]?\d\d?|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>]\d|<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>])$」</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在「<code>^</code>」后添加环视「<code>(?!0+\.0+\.0+\.0+$)</code>」来避免匹配 <code>0.0.0.0</code></p>
+</li>
+<li>在表达式首尾添加环视「<code>(?&lt;![\w.])</code>…<code>(?![\w.])</code>」或使用「<code>(^| )</code>…<code>( |$)</code>」来保证匹配文本前后不出现「<code>[\w.]</code>」能匹配的字符，避免匹配嵌套型字符 <code>1.2.3.4.5.6</code> 中的 <code>1.2.3.4</code> 等类似 IP 地址的文本</li>
+<li>某些时候，处理各种极端情形会降低投入产出比。更合适的做法是<strong>不依赖正则表达式完成全部工作，善用其他工具辅助验证</strong>。</li>
+</ul>
+<h2 id="处理文件名"><a href="#处理文件名" class="headerlink" title="处理文件名"></a>处理文件名</h2><p>文本：<code>/usr/local/bin/gcc</code><br>期望：<code>gcc</code>   </p>
+<ol>
+<li>去掉文件名开头的路径<br>RegEx：<code>^.*/</code><br>释义：使用匹配优先（贪婪）特性，匹配一整行，然后回溯到最后的斜线   </li>
+</ol>
+<ul>
+<li>若匹配一个恰好没有斜线的字符串，正则引擎会在字符串的起始位置开始搜索。「<code>.*</code>」抵达字符串的末尾，但不断回退，直到最后它交还了匹配的所有字符，仍然无法匹配。此时，正则引擎得知<strong>在字符串的起始位</strong>不存在匹配。</li>
+<li>之后传动装置开始工作，从第 2 个字符开始，依次尝试匹配整个正则表达式，在字符串的每个位置进行扫描回溯。若字符串很长，就可能存在大量的回溯（DFA 不存在这个问题)。</li>
+<li>几乎所有以「<code>.*</code>」开头的正则表达式，在某个字符串的起始位置不能匹配，也就不能在其他任何位置匹配，它只会在字符串的起始位置尝试一次。</li>
+<li>在正则表达式中写明开头位置的匹配规则更明智一些。</li>
+</ul>
+<ol start="2">
+<li>从路径中获取文件名<br>RegEx：<code>([^/]*)$</code><br>释义：在结尾设置一个锚点，忽略路径，从最后一个斜线开始匹配所有内容。   </li>
+</ol>
+<ul>
+<li>该表达式的唯一要求是字符串有 <code>$</code> 能够匹配的结束位置</li>
+<li>在 NFA 中，该表达式的效率很低，要进行 40+ 次回溯。</li>
+</ul>
+<ol start="3">
+<li>所在路径和文件名<br>RegEx：<code>^(.*)/(.*)$</code><br>释义：使用 <code>$1</code> 和 <code>$2</code> 来提取所在路径和文件名。第一个「<code>.*</code>」先捕获所有文本，不给「<code>/</code>」和 <code>$2</code> 留下任何字符，在尝试匹配「<code>/(.*)$</code>」时发生的回溯会把“交还的”部分留给后面的「<code>.*</code>」。   </li>
+</ol>
+<h2 id="匹配对称的括号"><a href="#匹配对称的括号" class="headerlink" title="匹配对称的括号"></a>匹配对称的括号</h2><ol>
+<li>「<code>\(.*\)</code>」 匹配括号及括号内部的任何字符。</li>
+<li>「<code>\([^)]*\)</code>」 匹配从一个开括号到最近的闭括号。</li>
+<li>「<code>\([^()]*\)</code>」 匹配从一个开括号到最近的闭括号，但是不容许其中包含开括号。</li>
+</ol>
+<ul>
+<li>上下述三个表达式用于匹配带括号的文本内容，匹配结果如图</li>
+</ul>
+<p><img src="https://i.loli.net/2019/07/17/5d2e05fe2848445405.png" alt="匹配带括号的文本"></p>
+<ul>
+<li>为解决<strong>正则表达式无法匹配任意深度的嵌套结构</strong>的问题，可以用正则表达式来匹<br>配特定深度的嵌套括号，但不是任意深度的嵌套括号。</li>
+<li>处理单层嵌套的正则表达式是:「<code>\([^()]*(\([^()]*\)[^()]*)*\)</code>」</li>
+</ul>
+<h2 id="匹配浮点数"><a href="#匹配浮点数" class="headerlink" title="匹配浮点数"></a>匹配浮点数</h2><ul>
+<li>「<code>-?[0-9]*\.?[0-9]*</code>」会匹配 <code>-.0</code></li>
+<li>「<code>-?[0-9]*\.?[0-9]*</code>」会产生空匹配（匹配没有任何必须的元素），如 <code>this has no number</code>、<code>nothing here</code></li>
+<li><strong>把真正意图表达清楚</strong>非常重要：一个浮点数必须要有至少一位数字，否则就不是一个合法的值。</li>
+<li>「<code>-?[0-9]+</code>」用于限定浮点数含有数字的特性</li>
+<li>「<code>(\.[0-9]*)?</code>」用于限定浮点数的<em>小数点</em>和<em>小数部分</em></li>
+<li>综上，「<code>-?[0-9]+(\.[0-9]*)?</code>」即可用于匹配浮点数而不匹配空字符，即不产生<strong>空匹配</strong></li>
+</ul>
+<h2 id="匹配分隔符之内的文本"><a href="#匹配分隔符之内的文本" class="headerlink" title="匹配分隔符之内的文本"></a>匹配分隔符之内的文本</h2><p>文本：<code>a passport needs a &quot;2\&quot;x3\&quot; likeness&quot; of the holder</code><br>期望：<code>&quot;2\&quot;x3\&quot; likeness&quot;</code>   </p>
+<ul>
+<li>匹配分隔符之内的文本的主要步骤：<ol>
+<li>匹配起始分隔符(opening delimiter)。</li>
+<li>匹配正文(main text,即结束分隔符之前的所有文本)。</li>
+<li>匹配结束分隔符。</li>
+</ol>
+</li>
+<li>匹配开始和结束分隔符很容易，但匹配正文的时不能超越结束分隔符：<ul>
+<li>匹配非引号内容：「<code>[^&quot;]</code>」   </li>
+<li>匹配转义的反斜线需要使用环视：「<code>(?&lt;=\\)&quot;</code>」   </li>
+<li>综上得出的表达式为「<code>&quot;([^&quot;]|(?&lt;=\\)&quot;)*&quot;</code>」，此时可以匹配 <code>2\&quot;x3\&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p>文本：<code>&quot;/-|-\\&quot; or &quot;[^-^]&quot;</code><br>期望：<code>&quot;/-|-\\&quot;</code><br>RegEx：<code>&quot;([^&quot;]|(?&lt;=\\)&quot;)*&quot;</code><br>结果：<code>&quot;/-|-\\&quot; or &quot;</code>   </p>
+<ul>
+<li>第一个闭引号之前存在一个反斜线，该反斜线本身是被转义的，其后的引号是表示引用文本的结束。逆序环视无法识别这个被转义的反斜线。</li>
+<li>匹配的位于开始分隔符和结東分隔符之间的文本可以包括转义的字符「<code>\\.</code>」，也可以包括非引号的任何字符「<code>[^&quot;]</code>」。</li>
+<li>综上得出的表达式为「<code>&quot;(\\.|[^&quot;])*&quot;</code>」</li>
+<li>匹配优先和忽略优先都期望获得匹配，如果找不到结束的引号，它就会回溯，从而降低性能。</li>
+<li>如果回溯会导致不期望，与多选结构有关的匹配结果，可能是因为任何成功的匹配都不过是多选分支的排列顺序造成的偶然结果，</li>
+<li>如果有<strong>占有优先量词</strong>或者是<strong>固化分组</strong>，那么这个正则表达式可以被持续优化以提升性能（特别是对于 NFA）</li>
+</ul>
+<h2 id="去除文本首尾的空白字符"><a href="#去除文本首尾的空白字符" class="headerlink" title="去除文本首尾的空白字符"></a>去除文本首尾的空白字符</h2><ol>
+<li>去除文本首部的空白字符「<code>s/^\s+//</code>」<br>去除文本末尾的空白字符「<code>s/\s+$/</code>」   </li>
+<li>去除文本首尾空白字符的表达式：「<code>s/\s*(.*?)\s*$/$1/s</code>」<br>该表达式因为忽略优先约束的点号每次应用时都要检查「<code>\s*$</code>」导致大量回溯，严重影响效率。</li>
+<li>去除文本首尾空白字符的表达式：「<code>s/^\s*((?:.*\S)?)\s*$/$1/s</code>」后面的「<code>\S</code>」强迫回溯直到找到一个非空字符，把剩下的空白字符留给最后的「<code>\s*$</code>」，捕获括号之外的内容。</li>
+</ol>
+<h1 id="HTML-相关范例"><a href="#HTML-相关范例" class="headerlink" title="HTML 相关范例"></a>HTML 相关范例</h1><h2 id="匹配-HTML-Tag"><a href="#匹配-HTML-Tag" class="headerlink" title="匹配 HTML Tag"></a>匹配 HTML Tag</h2><p>RegEx：<code>&lt;(&quot;[^&quot;]*&quot;|&#39;[^&#39;]*&#39;|[^&#39;&quot;&gt;])*&gt;</code><br>释义：<br><img src="https://i.loli.net/2019/07/20/5d31ec5ad68a949796.png" alt="匹配 HTML Tag"></p>
+<ul>
+<li>引用字符串可能为空（例如 <code>alt=&quot;&quot;</code>）, 所以最开始的两个多选分支的引号中使用「<code>*</code>」而非「<code>+</code>」。</li>
+<li>NFA 引擎下，多选分支之间不存在重复，所以最后的「<code>&gt;</code>」无法匹配是产生的回溯是不需要的，可使用非捕获型括号改写表达式以提高效率。</li>
+</ul>
+<h2 id="匹配-HTML-Link"><a href="#匹配-HTML-Link" class="headerlink" title="匹配 HTML Link"></a>匹配 HTML Link</h2><p>文本：<code>...&lt;a href=&quot;http://www.oreilly.com&quot;&gt;O&#39;Reilly Media&lt;/a&gt;...</code><br>期望：<code>http://www.oreilly.com</code> 和 <code>O&#39;Reilly Media</code><br>RegEx：<code>\b HRFF\s* = \s*(?:&quot;([^&quot;]*)&quot;|&#39;([^&#39;]*)&#39;|([^&#39;&quot;&gt;\S]+))</code><br>释义：<br><img src="https://i.loli.net/2019/07/20/5d31f0a71ac2934742.png" alt="匹配 HTML Link"></p>
+<h2 id="校验-HTTP-URL"><a href="#校验-HTTP-URL" class="headerlink" title="校验 HTTP URL"></a>校验 HTTP URL</h2><p>将 URL 地址分解为主机名（hostname）和路径（path）两部分。</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">^http:<span class="string">//</span>        <span class="comment"># 匹配协议</span></span><br><span class="line"><span class="params">([^/:]+)</span>        <span class="comment"># 捕获主机名</span></span><br><span class="line"><span class="params">(:(\d+)</span>)?       <span class="comment"># 匹配端口号（可能没有）</span></span><br><span class="line"><span class="params">(/.*)</span>?$         <span class="comment"># 捕获路径</span></span><br></pre></td></tr></table></figure>
+<h2 id="提取-URL"><a href="#提取-URL" class="headerlink" title="提取 URL"></a>提取 URL</h2><p>从纯文本中提取 URL 的正则表达式框架如下：<br><img src="https://i.loli.net/2019/07/22/5d34a44a170a511410.png" alt="提取纯文本中的URL"></p>
+<h2 id="几个保持数据协调性的原则"><a href="#几个保持数据协调性的原则" class="headerlink" title="几个保持数据协调性的原则"></a>几个保持数据协调性的原则</h2><p>手动保持正则引擎的协调，才能忽略不需要的文本。有时为了提高表达式的效率，应该选择跳过不需要的文本，而非使用正向思维直接匹配目标文本。</p>
+<ol>
+<li>根据期望保持匹配的协调性<br>合理使用忽略优先量词，在后面的表达式失败之前，优先忽略容易引起大范围匹配成功的匹配操作。跳过我们希望跳过的文本而进行匹配。</li>
+<li>不匹配时也应当保证协调性   </li>
+<li>使用「<code>\G</code>」保证协调<br>「<code>\G</code>」用于匹配上一次匹配结束的位置。</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Acuario</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://acuario.xyz/mastering-regex-summary-4/" title="《精通正则表达式》学习笔记（四）">https://acuario.xyz/mastering-regex-summary-4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+            <a href="/tags/精通正则表达式/" rel="tag"># 精通正则表达式</a>
+          
+            <a href="/tags/RegEx/" rel="tag"># RegEx</a>
+          
+            <a href="/tags/正则引擎/" rel="tag"># 正则引擎</a>
+          
+            <a href="/tags/平衡法则/" rel="tag"># 平衡法则</a>
+          
+            <a href="/tags/正则表达式实例/" rel="tag"># 正则表达式实例</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/mastering-regex-summary-3/" rel="next" title="《精通正则表达式》学习笔记（三）">
+                <i class="fa fa-chevron-left"></i> 《精通正则表达式》学习笔记（三）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+<script src="/js/src/baffle.min.js"></script>
+<script>
+  let b = baffle(document.querySelectorAll('.post-title'));
+  b.set({
+    speed: 100,
+    characters: '/>░░▒▒▓▓██锟斤拷烫'
+  });
+  b.reveal(3500, 1000);
+</script>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Acuario">
+            
+              <p class="site-author-name" itemprop="name">Acuario</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">84</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://songf.me/" title="https://songf.me/" rel="noopener" target="_blank">bennxs</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://meteoritey.github.io/" title="https://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正则引擎的平衡法则"><span class="nav-number">1.</span> <span class="nav-text">正则引擎的平衡法则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配-IP-地址"><span class="nav-number">2.1.</span> <span class="nav-text">匹配 IP 地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理文件名"><span class="nav-number">2.2.</span> <span class="nav-text">处理文件名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配对称的括号"><span class="nav-number">2.3.</span> <span class="nav-text">匹配对称的括号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配浮点数"><span class="nav-number">2.4.</span> <span class="nav-text">匹配浮点数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配分隔符之内的文本"><span class="nav-number">2.5.</span> <span class="nav-text">匹配分隔符之内的文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去除文本首尾的空白字符"><span class="nav-number">2.6.</span> <span class="nav-text">去除文本首尾的空白字符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML-相关范例"><span class="nav-number">3.</span> <span class="nav-text">HTML 相关范例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配-HTML-Tag"><span class="nav-number">3.1.</span> <span class="nav-text">匹配 HTML Tag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配-HTML-Link"><span class="nav-number">3.2.</span> <span class="nav-text">匹配 HTML Link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#校验-HTTP-URL"><span class="nav-number">3.3.</span> <span class="nav-text">校验 HTTP URL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提取-URL"><span class="nav-number">3.4.</span> <span class="nav-text">提取 URL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个保持数据协调性的原则"><span class="nav-number">3.5.</span> <span class="nav-text">几个保持数据协调性的原则</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Acuario</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://acuraioo.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://acuario.xyz/mastering-regex-summary-4/";
+    this.page.identifier = "mastering-regex-summary-4/";
+    this.page.title = '《精通正则表达式》学习笔记（四）';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://acuraioo.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script>pangu.spacingPage();</script>
+
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -122,21 +122,21 @@
 <script src="https://use.typekit.net/dzs0zzd.js"></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
-  <meta name="description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览 《精通正则表达式》学习笔记（三）Ch.4 表达式的匹配原理  正则引擎的分类正则引擎主要分为 3 类：  DFA（符合或不符合 POSIX 标准的都属此类） 传统型 NFA POSIX NFA     引擎类型 程序 忽略优先量词（懒惰） 捕获型括">
+  <meta name="description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览 《精通正则表达式》学习笔记（三）Ch.4 表达式的匹配原理 《精通正则表达式》学习笔记（四）Ch.5 正则表达式实用技巧   正则引擎的分类正则引擎主要分为 3 类：  DFA（符合或不符合 POSIX 标准的都属此类） 传统型 NFA POSIX">
 <meta name="keywords" content="学习笔记,精通正则表达式,RegEx,正则引擎,NFA,DFA,POSIX NFA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《精通正则表达式》学习笔记（三）">
 <meta property="og:url" content="https://acuario.xyz/mastering-regex-summary-3/index.html">
 <meta property="og:site_name" content="Acuario">
-<meta property="og:description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览 《精通正则表达式》学习笔记（三）Ch.4 表达式的匹配原理  正则引擎的分类正则引擎主要分为 3 类：  DFA（符合或不符合 POSIX 标准的都属此类） 传统型 NFA POSIX NFA     引擎类型 程序 忽略优先量词（懒惰） 捕获型括">
+<meta property="og:description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览 《精通正则表达式》学习笔记（三）Ch.4 表达式的匹配原理 《精通正则表达式》学习笔记（四）Ch.5 正则表达式实用技巧   正则引擎的分类正则引擎主要分为 3 类：  DFA（符合或不符合 POSIX 标准的都属此类） 传统型 NFA POSIX">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/06/21/5d0c38074ab5f56669.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/04/5d1e1c173fa1470167.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/04/5d1e1c6c2cb0387976.png">
-<meta property="og:updated_time" content="2019-07-14T15:31:04.192Z">
+<meta property="og:updated_time" content="2019-07-23T13:50:31.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《精通正则表达式》学习笔记（三）">
-<meta name="twitter:description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览 《精通正则表达式》学习笔记（三）Ch.4 表达式的匹配原理  正则引擎的分类正则引擎主要分为 3 类：  DFA（符合或不符合 POSIX 标准的都属此类） 传统型 NFA POSIX NFA     引擎类型 程序 忽略优先量词（懒惰） 捕获型括">
+<meta name="twitter:description" content="《精通正则表达式》学习笔记（一）Ch.1 正则表达式入门Ch.2 入门示例拓展 《精通正则表达式》学习笔记（二）Ch.3 正则表达式的特性和流派概览 《精通正则表达式》学习笔记（三）Ch.4 表达式的匹配原理 《精通正则表达式》学习笔记（四）Ch.5 正则表达式实用技巧   正则引擎的分类正则引擎主要分为 3 类：  DFA（符合或不符合 POSIX 标准的都属此类） 传统型 NFA POSIX">
 <meta name="twitter:image" content="https://i.loli.net/2019/06/21/5d0c38074ab5f56669.png">
 
 
@@ -410,12 +410,24 @@
                 
               
 
-              <time title="创建时间：2019-07-14 23:27:11 / 修改时间：23:31:04" itemprop="dateCreated datePublished" datetime="2019-07-14T23:27:11+08:00">2019-07-14</time>
+              <time title="创建时间：2019-07-14 23:27:11" itemprop="dateCreated datePublished" datetime="2019-07-14T23:27:11+08:00">2019-07-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-23 21:50:31" itemprop="dateModified" datetime="2019-07-23T21:50:31+08:00">2019-07-23</time>
               
             
           </span>
@@ -498,7 +510,9 @@
 <li><a href="/mastering-regex-summary-1/">《精通正则表达式》学习笔记（一）</a><br>Ch.1 正则表达式入门<br>Ch.2 入门示例拓展</li>
 <li><a href="/mastering-regex-summary-2/">《精通正则表达式》学习笔记（二）</a><br>Ch.3 正则表达式的特性和流派概览</li>
 <li><a href="/mastering-regex-summary-3/">《精通正则表达式》学习笔记（三）</a><br>Ch.4 表达式的匹配原理</li>
+<li><a href="/mastering-regex-summary-4/">《精通正则表达式》学习笔记（四）</a><br>Ch.5 正则表达式实用技巧</li>
 </ul>
+<hr>
 <h1 id="正则引擎的分类"><a href="#正则引擎的分类" class="headerlink" title="正则引擎的分类"></a>正则引擎的分类</h1><p>正则引擎主要分为 3 类：</p>
 <ol>
 <li>DFA（符合或不符合 POSIX 标准的都属此类）</li>
@@ -814,6 +828,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/mastering-regex-summary-4/" rel="prev" title="《精通正则表达式》学习笔记（四）">
+                《精通正则表达式》学习笔记（四） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -901,7 +919,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1119,7 +1137,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">82</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">84</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
