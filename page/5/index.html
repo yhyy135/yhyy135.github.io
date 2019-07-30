@@ -4,92 +4,22 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-
 <html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hexo 3.9.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
-  
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.1.2">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.1.2">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.1.2">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
-
-
-
-
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 <script id="hexo.configurations">
@@ -97,30 +27,35 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.1.2',
-    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: true,
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
     fancybox: false,
-    fastclick: false,
+    mediumzoom: false,
     lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    pangu: true,
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: 'search.xml'
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
-
-
-  
-
-<script src="https://use.typekit.net/dzs0zzd.js"></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Acuario">
@@ -129,17 +64,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Acuario">
-
-
-
   <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
-
-
-
-  
-  
   <link rel="canonical" href="https://acuario.xyz/page/5/">
-
 
 
 <script id="page.configurations">
@@ -148,12 +74,10 @@
   };
 </script>
 
+    <script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
   <title>Acuario</title>
   
-
-
-
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-83619854-1"></script>
   <script>
     var host = window.location.hostname;
@@ -164,7 +88,6 @@
       gtag('config', 'UA-83619854-1');
     }
   </script>
-
 
 
 
@@ -200,21 +123,14 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-home">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
-    
 
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
@@ -223,8 +139,6 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-    
   </div>
 
   <div class="site-nav-toggle">
@@ -239,24 +153,16 @@
 
 
 <nav class="site-nav">
-  
     <ul id="menu" class="menu">
-      
         
         
         
           
           <li class="menu-item menu-item-home">
-
-    
-    
-    
       
     
 
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
 
   </li>
         
@@ -264,16 +170,10 @@
         
           
           <li class="menu-item menu-item-tags">
-
-    
-    
-    
       
     
 
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
 
   </li>
         
@@ -281,16 +181,10 @@
         
           
           <li class="menu-item menu-item-categories">
-
-    
-    
-    
       
     
 
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
 
   </li>
         
@@ -298,34 +192,43 @@
         
           
           <li class="menu-item menu-item-archives">
-
-    
-    
-    
       
     
 
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
 
   </li>
-
-      
+        <li class="menu-item menu-item-search">
+          <a href="javascript:;" class="popup-trigger">
+          
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
       
     </ul>
-  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
 
-  
 
-  
+    </div>
 </nav>
 
-
-
-  
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 </div>
     </header>
@@ -336,45 +239,31 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
             
 
-          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
-    
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/how-to-use-reverse-proxy-to-hide-server-port/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Acuario">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Acuario">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -386,13 +275,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -405,20 +288,13 @@
               
 
               <time title="创建时间：2018-05-17 23:16:42 / 修改时间：23:23:21" itemprop="dateCreated datePublished" datetime="2018-05-17T23:16:42+08:00">2018-05-17</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
+            </span>
           
-            <span class="post-category">
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -426,14 +302,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -443,34 +319,26 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/how-to-use-reverse-proxy-to-hide-server-port/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-to-use-reverse-proxy-to-hide-server-port/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/how-to-use-reverse-proxy-to-hide-server-port/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-to-use-reverse-proxy-to-hide-server-port/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
 
         </div>
       </header>
-    
 
     
     
@@ -478,10 +346,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于个人开发者来说，在一台 Linux 服务器或自己的 VPS 上，通常会部署多个 Web 服务，有的服务默认监听的是 80/443 端口，只需对 Nginx 进行简单的配置、设置伪静态等等即可完成，而有的服务既非静态网页，也不使用 Linux 中既有的 PHP 等程序，而是使用自己项目内部构建的程序（比如 Node.js、Tomcat 等），这些服务往往监听的是非 80/443 端口，在配置个人域名后，不得不在域名后加上服务器端口才能访问，既不美观，也不方便。是否有办法可以隐藏 URL 中的服务器端口，使用域名进行区分？</p>
 <p>例如：<br><a href="http://1.1.1.1:1111" target="_blank" rel="noopener">http://1.1.1.1:1111</a> -&gt; <a href="http://1.example.com" target="_blank" rel="noopener">http://1.example.com</a><br><a href="http://1.1.1.1:2222" target="_blank" rel="noopener">http://1.1.1.1:2222</a> -&gt; <a href="http://2.example.com" target="_blank" rel="noopener">http://2.example.com</a><br><a href="http://example.com:3333" target="_blank" rel="noopener">http://example.com:3333</a> -&gt; <a href="http://3.example.com" target="_blank" rel="noopener">http://3.example.com</a></p>
           <!--noindex-->
@@ -498,31 +362,11 @@
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -530,39 +374,27 @@
   
   </article>
 
-
     
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/language-level-of-pork-mushrooms-and-cabbage-clip/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Acuario">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Acuario">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -574,13 +406,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -593,47 +419,35 @@
               
 
               <time title="创建时间：2018-05-04 17:36:07 / 修改时间：17:41:31" itemprop="dateCreated datePublished" datetime="2018-05-04T17:36:07+08:00">2018-05-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
+            </span>
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/language-level-of-pork-mushrooms-and-cabbage-clip/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="language-level-of-pork-mushrooms-and-cabbage-clip/" itemprop="commentCount"></span>
-                </a>
-              </span>
+
             
           
 
           
-          
-
-          
-
-          
-
-          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/language-level-of-pork-mushrooms-and-cabbage-clip/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="language-level-of-pork-mushrooms-and-cabbage-clip/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
 
         </div>
       </header>
-    
 
     
     
@@ -641,10 +455,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <p>第 4 页<br>以北京的地名来论，老北京口中，以前北京内城的九大门：正阳门、崇文门、宣武门、东直门、朝阳门、西直门、阜成门、德胜门、安定门和皇宫里的天安门、午门、前门，都是不能加“儿”的，一来这些门体量颇大，高耸巍峨；二来，它们还常常跟皇权神权紧密相关，是高高在上万民敬仰的所在，断没有皇上说：“来呀——把这乱臣贼子拖出午门儿斩首！”那也太不严肃了。相反，东便门、西便门则常常在口语里听到儿化。这就是隐藏在语言背后的文化秩序。如今北京城的大门拆得所剩无几，外地人又如何分得出哪门大哪门小？也就越说越乱了，不讨再乱地没人说天安门儿。</p>
 <hr>
 <p>第 6 页<br>中国人对于数字的概念，从个、十、百、千数到万跟亿，最多到兆，再往上一般人不大知道还有京、垓、秭、穰、沟、涧、正、载、极……那么大，生活中也的确用不上。但无论怎么大，递进规律是一样的，早在东汉，《数述记遗》一书中就有记载，万万为亿、万亿为兆、万兆为京……所以按照中文的计数方式，若是四位一隔，立时眉目清楚。</p>
@@ -662,31 +472,11 @@
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -694,39 +484,27 @@
   
   </article>
 
-
     
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/life-in-the-middle-east-clip/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Acuario">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Acuario">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -738,13 +516,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -757,20 +529,13 @@
               
 
               <time title="创建时间：2018-04-19 16:38:46 / 修改时间：16:45:17" itemprop="dateCreated datePublished" datetime="2018-04-19T16:38:46+08:00">2018-04-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
+            </span>
           
-            <span class="post-category">
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -778,7 +543,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
 
                 
                 
@@ -788,34 +553,26 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/life-in-the-middle-east-clip/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="life-in-the-middle-east-clip/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/life-in-the-middle-east-clip/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="life-in-the-middle-east-clip/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
 
         </div>
       </header>
-    
 
     
     
@@ -823,10 +580,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <p>第 IV 页<br>以色列与巴勒斯坦冲突的故事似乎陷于循环，死结除了政治复杂角力，还在于敌对双方的主流叙述，都拒绝视对方为“人”，而限定为魔鬼。发动大众跟魔鬼作战是容易的，围剿人，则会遭遇各种道义束缚。在我两年的拍摄中，从没有见过纯粹的魔鬼或天使，流泪的流血的都是人。“妖魔化”对方的手法，在全世界各种冲突中都可以见到。</p>
 <hr>
 <p>第 38 页<br>在加沙，日常生活与突然死亡之间，赴死是一个特殊的状态，可以延展，可以重复。它是舞台上的一记亮相，是日常生活发生的一次核聚变，它的光芒照亮了日常，令之神圣，但也足以顷刻间摧毁生活。就像观察中国人怎么吃，法国人怎么恋爱，要了解巴勒斯坦人和以色列人，就要看他们怎样对待死亡。</p>
@@ -844,31 +597,11 @@
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -876,39 +609,27 @@
   
   </article>
 
-
     
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/a-clockwork-orange-clip/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Acuario">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Acuario">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -920,13 +641,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -939,20 +654,13 @@
               
 
               <time title="创建时间：2017-12-11 01:30:28 / 修改时间：01:43:30" itemprop="dateCreated datePublished" datetime="2017-12-11T01:30:28+08:00">2017-12-11</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
+            </span>
           
-            <span class="post-category">
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -960,7 +668,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
 
                 
                 
@@ -970,34 +678,26 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/a-clockwork-orange-clip/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="a-clockwork-orange-clip/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/a-clockwork-orange-clip/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="a-clockwork-orange-clip/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
 
         </div>
       </header>
-    
 
     
     
@@ -1005,10 +705,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <p>引言<br>由于人在定义中就被赋予了自由意志，可以由此来选择善恶。只能行善，或者只能行恶的人，就成了发条橙——也就是说，他的外表是有机物，似乎具有可爱的色彩和汁水，实际上仅仅是发条玩具，由着上帝、魔鬼或无所不能的国家（它日益取代了前两者）来摆弄。彻底善与彻底恶一样没有人性，重要的是道德选择权。恶必须与善共存，以便道德选择权的行使。人生是由道德实体的尖锐对立所维持的。电视新闻讲的全是这些。不幸的是，我们身上原罪深重，反而认为恶很诱人，破坏比创造更加容易，更加壮观。我们喜欢看宇宙分崩离析的幻象，哪怕吓得裤子拖地。   </p>
 <hr>
 <p>第 23 页<br>“是书啊？”我说道，“你正在写的是书啊？”我把嗓音弄得很沙哑，“我对会写书的人始终十二万分地钦佩。”我看了看顶上的一页，上面有书名《发条橙》，然后说：“这书名颇为傻冒。谁听说过上了发条的甜橙？”接着我以牧师布道式高亢的嗓音朗读了片断：“——硬是强迫生机勃勃、善于分泌甜味的人类，挤出最后一轮的橙汁，供给留着胡子的上帝的嘴唇，哎哟，生搬硬套只适于机械装置的定律和条件，对此我要口诛笔伐——”丁姆听着又发出了唇乐，我也忍不住笑了。于是我撕破纸头，把碎片播撒在地板上。   </p>
@@ -1026,31 +722,11 @@
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -1058,39 +734,27 @@
   
   </article>
 
-
     
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/how-google-works-clip/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Acuario">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Acuario">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -1102,13 +766,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1121,20 +779,13 @@
               
 
               <time title="创建时间：2017-12-11 01:21:24 / 修改时间：01:43:14" itemprop="dateCreated datePublished" datetime="2017-12-11T01:21:24+08:00">2017-12-11</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
+            </span>
           
-            <span class="post-category">
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -1142,7 +793,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
 
                 
                 
@@ -1152,34 +803,26 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/how-google-works-clip/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-google-works-clip/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/how-google-works-clip/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-google-works-clip/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
 
         </div>
       </header>
-    
 
     
     
@@ -1187,10 +830,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <p>第 27 页<br>科技對消費者產生重大影響，對企業的影響更大。以經濟學的術語來說，當產業的主要生產要素成本曲線下移時這個產業就將面臨大規模的變化。今天，有三項生產要素變得更便宜了：資訊（Information）、連接性（Connectivity）、電腦運算能力（Computing power），這影響每個涉及這三項生產要素的成本曲線，勢必造成破壞性的結果。許多原來就在市場的公司（也就是網際網路問世前成立的公司）以往建立及發展事業的基本假設是稀有性：稀有的資訊，稀有的通路資源和市場研究，或是稀有的選擇和貨架空間。但如今這些生產要素非常充裕，降低或消除產業與市場的進入障礙，使整個產業來到徹底改變的成熟時機。      </p>
 <hr>
 <p>第 41 页<br>你可能不認為自己是創業家，但其實你是。你可能有個構想，你相信這個構想會改變一切；你可能有一個雛型概念，甚至有一項產品的第一個版本。你聰明、有抱負，獨自或和你的小團隊委身在會議室、車庫、辦公室、餐廳、公寓或宿舍裡，就算你做著某些事，不管是讀書、工作，或和小孩及配偶相處的時候，你仍然在想著你的那個構想。      </p>
@@ -1208,38 +847,17 @@
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
   
   
   </article>
-
 
     
   </section>
@@ -1250,12 +868,10 @@
   </nav>
 
 
-
           </div>
           
 
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -1269,341 +885,310 @@
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
-      
-
-      
-
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Acuario">
-            
-              <p class="site-author-name" itemprop="name">Acuario</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
 
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="Acuario">
+  <p class="site-author-name" itemprop="name">Acuario</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
           
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">51</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+  </div>
 
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
 
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">85</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://songf.me/" title="https://songf.me/" rel="noopener" target="_blank">bennxs</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://meteoritey.github.io/" title="https://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-            
-          
-          
+  <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://songf.me/" title="https://songf.me/" rel="noopener" target="_blank">bennxs</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://meteoritey.github.io/" title="https://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.yeyanjie.com/" title="https://blog.yeyanjie.com/" rel="noopener" target="_blank">Jarvis Ye</a>
+        </li>
+      
+    </ul>
+  </div>
 
         </div>
       </div>
-
-      
-
-      
-        <div class="back-to-top">
+        <div class="back-to-top motion-element">
           <i class="fa fa-arrow-up"></i>
           
             <span id="scrollpercent"><span>0</span>%</span>
@@ -1613,10 +1198,9 @@
 
     </div>
   </aside>
-  
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
@@ -1627,33 +1211,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Acuario</span>
-
-  
-
-  
 </div>
-
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
-
-
-
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
@@ -1661,11 +1228,7 @@
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
     </span>
   
-
-  
     <span class="post-meta-divider">|</span>
-  
-
   
     <span class="post-meta-item-icon">
       <i class="fa fa-eye"></i>
@@ -1683,89 +1246,31 @@
 
 
 
-
         
       </div>
     </footer>
 
     
 
-    
-
-    
-
-    
   </div>
 
   
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/pangu/dist/pangu.min.js?v=4.0.7"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  <script src="/js/utils.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
 
   
-
-
-  <script src="/js/utils.js?v=7.1.2"></script>
-
-  <script src="/js/motion.js?v=7.1.2"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/affix.js?v=7.1.2"></script>
-
-  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
-
+  <script src="/js/affix.js?v=7.2.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
 
 
   
 
-  
-
-
-  <script src="/js/next-boot.js?v=7.1.2"></script>
-
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
@@ -1773,8 +1278,46 @@
 
   
 
+
   
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.2.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1786,87 +1329,6 @@
   window.addEventListener('load', loadCount, false);
 </script>
 
-
-
-
-
-
-
-  
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
-
-  
-
-  
-<script>
-  $('.highlight').not('.gist .highlight').each(function(i, e) {
-    var $wrap = $('<div>').addClass('highlight-wrap');
-    $(e).after($wrap);
-    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
-      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
-        return $(e).text();
-      }).toArray().join('\n');
-      var ta = document.createElement('textarea');
-      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-      ta.style.top = yPosition + 'px'; // Prevent page scroll
-      ta.style.position = 'absolute';
-      ta.style.opacity = '0';
-      ta.readOnly = true;
-      ta.value = code;
-      document.body.appendChild(ta);
-      const selection = document.getSelection();
-      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
-      ta.select();
-      ta.setSelectionRange(0, code.length);
-      ta.readOnly = false;
-      var result = document.execCommand('copy');
-      
-      ta.blur(); // For iOS
-      $(this).blur();
-      if (selected) {
-        selection.removeAllRanges();
-        selection.addRange(selected);
-      }
-    })).on('mouseleave', function(e) {
-      var $b = $(this).find('.copy-btn');
-      setTimeout(function() {
-        $b.text('复制');
-      }, 300);
-    }).append(e);
-  })
-</script>
-
-
-  
-
-  
 
 </body>
 </html>

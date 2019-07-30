@@ -4,92 +4,22 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-
 <html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hexo 3.9.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
-  
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.1.2">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.1.2">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.1.2">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
-
-
-
-
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 <script id="hexo.configurations">
@@ -97,30 +27,35 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.1.2',
-    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: true,
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
     fancybox: false,
-    fastclick: false,
+    mediumzoom: false,
     lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    pangu: true,
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: 'search.xml'
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
-
-
-  
-
-<script src="https://use.typekit.net/dzs0zzd.js"></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Acuario">
@@ -129,17 +64,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Acuario">
-
-
-
   <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
-
-
-
-  
-  
   <link rel="canonical" href="https://acuario.xyz/page/9/">
-
 
 
 <script id="page.configurations">
@@ -148,12 +74,10 @@
   };
 </script>
 
+    <script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
   <title>Acuario</title>
   
-
-
-
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-83619854-1"></script>
   <script>
     var host = window.location.hostname;
@@ -164,7 +88,6 @@
       gtag('config', 'UA-83619854-1');
     }
   </script>
-
 
 
 
@@ -200,21 +123,14 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-home">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
-    
 
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
@@ -223,8 +139,6 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-    
   </div>
 
   <div class="site-nav-toggle">
@@ -239,24 +153,16 @@
 
 
 <nav class="site-nav">
-  
     <ul id="menu" class="menu">
-      
         
         
         
           
           <li class="menu-item menu-item-home">
-
-    
-    
-    
       
     
 
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
 
   </li>
         
@@ -264,16 +170,10 @@
         
           
           <li class="menu-item menu-item-tags">
-
-    
-    
-    
       
     
 
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
 
   </li>
         
@@ -281,16 +181,10 @@
         
           
           <li class="menu-item menu-item-categories">
-
-    
-    
-    
       
     
 
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
 
   </li>
         
@@ -298,34 +192,43 @@
         
           
           <li class="menu-item menu-item-archives">
-
-    
-    
-    
       
     
 
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
 
   </li>
-
-      
+        <li class="menu-item menu-item-search">
+          <a href="javascript:;" class="popup-trigger">
+          
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
       
     </ul>
-  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
 
-  
 
-  
+    </div>
 </nav>
 
-
-
-  
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 </div>
     </header>
@@ -336,45 +239,31 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
             
 
-          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
-    
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/japanese-thought-clip/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Acuario">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Acuario">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -386,13 +275,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -405,16 +288,12 @@
               
 
               <time title="创建时间：2016-10-09 22:54:10" itemprop="dateCreated datePublished" datetime="2016-10-09T22:54:10+08:00">2016-10-09</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -422,15 +301,10 @@
                   <span class="post-meta-item-text">更新于</span>
                 
                 <time title="修改时间：2016-12-04 22:41:57" itemprop="dateModified" datetime="2016-12-04T22:41:57+08:00">2016-12-04</time>
-              
+              </span>
             
-          </span>
-
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -438,7 +312,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
 
                 
                 
@@ -448,34 +322,26 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/japanese-thought-clip/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="japanese-thought-clip/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/japanese-thought-clip/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="japanese-thought-clip/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
 
         </div>
       </header>
-    
 
     
     
@@ -483,10 +349,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <p>第64页</p>
 <p>我们的传统宗教，没有一个能发挥与新时代流入的意识形态进行思想交锋、并通过这个交锋使传统发挥自觉再生的作用，因此新思想一个一个地被无秩序地积埋，使近代日本人精神上的杂居性愈演愈烈。日本的近代天皇制正试图把权力核心同时作为精神“机轴”用以对付这种事态，但是，因国体是以杂居性的“传统”本身作为自身的实体的，所以它并不能成为将我们的思想进行实质性整合的原理，而只在否定性的同质化（异端的排除）作用方面发挥了强大作用，它对于人格性主体——无论是自由认识主体上的意义、伦理责任主体的意义或是秩序形成的主体的意义——的确立，从一开始就包含着成为决定性桎梏的命运。战后的变革使得这个似是而非的“精神机轴”一举颠覆。在这里，原本存在于日本人精神状况中的杂居的无秩序性，由于第二次“开国”几乎显露到了极限。思想界的纷乱这个词在明治以来，曾是统治阶层以及道学保守主义者的共通说法。但是，思想与现实之间自由地相互交流的条件，在战前明显地受到了阻碍，就此看来，可以说，现在我们才开始迎来了真正的思想的纷乱。实在不知从中会产生出什么，但是可以确切地说，是我们已经不能从这个地点折回，也没有必要从这个地点折回了。</p>
           <!--noindex-->
@@ -503,31 +365,11 @@
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -535,39 +377,27 @@
   
   </article>
 
-
     
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/mount-windir-in-linux-for-LAN/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Acuario">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Acuario">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -579,13 +409,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -598,16 +422,12 @@
               
 
               <time title="创建时间：2016-10-05 22:25:40" itemprop="dateCreated datePublished" datetime="2016-10-05T22:25:40+08:00">2016-10-05</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -615,15 +435,10 @@
                   <span class="post-meta-item-text">更新于</span>
                 
                 <time title="修改时间：2019-06-05 23:13:28" itemprop="dateModified" datetime="2019-06-05T23:13:28+08:00">2019-06-05</time>
-              
+              </span>
             
-          </span>
-
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -631,14 +446,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
 
                 
                 
                   ，
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
                 
                 
@@ -648,34 +463,26 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/mount-windir-in-linux-for-LAN/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mount-windir-in-linux-for-LAN/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/mount-windir-in-linux-for-LAN/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mount-windir-in-linux-for-LAN/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
 
         </div>
       </header>
-    
 
     
     
@@ -683,10 +490,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <p>为实现在 Linux 服务器上的开发环境实时映射局域网内 Windows 的共享文件夹进行开发，我们可以使用 Linux 的 mount 功能把局域网内 Windows 的共享文件夹挂载到指定目录。在此将实现步骤罗列，给需要的人以参考。</p>
 <h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><ol>
 <li>添加专用于挂载的 Windows 新用户，设置用户名为 <code>&lt;username&gt;</code>，密码为 <code>&lt;password&gt;</code></li>
@@ -716,31 +519,11 @@
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -748,39 +531,27 @@
   
   </article>
 
-
     
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/simplify-URL/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Acuario">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Acuario">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -792,13 +563,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -811,20 +576,13 @@
               
 
               <time title="创建时间：2016-09-23 22:23:17 / 修改时间：22:38:29" itemprop="dateCreated datePublished" datetime="2016-09-23T22:23:17+08:00">2016-09-23</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
+            </span>
           
-            <span class="post-category">
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -832,7 +590,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
 
                 
                 
@@ -842,34 +600,26 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/simplify-URL/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="simplify-URL/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/simplify-URL/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="simplify-URL/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
 
         </div>
       </header>
-    
 
     
     
@@ -877,10 +627,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>由于 SEO 优化或流量统计需要，邮箱订阅或某些网站会对自身 URL 进行处理，在原 URL 后面追加一系列的标签，形如<br><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">https://zhuanlan.zhihu.com/p/<span class="number">22545574</span>?hmsr=toutiao.<span class="built_in">io</span>&amp;utm_medium=toutiao.<span class="built_in">io</span>&amp;utm_source=toutiao.<span class="built_in">io</span></span><br></pre></td></tr></table></figure></p>
 <p>其原本的 URL 为：<br><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>zhuanlan.zhihu.com<span class="regexp">/p/</span><span class="number">22545574</span></span><br></pre></td></tr></table></figure></p>
@@ -896,31 +642,11 @@
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -928,39 +654,27 @@
   
   </article>
 
-
     
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/rabbitmq-guide-3/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Acuario">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Acuario">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -972,13 +686,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -991,16 +699,12 @@
               
 
               <time title="创建时间：2016-09-17 19:46:39" itemprop="dateCreated datePublished" datetime="2016-09-17T19:46:39+08:00">2016-09-17</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -1008,15 +712,10 @@
                   <span class="post-meta-item-text">更新于</span>
                 
                 <time title="修改时间：2016-11-27 16:31:25" itemprop="dateModified" datetime="2016-11-27T16:31:25+08:00">2016-11-27</time>
-              
+              </span>
             
-          </span>
-
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -1024,7 +723,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
 
                 
                 
@@ -1034,34 +733,26 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/rabbitmq-guide-3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="rabbitmq-guide-3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/rabbitmq-guide-3/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="rabbitmq-guide-3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
 
         </div>
       </header>
-    
 
     
     
@@ -1069,10 +760,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <p>RabbitMQ 入门指南 PHP 版系列文章：<br><a href="https://yhyy135.github.io/rabbitmq-guide-1/" target="_blank" rel="noopener">RabbitMQ 入门指南 PHP 版（一）</a><br><a href="https://yhyy135.github.io/rabbitmq-guide-2/" target="_blank" rel="noopener">RabbitMQ 入门指南 PHP 版（二）</a></p>
 <h1 id="主题交换机-Topic-exchange"><a href="#主题交换机-Topic-exchange" class="headerlink" title="主题交换机 Topic exchange"></a>主题交换机 Topic exchange</h1><p>为进行更为复杂和高级的路由操作，可通过使用主题交换机来实现。<br>主题交换机的路由键必须是一个由 <code>.</code> 分隔开的词语列表。绑定键也必须拥有同样的格式。携带特定路由键的消息将被主题交换机投递给绑定键与之相匹配的队列。</p>
           <!--noindex-->
@@ -1089,31 +776,11 @@
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -1121,39 +788,27 @@
   
   </article>
 
-
     
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/rabbitmq-guide-2/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Acuario">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Acuario">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -1165,13 +820,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1184,16 +833,12 @@
               
 
               <time title="创建时间：2016-09-16 00:46:39" itemprop="dateCreated datePublished" datetime="2016-09-16T00:46:39+08:00">2016-09-16</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -1201,15 +846,10 @@
                   <span class="post-meta-item-text">更新于</span>
                 
                 <time title="修改时间：2016-11-27 16:30:23" itemprop="dateModified" datetime="2016-11-27T16:30:23+08:00">2016-11-27</time>
-              
+              </span>
             
-          </span>
-
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -1217,7 +857,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
 
                 
                 
@@ -1227,34 +867,26 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/rabbitmq-guide-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="rabbitmq-guide-2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/rabbitmq-guide-2/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="rabbitmq-guide-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br/>
 
         </div>
       </header>
-    
 
     
     
@@ -1262,10 +894,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <p>RabbitMQ 入门指南 PHP 版系列文章：<br><a href="https://yhyy135.github.io/rabbitmq-guide-1/" target="_blank" rel="noopener">RabbitMQ 入门指南 PHP 版（一）</a></p>
 <h1 id="发布／订阅-Publish-Subscribe"><a href="#发布／订阅-Publish-Subscribe" class="headerlink" title="发布／订阅 Publish/Subscribe"></a>发布／订阅 Publish/Subscribe</h1><p>分发一个消息给多个消费者（consumers）的模式称为「发布 / 订阅」。若要构建一个简单的日志系统用于发送日志消息和获取消息并输出内容，可利用发布 / 订阅模式实现。</p>
           <!--noindex-->
@@ -1282,38 +910,17 @@
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
   
   
   </article>
-
 
     
   </section>
@@ -1324,12 +931,10 @@
   </nav>
 
 
-
           </div>
           
 
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -1343,341 +948,310 @@
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
-      
-
-      
-
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Acuario">
-            
-              <p class="site-author-name" itemprop="name">Acuario</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
 
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="Acuario">
+  <p class="site-author-name" itemprop="name">Acuario</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
           
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">51</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+  </div>
 
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
 
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">85</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://songf.me/" title="https://songf.me/" rel="noopener" target="_blank">bennxs</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://meteoritey.github.io/" title="https://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-            
-          
-          
+  <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://songf.me/" title="https://songf.me/" rel="noopener" target="_blank">bennxs</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://meteoritey.github.io/" title="https://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.yeyanjie.com/" title="https://blog.yeyanjie.com/" rel="noopener" target="_blank">Jarvis Ye</a>
+        </li>
+      
+    </ul>
+  </div>
 
         </div>
       </div>
-
-      
-
-      
-        <div class="back-to-top">
+        <div class="back-to-top motion-element">
           <i class="fa fa-arrow-up"></i>
           
             <span id="scrollpercent"><span>0</span>%</span>
@@ -1687,10 +1261,9 @@
 
     </div>
   </aside>
-  
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
@@ -1701,33 +1274,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Acuario</span>
-
-  
-
-  
 </div>
-
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
-
-
-
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
@@ -1735,11 +1291,7 @@
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
     </span>
   
-
-  
     <span class="post-meta-divider">|</span>
-  
-
   
     <span class="post-meta-item-icon">
       <i class="fa fa-eye"></i>
@@ -1757,89 +1309,31 @@
 
 
 
-
         
       </div>
     </footer>
 
     
 
-    
-
-    
-
-    
   </div>
 
   
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/pangu/dist/pangu.min.js?v=4.0.7"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  <script src="/js/utils.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
 
   
-
-
-  <script src="/js/utils.js?v=7.1.2"></script>
-
-  <script src="/js/motion.js?v=7.1.2"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/affix.js?v=7.1.2"></script>
-
-  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
-
+  <script src="/js/affix.js?v=7.2.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
 
 
   
 
-  
-
-
-  <script src="/js/next-boot.js?v=7.1.2"></script>
-
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
@@ -1847,8 +1341,46 @@
 
   
 
+
   
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.2.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1860,87 +1392,6 @@
   window.addEventListener('load', loadCount, false);
 </script>
 
-
-
-
-
-
-
-  
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-  
-  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
-  <script>pangu.spacingPage();</script>
-
-
-  
-
-  
-<script>
-  $('.highlight').not('.gist .highlight').each(function(i, e) {
-    var $wrap = $('<div>').addClass('highlight-wrap');
-    $(e).after($wrap);
-    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
-      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
-        return $(e).text();
-      }).toArray().join('\n');
-      var ta = document.createElement('textarea');
-      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-      ta.style.top = yPosition + 'px'; // Prevent page scroll
-      ta.style.position = 'absolute';
-      ta.style.opacity = '0';
-      ta.readOnly = true;
-      ta.value = code;
-      document.body.appendChild(ta);
-      const selection = document.getSelection();
-      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
-      ta.select();
-      ta.setSelectionRange(0, code.length);
-      ta.readOnly = false;
-      var result = document.execCommand('copy');
-      
-      ta.blur(); // For iOS
-      $(this).blur();
-      if (selected) {
-        selection.removeAllRanges();
-        selection.addRange(selected);
-      }
-    })).on('mouseleave', function(e) {
-      var $b = $(this).find('.copy-btn');
-      setTimeout(function() {
-        $b.text('复制');
-      }, 300);
-    }).append(e);
-  })
-</script>
-
-
-  
-
-  
 
 </body>
 </html>
