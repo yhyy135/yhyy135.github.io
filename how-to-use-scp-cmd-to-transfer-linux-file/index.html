@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
@@ -27,7 +27,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.2.0',
+    version: '7.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
@@ -167,7 +167,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -178,7 +178,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -189,7 +189,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -200,13 +200,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         <li class="menu-item menu-item-search">
           <a href="javascript:;" class="popup-trigger">
           
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -348,7 +348,7 @@
   </span>
   
   
-          <br/>
+          <br>
 
         </div>
       </header>
@@ -362,7 +362,7 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>出于更换 VPS 的目的，不得不对文件进行转移。最原始的办法可能是从 <code>A</code> 服务器拷贝一份到<code>本机</code>，然后再重新上传到 <code>B</code> 服务器。这样做既繁琐又费时。不如使用 Linux 的 <code>scp</code> 命令进行快速转移来的方便。</p>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>scp</code>（secure copy），可以用于在 Linux 下进行远程文件拷贝。类似于 <code>cp</code> 命令，<code>scp</code> 是应用于多设备间的传输拷贝，而前者是 Linux 本地命令。另外，<code>scp</code> 为 SSH 加密传输，安全性有保障——也因此，连接的端口为远端服务器的 SSH 服务端口（SSH 一般默认端口为 22）。</p>
 <a id="more"></a>
-<h1 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h1><figure class="highlight inform7"><table><tr><td class="code"><pre><span class="line">scp -参数 <span class="comment">[<span class="comment">[user@]</span>host1:]</span>file1 ... <span class="comment">[<span class="comment">[user@]</span>host2:]</span>file2</span><br></pre></td></tr></table></figure>
+<h1 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">scp -参数 [[user@]host1:]file1 ... [[user@]host2:]file2</span><br></pre></td></tr></table></figure>
 <h1 id="常用命令参数"><a href="#常用命令参数" class="headerlink" title="常用命令参数"></a>常用命令参数</h1><table>
 <thead>
 <tr>
@@ -396,14 +396,14 @@
 <h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>以下命令假设已登录<strong>本地机器</strong>为 <code>A</code>(IP: 192.168.1.1)，<strong>远端机器</strong>为 <code>B</code>(IP: 192.168.2.1)<br>根据 SSH 登录方式和 SSH 端口的不同，拷贝命令分为以下两种：</p>
 <ol>
 <li><p>远端 <code>B</code> 为密码登录， SSH 为默认端口 22<br><code>A:/abc/</code> &gt;&gt;&gt;上传&gt;&gt;&gt; <code>B:/root</code> ：</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">scp -r /abc root<span class="variable">@192</span>.<span class="number">168.2</span>.<span class="number">1</span><span class="symbol">:/root</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">scp -r /abc root@192.168.2.1:/root</span><br></pre></td></tr></table></figure>
 <p><code>A:/root</code> &lt;&lt;&lt;下载&lt;&lt;&lt; <code>B:/abc/</code> ：</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">scp -r root<span class="variable">@192</span>.<span class="number">168.2</span>.<span class="number">1</span><span class="symbol">:/abc</span> /root</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">scp -r root@192.168.2.1:/abc /root</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>远端 <code>B</code> 为密钥（密钥文件为 <code>.ssh/id_rsa</code>）登录， SSH 端口为 2222<br><code>A:/abc/</code> &gt;&gt;&gt;上传&gt;&gt;&gt; <code>B:/root</code> ：</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">scp -P <span class="number">2222</span> -i .ssh/id_rsa -r /abc root<span class="variable">@192</span>.<span class="number">168.2</span>.<span class="number">1</span><span class="symbol">:/root</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">scp -P 2222 -i .ssh/id_rsa -r /abc root@192.168.2.1:/root</span><br></pre></td></tr></table></figure>
 <p><code>A:/root</code> &lt;&lt;&lt;下载&lt;&lt;&lt; <code>B:/abc/</code> ：</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">scp -P <span class="number">2222</span> -i .ssh/id_rsa -r root<span class="variable">@192</span>.<span class="number">168.2</span>.<span class="number">1</span><span class="symbol">:/abc</span> /root</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">scp -P 2222 -i .ssh/id_rsa -r root@192.168.2.1:/abc /root</span><br></pre></td></tr></table></figure>
 <p>p.s. 使用密钥进行 <code>scp</code> 时，需保证密钥文件 <code>.ssh/id_rsa</code> 对应的公钥 <code>.ssh/id_rsa.pub</code> 内容已经写入到 <code>B</code> 的 <code>/root/.sshauthorized_keys</code> 文件中，否则无法正常使用密钥登录。具体原因与 SSH 密钥登录一致。</p>
 </li>
 </ol>
@@ -866,7 +866,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
   <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
@@ -912,28 +912,28 @@
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
 
   
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
+  <script src="/js/next-boot.js?v=7.3.0"></script>
 
   
 
   
 
+  
+
 
   
 
@@ -957,9 +957,7 @@
 
 
 
-
-
-  <script src="/js/local-search.js?v=7.2.0"></script>
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 

@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
@@ -27,7 +27,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.2.0',
+    version: '7.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
@@ -167,7 +167,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -178,7 +178,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -189,7 +189,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -200,13 +200,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         <li class="menu-item menu-item-search">
           <a href="javascript:;" class="popup-trigger">
           
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -358,7 +358,7 @@
   </span>
   
   
-          <br/>
+          <br>
 
         </div>
       </header>
@@ -385,26 +385,26 @@
 <p>下面介绍如何为服务器设置 SSH 身份验证。</p>
 <ul>
 <li><p>在本地计算机上，运行下列命令生成 SSH 密钥对：</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ssh-keygen</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
 <p>上述命令将引导你在几步之内生成 SSH 密钥。当然别忘了记住你保存密钥文件的位置。</p>
 </li>
 <li><p>使用以下命令将公钥添加到服务器：</p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">ssh-<span class="keyword">copy</span>-<span class="built_in">id</span> username@remote_host</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-copy-id username@remote_host</span><br></pre></td></tr></table></figure>
 <p>务必使用你的用户名和服务器的 IP 地址替换 <em>username</em> 和 <em>remote_host</em>。系统将提示你输入密码。</p>
 </li>
 <li><p>尝试使用以下命令登录服务器：</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ssh</span> username<span class="variable">@remote_host</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh username@remote_host</span><br></pre></td></tr></table></figure>
 <p>别忘了将 <em>username</em> 和 <em>remote_host</em> 替换为服务器的详细信息。这时你会注意到，本次登录不再提示你输入密码。</p>
 </li>
 </ul>
 <h2 id="保持系统时间最新"><a href="#保持系统时间最新" class="headerlink" title="保持系统时间最新"></a>保持系统时间最新</h2><p>许多安全协议依托于你的系统时间来执行定时任务，生成当天的日志和执行其他关键任务。</p>
 <p>如果你的系统时间有误，可能会对你的服务器造成危害。为防止这种情况发生，你可以安装 NTP 客户端。该程序将使你的系统时间与全球 NTP 服务器保持同步。</p>
 <p>安装 NTP 客户端命令如下：</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> ntp</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install ntp</span><br></pre></td></tr></table></figure>
 <p>之后你再也不用担心设置系统日期。</p>
 <h2 id="查看活动端口"><a href="#查看活动端口" class="headerlink" title="查看活动端口"></a>查看活动端口</h2><p>服务器程序会暴露某些端口，以便于网络中的其他应用程序对其进行访问。黑客也可以在你的服务器上安装后门并暴露端口，从而控制你的服务器。因此，我们不希望服务器上的未知端口被请求侦听。</p>
 <p>要查看活动端口，可以使用以下命令：</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo ss -lntup</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ss -lntup</span><br></pre></td></tr></table></figure>
 <p>查看输出并检查任何你并不熟悉的端口或进程。尝试发现并追踪可能有害的服务和流程。如果你不知从何下手，请可以查看这份<a href="https://www.garykessler.net/library/bad_ports.html" target="_blank" rel="noopener">《「糟糕的」TCP/UDP 端口列表》</a>。</p>
 <h2 id="设置防火墙"><a href="#设置防火墙" class="headerlink" title="设置防火墙"></a>设置防火墙</h2><p>防火墙允许你控制服务器上传入 / 传出特定端口的网络流量。通常我使用 UFW（<em>uncomplicated firewall</em>，简单防火墙）。（译者注：UFW 是 Ubuntu 系统上默认的防火墙组件）</p>
 <p>你可以配置下述规则来控制 UFW 的运行：</p>
@@ -418,37 +418,37 @@
 <h3 id="设置-UFW"><a href="#设置-UFW" class="headerlink" title="设置 UFW"></a>设置 UFW</h3><ul>
 <li>安装ufw。</li>
 </ul>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install ufw</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ufw</span><br></pre></td></tr></table></figure>
 <ul>
 <li>你可以禁止所有传出流量</li>
 </ul>
-<figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="keyword">default</span> deny outgoing <span class="built_in">comment</span> <span class="string">'deny all outgoing traffic'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw default deny outgoing comment &apos;deny all outgoing traffic&apos;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>或者允许所有传出流量</li>
 </ul>
-<figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="keyword">default</span> allow outgoing <span class="built_in">comment</span> <span class="string">'allow all outgoing traffic'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw default allow outgoing comment &apos;allow all outgoing traffic&apos;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>接下来，我们要禁止所有传入的流量……</li>
 </ul>
-<figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="keyword">default</span> deny incoming <span class="built_in">comment</span> <span class="string">'deny all incoming traffic'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw default deny incoming comment &apos;deny all incoming traffic&apos;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>…将 SSH 连接加入例外，以便访问系统。</li>
 </ul>
-<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">sudo ufw limit <span class="keyword">in</span> ssh comment <span class="symbol">'allow</span> SSH connections <span class="keyword">in</span>'</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw limit in ssh comment &apos;allow SSH connections in&apos;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>如果你将 UFW 配置为禁止所有传出流量，别忘了根据需要允许特定流量。比如：</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">#允许端口 53 的流量输出 -  DNS </span></span><br><span class="line">sudo ufw allow out 53 <span class="keyword">comment</span> <span class="string">'allow DNS calls out'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许端口 123 的流量输出 -  NTP </span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> <span class="number">123</span> <span class="keyword">comment</span> <span class="string">'allow NTP out'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许 HTTP，HTTPS 或 FTP 的流量</span></span><br><span class="line"><span class="comment">#根据你使用的 apt 源的不同，apt 可能需要如下设置</span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> <span class="keyword">http</span> <span class="keyword">comment</span> <span class="string">'allow HTTP traffic out'</span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> https <span class="keyword">comment</span> <span class="string">'allow HTTPS traffic out'</span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> <span class="keyword">ftp</span> <span class="keyword">comment</span> <span class="string">'allow FTP traffic out'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许 whois</span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> whois <span class="keyword">comment</span> <span class="string">'allow whois'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许端口 68 的流量输出 -  DHCP 客户端</span></span><br><span class="line"><span class="comment">#如果你正在使用 DHCP，则需要如下设置</span></span><br><span class="line">sudo ufw <span class="keyword">allow</span> <span class="keyword">out</span> <span class="number">68</span> <span class="keyword">comment</span> <span class="string">'allow the DHCP client to update'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#允许端口 53 的流量输出 -  DNS </span><br><span class="line">sudo ufw allow out 53 comment &apos;allow DNS calls out&apos;</span><br><span class="line"></span><br><span class="line">#允许端口 123 的流量输出 -  NTP </span><br><span class="line">sudo ufw allow out 123 comment &apos;allow NTP out&apos;</span><br><span class="line"></span><br><span class="line">#允许 HTTP，HTTPS 或 FTP 的流量</span><br><span class="line">#根据你使用的 apt 源的不同，apt 可能需要如下设置</span><br><span class="line">sudo ufw allow out http comment &apos;allow HTTP traffic out&apos;</span><br><span class="line">sudo ufw allow out https comment &apos;allow HTTPS traffic out&apos;</span><br><span class="line">sudo ufw allow out ftp comment &apos;allow FTP traffic out&apos;</span><br><span class="line"></span><br><span class="line">#允许 whois</span><br><span class="line">sudo ufw allow out whois comment &apos;allow whois&apos;</span><br><span class="line"></span><br><span class="line">#允许端口 68 的流量输出 -  DHCP 客户端</span><br><span class="line">#如果你正在使用 DHCP，则需要如下设置</span><br><span class="line">sudo ufw allow out 68 comment &apos;allow the DHCP client to update&apos;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>如需拒绝端口 99 上的任何流量，可使用以下命令：</li>
 </ul>
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="keyword">deny</span> <span class="number">99</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw deny 99</span><br></pre></td></tr></table></figure>
 <ul>
 <li>最后，使用以下命令启动 UFW：</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ufw <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw enable</span><br></pre></td></tr></table></figure>
 <p>你还可以使用以下命令查看 UFW 状态：</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo ufw status</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw status</span><br></pre></td></tr></table></figure>
 <h2 id="防止自动化攻击"><a href="#防止自动化攻击" class="headerlink" title="防止自动化攻击"></a>防止自动化攻击</h2><p>你可以使用两个程序来阻止大多数自动化攻击：</p>
 <ul>
 <li><a href="http://www.cipherdyne.org/psad/" target="_blank" rel="noopener">PSAD</a></li>
@@ -467,12 +467,12 @@
 <p>logwatch 通过 service 文件来获取读取和汇总日志文件的方式。你可以在 <code>/usr/share/logwatch/scripts/services</code> 中查看所有 service 文件。</p>
 <p>logwatch 默认配置文件是 <code>/usr/share/logwatch/default.conf/logwatch.conf</code>。你可以通过使用命令行参数更改配置。</p>
 <p>在 Ubuntu 或 Debian 上安装 logwatch，可运行以下命令：</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">apt-<span class="builtin-name">get</span> install logwatch</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get install logwatch</span><br></pre></td></tr></table></figure>
 <p>对于其他 Linux 发行版的用户，请查看 Linode 的<a href="https://www.linode.com/docs/uptime/monitoring/monitor-systems-logwatch/" target="_blank" rel="noopener">这篇指南</a>。</p>
 <p>如果你需要查看 logwatch 收集的日志样本，你可以尝试直接运行 logwatch。</p>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">sudo <span class="string">/usr/sbin/logwatch</span> <span class="params">--output</span> stdout <span class="params">--format</span> text <span class="params">--range</span> yesterday <span class="params">--service</span> all</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo /usr/sbin/logwatch --output stdout --format text --range yesterday --service all</span><br></pre></td></tr></table></figure>
 <p>最后，然后 logwatch 每天发送一封电子邮件，其中包含我们日志文件的摘要。为实现此需求，可以打开文件 <em>/etc/cron.daily/00logwatch</em> 并找到 <em>execute</em> 行，然后将其更改为以下内容：</p>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="string">/usr/sbin/logwatch</span> <span class="params">--output</span> mail <span class="params">--format</span> html <span class="params">--mailto</span> root <span class="params">--range</span> yesterday <span class="params">--service</span> all</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/usr/sbin/logwatch --output mail --format html --mailto root --range yesterday --service all</span><br></pre></td></tr></table></figure>
 <h2 id="执行安全审计"><a href="#执行安全审计" class="headerlink" title="执行安全审计"></a>执行安全审计</h2><p>在加固 Linux 服务器后，你应该进行安全审计，以便排查任何可能被忽视的安全漏洞。为此，你可以使用 Lynis，这是一个可以实现以下功能的开源软件：</p>
 <ul>
 <li>安全审计。</li>
@@ -482,11 +482,11 @@
 <li>系统强化。</li>
 </ul>
 <h3 id="如何使用-Lynis"><a href="#如何使用-Lynis" class="headerlink" title="如何使用 Lynis"></a>如何使用 Lynis</h3><p>首先，通过克隆其 Github 仓库来安装 Lynis。这可确保安装的是最新版本的 Lynis。</p>
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/CISOfy/lynis</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/CISOfy/lynis</span><br></pre></td></tr></table></figure>
 <p>切换到我们克隆 Lynis 的目录：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> lynis</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd lynis</span><br></pre></td></tr></table></figure>
 <p>最后，使用以下命令运行第一次安全审计：</p>
-<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line">lynis audit <span class="keyword">system</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lynis audit system</span><br></pre></td></tr></table></figure>
 <p>你可以在 Lynis 的<a href="https://cisofy.com/lynis/" target="_blank" rel="noopener">官方网站</a>上了解更多相关信息。</p>
 <h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>很高兴你能阅读这篇有关加固 Linux 服务器的 how-to 指南。希望你能从中获益。</p>
 
@@ -944,7 +944,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
   <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
@@ -990,28 +990,28 @@
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
 
   
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
+  <script src="/js/next-boot.js?v=7.3.0"></script>
 
   
 
   
 
+  
+
 
   
 
@@ -1035,9 +1035,7 @@
 
 
 
-
-
-  <script src="/js/local-search.js?v=7.2.0"></script>
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 

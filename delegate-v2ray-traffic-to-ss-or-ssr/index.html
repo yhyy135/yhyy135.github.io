@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
@@ -27,7 +27,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.2.0',
+    version: '7.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
@@ -172,7 +172,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -183,7 +183,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -194,7 +194,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -205,13 +205,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         <li class="menu-item menu-item-search">
           <a href="javascript:;" class="popup-trigger">
           
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -363,7 +363,7 @@
   </span>
   
   
-          <br/>
+          <br>
 
         </div>
       </header>
@@ -395,8 +395,8 @@
 <li>网站返回的数据按上述步骤和处理方式原路返回</li>
 </ol>
 <p>由于机场服务器收到的是 VMess 协议加密后的流量，加密方法又是我们自定义的，所以机场几无可能掌握我们的真实流量。下面动手实操。</p>
-<h1 id="SS-中转-V2Ray-流量"><a href="#SS-中转-V2Ray-流量" class="headerlink" title="SS 中转 V2Ray 流量"></a>SS 中转 V2Ray 流量</h1><p>V2Ray 自身支持 Shadowsocks 协议，所以 SS 中转 V2Ray 流量按照官方的<a href="https://toutyrater.github.io/advanced/outboundproxy.html" target="_blank" rel="noopener">白话文教程</a>来操作就行了。简单来说就是把配置文件中的 <code>outbounds</code> 部分设置为这样：<br><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处根据自己的V2Ray设置修改</span><br><span class="line">        <span class="string">"vnext"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"1.1.1.1"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">8888</span>,</span><br><span class="line">            <span class="string">"users"</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="string">"alterId"</span>: <span class="number">64</span>,</span><br><span class="line">                <span class="string">"id"</span>: <span class="string">"b12614c5-5ca4-4eba-a215-c61d642116ce"</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"proxySettings"</span>: &#123;</span><br><span class="line">          <span class="string">"tag"</span>: <span class="string">"transit"</span>  // 把 V2Ray 流量发给 tag 名为 transit 的代理进行转发</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"shadowsocks"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处填上机场某个 SS 服务器的配置</span><br><span class="line">        <span class="string">"servers"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"2.2.2.2"</span>,</span><br><span class="line">            <span class="string">"method"</span>: <span class="string">"aes-256-cfb"</span>,</span><br><span class="line">            <span class="string">"ota"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="string">"password"</span>: <span class="string">"password"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">1024</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transit"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p>
-<h1 id="SSR-中转-V2Ray-流量"><a href="#SSR-中转-V2Ray-流量" class="headerlink" title="SSR 中转 V2Ray 流量"></a>SSR 中转 V2Ray 流量</h1><p>但是很多机场都是 SSR 机场，没有提供 SS 配置，那岂不是就不能用上面的骚操作了？既然 SSR 支持监听本地的 Socks 流量，V2Ray 又支持 Socks 协议传出，那我们只需要在本地同时打开 V2Ray 和 SSR 客户端，然后用 Socks 协议连接二者通信即可，相当于把上一节中 V2Ray 传出目标从服务器改为本地 SSR。那么配置文件中的 <code>outbounds</code> 部分就设置为这样：<br><figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123; // 此处根据自己的V2Ray设置修改</span><br><span class="line">        <span class="string">"vnext"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"address"</span>: <span class="string">"1.1.1.1"</span>,</span><br><span class="line">            <span class="string">"port"</span>: <span class="number">8888</span>,</span><br><span class="line">            <span class="string">"users"</span>: [</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="string">"alterId"</span>: <span class="number">64</span>,</span><br><span class="line">                <span class="string">"id"</span>: <span class="string">"b12614c5-5ca4-4eba-a215-c61d642116ce"</span></span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"proxySettings"</span>: &#123;</span><br><span class="line">          <span class="string">"tag"</span>: <span class="string">"transit"</span>  // 把 V2Ray 流量发给 tag 名为 transit 的代理进行转发</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"socks"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"servers"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">          <span class="string">"address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">          <span class="string">"port"</span>: <span class="number">1080</span>  // 此处填写 SSR 客户端监听的本地端口</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transit"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p>
+<h1 id="SS-中转-V2Ray-流量"><a href="#SS-中转-V2Ray-流量" class="headerlink" title="SS 中转 V2Ray 流量"></a>SS 中转 V2Ray 流量</h1><p>V2Ray 自身支持 Shadowsocks 协议，所以 SS 中转 V2Ray 流量按照官方的<a href="https://toutyrater.github.io/advanced/outboundproxy.html" target="_blank" rel="noopener">白话文教程</a>来操作就行了。简单来说就是把配置文件中的 <code>outbounds</code> 部分设置为这样：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;outbounds&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;protocol&quot;: &quot;vmess&quot;,</span><br><span class="line">      &quot;settings&quot;: &#123; // 此处根据自己的V2Ray设置修改</span><br><span class="line">        &quot;vnext&quot;: [</span><br><span class="line">          &#123;</span><br><span class="line">            &quot;address&quot;: &quot;1.1.1.1&quot;,</span><br><span class="line">            &quot;port&quot;: 8888,</span><br><span class="line">            &quot;users&quot;: [</span><br><span class="line">              &#123;</span><br><span class="line">                &quot;alterId&quot;: 64,</span><br><span class="line">                &quot;id&quot;: &quot;b12614c5-5ca4-4eba-a215-c61d642116ce&quot;</span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;proxySettings&quot;: &#123;</span><br><span class="line">          &quot;tag&quot;: &quot;transit&quot;  // 把 V2Ray 流量发给 tag 名为 transit 的代理进行转发</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;protocol&quot;: &quot;shadowsocks&quot;,</span><br><span class="line">      &quot;settings&quot;: &#123; // 此处填上机场某个 SS 服务器的配置</span><br><span class="line">        &quot;servers&quot;: [</span><br><span class="line">          &#123;</span><br><span class="line">            &quot;address&quot;: &quot;2.2.2.2&quot;,</span><br><span class="line">            &quot;method&quot;: &quot;aes-256-cfb&quot;,</span><br><span class="line">            &quot;ota&quot;: false,</span><br><span class="line">            &quot;password&quot;: &quot;password&quot;,</span><br><span class="line">            &quot;port&quot;: 1024</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;tag&quot;: &quot;transit&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p>
+<h1 id="SSR-中转-V2Ray-流量"><a href="#SSR-中转-V2Ray-流量" class="headerlink" title="SSR 中转 V2Ray 流量"></a>SSR 中转 V2Ray 流量</h1><p>但是很多机场都是 SSR 机场，没有提供 SS 配置，那岂不是就不能用上面的骚操作了？既然 SSR 支持监听本地的 Socks 流量，V2Ray 又支持 Socks 协议传出，那我们只需要在本地同时打开 V2Ray 和 SSR 客户端，然后用 Socks 协议连接二者通信即可，相当于把上一节中 V2Ray 传出目标从服务器改为本地 SSR。那么配置文件中的 <code>outbounds</code> 部分就设置为这样：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;outbounds&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;protocol&quot;: &quot;vmess&quot;,</span><br><span class="line">      &quot;settings&quot;: &#123; // 此处根据自己的V2Ray设置修改</span><br><span class="line">        &quot;vnext&quot;: [</span><br><span class="line">          &#123;</span><br><span class="line">            &quot;address&quot;: &quot;1.1.1.1&quot;,</span><br><span class="line">            &quot;port&quot;: 8888,</span><br><span class="line">            &quot;users&quot;: [</span><br><span class="line">              &#123;</span><br><span class="line">                &quot;alterId&quot;: 64,</span><br><span class="line">                &quot;id&quot;: &quot;b12614c5-5ca4-4eba-a215-c61d642116ce&quot;</span><br><span class="line">              &#125;</span><br><span class="line">            ]</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;proxySettings&quot;: &#123;</span><br><span class="line">          &quot;tag&quot;: &quot;transit&quot;  // 把 V2Ray 流量发给 tag 名为 transit 的代理进行转发</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;protocol&quot;: &quot;socks&quot;,</span><br><span class="line">      &quot;settings&quot;: &#123;</span><br><span class="line">        &quot;servers&quot;: [</span><br><span class="line">          &#123;</span><br><span class="line">          &quot;address&quot;: &quot;127.0.0.1&quot;,</span><br><span class="line">          &quot;port&quot;: 1080  // 此处填写 SSR 客户端监听的本地端口</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;tag&quot;: &quot;transit&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p>
 <p>以 Windows 平台为例，我们可以在客户端的「选项设置」中「允许来自局域网的连接」，并且设置 SSR 客户端监听的本地端口：</p>
 <p><img src="https://i.loli.net/2019/04/01/5ca1b95b997fe.png" alt="SSR设置"></p>
 <p>完成设置后，在 SSR 客户端中选择想要使用的服务器节点，并且打开 V2Ray，需要代理的流量全部访问 <strong>V2Ray 客户端监听的端口</strong>即可。</p>
@@ -867,7 +867,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
   <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
@@ -913,28 +913,28 @@
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
 
   
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
+  <script src="/js/next-boot.js?v=7.3.0"></script>
 
   
 
   
 
+  
+
 
   
 
@@ -958,9 +958,7 @@
 
 
 
-
-
-  <script src="/js/local-search.js?v=7.2.0"></script>
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 

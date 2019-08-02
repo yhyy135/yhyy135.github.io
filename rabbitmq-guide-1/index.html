@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
@@ -27,7 +27,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.2.0',
+    version: '7.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
@@ -176,7 +176,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -187,7 +187,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -198,7 +198,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -209,13 +209,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         <li class="menu-item menu-item-search">
           <a href="javascript:;" class="popup-trigger">
           
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -360,7 +360,7 @@
   </span>
   
   
-          <br/>
+          <br>
 
         </div>
       </header>
@@ -390,7 +390,7 @@
 <p>设计一个简单的流程：生产者（producer）把消息发送到一个名为 “hello” 的队列中。消费者（consumer）从这个队列中获取消息。</p>
 <h2 id="发送消息-Sending"><a href="#发送消息-Sending" class="headerlink" title="发送消息 Sending"></a>发送消息 Sending</h2><p><img src="https://www.rabbitmq.com/img/tutorials/sending.png" alt="发送消息"></p>
 <p>发送程序会发送一个消息到队列中。首先要做的事情就是建立一个到 RabbitMQ 服务器的连接。</p>
-<p>send.php<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">true&lt;!-- %<span class="number">1</span> --&gt;</span><br><span class="line">truerequire_once __DIR__ . <span class="string">'/vendor/autoload.php'</span>;</span><br><span class="line">trueuse PhpAmqpLib\Connection\AMQPStreamConnection;</span><br><span class="line">trueuse PhpAmqpLib\Message\AMQPMessage;</span><br><span class="line"></span><br><span class="line">true&lt;!-- %<span class="number">2</span> --&gt;</span><br><span class="line">true$connection = <span class="keyword">new</span> AMQPStreamConnection(<span class="string">'localhost'</span>, <span class="number">5672</span>, <span class="string">'guest'</span>, <span class="string">'guest'</span>);</span><br><span class="line">true$channel = $connection-&gt;channel();</span><br><span class="line">true$channel-&gt;queue_declare(<span class="string">'hello'</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">true&lt;!-- %<span class="number">3</span> --&gt;</span><br><span class="line">true$msg = <span class="keyword">new</span> AMQPMessage(<span class="string">'Hello World!'</span>);</span><br><span class="line">true$channel-&gt;basic_publish($msg, <span class="string">''</span>, <span class="string">'hello'</span>);</span><br><span class="line"></span><br><span class="line">true&lt;!-- %<span class="number">4</span> --&gt;</span><br><span class="line">trueecho <span class="string">" [x] Sent 'Hello World!'\n"</span>;</span><br><span class="line"></span><br><span class="line">true&lt;!-- %<span class="number">5</span> --&gt;</span><br><span class="line">true$channel-&gt;close();</span><br><span class="line">true$connection-&gt;close();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>send.php<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	&lt;!-- %1 --&gt;</span><br><span class="line">	require_once __DIR__ . &apos;/vendor/autoload.php&apos;;</span><br><span class="line">	use PhpAmqpLib\Connection\AMQPStreamConnection;</span><br><span class="line">	use PhpAmqpLib\Message\AMQPMessage;</span><br><span class="line"></span><br><span class="line">	&lt;!-- %2 --&gt;</span><br><span class="line">	$connection = new AMQPStreamConnection(&apos;localhost&apos;, 5672, &apos;guest&apos;, &apos;guest&apos;);</span><br><span class="line">	$channel = $connection-&gt;channel();</span><br><span class="line">	$channel-&gt;queue_declare(&apos;hello&apos;, false, false, false, false);</span><br><span class="line"></span><br><span class="line">	&lt;!-- %3 --&gt;</span><br><span class="line">	$msg = new AMQPMessage(&apos;Hello World!&apos;);</span><br><span class="line">	$channel-&gt;basic_publish($msg, &apos;&apos;, &apos;hello&apos;);</span><br><span class="line"></span><br><span class="line">	&lt;!-- %4 --&gt;</span><br><span class="line">	echo &quot; [x] Sent &apos;Hello World!&apos;\n&quot;;</span><br><span class="line"></span><br><span class="line">	&lt;!-- %5 --&gt;</span><br><span class="line">	$channel-&gt;close();</span><br><span class="line">	$connection-&gt;close();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <ol>
 <li>添加必要的库</li>
 <li>建立一个到 RabbitMQ 服务器的连接；创建一个名为 hello 的队列，然后把消息发送到这个队列中。</li>
@@ -399,7 +399,7 @@
 <li>断开连接。</li>
 </ol>
 <h2 id="获取消息-Receiving"><a href="#获取消息-Receiving" class="headerlink" title="获取消息 Receiving"></a>获取消息 Receiving</h2><p><img src="https://www.rabbitmq.com/img/tutorials/receiving.png" alt="获取消息"></p>
-<p>receive.php<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">true&lt;!-- %<span class="number">1</span> --&gt;</span><br><span class="line">truerequire_once __DIR__ . <span class="string">'/vendor/autoload.php'</span>;</span><br><span class="line">trueuse PhpAmqpLib\Connection\AMQPStreamConnection;</span><br><span class="line"></span><br><span class="line">true&lt;!-- %<span class="number">2</span> --&gt;</span><br><span class="line">true$connection = <span class="keyword">new</span> AMQPStreamConnection(<span class="string">'localhost'</span>, <span class="number">5672</span>, <span class="string">'guest'</span>, <span class="string">'guest'</span>);</span><br><span class="line">true$channel = $connection-&gt;channel();</span><br><span class="line">true$channel-&gt;queue_declare(<span class="string">'hello'</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">true&lt;!-- %<span class="number">3</span> --&gt;</span><br><span class="line">trueecho <span class="string">' [*] Waiting for messages. To exit press CTRL+C'</span>, <span class="string">"\n"</span>;</span><br><span class="line"></span><br><span class="line">true&lt;!-- %<span class="number">4</span> --&gt;</span><br><span class="line">true$callback = <span class="function"><span class="keyword">function</span>(<span class="params">$msg</span>) </span>&#123;</span><br><span class="line">true  echo <span class="string">" [x] Received "</span>, $msg-&gt;body, <span class="string">"\n"</span>;</span><br><span class="line">true&#125;;</span><br><span class="line"></span><br><span class="line">true&lt;!-- %<span class="number">5</span> --&gt;</span><br><span class="line">true$channel-&gt;basic_consume(<span class="string">'hello'</span>, <span class="string">''</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>, $callback);</span><br><span class="line"></span><br><span class="line">true&lt;!-- %<span class="number">6</span> --&gt;</span><br><span class="line">true<span class="keyword">while</span>(count($channel-&gt;callbacks)) &#123;</span><br><span class="line">true    $channel-&gt;wait();</span><br><span class="line">true&#125;</span><br><span class="line"></span><br><span class="line">true&lt;!-- %<span class="number">7</span> --&gt;</span><br><span class="line">true$channel-&gt;close();</span><br><span class="line">true$connection-&gt;close();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>receive.php<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	&lt;!-- %1 --&gt;</span><br><span class="line">	require_once __DIR__ . &apos;/vendor/autoload.php&apos;;</span><br><span class="line">	use PhpAmqpLib\Connection\AMQPStreamConnection;</span><br><span class="line"></span><br><span class="line">	&lt;!-- %2 --&gt;</span><br><span class="line">	$connection = new AMQPStreamConnection(&apos;localhost&apos;, 5672, &apos;guest&apos;, &apos;guest&apos;);</span><br><span class="line">	$channel = $connection-&gt;channel();</span><br><span class="line">	$channel-&gt;queue_declare(&apos;hello&apos;, false, false, false, false);</span><br><span class="line"></span><br><span class="line">	&lt;!-- %3 --&gt;</span><br><span class="line">	echo &apos; [*] Waiting for messages. To exit press CTRL+C&apos;, &quot;\n&quot;;</span><br><span class="line"></span><br><span class="line">	&lt;!-- %4 --&gt;</span><br><span class="line">	$callback = function($msg) &#123;</span><br><span class="line">	  echo &quot; [x] Received &quot;, $msg-&gt;body, &quot;\n&quot;;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	&lt;!-- %5 --&gt;</span><br><span class="line">	$channel-&gt;basic_consume(&apos;hello&apos;, &apos;&apos;, false, true, false, false, $callback);</span><br><span class="line"></span><br><span class="line">	&lt;!-- %6 --&gt;</span><br><span class="line">	while(count($channel-&gt;callbacks)) &#123;</span><br><span class="line">	    $channel-&gt;wait();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&lt;!-- %7 --&gt;</span><br><span class="line">	$channel-&gt;close();</span><br><span class="line">	$connection-&gt;close();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <ol>
 <li>添加必要的库</li>
 <li>建立一个到 RabbitMQ 服务器的连接；创建一个名为 hello 的队列，然后把消息发送到这个队列中。在 receive.php 中重复声明队列防止程序运行顺序导致的错误。</li>
@@ -410,29 +410,29 @@
 <li>断开连接。</li>
 </ol>
 <h2 id="运行代码"><a href="#运行代码" class="headerlink" title="运行代码"></a>运行代码</h2><p>源代码：<br><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/send.php" target="_blank" rel="noopener">send.php</a><br><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/receive.php" target="_blank" rel="noopener">receive.php</a></p>
-<figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">$ php <span class="built_in">send</span>.php</span><br></pre></td></tr></table></figure>
-<p>在终端中运行程序发送消息，send 程序在每次运行之后就会停止。<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>php receive.php</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php send.php</span><br></pre></td></tr></table></figure>
+<p>在终端中运行程序发送消息，send 程序在每次运行之后就会停止。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php receive.php</span><br></pre></td></tr></table></figure></p>
 <p>在终端中运行程序获取消息，receive 程序并不会退出。它一直在准备获取消息。可通过 Ctrl-C 来中止。</p>
 <h1 id="工作队列-Work-Queues"><a href="#工作队列-Work-Queues" class="headerlink" title="工作队列 Work Queues"></a>工作队列 Work Queues</h1><p><img src="https://www.rabbitmq.com/img/tutorials/python-two.png" alt="工作队列"></p>
 <p>工作队列（又称：任务队列——Task Queues）是为了避免等待一些占用大量资源、时间的操作。当我们把任务（Task）当作消息发送到队列中，一个运行在后台的工作者（worker）进程就会取出任务然后处理。当你运行多个工作者（workers），任务就会在它们之间共享。</p>
 <h2 id="准备-Preparation"><a href="#准备-Preparation" class="headerlink" title="准备 Preparation"></a>准备 Preparation</h2><p>这里使用 sleep() 函数来模拟复杂的任务，在字符串中加上点号（.）来表示任务的复杂程度，一个点（.）将会耗时 1 秒钟。比如 “Hello…” 就会耗时 3 秒钟。</p>
 <h2 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h2><p>按照计划发送任意消息任务到工作队列中</p>
 <p>修改 send.php 的第 2，3，4 部分得到 new_task.php，修改 receive.php 的第 2，4，5 部分得到 worker.php，使其按照计划发送任务到我们的工作队列中。</p>
-<p>new_task.py<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">	&lt;!-- %<span class="number">2</span> --&gt;</span></span><br><span class="line"><span class="php">	$connection = <span class="keyword">new</span> AMQPStreamConnection(<span class="string">'localhost'</span>, <span class="number">5672</span>, <span class="string">'guest'</span>, <span class="string">'guest'</span>);</span></span><br><span class="line"><span class="php">	$channel = $connection-&gt;channel();</span></span><br><span class="line"><span class="php">	$channel-&gt;queue_declare(<span class="string">'task_queue'</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">	&lt;!-- %<span class="number">3</span> --&gt;</span></span><br><span class="line"><span class="php">	$data = implode(<span class="string">' '</span>, array_slice($argv, <span class="number">1</span>));</span></span><br><span class="line"><span class="php">	<span class="keyword">if</span>(<span class="keyword">empty</span>($data)) $data = <span class="string">"Hello World!"</span>;</span></span><br><span class="line"><span class="php">	$msg = <span class="keyword">new</span> AMQPMessage($data,</span></span><br><span class="line"><span class="php">                           <span class="keyword">array</span>(<span class="string">'delivery_mode'</span> =&gt; <span class="number">2</span>)</span></span><br><span class="line"><span class="php">	);</span></span><br><span class="line"><span class="php">	$channel-&gt;basic_publish($msg, <span class="string">''</span>, <span class="string">'task_queue'</span>);</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">	&lt;!-- %<span class="number">4</span> --&gt;</span></span><br><span class="line"><span class="php">	<span class="keyword">echo</span> <span class="string">" [x] Sent "</span>, $data, <span class="string">"\n"</span>;</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>new_task.py<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	&lt;!-- %2 --&gt;</span><br><span class="line">	$connection = new AMQPStreamConnection(&apos;localhost&apos;, 5672, &apos;guest&apos;, &apos;guest&apos;);</span><br><span class="line">	$channel = $connection-&gt;channel();</span><br><span class="line">	$channel-&gt;queue_declare(&apos;task_queue&apos;, false, false, false, false);</span><br><span class="line"></span><br><span class="line">	&lt;!-- %3 --&gt;</span><br><span class="line">	$data = implode(&apos; &apos;, array_slice($argv, 1));</span><br><span class="line">	if(empty($data)) $data = &quot;Hello World!&quot;;</span><br><span class="line">	$msg = new AMQPMessage($data,</span><br><span class="line">                           array(&apos;delivery_mode&apos; =&gt; 2)</span><br><span class="line">	);</span><br><span class="line">	$channel-&gt;basic_publish($msg, &apos;&apos;, &apos;task_queue&apos;);</span><br><span class="line"></span><br><span class="line">	&lt;!-- %4 --&gt;</span><br><span class="line">	echo &quot; [x] Sent &quot;, $data, &quot;\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>2.建立一个到 RabbitMQ 服务器的连接；创建一个名为 task_queue 的队列，然后把消息发送到这个队列中。<br>3.发送的单条消息作为发送单元存入 $data，并将其存入 $msg 作为队列发送。<br>4.提示每一条消息发送成功信息。</p>
-<p>worker.php<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?php</span></span></span><br><span class="line"><span class="php">	&lt;!-- %<span class="number">2</span> --&gt;</span></span><br><span class="line"><span class="php">	$connection = <span class="keyword">new</span> AMQPStreamConnection(<span class="string">'localhost'</span>, <span class="number">5672</span>, <span class="string">'guest'</span>, <span class="string">'guest'</span>);</span></span><br><span class="line"><span class="php">	$channel = $connection-&gt;channel();</span></span><br><span class="line"><span class="php">	$channel-&gt;queue_declare(<span class="string">'task_queue'</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">	&lt;!-- %<span class="number">4</span> --&gt;</span></span><br><span class="line"><span class="php">	$callback = <span class="function"><span class="keyword">function</span><span class="params">($msg)</span></span>&#123;</span></span><br><span class="line"><span class="php">	<span class="keyword">echo</span> <span class="string">" [x] Received "</span>, $msg-&gt;body, <span class="string">"\n"</span>;</span></span><br><span class="line"><span class="php">	sleep(substr_count($msg-&gt;body, <span class="string">'.'</span>));</span></span><br><span class="line"><span class="php">	<span class="keyword">echo</span> <span class="string">" [x] Done"</span>, <span class="string">"\n"</span>;</span></span><br><span class="line"><span class="php">	$msg-&gt;delivery_info[<span class="string">'channel'</span>]-&gt;basic_ack($msg-&gt;delivery_info[<span class="string">'delivery_tag'</span>]);</span></span><br><span class="line"><span class="php">	&#125;;</span></span><br><span class="line"><span class="php"></span></span><br><span class="line"><span class="php">	&lt;!-- %<span class="number">5</span> --&gt;</span></span><br><span class="line"><span class="php">	$channel-&gt;basic_qos(<span class="keyword">null</span>, <span class="number">1</span>, <span class="keyword">null</span>);</span></span><br><span class="line"><span class="php">	$channel-&gt;basic_consume(<span class="string">'task_queue'</span>, <span class="string">''</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, $callback);</span></span><br><span class="line"><span class="php"><span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>worker.php<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	&lt;!-- %2 --&gt;</span><br><span class="line">	$connection = new AMQPStreamConnection(&apos;localhost&apos;, 5672, &apos;guest&apos;, &apos;guest&apos;);</span><br><span class="line">	$channel = $connection-&gt;channel();</span><br><span class="line">	$channel-&gt;queue_declare(&apos;task_queue&apos;, false, true, false, false);</span><br><span class="line"></span><br><span class="line">	&lt;!-- %4 --&gt;</span><br><span class="line">	$callback = function($msg)&#123;</span><br><span class="line">	echo &quot; [x] Received &quot;, $msg-&gt;body, &quot;\n&quot;;</span><br><span class="line">	sleep(substr_count($msg-&gt;body, &apos;.&apos;));</span><br><span class="line">	echo &quot; [x] Done&quot;, &quot;\n&quot;;</span><br><span class="line">	$msg-&gt;delivery_info[&apos;channel&apos;]-&gt;basic_ack($msg-&gt;delivery_info[&apos;delivery_tag&apos;]);</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	&lt;!-- %5 --&gt;</span><br><span class="line">	$channel-&gt;basic_qos(null, 1, null);</span><br><span class="line">	$channel-&gt;basic_consume(&apos;task_queue&apos;, &apos;&apos;, false, false, false, false, $callback);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>2.建立一个到 RabbitMQ 服务器的连接；创建一个名为 task_queue 的队列，然后把消息发送到这个队列中。在 worker.php 中重复声明队列防止程序运行顺序导致的错误。<br>4.为队列定义一个回调（callback）函数，使用回调函数提示发送成功信息。<br>5.使用回调函数从名为 task_queue 的队列中接收消息。</p>
 <h2 id="轮询调度-Round-robin-dispatching"><a href="#轮询调度-Round-robin-dispatching" class="headerlink" title="轮询调度 Round-robin dispatching"></a>轮询调度 Round-robin dispatching</h2><p>三个终端，两个用来运行 worker.py 脚本，即两个消费者（consumers）—— C1 和 C2 接收工作者（workers）发送的消息。平均每个消费者都会收到同等数量得消息。这种发送消息得方式叫做——轮询调度</p>
-<p>workers：<br><figure class="highlight haxe"><table><tr><td class="code"><pre><span class="line">$ php <span class="keyword">new</span><span class="type">_task</span>.php First message.</span><br><span class="line">$ php <span class="keyword">new</span><span class="type">_task</span>.php Second message..</span><br><span class="line">$ php <span class="keyword">new</span><span class="type">_task</span>.php Third message...</span><br><span class="line">$ php <span class="keyword">new</span><span class="type">_task</span>.php Fourth message....</span><br><span class="line">$ php <span class="keyword">new</span><span class="type">_task</span>.php Fifth message.....</span><br></pre></td></tr></table></figure></p>
-<p>C1:<br><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">$ php worker.php</span><br><span class="line">[*] Waiting <span class="keyword">for</span> messages. To <span class="keyword">exit</span> press CTRL+C</span><br><span class="line">[x] Received <span class="string">'First message.'</span></span><br><span class="line">[x] Received <span class="string">'Third message...'</span></span><br><span class="line">[x] Received <span class="string">'Fifth message.....'</span></span><br></pre></td></tr></table></figure></p>
-<p>C2:<br><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">$ php worker.php</span><br><span class="line">[*] Waiting <span class="keyword">for</span> messages. To <span class="keyword">exit</span> press CTRL+C</span><br><span class="line">[x] Received <span class="string">'Second message..'</span></span><br><span class="line">[x] Received <span class="string">'Fourth message....'</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="消息确认-Message-acknowledgment"><a href="#消息确认-Message-acknowledgment" class="headerlink" title="消息确认 Message acknowledgment"></a>消息确认 Message acknowledgment</h2><p>如果不对消息进行确认，已发送的消息将马上在内存中被移除。为了防止系统运行导致的任务消息的丢失，我们使用消息确认机制预防此类情况的发生。消费者会通过一个响应（ack），告诉 RabbitMQ 已经收到并处理了某条消息，然后 RabbitMQ 就会释放并删除这条消息。若 RabbitMQ 未收到响应，则会将消息重新发送给其他消费者（consumer）。在进程运行时使用 CTRL+C 终止进程，消息也不会丢失。<br>消息确认默认关闭。可使用 no_ack=True 标识将其开启：<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$callback = <span class="function"><span class="keyword">function</span><span class="params">($msg)</span></span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">" [x] Received "</span>, $msg-&gt;body, <span class="string">"\n"</span>;</span><br><span class="line">  sleep(substr_count($msg-&gt;body, <span class="string">'.'</span>));</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">" [x] Done"</span>, <span class="string">"\n"</span>;</span><br><span class="line">  $msg-&gt;delivery_info[<span class="string">'channel'</span>]-&gt;basic_ack($msg-&gt;delivery_info[<span class="string">'delivery_tag'</span>]);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$channel-&gt;basic_consume(<span class="string">'task_queue'</span>, <span class="string">''</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, $callback);</span><br></pre></td></tr></table></figure></p>
-<h3 id="忘记确认"><a href="#忘记确认" class="headerlink" title="忘记确认"></a>忘记确认</h3><p>未声明 basic_ack 标志位将导致无法释放未响应的消息，RabbitMQ 就会占用越来越多的内存。排除该错误可使用 rabbitmqctl 命令输出 messages_unacknowledged 字段：<br><figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="symbol">$</span> sudo rabbitmqctl list_queues name messages_ready messages_unacknowledged</span><br><span class="line"><span class="function"><span class="title">Listing</span></span> queues ...</span><br><span class="line">hello    <span class="number">0</span>       <span class="number">0</span></span><br><span class="line">...done.</span><br></pre></td></tr></table></figure></p>
-<h2 id="消息持久化-Message-durability"><a href="#消息持久化-Message-durability" class="headerlink" title="消息持久化 Message durability"></a>消息持久化 Message durability</h2><p>在 RabbitMQ 退出或者崩溃时，将会丢失所有队列和消息。把「队列」和「消息」设为持久化可确保信息不会丢失。<br>在保证未声明同名的非持久化队列的情况下，在生产者（producer）和消费者（consumer）对应的代码中修改声明 task_queue 队列持久化：<br><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">$channel-&gt;queue_declare('hello',</span> <span class="literal">false</span><span class="string">,</span> <span class="literal">true</span><span class="string">,</span> <span class="literal">false</span><span class="string">,</span> <span class="literal">false</span><span class="string">);</span></span><br></pre></td></tr></table></figure></p>
-<p>将 delivery_mode 的属性设为 2，实现消息持久化：<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$msg = <span class="keyword">new</span> AMQPMessage($data,</span><br><span class="line">                       <span class="keyword">array</span>(<span class="string">'delivery_mode'</span> =&gt; <span class="number">2</span>)</span><br><span class="line">       );</span><br></pre></td></tr></table></figure></p>
+<p>workers：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php new_task.php First message.</span><br><span class="line">$ php new_task.php Second message..</span><br><span class="line">$ php new_task.php Third message...</span><br><span class="line">$ php new_task.php Fourth message....</span><br><span class="line">$ php new_task.php Fifth message.....</span><br></pre></td></tr></table></figure></p>
+<p>C1:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php worker.php</span><br><span class="line">[*] Waiting for messages. To exit press CTRL+C</span><br><span class="line">[x] Received &apos;First message.&apos;</span><br><span class="line">[x] Received &apos;Third message...&apos;</span><br><span class="line">[x] Received &apos;Fifth message.....&apos;</span><br></pre></td></tr></table></figure></p>
+<p>C2:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php worker.php</span><br><span class="line">[*] Waiting for messages. To exit press CTRL+C</span><br><span class="line">[x] Received &apos;Second message..&apos;</span><br><span class="line">[x] Received &apos;Fourth message....&apos;</span><br></pre></td></tr></table></figure></p>
+<h2 id="消息确认-Message-acknowledgment"><a href="#消息确认-Message-acknowledgment" class="headerlink" title="消息确认 Message acknowledgment"></a>消息确认 Message acknowledgment</h2><p>如果不对消息进行确认，已发送的消息将马上在内存中被移除。为了防止系统运行导致的任务消息的丢失，我们使用消息确认机制预防此类情况的发生。消费者会通过一个响应（ack），告诉 RabbitMQ 已经收到并处理了某条消息，然后 RabbitMQ 就会释放并删除这条消息。若 RabbitMQ 未收到响应，则会将消息重新发送给其他消费者（consumer）。在进程运行时使用 CTRL+C 终止进程，消息也不会丢失。<br>消息确认默认关闭。可使用 no_ack=True 标识将其开启：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$callback = function($msg)&#123;</span><br><span class="line">  echo &quot; [x] Received &quot;, $msg-&gt;body, &quot;\n&quot;;</span><br><span class="line">  sleep(substr_count($msg-&gt;body, &apos;.&apos;));</span><br><span class="line">  echo &quot; [x] Done&quot;, &quot;\n&quot;;</span><br><span class="line">  $msg-&gt;delivery_info[&apos;channel&apos;]-&gt;basic_ack($msg-&gt;delivery_info[&apos;delivery_tag&apos;]);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$channel-&gt;basic_consume(&apos;task_queue&apos;, &apos;&apos;, false, false, false, false, $callback);</span><br></pre></td></tr></table></figure></p>
+<h3 id="忘记确认"><a href="#忘记确认" class="headerlink" title="忘记确认"></a>忘记确认</h3><p>未声明 basic_ack 标志位将导致无法释放未响应的消息，RabbitMQ 就会占用越来越多的内存。排除该错误可使用 rabbitmqctl 命令输出 messages_unacknowledged 字段：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo rabbitmqctl list_queues name messages_ready messages_unacknowledged</span><br><span class="line">Listing queues ...</span><br><span class="line">hello    0       0</span><br><span class="line">...done.</span><br></pre></td></tr></table></figure></p>
+<h2 id="消息持久化-Message-durability"><a href="#消息持久化-Message-durability" class="headerlink" title="消息持久化 Message durability"></a>消息持久化 Message durability</h2><p>在 RabbitMQ 退出或者崩溃时，将会丢失所有队列和消息。把「队列」和「消息」设为持久化可确保信息不会丢失。<br>在保证未声明同名的非持久化队列的情况下，在生产者（producer）和消费者（consumer）对应的代码中修改声明 task_queue 队列持久化：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$channel-&gt;queue_declare(&apos;hello&apos;, false, true, false, false);</span><br></pre></td></tr></table></figure></p>
+<p>将 delivery_mode 的属性设为 2，实现消息持久化：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$msg = new AMQPMessage($data,</span><br><span class="line">                       array(&apos;delivery_mode&apos; =&gt; 2)</span><br><span class="line">       );</span><br></pre></td></tr></table></figure></p>
 <p>PS：RabbitMq 收到消息到保存之间存在一个很小的时间间隔，故消息持久化并不能保证真正的持久化，但已经足够应付我们的简单工作队列。若一定要保证持久化，需改写代码来支持事务（transaction）。</p>
 <h2 id="公平调度-Fair-dispatch"><a href="#公平调度-Fair-dispatch" class="headerlink" title="公平调度 Fair dispatch"></a>公平调度 Fair dispatch</h2><p><img src="https://www.rabbitmq.com/img/tutorials/prefetch-count.png" alt="公平调度"></p>
-<p>RabbitMQ 只管分发进入队列的消息，不会关心有多少消费者（consumer）没有作出响应。它盲目的把第 n-th 条消息发给第 n-th 个消费者。为实现 RabbitMQ 按需处理消息分发，可使用 basic.qos 方法，并设置 prefetch_count=1。这使得 RabbitMQ 同一时刻，不要发送超过 1 条消息给一个工作者（worker），直到它已经处理了上一条消息并且作出了响应。<br><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">channel.basic_qos(<span class="attribute">prefetch_count</span>=1)</span><br></pre></td></tr></table></figure></p>
+<p>RabbitMQ 只管分发进入队列的消息，不会关心有多少消费者（consumer）没有作出响应。它盲目的把第 n-th 条消息发给第 n-th 个消费者。为实现 RabbitMQ 按需处理消息分发，可使用 basic.qos 方法，并设置 prefetch_count=1。这使得 RabbitMQ 同一时刻，不要发送超过 1 条消息给一个工作者（worker），直到它已经处理了上一条消息并且作出了响应。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">channel.basic_qos(prefetch_count=1)</span><br></pre></td></tr></table></figure></p>
 <h2 id="运行代码-1"><a href="#运行代码-1" class="headerlink" title="运行代码"></a>运行代码</h2><p>源代码：<br><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/new_task.php" target="_blank" rel="noopener">new_task.php</a><br><a href="http://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/worker.php" target="_blank" rel="noopener">worker.php</a></p>
 <hr>
 <p><strong>相关文章</strong><br><a href="https://www.rabbitmq.com/tutorials/tutorial-one-php.html" target="_blank" rel="noopener">RabbitMQ - RabbitMQ tutorial - “Hello World!”</a><br><a href="https://www.rabbitmq.com/tutorials/tutorial-two-php.html" target="_blank" rel="noopener">RabbitMQ - RabbitMQ tutorial - Work Queues</a><br><a href="http://wiki.jikexueyuan.com/project/rabbitmq/hello-world.html" target="_blank" rel="noopener">RabbitMQ 能为你做些什么？ - 介绍</a><br><a href="http://wiki.jikexueyuan.com/project/rabbitmq/work-queues.html" target="_blank" rel="noopener">RabbitMQ 能为你做些什么？ - 工作队列</a></p>
@@ -887,7 +887,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
   <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
@@ -933,28 +933,28 @@
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
 
   
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
+  <script src="/js/next-boot.js?v=7.3.0"></script>
 
   
 
   
 
+  
+
 
   
 
@@ -978,9 +978,7 @@
 
 
 
-
-
-  <script src="/js/local-search.js?v=7.2.0"></script>
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 

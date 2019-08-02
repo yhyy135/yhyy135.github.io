@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
@@ -27,7 +27,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.2.0',
+    version: '7.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
@@ -175,7 +175,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -186,7 +186,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -197,7 +197,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -208,13 +208,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         <li class="menu-item menu-item-search">
           <a href="javascript:;" class="popup-trigger">
           
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -366,7 +366,7 @@
   </span>
   
   
-          <br/>
+          <br>
 
         </div>
       </header>
@@ -445,7 +445,7 @@
 </tbody>
 </table>
 <pre><code>举个栗子，下面的 Perl 程序用于将所有 sysread 替换为 read。
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">% <span class="keyword">perl</span> -<span class="keyword">p</span> -i -<span class="keyword">e</span> -<span class="keyword">w</span> <span class="string">'s/sysread/read/g'</span> <span class="keyword">file</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">% perl -p -i -e -w &apos;s/sysread/read/g&apos; file</span><br></pre></td></tr></table></figure>
 </code></pre><h2 id="Prel-中-RegEx-的使用"><a href="#Prel-中-RegEx-的使用" class="headerlink" title="Prel 中 RegEx 的使用"></a>Prel 中 RegEx 的使用</h2><ul>
 <li><p>Perl 语句说明</p>
 <ol>
@@ -453,7 +453,7 @@
 <li><code>$var =~ s/regex/replacement/</code> 将使用一个正则表达式来匹配并替换某个字符串。<br><code>s</code> 表示替换（substitution，也叫查找和替换（search and replace））。</li>
 <li><p><code>$var =~ qr/regex/</code> 将一个正则表达式生成为一个“regex 对象（regex object）”，作为变量保存，供后续使用。</p>
 <p>举个栗子：</p>
-<figure class="highlight perl"><table><tr><td class="code"><pre><span class="line">$reply =~ <span class="regexp">m/^[0-9]+$/</span></span><br><span class="line">$reply =~ <span class="regexp">s/Jeff/Jeffrey/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$reply =~ m/^[0-9]+$/</span><br><span class="line">$reply =~ s/Jeff/Jeffrey/</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </li>
@@ -486,7 +486,7 @@
 </tr>
 </tbody>
 </table>
-<p>举个栗子：<br><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="variable">$reply</span> =~ m<span class="regexp">/^[0-9]+$/i</span></span><br><span class="line"><span class="variable">$reply</span> =~ m<span class="regexp">/^[0-9]+$/g</span></span><br><span class="line"><span class="variable">$reply</span> =~ m<span class="regexp">/^[0-9]+$/</span>x</span><br></pre></td></tr></table></figure></p>
+<p>举个栗子：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$reply =~ m/^[0-9]+$/i</span><br><span class="line">$reply =~ m/^[0-9]+$/g</span><br><span class="line">$reply =~ m/^[0-9]+$/x</span><br></pre></td></tr></table></figure></p>
 <h2 id="RegEx-语法基础-1"><a href="#RegEx-语法基础-1" class="headerlink" title="RegEx 语法基础"></a>RegEx 语法基础</h2><h3 id="正则匹配符"><a href="#正则匹配符" class="headerlink" title="正则匹配符"></a>正则匹配符</h3><table>
 <thead>
 <tr>
@@ -599,7 +599,7 @@
 </tr>
 </tbody>
 </table>
-<p>环视在检查子表达式能否匹配的过程中，其本身不会 <code>占用</code> 任何文本。<br>e.g.匹配文本为 <strong><code>Jeffrey</code></strong>，使用如下 RegEx 时匹配结果不同：<br><figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Jeffrey </span>             <span class="comment">#匹配 Jeffrey</span></span><br><span class="line">(?=<span class="keyword">Jeffrey)Jeff </span>     <span class="comment">#定位 Jeffrey 中 Jeff 和 rey 的中间位置，匹配 Jeffrey 中的 Jeff</span></span><br><span class="line"><span class="keyword">Jeff(?=rey) </span>         <span class="comment">#与上式等价</span></span><br><span class="line">\<span class="keyword">bJeff(?=s\b) </span>       <span class="comment">#定位 Jeffs 中 Jeff 和 s 的中间位置，匹配 Jeffs 中的 Jeff</span></span><br><span class="line">(?&lt;=\<span class="keyword">bJeff)(?=s\b) </span>  <span class="comment">#定位 Jeffs 中 Jeff 和 s 的中间位置，且并未匹配任何内容</span></span><br></pre></td></tr></table></figure></p>
+<p>环视在检查子表达式能否匹配的过程中，其本身不会 <code>占用</code> 任何文本。<br>e.g.匹配文本为 <strong><code>Jeffrey</code></strong>，使用如下 RegEx 时匹配结果不同：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Jeffrey              #匹配 Jeffrey</span><br><span class="line">(?=Jeffrey)Jeff      #定位 Jeffrey 中 Jeff 和 rey 的中间位置，匹配 Jeffrey 中的 Jeff</span><br><span class="line">Jeff(?=rey)          #与上式等价</span><br><span class="line">\bJeff(?=s\b)        #定位 Jeffs 中 Jeff 和 s 的中间位置，匹配 Jeffs 中的 Jeff</span><br><span class="line">(?&lt;=\bJeff)(?=s\b)   #定位 Jeffs 中 Jeff 和 s 的中间位置，且并未匹配任何内容</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://ooo.0o0.ooo/2016/11/22/5833c2a23571a.png" alt="(?=Jeffrey)Jeff的匹配"><br><code>(?=Jeffrey)Jeff</code> 的匹配</p>
 <p><img src="https://ooo.0o0.ooo/2016/11/22/5833c2a234c2a.png" alt="\bJeff(?=s\b)的匹配"><br><code>\bJeff(?=s\b)</code> 的匹配</p>
 <p><img src="https://ooo.0o0.ooo/2016/11/22/5833c2a23bf20.png" alt="(?&lt;=\bJeff)(Jeff的匹配"><br><code>(?&lt;=\bJeff)(?=s\b)</code> 的匹配</p>
@@ -612,7 +612,7 @@
 <li><p><code>$var =~ s/(\d)(?=(\d\d\d)+$)/$1,/g;</code><br><code>(\d)</code> 使用捕获型括号实现逗号前的内容分组，然后保持 $1 内容不变，在其后添加逗号</p>
 </li>
 <li><p><code>$var =~ s/(\d)((\d\d\d)+\b)/$1,$2/g;</code><br>上式不使用环视，但无法实现期望。最终得到类似 375000000564 =&gt; 375,000000564。<br><code>((\d\d\d)+\b)</code> 匹配的数字属于最终匹配文本，不能作为“未匹配的部分”，供 <code>/g</code> 的下一次匹配迭代使用。<br>如欲使用该式进行实现，可配合循环结构：</p>
-<figure class="highlight perl"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> ($var =~ <span class="regexp">s/(\d)((\d\d\d)+\b)/$1,$2/g</span>) &#123;</span><br><span class="line">true<span class="comment">#空结构体，使用条件操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">while ($var =~ s/(\d)((\d\d\d)+\b)/$1,$2/g) &#123;</span><br><span class="line">	#空结构体，使用条件操作</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>\b([a-z]+)((?:\s|&lt;[^&gt;]+&gt;)+)(\1\b)</code><br>上适用于匹配一段文本中连续出现的重复单词，具体示意如下图：<br><img src="https://i.loli.net/2019/06/18/5d0839b053ca014873.jpg" alt="示意图"></p>
 </li>
@@ -1074,7 +1074,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
   <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
@@ -1120,28 +1120,28 @@
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
 
   
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
+  <script src="/js/next-boot.js?v=7.3.0"></script>
 
   
 
   
 
+  
+
 
   
 
@@ -1165,9 +1165,7 @@
 
 
 
-
-
-  <script src="/js/local-search.js?v=7.2.0"></script>
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 

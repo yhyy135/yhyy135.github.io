@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
@@ -27,7 +27,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.2.0',
+    version: '7.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
@@ -170,7 +170,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -181,7 +181,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -192,7 +192,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -203,13 +203,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         <li class="menu-item menu-item-search">
           <a href="javascript:;" class="popup-trigger">
           
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -354,7 +354,7 @@
   </span>
   
   
-          <br/>
+          <br>
 
         </div>
       </header>
@@ -378,14 +378,14 @@
 <p><img src="https://www.rabbitmq.com/img/tutorials/python-five.png" alt="主题交换机"></p>
 <p>携带有 quick.orange.rabbit 的消息将会被分别投递给这两个队列；<br>携带着 lazy.orange.elephant 的消息会被分别投递给这两个队列；<br>携带有 quick.orange.fox 的消息会投递给第一个队列；<br>携带有 lazy.brown.fox 的消息会投递给第二个队列；<br>携带有 lazy.pink.rabbit 的消息只会被投递给第二个队列，即使它同时匹配第二个队列的两个绑定。<br>携带有 quick.brown.fox 的消息不会投递给任意队列。<br>携带有一个单词或者四个单词如 orange 或 quick.orange.male.rabbit 的消息时，消息将不被投递，且会被丢弃。<br>携带有 lazy.orange.male.rabbit 的消息会匹配最后一个绑定，并被投递到第二个队列中。<br>当一个队列的绑定键为 # 时，该队列将忽略消息的路由键，接收所有消息。</p>
 <h2 id="运行代码"><a href="#运行代码" class="headerlink" title="运行代码"></a>运行代码</h2><p>源代码：<br><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/emit_log_topic.php" target="_blank" rel="noopener">emit_log_topic.php</a><br><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/receive_logs_topic.php" target="_blank" rel="noopener">receive_logs_topic.php</a></p>
-<p>若需接收所有日志：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ php receive_logs_topic<span class="selector-class">.php</span> <span class="string">"#"</span></span><br></pre></td></tr></table></figure></p>
-<p>接收来自 <code>kern</code> 设备的日志：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ php receive_logs_topic<span class="selector-class">.php</span> <span class="string">"kern.*"</span></span><br></pre></td></tr></table></figure></p>
-<p>只接收严重程度为 <code>critical</code> 的日志：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ php receive_logs_topic<span class="selector-class">.php</span> <span class="string">"*.critical"</span></span><br></pre></td></tr></table></figure></p>
-<p>建立多个绑定：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ php receive_logs_topic<span class="selector-class">.php</span> <span class="string">"kern.*"</span> <span class="string">"*.critical"</span></span><br></pre></td></tr></table></figure></p>
-<p>发送路由键为 <code>kern.critical</code> 的日志：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ php emit_log_topic<span class="selector-class">.php</span> <span class="string">"kern.critical"</span> <span class="string">"A critical kernel error"</span></span><br></pre></td></tr></table></figure></p>
+<p>若需接收所有日志：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php receive_logs_topic.php &quot;#&quot;</span><br></pre></td></tr></table></figure></p>
+<p>接收来自 <code>kern</code> 设备的日志：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php receive_logs_topic.php &quot;kern.*&quot;</span><br></pre></td></tr></table></figure></p>
+<p>只接收严重程度为 <code>critical</code> 的日志：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php receive_logs_topic.php &quot;*.critical&quot;</span><br></pre></td></tr></table></figure></p>
+<p>建立多个绑定：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php receive_logs_topic.php &quot;kern.*&quot; &quot;*.critical&quot;</span><br></pre></td></tr></table></figure></p>
+<p>发送路由键为 <code>kern.critical</code> 的日志：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php emit_log_topic.php &quot;kern.critical&quot; &quot;A critical kernel error&quot;</span><br></pre></td></tr></table></figure></p>
 <h1 id="远程过程调用-Remote-Procedure-Call"><a href="#远程过程调用-Remote-Procedure-Call" class="headerlink" title="远程过程调用 Remote Procedure Call"></a>远程过程调用 Remote Procedure Call</h1><p>若要将一个函数运行在远程终端上并且等待从远程终端获取结果，可通过远程过程调用（Remote Procedure Call, RPC） 实现。</p>
-<h2 id="客户端接口"><a href="#客户端接口" class="headerlink" title="客户端接口"></a>客户端接口</h2><p>创建一个简单的客户端类，用以展示 RPC 服务。它通过 “call” 方法发送 RPC 请求，并在收到回应前保持阻塞。<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$fibonacci_rpc = <span class="keyword">new</span> FibonacciRpcClient();</span><br><span class="line">$response = $fibonacci_rpc-&gt;call(<span class="number">30</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">" [.] Got "</span>, $response, <span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure></p>
-<h2 id="回调队列"><a href="#回调队列" class="headerlink" title="回调队列"></a>回调队列</h2><p>客户端发送请求信息后，服务端将其应用到一个回复信息中。客户端在发送请求时同时发送一个回调队列（callback queue）的地址用以接收回复信息。<br><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">list</span>($queue_name, ,) = $channel-&gt;queue_declare(<span class="string">""</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, <span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">$msg = <span class="keyword">new</span> AMQPMessage(</span><br><span class="line">    $payload,</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">'reply_to'</span> =&gt; $queue_name));</span><br><span class="line"></span><br><span class="line">$channel-&gt;basic_publish($msg, <span class="string">''</span>, <span class="string">'rpc_queue'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># ... then code to read a response message from the callback_queue ...</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="客户端接口"><a href="#客户端接口" class="headerlink" title="客户端接口"></a>客户端接口</h2><p>创建一个简单的客户端类，用以展示 RPC 服务。它通过 “call” 方法发送 RPC 请求，并在收到回应前保持阻塞。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$fibonacci_rpc = new FibonacciRpcClient();</span><br><span class="line">$response = $fibonacci_rpc-&gt;call(30);</span><br><span class="line">echo &quot; [.] Got &quot;, $response, &quot;\n&quot;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="回调队列"><a href="#回调队列" class="headerlink" title="回调队列"></a>回调队列</h2><p>客户端发送请求信息后，服务端将其应用到一个回复信息中。客户端在发送请求时同时发送一个回调队列（callback queue）的地址用以接收回复信息。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">list($queue_name, ,) = $channel-&gt;queue_declare(&quot;&quot;, false, false, true, false);</span><br><span class="line"></span><br><span class="line">$msg = new AMQPMessage(</span><br><span class="line">    $payload,</span><br><span class="line">    array(&apos;reply_to&apos; =&gt; $queue_name));</span><br><span class="line"></span><br><span class="line">$channel-&gt;basic_publish($msg, &apos;&apos;, &apos;rpc_queue&apos;);</span><br><span class="line"></span><br><span class="line"># ... then code to read a response message from the callback_queue ...</span><br></pre></td></tr></table></figure></p>
 <h3 id="消息属性"><a href="#消息属性" class="headerlink" title="消息属性"></a>消息属性</h3><p>AMQP 协议为消息预定义了 14 个属性。其中常用的有以下几个：</p>
 <ul>
 <li>delivery_mode（投递模式）：标记消息为持久的（值为 2）或暂存的（除了 2 之外的其他任何值）。</li>
@@ -410,8 +410,8 @@
 </ul>
 <p>构建一个 RPC 系统：包含一个客户端和一个 RPC 服务器，并创建一个模拟 RPC 服务来返回斐波那契数列。</p>
 <p><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/rpc_server.php" target="_blank" rel="noopener">rpc_server.php</a><br><a href="https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/php/rpc_client.php" target="_blank" rel="noopener">rpc_client.php</a></p>
-<p>启动服务器端：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ php rpc_server.php</span><br><span class="line"> [x] Awaiting RPC requests</span><br></pre></td></tr></table></figure></p>
-<p>启动客户端，请求一个 fibonacci 队列<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">$ php rpc_client.php</span><br><span class="line"> [x] Requesting fib(<span class="number">30</span>)</span><br></pre></td></tr></table></figure></p>
+<p>启动服务器端：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php rpc_server.php</span><br><span class="line"> [x] Awaiting RPC requests</span><br></pre></td></tr></table></figure></p>
+<p>启动客户端，请求一个 fibonacci 队列<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php rpc_client.php</span><br><span class="line"> [x] Requesting fib(30)</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p><strong>相关文章</strong><br><a href="https://www.rabbitmq.com/tutorials/tutorial-five-php.html" target="_blank" rel="noopener">RabbitMQ - RabbitMQ tutorial - Topics</a><br><a href="https://www.rabbitmq.com/tutorials/tutorial-six-php.html" target="_blank" rel="noopener">RabbitMQ - RabbitMQ tutorial - Remote procedure call (RPC)</a><br><a href="http://wiki.jikexueyuan.com/project/rabbitmq/topics.html" target="_blank" rel="noopener">RabbitMQ 能为你做些什么？ - 为什么需要主题交换机？</a><br><a href="http://wiki.jikexueyuan.com/project/rabbitmq/rpc.html" target="_blank" rel="noopener">RabbitMQ 能为你做些什么？ - 远程过程调用</a></p>
 
@@ -865,7 +865,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
   <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
@@ -911,28 +911,28 @@
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
 
   
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
+  <script src="/js/next-boot.js?v=7.3.0"></script>
 
   
 
   
 
+  
+
 
   
 
@@ -956,9 +956,7 @@
 
 
 
-
-
-  <script src="/js/local-search.js?v=7.2.0"></script>
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 

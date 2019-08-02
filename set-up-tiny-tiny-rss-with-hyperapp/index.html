@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
@@ -27,7 +27,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.2.0',
+    version: '7.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
@@ -169,7 +169,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -180,7 +180,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -191,7 +191,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -202,13 +202,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         <li class="menu-item menu-item-search">
           <a href="javascript:;" class="popup-trigger">
           
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -360,7 +360,7 @@
   </span>
   
   
-          <br/>
+          <br>
 
         </div>
       </header>
@@ -471,14 +471,14 @@
 <li>保存并且进行安装。请确保这时候 <code>Nginx Proxy</code> 以及 <code>Nginx SSL Support</code> 正常默认安装并且启动了</li>
 </ul>
 <h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p>安装 PostgreSQL 和 Tiny Tiny RSS 后还不能正常使用，还需要将两者连接起来。进入 VPS 的 SSH 窗口执行命令：</p>
-<figure class="highlight coq"><table><tr><td class="code"><pre><span class="line">docker network create ttrss_network</span><br><span class="line">docker container ls | <span class="type">grep</span> wangqiru/ttrss | <span class="type">awk</span> '&#123;print $<span class="number">1</span>&#125;' | <span class="type">xargs</span> docker network connect ttrss_network</span><br><span class="line">docker container ls | <span class="type">grep</span> sameersbn/postgresql | <span class="type">awk</span> '&#123;print $<span class="number">1</span>&#125;' | <span class="type">xargs</span> docker network connect ttrss_network</span><br><span class="line">docker container ls | <span class="type">grep</span> wangqiru/ttrss | <span class="type">awk</span> '&#123;print $<span class="number">1</span>&#125;' | <span class="type">xargs</span> docker restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker network create ttrss_network</span><br><span class="line">docker container ls | grep wangqiru/ttrss | awk &apos;&#123;print $1&#125;&apos; | xargs docker network connect ttrss_network</span><br><span class="line">docker container ls | grep sameersbn/postgresql | awk &apos;&#123;print $1&#125;&apos; | xargs docker network connect ttrss_network</span><br><span class="line">docker container ls | grep wangqiru/ttrss | awk &apos;&#123;print $1&#125;&apos; | xargs docker restart</span><br></pre></td></tr></table></figure>
 <p>上述命令建立了一个名为 <code>ttrss_network</code> 的 docker 通讯网络，并将 <code>ttrss</code> 容器和 <code>postgres</code> 容器都连接到这个网络内部。最后重启 Tiny Tiny RSS 容器。</p>
 <h2 id="防火墙设置"><a href="#防火墙设置" class="headerlink" title="防火墙设置"></a>防火墙设置</h2><ul>
 <li><p>CentOS</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --add-port=80/tcp --permanent</span></span><br><span class="line"><span class="bash">firewall-cmd --add-port=443/tcp --permanent</span></span><br><span class="line"><span class="bash">firewall-cmd --reload</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=80/tcp --permanent</span><br><span class="line">firewall-cmd --add-port=443/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Ubuntu</p>
-<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">sudo ufw allow <span class="number">80</span></span><br><span class="line">sudo ufw allow <span class="number">443</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw allow 80</span><br><span class="line">sudo ufw allow 443</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h1 id="配置使用-Tiny-Tiny-RSS"><a href="#配置使用-Tiny-Tiny-RSS" class="headerlink" title="配置使用 Tiny Tiny RSS"></a>配置使用 Tiny Tiny RSS</h1><h2 id="登录使用"><a href="#登录使用" class="headerlink" title="登录使用"></a>登录使用</h2><p><img src="https://i.loli.net/2019/02/26/5c74e8c180d1d.png" alt="Tiny Tiny RSS"></p>
@@ -520,10 +520,10 @@
 </table>
 <h3 id="防火墙设置-1"><a href="#防火墙设置-1" class="headerlink" title="防火墙设置"></a>防火墙设置</h3><ul>
 <li><p>CentOS</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">firewall-<span class="keyword">cmd</span><span class="bash"> --add-port=3000/tcp --permanent</span></span><br><span class="line"><span class="bash">firewall-cmd --reload</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=3000/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Ubuntu</p>
-<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">sudo ufw allow <span class="number">3000</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw allow 3000</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="配置-Mercury-插件"><a href="#配置-Mercury-插件" class="headerlink" title="配置 Mercury 插件"></a>配置 Mercury 插件</h3><ol>
@@ -1001,7 +1001,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
   <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
@@ -1047,28 +1047,28 @@
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
 
   
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
+  <script src="/js/next-boot.js?v=7.3.0"></script>
 
   
 
   
 
+  
+
 
   
 
@@ -1092,9 +1092,7 @@
 
 
 
-
-
-  <script src="/js/local-search.js?v=7.2.0"></script>
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 

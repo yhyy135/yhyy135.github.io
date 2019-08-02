@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
@@ -27,7 +27,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.2.0',
+    version: '7.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
@@ -167,7 +167,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -178,7 +178,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -189,7 +189,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -200,13 +200,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         <li class="menu-item menu-item-search">
           <a href="javascript:;" class="popup-trigger">
           
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -341,7 +341,7 @@
   </span>
   
   
-          <br/>
+          <br>
 
         </div>
       </header>
@@ -352,11 +352,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>由于 SEO 优化或流量统计需要，邮箱订阅或某些网站会对自身 URL 进行处理，在原 URL 后面追加一系列的标签，形如<br><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">https://zhuanlan.zhihu.com/p/<span class="number">22545574</span>?hmsr=toutiao.<span class="built_in">io</span>&amp;utm_medium=toutiao.<span class="built_in">io</span>&amp;utm_source=toutiao.<span class="built_in">io</span></span><br></pre></td></tr></table></figure></p>
-<p>其原本的 URL 为：<br><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>zhuanlan.zhihu.com<span class="regexp">/p/</span><span class="number">22545574</span></span><br></pre></td></tr></table></figure></p>
+        <p>由于 SEO 优化或流量统计需要，邮箱订阅或某些网站会对自身 URL 进行处理，在原 URL 后面追加一系列的标签，形如<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">https://zhuanlan.zhihu.com/p/22545574?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io</span><br></pre></td></tr></table></figure></p>
+<p>其原本的 URL 为：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">https://zhuanlan.zhihu.com/p/22545574</span><br></pre></td></tr></table></figure></p>
 <p>带有标签后缀的 URL 不够优雅，分享这样的 URL 时会影响观感，需要手动删除无用参数（有点强迫症的感觉）。</p>
 <p>好在 <a href="https://twitter.com/ibingfei" target="_blank" rel="noopener">@ibingfei</a> 给我找了一个 <a href="https://gist.github.com/wozozo/1714762/" target="_blank" rel="noopener">解决方案</a>，只需将处理 URL 的 JS 脚本存为书签，使用时点击一下该书签即可。下面是经我稍微改动，加入过滤 acm、mtt、cks 三个标签后的 JS 脚本，仅供参考：</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">javascript:(<span class="function"><span class="keyword">function</span><span class="params">()</span>&#123;</span></span><br><span class="line">  var search, params, <span class="built_in">i</span>, re;</span><br><span class="line">  search = location.search.replace( /^\?/, <span class="string">''</span> ).split( <span class="string">'&amp;'</span> );</span><br><span class="line">  params = [];</span><br><span class="line">  <span class="keyword">if</span> (!search) <span class="keyword">return</span>;</span><br><span class="line">  <span class="built_in">i</span> = search.<span class="built_in">length</span>;</span><br><span class="line">  <span class="keyword">while</span>( <span class="built_in">i</span>-- )&#123;</span><br><span class="line">    <span class="keyword">if</span>( !search[<span class="built_in">i</span>].match( /^utm_|^hmsr|^acm|^mtt|^cks|^fb_action|^fb_source|^action_object_map|^action_type_map|^action_ref_map/ ) )&#123;</span><br><span class="line">      params.push( search[<span class="built_in">i</span>] );</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      re = <span class="built_in">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (re) &#123;</span><br><span class="line">    history.pushState(<span class="string">''</span>,<span class="string">''</span>,location.pathname + (( params.<span class="built_in">length</span> ) ? <span class="string">'?'</span> + params.join( <span class="string">'&amp;'</span> ) : <span class="string">''</span> ));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">javascript:(function()&#123;</span><br><span class="line">  var search, params, i, re;</span><br><span class="line">  search = location.search.replace( /^\?/, &apos;&apos; ).split( &apos;&amp;&apos; );</span><br><span class="line">  params = [];</span><br><span class="line">  if (!search) return;</span><br><span class="line">  i = search.length;</span><br><span class="line">  while( i-- )&#123;</span><br><span class="line">    if( !search[i].match( /^utm_|^hmsr|^acm|^mtt|^cks|^fb_action|^fb_source|^action_object_map|^action_type_map|^action_ref_map/ ) )&#123;</span><br><span class="line">      params.push( search[i] );</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      re = true;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if (re) &#123;</span><br><span class="line">    history.pushState(&apos;&apos;,&apos;&apos;,location.pathname + (( params.length ) ? &apos;?&apos; + params.join( &apos;&amp;&apos; ) : &apos;&apos; ));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 <p>此法的原理是对 URL 中的无用标签进行正则匹配，从而实现过滤。当然你也可以自行添加过滤规则，只需在其中按  !search[i].match( / <code>|^&lt;标签名&gt;</code>/ )  格式添加标签即可。</p>
 <p>举个栗子：如测试后发现 <a href="http://yhyy135.github.io?blabla=hahaha" target="_blank" rel="noopener">http://yhyy135.github.io?blabla=hahaha</a> 中，删除标签 blabla 后不影响正常访问，则可在上述 JS 脚本的正则规则中添加 <code>|^blabla</code> 即可。整个 URL 减肥过程如此流畅。</p>
 
@@ -788,7 +788,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
   <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
@@ -834,28 +834,28 @@
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
 
   
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
+  <script src="/js/next-boot.js?v=7.3.0"></script>
 
   
 
   
 
+  
+
 
   
 
@@ -879,9 +879,7 @@
 
 
 
-
-
-  <script src="/js/local-search.js?v=7.2.0"></script>
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 

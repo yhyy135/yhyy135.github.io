@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
@@ -27,7 +27,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.2.0',
+    version: '7.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
@@ -167,7 +167,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -178,7 +178,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -189,7 +189,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -200,13 +200,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         <li class="menu-item menu-item-search">
           <a href="javascript:;" class="popup-trigger">
           
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -358,7 +358,7 @@
   </span>
   
   
-          <br/>
+          <br>
 
         </div>
       </header>
@@ -380,19 +380,19 @@
 </ol>
 <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><ol>
 <li>创建 Linux 挂载文件夹 <code>&lt;mount_dir&gt;</code></li>
-<li>以 root 权限运行如下命令挂载文件夹<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">mount -t cifs -o username="<span class="tag">&lt;<span class="name">username</span>&gt;</span>",password="<span class="tag">&lt;<span class="name">password</span>&gt;</span>" -o uid=<span class="tag">&lt;<span class="name">linuxuser</span>&gt;</span> -o gid=<span class="tag">&lt;<span class="name">linuxgroup</span>&gt;</span> //<span class="tag">&lt;<span class="name">WinIP</span>&gt;</span>/<span class="tag">&lt;<span class="name">shared_dir</span>&gt;</span> /<span class="tag">&lt;<span class="name">path</span>&gt;</span>/<span class="tag">&lt;<span class="name">mount_dir</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li>以 root 权限运行如下命令挂载文件夹<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mount -t cifs -o username=&quot;&lt;username&gt;&quot;,password=&quot;&lt;password&gt;&quot; -o uid=&lt;linuxuser&gt; -o gid=&lt;linuxgroup&gt; //&lt;WinIP&gt;/&lt;shared_dir&gt; /&lt;path&gt;/&lt;mount_dir&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>其中的 <code>&lt;linuxuser&gt;</code> 和 <code>&lt;linuxgroup&gt;</code> 为 Linux 中具有开发环境配置权限的用户和其所在用户组。<br>上述方法将 <code>&lt;shared_dir&gt;</code> 内的文件挂载到了 <code>&lt;mount_dir&gt;</code> 中。你也可以根据自己需要对命令进行微调。</p>
 <a id="more"></a>
 <h1 id="排障"><a href="#排障" class="headerlink" title="排障"></a>排障</h1><p>如果运行 <code>mount</code> 执行挂载时提示 Host 宕机：</p>
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">$ mount -t cifs -o <span class="attr">username=</span><span class="string">"user"</span>,<span class="attr">password=</span><span class="string">"passwd"</span> -o <span class="attr">uid=</span><span class="keyword">user</span> <span class="title">-o</span> <span class="attr">gid=</span>usergroup //<span class="tag">&lt;WinIP&gt;</span>/dir /path/to</span><br><span class="line">Host is down.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ mount -t cifs -o username=&quot;user&quot;,password=&quot;passwd&quot; -o uid=user -o gid=usergroup //&lt;WinIP&gt;/dir /path/to</span><br><span class="line">Host is down.</span><br></pre></td></tr></table></figure>
 <p>这种情况有可能时由于两端的 Samba 协议不匹配造成的。要解决这个问题，首先需要确认是否时由前述原因造成的。可以执行如下命令：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">$ smbclient -L <span class="tag">&lt;<span class="name">server_ip</span>&gt;</span> -U <span class="tag">&lt;<span class="name">username</span>&gt;</span> -d 256</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ smbclient -L &lt;server_ip&gt; -U &lt;username&gt; -d 256</span><br></pre></td></tr></table></figure>
 <p>在显示的 debug 信息中可以看到错误信息：</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Connection <span class="keyword">to</span> &lt;WinIP&gt; failed (<span class="builtin-name">Error</span> NT_STATUS_RESOURCE_NAME_NOT_FOUND)</span><br><span class="line">Failed <span class="keyword">to</span> connect with SMB1 -- <span class="literal">no</span> workgroup available</span><br></pre></td></tr></table></figure>
-<p>这样可以在执行 <code>mount</code> 命令时增加参数 <code>vers=2.0</code> 来指定协议版本，从而解决这个问题：<br><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">$ mount -t cifs -o <span class="attr">username=</span><span class="string">"user"</span>,<span class="attr">password=</span><span class="string">"passwd"</span> -o <span class="attr">uid=</span><span class="keyword">user</span> <span class="title">-o</span> <span class="attr">gid=</span>usergroup -o <span class="attr">vers=</span><span class="number">2.0</span> //<span class="tag">&lt;WinIP&gt;</span>/dir /path/to</span><br></pre></td></tr></table></figure></p>
-<p>如果没有任何输出，有可能已经挂载成功。可以执行 <code>mount</code> 命令查看挂载情况：<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>mount</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Connection to &lt;WinIP&gt; failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)</span><br><span class="line">Failed to connect with SMB1 -- no workgroup available</span><br></pre></td></tr></table></figure>
+<p>这样可以在执行 <code>mount</code> 命令时增加参数 <code>vers=2.0</code> 来指定协议版本，从而解决这个问题：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ mount -t cifs -o username=&quot;user&quot;,password=&quot;passwd&quot; -o uid=user -o gid=usergroup -o vers=2.0 //&lt;WinIP&gt;/dir /path/to</span><br></pre></td></tr></table></figure></p>
+<p>如果没有任何输出，有可能已经挂载成功。可以执行 <code>mount</code> 命令查看挂载情况：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ mount</span><br></pre></td></tr></table></figure></p>
 <p>参考链接：<br><a href="https://serverfault.com/questions/414074/mount-cifs-host-is-down" target="_blank" rel="noopener">Mount CIFS Host is down</a></p>
 
     </div>
@@ -849,7 +849,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
   <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
@@ -895,28 +895,28 @@
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
 
   
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
+  <script src="/js/next-boot.js?v=7.3.0"></script>
 
   
 
   
 
+  
+
 
   
 
@@ -940,9 +940,7 @@
 
 
 
-
-
-  <script src="/js/local-search.js?v=7.2.0"></script>
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 

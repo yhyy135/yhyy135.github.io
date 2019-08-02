@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
@@ -27,7 +27,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.2.0',
+    version: '7.3.0',
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
@@ -172,7 +172,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -183,7 +183,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -194,7 +194,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
         
@@ -205,13 +205,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
         <li class="menu-item menu-item-search">
           <a href="javascript:;" class="popup-trigger">
           
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -363,7 +363,7 @@
   </span>
   
   
-          <br/>
+          <br>
 
         </div>
       </header>
@@ -380,34 +380,34 @@
 </blockquote>
 <p>近来在研究 RegEx 的折腾之路上走来走去。决定把自己所遇到的一些小例子记下来。<br>一方面方便自己回顾、反思，另一方面给大家参考、指正。<br>想起前段时间工作上遇到的一个 situation。</p>
  <a id="more"></a>
-<p>源文本如下：<br><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">(通用,单选,非必填)BRAND<span class="string">||常规品牌</span></span><br><span class="line">(通用,单选,非必填)DESIGNER<span class="string">||设计师品牌</span></span><br><span class="line">(通用,多选,非必填)MATERIAL<span class="string">||面料（1）</span></span><br><span class="line">(通用,多选,非必填)MATERIAL<span class="string">||面料（2）</span></span><br><span class="line">(特定,多选,非必填)NECKLINE<span class="string">||领口</span></span><br><span class="line">(特定,多选,非必填)SLEEVE LENGTH<span class="string">||袖长</span></span><br><span class="line">(特定,多选,非必填)SLEEVE TYPE<span class="string">||袖型</span></span><br><span class="line">(特定,多选,非必填)WAISTLINE<span class="string">||腰线</span></span><br><span class="line">(特定,多选,非必填)DRESS LENGTH<span class="string">||裙长（1）</span></span><br><span class="line">(特定,多选,非必填)DRESS LENGTH<span class="string">||裙长（2）</span></span><br><span class="line">(特定,多选,非必填)FIT<span class="string">||体型</span></span><br><span class="line">(特定,多选,非必填)OCCASION<span class="string">||场合（1）</span></span><br><span class="line">(特定,多选,非必填)OCCASION<span class="string">||场合（2）</span></span><br><span class="line">(特定,多选,非必填)STYLE<span class="string">||款式（1）</span></span><br><span class="line">(特定,多选,非必填)STYLE<span class="string">||款式（2）</span></span><br><span class="line">(特定,多选,非必填)ACCENT<span class="string">||特色（1）</span></span><br><span class="line">(特定,多选,非必填)ACCENT<span class="string">||特色（2）</span></span><br><span class="line">(特定,多选,非必填)ACCENT<span class="string">||特色（3）</span></span><br></pre></td></tr></table></figure></p>
+<p>源文本如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(通用,单选,非必填)BRAND||常规品牌</span><br><span class="line">(通用,单选,非必填)DESIGNER||设计师品牌</span><br><span class="line">(通用,多选,非必填)MATERIAL||面料（1）</span><br><span class="line">(通用,多选,非必填)MATERIAL||面料（2）</span><br><span class="line">(特定,多选,非必填)NECKLINE||领口</span><br><span class="line">(特定,多选,非必填)SLEEVE LENGTH||袖长</span><br><span class="line">(特定,多选,非必填)SLEEVE TYPE||袖型</span><br><span class="line">(特定,多选,非必填)WAISTLINE||腰线</span><br><span class="line">(特定,多选,非必填)DRESS LENGTH||裙长（1）</span><br><span class="line">(特定,多选,非必填)DRESS LENGTH||裙长（2）</span><br><span class="line">(特定,多选,非必填)FIT||体型</span><br><span class="line">(特定,多选,非必填)OCCASION||场合（1）</span><br><span class="line">(特定,多选,非必填)OCCASION||场合（2）</span><br><span class="line">(特定,多选,非必填)STYLE||款式（1）</span><br><span class="line">(特定,多选,非必填)STYLE||款式（2）</span><br><span class="line">(特定,多选,非必填)ACCENT||特色（1）</span><br><span class="line">(特定,多选,非必填)ACCENT||特色（2）</span><br><span class="line">(特定,多选,非必填)ACCENT||特色（3）</span><br></pre></td></tr></table></figure></p>
 <p>需要匹配出每一行中对应的中、英文标题：<br>如英文标题「SLEEVE LENGTH」，及对应的中文标题「袖长」<br>如英文标题「DRESS LENGTH」，及对应的中文标题「裙长」</p>
 <p>乍一看很简单，但是实际做起来却没有那么容易。写出的 RegEx 总会受到行末的序号所影响。最后使用两个 RegEx 分情况进行匹配：</p>
 <ul>
-<li>使用下式匹配无序号的情况：<figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">(?:<span class="symbol">\)</span>)(.+)(?:<span class="symbol">\|</span><span class="symbol">\|</span>)(.+(?:[^<span class="symbol">\u</span>FF09<span class="symbol">\s</span>]$))</span><br></pre></td></tr></table></figure>
+<li>使用下式匹配无序号的情况：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(?:\))(.+)(?:\|\|)(.+(?:[^\uFF09\s]$))</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>例如能够匹配出 <code>DESIGNER 设计师品牌</code>, <code>FIT 体型</code></p>
 <ul>
-<li>使用下式匹配有序号的情况：<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(?:\)</span>)<span class="comment">(.+)</span><span class="comment">(?:\|\|)</span><span class="comment">(.+)</span><span class="comment">(?:\s*\uFF08)</span></span><br></pre></td></tr></table></figure>
+<li>使用下式匹配有序号的情况：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(?:\))(.+)(?:\|\|)(.+)(?:\s*\uFF08)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>例如能够匹配出 <code>MATERIAL 面料</code>, <code>STYLE 款式</code></p>
-<p>然后使用或关系进行合并：<br><figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">(?:<span class="symbol">\)</span>)(.+)(?:<span class="symbol">\|</span><span class="symbol">\|</span>)(?:(.+(?:[^<span class="symbol">\u</span>FF09<span class="symbol">\s</span>]$))|(.+)(?:<span class="symbol">\s</span>*<span class="symbol">\u</span>FF08))</span><br></pre></td></tr></table></figure></p>
+<p>然后使用或关系进行合并：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(?:\))(.+)(?:\|\|)(?:(.+(?:[^\uFF09\s]$))|(.+)(?:\s*\uFF08))</span><br></pre></td></tr></table></figure></p>
 <p>匹配结果如下图：<br><img src="https://ooo.0o0.ooo/2017/04/27/590213c8359e1.png" alt></p>
-<p>这段正则的释意如下：<br><figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">(?:<span class="string">\))</span>                           <span class="comment">#分组但不捕获「非必填」后面的右括号</span></span><br><span class="line">(.+)                             <span class="comment">#分组1匹配任意内容（即英文）</span></span><br><span class="line">(?:<span class="string">\|\|)</span>                         <span class="comment">#分组但不捕获双竖线</span></span><br><span class="line">(?:                              <span class="comment">#分组但不捕获</span></span><br><span class="line">    (.+                          <span class="comment">#分组2匹配任意内容（即无序号中文）</span></span><br><span class="line">    (?:[^<span class="string">\uFF09\s]$)</span>             <span class="comment">#分组但不捕获空白符和右括号外的字符</span></span><br><span class="line">    )                            <span class="comment">#分组2结束</span></span><br><span class="line">|                                <span class="comment">#分组或关系</span></span><br><span class="line">    (.+)                         <span class="comment">#分组3匹配任意内容（即有序号中文）</span></span><br><span class="line">    (?:<span class="string">\s*\uFF08)</span>                <span class="comment">#分组但不捕获空白符和左括号</span></span><br><span class="line">)                                <span class="comment">#分组结束</span></span><br></pre></td></tr></table></figure></p>
+<p>这段正则的释意如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(?:\))                           #分组但不捕获「非必填」后面的右括号</span><br><span class="line">(.+)                             #分组1匹配任意内容（即英文）</span><br><span class="line">(?:\|\|)                         #分组但不捕获双竖线</span><br><span class="line">(?:                              #分组但不捕获</span><br><span class="line">    (.+                          #分组2匹配任意内容（即无序号中文）</span><br><span class="line">    (?:[^\uFF09\s]$)             #分组但不捕获空白符和右括号外的字符</span><br><span class="line">    )                            #分组2结束</span><br><span class="line">|                                #分组或关系</span><br><span class="line">    (.+)                         #分组3匹配任意内容（即有序号中文）</span><br><span class="line">    (?:\s*\uFF08)                #分组但不捕获空白符和左括号</span><br><span class="line">)                                #分组结束</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://ooo.0o0.ooo/2017/04/27/590213c83591a.png" alt></p>
 <p>一直没有想到什么好的解决办法能够在一个简短的正则表达式中完美实现这一个需求。如果读者有什么好想法（好吧其实并没什么读者）请评论分享你的 idea。</p>
 <hr>
 <p>2017.6.22 更新</p>
-<p>感谢 Inoreader 读者 <a href="http://www.inoreader.com/u/icery" target="_blank" rel="noopener">Andy</a> 的评论和建议，其提供的 RegEx 如下：<br><figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">(?:<span class="symbol">\)</span>)([^<span class="symbol">\)</span>]+)<span class="symbol">\|</span><span class="symbol">\|</span>([^<span class="symbol">\s</span><span class="symbol">\u</span>FF09<span class="symbol">\n</span>]+)</span><br></pre></td></tr></table></figure></p>
-<p>释意如下：<br><figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">(?:<span class="string">\))</span>              <span class="comment">#分组但不捕获「非必填」后面的右括号</span></span><br><span class="line">([^<span class="string">\)]+)</span>            <span class="comment">#分组捕获除右括号之外的内容</span></span><br><span class="line"><span class="string">\|\|</span>                <span class="comment">#双竖线</span></span><br><span class="line">([^<span class="string">\s\uFF09\n]+)</span>    <span class="comment">#分组捕获除空白符、右括号和换行符外的字符</span></span><br></pre></td></tr></table></figure></p>
+<p>感谢 Inoreader 读者 <a href="http://www.inoreader.com/u/icery" target="_blank" rel="noopener">Andy</a> 的评论和建议，其提供的 RegEx 如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(?:\))([^\)]+)\|\|([^\s\uFF09\n]+)</span><br></pre></td></tr></table></figure></p>
+<p>释意如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(?:\))              #分组但不捕获「非必填」后面的右括号</span><br><span class="line">([^\)]+)            #分组捕获除右括号之外的内容</span><br><span class="line">\|\|                #双竖线</span><br><span class="line">([^\s\uFF09\n]+)    #分组捕获除空白符、右括号和换行符外的字符</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://ooo.0o0.ooo/2017/06/22/594b68f251ea7.png" alt></p>
-<p>更近一步精简的版本如下：<br><figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">([^<span class="symbol">\)</span>]+)<span class="symbol">\|</span><span class="symbol">\|</span>([^<span class="symbol">\s</span><span class="symbol">\u</span>FF09<span class="symbol">\n</span>]+)</span><br></pre></td></tr></table></figure></p>
-<p>释意如下：<br><figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">([^<span class="string">\)]+)</span>            <span class="comment">#分组捕获除右括号之外的内容</span></span><br><span class="line"><span class="string">\|\|</span>                <span class="comment">#双竖线</span></span><br><span class="line">([^<span class="string">\s\uFF09\n]+)</span>    <span class="comment">#分组捕获除空白符、右括号和换行符外的字符</span></span><br></pre></td></tr></table></figure></p>
+<p>更近一步精简的版本如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">([^\)]+)\|\|([^\s\uFF09\n]+)</span><br></pre></td></tr></table></figure></p>
+<p>释意如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">([^\)]+)            #分组捕获除右括号之外的内容</span><br><span class="line">\|\|                #双竖线</span><br><span class="line">([^\s\uFF09\n]+)    #分组捕获除空白符、右括号和换行符外的字符</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://ooo.0o0.ooo/2017/06/22/594b68f22a636.png" alt></p>
 <hr>
-<p><strong>总结</strong><br><figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">(?:<span class="symbol">\)</span>)(.+)(?:<span class="symbol">\|</span><span class="symbol">\|</span>)(?:(.+(?:[^<span class="symbol">\u</span>FF09<span class="symbol">\s</span>]$))|(.+)(?:<span class="symbol">\s</span>*<span class="symbol">\u</span>FF08))</span><br><span class="line">(?:<span class="symbol">\)</span>)([^<span class="symbol">\)</span>]+)<span class="symbol">\|</span><span class="symbol">\|</span>([^<span class="symbol">\s</span><span class="symbol">\u</span>FF09<span class="symbol">\n</span>]+)</span><br><span class="line">([^<span class="symbol">\)</span>]+)<span class="symbol">\|</span><span class="symbol">\|</span>([^<span class="symbol">\s</span><span class="symbol">\u</span>FF09<span class="symbol">\n</span>]+)</span><br></pre></td></tr></table></figure></p>
+<p><strong>总结</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(?:\))(.+)(?:\|\|)(?:(.+(?:[^\uFF09\s]$))|(.+)(?:\s*\uFF08))</span><br><span class="line">(?:\))([^\)]+)\|\|([^\s\uFF09\n]+)</span><br><span class="line">([^\)]+)\|\|([^\s\uFF09\n]+)</span><br></pre></td></tr></table></figure></p>
 <p>对比上文的三个 RegEx，可以总结出编写 RegEx 的些许技巧：</p>
 <ol>
 <li>匹配时有正向和反向两种思路，不一定要写出完整匹配目标文本的特定 RegEx，而可以选择使用排除法进行优化。（如「[1-8]」匹配数字 1-8,，亦可写为「[^90]」匹配除 9 和 0 外的字符）</li>
@@ -839,7 +839,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
   <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
@@ -885,28 +885,28 @@
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
 
   
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
+  <script src="/js/next-boot.js?v=7.3.0"></script>
 
   
 
   
 
+  
+
 
   
 
@@ -930,9 +930,7 @@
 
 
 
-
-
-  <script src="/js/local-search.js?v=7.2.0"></script>
+  <script src="/js/local-search.js?v=7.3.0"></script>
 
 
 
