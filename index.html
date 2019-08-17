@@ -251,6 +251,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/mastering-regex-summary-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/mastering-regex-summary-6/" class="post-title-link" itemprop="url">《精通正则表达式》学习笔记（六）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-11 23:26:53" itemprop="dateCreated datePublished" datetime="2019-08-11T23:26:53+08:00">2019-08-11</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-17 22:53:29" itemprop="dateModified" datetime="2019-08-17T22:53:29+08:00">2019-08-17</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/RegEx/" itemprop="url" rel="index"><span itemprop="name">RegEx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/mastering-regex-summary-6/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mastering-regex-summary-6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><a href="/mastering-regex-summary-1/">《精通正则表达式》学习笔记（一）</a><br>Ch.1 正则表达式入门<br>Ch.2 入门示例拓展</li>
+<li><a href="/mastering-regex-summary-2/">《精通正则表达式》学习笔记（二）</a><br>Ch.3 正则表达式的特性和流派概览</li>
+<li><a href="/mastering-regex-summary-3/">《精通正则表达式》学习笔记（三）</a><br>Ch.4 表达式的匹配原理</li>
+<li><a href="/mastering-regex-summary-4/">《精通正则表达式》学习笔记（四）</a><br>Ch.5 正则表达式实用技巧</li>
+<li><a href="/mastering-regex-summary-5/">《精通正则表达式》学习笔记（五）</a><br>Ch.6 打造高效正则表达式</li>
+<li><a href="/mastering-regex-summary-6/">《精通正则表达式》学习笔记（六）</a><br>Ch.10 PHP 相关的正则表达式</li>
+</ul>
+<hr>
+<h1 id="PHP-的正则流派"><a href="#PHP-的正则流派" class="headerlink" title="PHP 的正则流派"></a>PHP 的正则流派</h1><ul>
+<li>PHP 的三种正则引擎是 <code>preg</code>、<code>creg</code> 和 <code>mb_ereg</code>。</li>
+<li>在默认情况下，preg 套件的正则表达式是以字节为单位的，所以「<code>\C</code>」默认等价于「<code>(?d:.)</code>」，由 <code>s</code> 修饰的点号。不过，如果使用了修饰符 <code>u</code>，则 preg 套件就会以 UTF-8 字母为单位，也就是说，一个字符可能由 6 个字节组成。即使这样，「<code>\C</code>」仍然匹配单个字节。</li>
+<li>「<code>\z</code>」和「<code>\Z</code>」都能够匹配字符串的末尾，而「<code>\Z</code>」同样能够匹配最后的换行符。</li>
+<li>「<code>$</code>」的意义取决于模式修饰符 <code>m</code> 和 <code>D</code>：如果没有设定任何修饰符，「<code>$</code>」等价于「<code>\Z</code>」（在字符串结尾的换行符，或者是字符串结尾）；如果使用了 <code>m</code>，则它能够匹配内嵌的换行符，如果使用了模式修饰符 <code>D</code>，它能够匹配「<code>\z</code>」（只有在字符串的结尾）。如果同时设置了 <code>m</code> 和 <code>D</code>，则忽略 <code>D</code>。</li>
+<li>PHP 正则引擎的处理方式完全是<strong>程序式</strong>的。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/mastering-regex-summary-6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/mastering-regex-summary-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -300,7 +455,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-11 23:02:32" itemprop="dateModified" datetime="2019-08-11T23:02:32+08:00">2019-08-11</time>
+                <time title="修改时间：2019-08-11 23:23:47" itemprop="dateModified" datetime="2019-08-11T23:23:47+08:00">2019-08-11</time>
               </span>
             
           
@@ -362,6 +517,7 @@
 <li><a href="/mastering-regex-summary-3/">《精通正则表达式》学习笔记（三）</a><br>Ch.4 表达式的匹配原理</li>
 <li><a href="/mastering-regex-summary-4/">《精通正则表达式》学习笔记（四）</a><br>Ch.5 正则表达式实用技巧</li>
 <li><a href="/mastering-regex-summary-5/">《精通正则表达式》学习笔记（五）</a><br>Ch.6 打造高效正则表达式</li>
+<li><a href="/mastering-regex-summary-6/">《精通正则表达式》学习笔记（六）</a><br>Ch.10 PHP 相关的正则表达式</li>
 </ul>
 <hr>
 <ul>
@@ -596,7 +752,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-08 00:19:36" itemprop="dateModified" datetime="2019-08-08T00:19:36+08:00">2019-08-08</time>
+                <time title="修改时间：2019-08-11 23:23:52" itemprop="dateModified" datetime="2019-08-11T23:23:52+08:00">2019-08-11</time>
               </span>
             
           
@@ -658,6 +814,7 @@
 <li><a href="/mastering-regex-summary-3/">《精通正则表达式》学习笔记（三）</a><br>Ch.4 表达式的匹配原理</li>
 <li><a href="/mastering-regex-summary-4/">《精通正则表达式》学习笔记（四）</a><br>Ch.5 正则表达式实用技巧</li>
 <li><a href="/mastering-regex-summary-5/">《精通正则表达式》学习笔记（五）</a><br>Ch.6 打造高效正则表达式</li>
+<li><a href="/mastering-regex-summary-6/">《精通正则表达式》学习笔记（六）</a><br>Ch.10 PHP 相关的正则表达式</li>
 </ul>
 <hr>
 <blockquote>
@@ -751,7 +908,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-08 00:19:52" itemprop="dateModified" datetime="2019-08-08T00:19:52+08:00">2019-08-08</time>
+                <time title="修改时间：2019-08-11 23:23:57" itemprop="dateModified" datetime="2019-08-11T23:23:57+08:00">2019-08-11</time>
               </span>
             
           
@@ -813,6 +970,7 @@
 <li><a href="/mastering-regex-summary-3/">《精通正则表达式》学习笔记（三）</a><br>Ch.4 表达式的匹配原理</li>
 <li><a href="/mastering-regex-summary-4/">《精通正则表达式》学习笔记（四）</a><br>Ch.5 正则表达式实用技巧</li>
 <li><a href="/mastering-regex-summary-5/">《精通正则表达式》学习笔记（五）</a><br>Ch.6 打造高效正则表达式</li>
+<li><a href="/mastering-regex-summary-6/">《精通正则表达式》学习笔记（六）</a><br>Ch.10 PHP 相关的正则表达式</li>
 </ul>
 <hr>
 <h1 id="正则引擎的分类"><a href="#正则引擎的分类" class="headerlink" title="正则引擎的分类"></a>正则引擎的分类</h1><p>正则引擎主要分为 3 类：</p>
@@ -892,153 +1050,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/podcast-note-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Acuario">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Acuario">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/podcast-note-3/" class="post-title-link" itemprop="url">播客札记（三）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-07 13:04:59 / 修改时间：13:18:47" itemprop="dateCreated datePublished" datetime="2019-06-07T13:04:59+08:00">2019-06-07</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/播客札记/" itemprop="url" rel="index"><span itemprop="name">播客札记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/podcast-note-3/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="podcast-note-3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="八分-第-80-期-剧透的思考练习：言论自由还是道德错误？"><a href="#八分-第-80-期-剧透的思考练习：言论自由还是道德错误？" class="headerlink" title="八分 第 80 期 | 剧透的思考练习：言论自由还是道德错误？"></a>八分 第 80 期 | 剧透的思考练习：言论自由还是道德错误？</h1><p><a href="https://overcast.fm/+Oh0W-o4Pc" target="_blank" rel="noopener">Episode Archive</a></p>
-<ul>
-<li>剧透的伦理学基础：功利主义（效用主义）。</li>
-<li>功利主义含义：所谓最大善的计算则必须依靠此行为所涉及的每个个体之苦乐感觉的总和，其中每个个体都被视为具相同分量，且快乐与痛苦是能够换算的，痛苦仅是 “负的快乐”。判断一件事的好坏，依据就是其是否增进人类最大的善，即增加人类的总体快乐。</li>
-<li>剧透带来的双成伤害：<ol>
-<li>剧透减少了观影的悬疑性，破坏了观影过程的乐趣；</li>
-<li>剧透破坏了观影前对影视作品的期待与喜悦。</li>
-</ol>
-</li>
-<li>剧透的言论自由基础：卡尔·波普尔在《开放社会及其敌人》中提出的「宽容悖论」。</li>
-<li><p>宽容悖论：</p>
-<blockquote>
-<p>无限的宽容必然导致宽容的消失。如果我们把无限的宽容延伸到那些不宽容的人身上，如果我们不准备捍卫宽容社会以抵抗不宽容的冲击，那么宽容将被摧毁，并且我们还将容忍他们。</p>
-</blockquote>
-</li>
-<li><p>穆勒认为，除非某个人的言论或行为伤害（肉体或利益受损）而非冒犯（情绪、尊严受损）到一个人，否则其言论或行为不应被任何力量禁止。</p>
-</li>
-<li>剧透是否是对肉体和精神的真实伤害？还是仅仅只是一种冒犯？</li>
-<li>剧透与权利的关系：如果剧透者是创作者本人，其是否有权剧透？这一剧透行为是否有合理性？</li>
-<li>剧透与历史的关系：历史作品是否可以剧透？</li>
-<li>真正伟大的作品不惧怕剧透。类型文学 / 作品是不可被剧透的。</li>
-<li>剧透的另一种观赏乐趣：心平气和地感受作品的细节。</li>
-<li>互联网的出现为剧透文化带来的改变：电影预告片即是对剧透文化的利用。</li>
-<li>希区柯克的《惊魂记》告诫观众请勿剧透，助长了影片本身的神秘性。</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/podcast-note-3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1079,7 +1090,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1299,7 +1310,9 @@
         
           
         
-        <span class="site-state-item-count">85</span>
+          
+        
+        <span class="site-state-item-count">86</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
