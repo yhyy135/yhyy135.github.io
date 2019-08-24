@@ -251,6 +251,204 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/mastering-regex-summary-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/mastering-regex-summary-3/" class="post-title-link" itemprop="url">《精通正则表达式》学习笔记（三）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-14 23:27:11" itemprop="dateCreated datePublished" datetime="2019-07-14T23:27:11+08:00">2019-07-14</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-11 23:23:57" itemprop="dateModified" datetime="2019-08-11T23:23:57+08:00">2019-08-11</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/RegEx/" itemprop="url" rel="index"><span itemprop="name">RegEx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/mastering-regex-summary-3/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="mastering-regex-summary-3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><a href="/mastering-regex-summary-1/">《精通正则表达式》学习笔记（一）</a><br>Ch.1 正则表达式入门<br>Ch.2 入门示例拓展</li>
+<li><a href="/mastering-regex-summary-2/">《精通正则表达式》学习笔记（二）</a><br>Ch.3 正则表达式的特性和流派概览</li>
+<li><a href="/mastering-regex-summary-3/">《精通正则表达式》学习笔记（三）</a><br>Ch.4 表达式的匹配原理</li>
+<li><a href="/mastering-regex-summary-4/">《精通正则表达式》学习笔记（四）</a><br>Ch.5 正则表达式实用技巧</li>
+<li><a href="/mastering-regex-summary-5/">《精通正则表达式》学习笔记（五）</a><br>Ch.6 打造高效正则表达式</li>
+<li><a href="/mastering-regex-summary-6/">《精通正则表达式》学习笔记（六）</a><br>Ch.10 PHP 相关的正则表达式</li>
+</ul>
+<hr>
+<h1 id="正则引擎的分类"><a href="#正则引擎的分类" class="headerlink" title="正则引擎的分类"></a>正则引擎的分类</h1><p>正则引擎主要分为 3 类：</p>
+<ol>
+<li>DFA（符合或不符合 POSIX 标准的都属此类）</li>
+<li>传统型 NFA</li>
+<li>POSIX NFA</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>引擎类型</th>
+<th>程序</th>
+<th>忽略优先量词（懒惰）</th>
+<th>捕获型括号</th>
+<th>回溯</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DFA</td>
+<td><code>awk</code>（大多数版本）、<code>egrep</code>（大多数版本）、<code>flex</code>、<code>lex</code>、MySQL、Procmail</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>传统型 NFA</td>
+<td>GNU Emacs、Java、<code>grep</code>（大多数版本）、<code>less</code>、<code>more</code>、.NET 语言、PCRE library、Perl、PHP（所有三套正则库）、Python、Ruby、sed（大多数版本）、<code>vi</code></td>
+<td>支持</td>
+<td>支持</td>
+<td>支持，但性能差</td>
+</tr>
+<tr>
+<td>POSIX NFA</td>
+<td><code>mawk</code>、Mortice Kern Systems’utilities、GNU Emacs（明确指定时使用）</td>
+<td>不支持</td>
+<td>支持</td>
+<td>支持，但性能差</td>
+</tr>
+<tr>
+<td>DFA/NFA 混合</td>
+<td>GNU <code>awk</code>、GNU <code>grep/egrep</code>、Tcl</td>
+<td>支持</td>
+<td>支持</td>
+<td>DFA 支持</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>判断是否传统型 NFA：是否支持忽略优先量词（懒惰）。使用正则表达式 <code>nfa|nfa not</code> 来匹配字符串 <code>nfa not</code>，如果只匹配了 <code>nfa</code>，这就是传统型 NFA。如果整个 <code>nfa not</code> 都能匹配，则此引擎要么是 POSIXNFA，要么是 DFA。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/mastering-regex-summary-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/podcast-note-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -287,11 +485,21 @@
                 
               
 
-              <time title="创建时间：2019-06-07 13:04:59 / 修改时间：13:18:47" itemprop="dateCreated datePublished" datetime="2019-06-07T13:04:59+08:00">2019-06-07</time>
+              <time title="创建时间：2019-06-07 13:04:59" itemprop="dateCreated datePublished" datetime="2019-06-07T13:04:59+08:00">2019-06-07</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-23 00:21:39" itemprop="dateModified" datetime="2019-08-23T00:21:39+08:00">2019-08-23</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -851,198 +1059,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/differences-between-innodb-and-myisam/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Acuario">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Acuario">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/differences-between-innodb-and-myisam/" class="post-title-link" itemprop="url">InnoDB 与 MyISAM 的区别</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-21 17:24:56 / 修改时间：18:12:49" itemprop="dateCreated datePublished" datetime="2019-04-21T17:24:56+08:00">2019-04-21</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/differences-between-innodb-and-myisam/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="differences-between-innodb-and-myisam/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>目前 MySQL 的数据库引擎一般使用 InnoDB 和 MyISAM，但两者存在一些差别。网上零零散散的文章看起来比较麻烦，这里以表格汇总对比二者区别。如有纰漏，还望读者在评论区指正。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>InnoDB</th>
-<th>MyISAM</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>MySQL 默认引擎</td>
-<td>✅</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>事务</td>
-<td>✅</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>并发</td>
-<td>表级锁 ✅<br>行级锁 ✅，采用 MVCC 来支持高并发，有可能死锁</td>
-<td>表级锁 ✅<br>行级锁 ❌</td>
-</tr>
-<tr>
-<td>外键</td>
-<td>✅</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>在线热备份</td>
-<td>✅</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>COUNT (*)</td>
-<td>无 meta-data 缓存，查全表获取</td>
-<td>有 meta-data 缓存，直接获取</td>
-</tr>
-<tr>
-<td>崩溃恢复</td>
-<td>通过事务日志来恢复数据库</td>
-<td>损坏率高，恢复速度慢，不能安全恢复</td>
-</tr>
-<tr>
-<td>其他</td>
-<td>默认隔离级别是可重复读（REPEATABLE READ），通过多版本并发控制（MVCC）+ 间隙锁（Next-Key Locking）防止幻影读</td>
-<td>设计简单，数据以紧密格式存储</td>
-</tr>
-<tr>
-<td>索引特性</td>
-<td>主索引是聚簇索引，在索引中保存了数据，从而避免直接读取磁盘，因此对查询性能有很大的提升。</td>
-<td>DELAY_KEY_WRITE 选项：修改后，新索引数据写入内存中的键缓冲区，清理键缓冲区或者关闭表时才写入磁盘。极大提升写入性能，但崩溃时会造成索引损坏</td>
-</tr>
-<tr>
-<td>全文索引</td>
-<td>>= MySQL 5.6.4 ✅<br>  &lt; MySQL 5.6.4 ❌</td>
-<td>✅<br>支持 BLOB 和 TEXT 的前 500 个字符索引</td>
-</tr>
-<tr>
-<td>自有特性</td>
-<td>内部优化：<br>1. 可预测性读加快读操作<br>2. 自适应哈希索引加速插入操作的插入缓冲区</td>
-<td>1. 支持压缩表和空间数据索引<br>2.并发插入（CONCURRENT INSERT）：在表有读取操作的同时，也可以往表中插入新的记录</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p>参考链接：<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/MySQL.md#%E4%B8%89%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E" target="_blank" rel="noopener">技术面试必备基础知识：MySQL</a><br><a href="http://cxymrzero.github.io/blog/2015/08/17/myisam-innodb/" target="_blank" rel="noopener">MyISAM 与 InnoDB 区别</a><br><a href="https://juejin.im/post/5b1685bef265da6e5c3c1c34" target="_blank" rel="noopener">MySQL 常见的两种存储引擎：MyISAM 与 InnoDB 的爱恨情仇</a></p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1083,7 +1099,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1305,7 +1321,9 @@
         
           
         
-        <span class="site-state-item-count">86</span>
+          
+        
+        <span class="site-state-item-count">87</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
