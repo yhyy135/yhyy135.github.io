@@ -4,56 +4,55 @@
 
 
 
-<html class="theme-next pisces use-motion" lang="zh-CN">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.9.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
 
-<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.3.0',
+    version: '7.4.0',
+    exturl: false,
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
     pangu: true,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
     localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    search: {
-      root: '/',
-      path: 'search.xml'
-    },
-    tabs: true,
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: '复制',
       copy_success: '复制成功',
       copy_failure: '复制失败'
-    }
+    },
+    sidebarPadding: 40
   };
 </script>
 
@@ -75,17 +74,20 @@
 <meta name="twitter:title" content="Linux常用基本命令指北">
 <meta name="twitter:description" content="废话学习任何一种新东西，最好的方式就是进行实践。对于一个被 Windows 这样的 GUI OS 惯坏了的用户而言，上手 Linux 的最快途径便是利用一些现成的项目进行实操。正如笔者肤浅的 Linux 使用技能完完全全是靠自己在 VPS 上搭梯子（ss）达成的。在这里写一些基本命令的笔记，一方面方便自己今后查阅，另外也给看到本文的 Linux 小白一些入（bu）门（kao）级（pu）的指北。">
 <meta name="twitter:image" content="https://ooo.0o0.ooo/2016/10/29/5814ef387a70f.png">
-  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
   <link rel="canonical" href="https://acuario.xyz/how-to-use-linux/">
 
 
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
   };
 </script>
-
-    <script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <title>Linux常用基本命令指北 | Acuario</title>
   
@@ -109,7 +111,6 @@
 
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -118,7 +119,7 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
   .use-motion .logo,
   .use-motion .site-title,
@@ -135,15 +136,14 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Acuario</span>
@@ -162,84 +162,83 @@
 </div>
 
 
-
 <nav class="site-nav">
-    <ul id="menu" class="menu">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-home">
       
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-tags">
       
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-categories">
       
     
 
     <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-archives">
       
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
-        <li class="menu-item menu-item-search">
-          <a href="javascript:;" class="popup-trigger">
-          
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
-        </li>
-      
-    </ul>
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
 
-
-    </div>
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 </div>
     </header>
@@ -256,13 +255,11 @@
             
 
   <div id="posts" class="posts-expand">
-    
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block post">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/how-to-use-linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -275,23 +272,17 @@
       <meta itemprop="name" content="Acuario">
     </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Linux常用基本命令指北
 
-        
-          <h1 class="post-title" itemprop="name headline">Linux常用基本命令指北
-
-              
-            
-          </h1>
-        
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -307,9 +298,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2018-06-14 11:06:14" itemprop="dateModified" datetime="2018-06-14T11:06:14+08:00">2018-06-14</time>
               </span>
             
@@ -318,9 +307,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
 
@@ -338,33 +325,28 @@
           
 
           
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon"
-              >
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
-                 阅读次数： 
-                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
               </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
             </span>
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/how-to-use-linux/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-to-use-linux/" itemprop="commentCount"></span>
-    </a>
+    <a title="disqus" href="/how-to-use-linux/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-to-use-linux/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -618,7 +600,10 @@
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://www.jianshu.com/p/a6a594a00b5b" target="_blank" rel="noopener">GNU/Linux 与开源文化的那些人和事</a><br><a href="https://chusiang.gitbooks.io/working-on-gnu-linux/content/" target="_blank" rel="noopener">完全用 GNU/Linux 工作</a><br><a href="http://blog.csdn.net/xiaoguaihai/article/details/8705992" target="_blank" rel="noopener">【Linux】linux 常用基本命令</a><br><a href="http://www.cnblogs.com/xpjiang/p/5089137.html" target="_blank" rel="noopener">九十分钟极速入门 Linux——Linux Guide for Developments 学习笔记</a><br><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener">Linux 工具快速教程</a><br><a href="https://github.com/dwqs/blog/issues/30" target="_blank" rel="noopener">Linux 的文件权限</a><br><a href="http://coolshell.cn/articles/1480.html" target="_blank" rel="noopener">非常简单的Python HTTP服务</a><br><a href="http://www.epubit.com.cn/article/412" target="_blank" rel="noopener">Linux 常用命令及使用技巧</a><br><a href="https://zhuanlan.zhihu.com/p/21278816" target="_blank" rel="noopener">vim/vi 命令整理</a></p>
 
     </div>
-        <script src="/js/src/baffle.min.js"></script>
+
+    
+    
+    <script src="/js/src/baffle.min.js"></script>
 <script>
   let b = baffle(document.querySelectorAll('.post-title'));
   b.set({
@@ -628,14 +613,11 @@
   b.reveal(3500, 1000);
 </script>
 
+        
       
-
-    
-    
-    
-      <div>
         
 
+<div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
     <strong>本文作者： </strong>Acuario</li>
@@ -646,38 +628,49 @@
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
 </ul>
+</div>
 
-      </div>
+      
 
-    <footer class="post-footer">
+      <footer class="post-footer">
           
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/教程/" rel="tag"># 教程</a>
+            
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+            
+              <a href="/tags/命令行/" rel="tag"># 命令行</a>
+            
+          </div>
         
-        <div class="post-tags">
-            <a href="/tags/教程/" rel="tag"># 教程</a>
-          
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
-            <a href="/tags/命令行/" rel="tag"># 命令行</a>
-          
-        </div>
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-              <a href="/how-to-use-shadowsocks-rss/" rel="next" title="ShadowsocksR简明教程">
-                <i class="fa fa-chevron-left"></i> ShadowsocksR简明教程
-              </a>
-            
-          </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-              <a href="/corruption-and-anti-corruption-in-nazi-germany-clip/" rel="prev" title="《纳粹德国的腐败与反腐》读书笔记">
-                《纳粹德国的腐败与反腐》读书笔记 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/how-to-use-shadowsocks-rss/" rel="next" title="ShadowsocksR简明教程">
+                  <i class="fa fa-chevron-left"></i> ShadowsocksR简明教程
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/corruption-and-anti-corruption-in-nazi-germany-clip/" rel="prev" title="《纳粹德国的腐败与反腐》读书笔记">
+                  《纳粹德国的腐败与反腐》读书笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
           </div>
-        </div>
-    </footer>
+        
+      </footer>
+    
   </div>
   
   
@@ -699,7 +692,6 @@
   
   
 
-
         </div>
           
   
@@ -711,34 +703,44 @@
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
+        
+        
+        
+        
       
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#废话"><span class="nav-number">1.</span> <span class="nav-text">废话</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-的历史"><span class="nav-number">2.</span> <span class="nav-text">Linux 的历史</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#了解命令提示符和命令行"><span class="nav-number">3.</span> <span class="nav-text">了解命令提示符和命令行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令提示符和命令行"><span class="nav-number">3.1.</span> <span class="nav-text">命令提示符和命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell-简介"><span class="nav-number">3.2.</span> <span class="nav-text">Shell 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell-管道"><span class="nav-number">3.3.</span> <span class="nav-text">Shell 管道</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用快捷键"><span class="nav-number">4.</span> <span class="nav-text">常用快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#包管理"><span class="nav-number">5.</span> <span class="nav-text">包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见包管理套件"><span class="nav-number">5.1.</span> <span class="nav-text">常见包管理套件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-相关包管理套件介绍"><span class="nav-number">5.2.</span> <span class="nav-text">CentOS 相关包管理套件介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YUM-源和-EPEL"><span class="nav-number">5.3.</span> <span class="nav-text">YUM 源和 EPEL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源"><span class="nav-number">5.3.1.</span> <span class="nav-text">源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EPEL-及使用方法"><span class="nav-number">5.3.2.</span> <span class="nav-text">EPEL 及使用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统"><span class="nav-number">6.</span> <span class="nav-text">系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件"><span class="nav-number">7.</span> <span class="nav-text">文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用参数"><span class="nav-number">7.1.</span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">7.2.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑文件"><span class="nav-number">7.3.</span> <span class="nav-text">编辑文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清空文件内容"><span class="nav-number">7.4.</span> <span class="nav-text">清空文件内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件权限"><span class="nav-number">7.5.</span> <span class="nav-text">文件权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-文件权限的表示"><span class="nav-number">7.5.1.</span> <span class="nav-text">Linux 文件权限的表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改权限"><span class="nav-number">7.5.2.</span> <span class="nav-text">更改权限</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number">8.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户"><span class="nav-number">9.</span> <span class="nav-text">用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络"><span class="nav-number">10.</span> <span class="nav-text">网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令-1"><span class="nav-number">10.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加指定端口的防火墙例外"><span class="nav-number">10.2.</span> <span class="nav-text">添加指定端口的防火墙例外</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的-HTTP-服务"><span class="nav-number">10.3.</span> <span class="nav-text">简单的 HTTP 服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">11.</span> <span class="nav-text">Q&amp;A</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置开机启动："><span class="nav-number">11.1.</span> <span class="nav-text">设置开机启动：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开机启动命令"><span class="nav-number">11.1.1.</span> <span class="nav-text">开机启动命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机启动服务"><span class="nav-number">11.1.2.</span> <span class="nav-text">开机启动服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-SSH-默认端口"><span class="nav-number">11.2.</span> <span class="nav-text">修改 SSH 默认端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#限制-SSH-登录的-IP"><span class="nav-number">11.3.</span> <span class="nav-text">限制 SSH 登录的 IP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">12.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image"
       src="/images/avatar.png"
       alt="Acuario">
   <p class="site-author-name" itemprop="name">Acuario</p>
-  <div class="site-description motion-element" itemprop="description"></div>
+  <div class="site-description" itemprop="description"></div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -749,30 +751,6 @@
         
           
             <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
           
         
         <span class="site-state-item-count">11</span>
@@ -788,183 +766,7 @@
             <a href="/tags/">
           
         
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">87</span>
+        <span class="site-state-item-count">91</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1001,9 +803,9 @@
   </div>
 
 
-  <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+  <div class="links-of-blogroll motion-element">
     <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
+      <i class="fa fa-fw fa-link"></i>
       Links
     </div>
     <ul class="links-of-blogroll-list">
@@ -1030,30 +832,10 @@
     </ul>
   </div>
 
-        </div>
       </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#废话"><span class="nav-number">1.</span> <span class="nav-text">废话</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-的历史"><span class="nav-number">2.</span> <span class="nav-text">Linux 的历史</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#了解命令提示符和命令行"><span class="nav-number">3.</span> <span class="nav-text">了解命令提示符和命令行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令提示符和命令行"><span class="nav-number">3.1.</span> <span class="nav-text">命令提示符和命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell-简介"><span class="nav-number">3.2.</span> <span class="nav-text">Shell 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell-管道"><span class="nav-number">3.3.</span> <span class="nav-text">Shell 管道</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用快捷键"><span class="nav-number">4.</span> <span class="nav-text">常用快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#包管理"><span class="nav-number">5.</span> <span class="nav-text">包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见包管理套件"><span class="nav-number">5.1.</span> <span class="nav-text">常见包管理套件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-相关包管理套件介绍"><span class="nav-number">5.2.</span> <span class="nav-text">CentOS 相关包管理套件介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YUM-源和-EPEL"><span class="nav-number">5.3.</span> <span class="nav-text">YUM 源和 EPEL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源"><span class="nav-number">5.3.1.</span> <span class="nav-text">源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EPEL-及使用方法"><span class="nav-number">5.3.2.</span> <span class="nav-text">EPEL 及使用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统"><span class="nav-number">6.</span> <span class="nav-text">系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件"><span class="nav-number">7.</span> <span class="nav-text">文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用参数"><span class="nav-number">7.1.</span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">7.2.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑文件"><span class="nav-number">7.3.</span> <span class="nav-text">编辑文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清空文件内容"><span class="nav-number">7.4.</span> <span class="nav-text">清空文件内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件权限"><span class="nav-number">7.5.</span> <span class="nav-text">文件权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-文件权限的表示"><span class="nav-number">7.5.1.</span> <span class="nav-text">Linux 文件权限的表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改权限"><span class="nav-number">7.5.2.</span> <span class="nav-text">更改权限</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number">8.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户"><span class="nav-number">9.</span> <span class="nav-text">用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络"><span class="nav-number">10.</span> <span class="nav-text">网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令-1"><span class="nav-number">10.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加指定端口的防火墙例外"><span class="nav-number">10.2.</span> <span class="nav-text">添加指定端口的防火墙例外</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的-HTTP-服务"><span class="nav-number">10.3.</span> <span class="nav-text">简单的 HTTP 服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">11.</span> <span class="nav-text">Q&amp;A</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置开机启动："><span class="nav-number">11.1.</span> <span class="nav-text">设置开机启动：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开机启动命令"><span class="nav-number">11.1.1.</span> <span class="nav-text">开机启动命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机启动服务"><span class="nav-number">11.1.2.</span> <span class="nav-text">开机启动服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-SSH-默认端口"><span class="nav-number">11.2.</span> <span class="nav-text">修改 SSH 默认端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#限制-SSH-登录的-IP"><span class="nav-number">11.3.</span> <span class="nav-text">限制 SSH 登录的 IP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">12.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
         <div class="back-to-top motion-element">
           <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
+          <span>0%</span>
         </div>
       
 
@@ -1075,27 +857,30 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
-  <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div><script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
     </span>
   
     <span class="post-meta-divider">|</span>
   
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
     </span>
   
 </div>
@@ -1107,41 +892,26 @@
 
 
 
+
+
+
+
         
       </div>
     </footer>
-
-    
-
   </div>
 
   
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/pangu/dist/pangu.min.js?v=4.0.7"></script>
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
 
-  <script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
-
-  
-  <script src="/js/affix.js?v=7.3.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
-
-
-  
-  <script src="/js/scrollspy.js?v=7.3.0"></script>
-<script src="/js/post-details.js?v=7.3.0"></script>
-
-
-
-  <script src="/js/next-boot.js?v=7.3.0"></script>
-
-  
-
-  
-
-  
 
 
   
@@ -1153,6 +923,7 @@
 
 
 
+  <script src="/js/local-search.js?v=7.4.0"></script>
 
 
 
@@ -1166,21 +937,13 @@
 
 
 
-  <script src="/js/local-search.js?v=7.3.0"></script>
 
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
-
-    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1192,20 +955,26 @@
   window.addEventListener('load', loadCount, false);
 </script>
 <script>
-  var disqus_config = function() {
+  function disqus_config() {
     this.page.url = "https://acuario.xyz/how-to-use-linux/";
     this.page.identifier = "how-to-use-linux/";
     this.page.title = 'Linux常用基本命令指北';};
   function loadComments() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://acuraioo.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', '' + +new Date());
-    (d.head || d.body).appendChild(s);
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://acuraioo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
   }
     window.addEventListener('load', loadComments, false);
   
 </script>
-
 
 </body>
 </html>

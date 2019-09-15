@@ -4,56 +4,55 @@
 
 
 
-<html class="theme-next pisces use-motion" lang="zh-CN">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.9.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.3.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
 
-<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
 
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.3.0',
+    version: '7.4.0',
+    exturl: false,
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
     pangu: true,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
     localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    search: {
-      root: '/',
-      path: 'search.xml'
-    },
-    tabs: true,
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: '复制',
       copy_success: '复制成功',
       copy_failure: '复制失败'
-    }
+    },
+    sidebarPadding: 40
   };
 </script>
 
@@ -64,17 +63,20 @@
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Acuario">
-  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
   <link rel="canonical" href="https://acuario.xyz/page/3/">
 
 
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
   };
 </script>
-
-    <script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <title>Acuario</title>
   
@@ -98,7 +100,6 @@
 
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -107,7 +108,7 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
   .use-motion .logo,
   .use-motion .site-title,
@@ -124,15 +125,14 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  <div class="container sidebar-position-left page-home">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Acuario</span>
@@ -151,84 +151,83 @@
 </div>
 
 
-
 <nav class="site-nav">
-    <ul id="menu" class="menu">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
+        <li class="menu-item menu-item-home">
       
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-tags">
       
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-categories">
       
     
 
     <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-archives">
       
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
-        <li class="menu-item menu-item-search">
-          <a href="javascript:;" class="popup-trigger">
-          
-            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
-        </li>
-      
-    </ul>
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
 
-
-    </div>
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 </div>
     </header>
@@ -243,14 +242,144 @@
 
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-      
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/podcast-note-2/">
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/podcast-note-2/" class="post-title-link" itemprop="url">播客札记（二）：996&多才多艺</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-25 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-25T00:00:00+08:00">2019-04-25</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-16 01:28:50" itemprop="dateModified" datetime="2019-09-16T01:28:50+08:00">2019-09-16</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/播客札记/" itemprop="url" rel="index"><span itemprop="name">播客札记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/podcast-note-2/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="podcast-note-2/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="翻电-Special-VOL04-996-不仅是道德问题"><a href="#翻电-Special-VOL04-996-不仅是道德问题" class="headerlink" title="翻电 Special VOL04 | 996 不仅是道德问题"></a>翻电 Special VOL04 | 996 不仅是道德问题</h1><p><a href="https://overcast.fm/+GsFgwEus4" target="_blank" rel="noopener">Episode Archive</a></p>
+<h2 id="996-的现状和成因"><a href="#996-的现状和成因" class="headerlink" title="996 的现状和成因"></a>996 的现状和成因</h2><ul>
+<li>超时工作 / 加班最多的工作往往处于社会两端：高收入者（高管、投行）和低收入者（工厂工人、出租车司机、快递员、外卖员）。</li>
+<li>高收入者超时工作的原因：由于社会分工程度有上限，具有创造性的工作实际难以再被细节分工。而此类工作大多是无法分工的高产出单人项目。</li>
+<li>低收入者超时工作的原因：此类工作是计件工资制度，多劳多得。</li>
+<li>正常工作是固定工资模式，其处于高收入者和低收入者之间，涉及的创造性的工作和计件工作不多。</li>
+<li>996 运动的爆发来源于高收入者工作模式对正常工作，即固定工资模式的侵入。</li>
+<li>互联网行业的军备竞赛导致了对 996 工作制的需求。</li>
+<li>不患寡而患不均，996 的出现往往是企业文化的整体问题，而非个别部门的个别现象。</li>
+</ul>
+<h2 id="商业模式与-996-的关系"><a href="#商业模式与-996-的关系" class="headerlink" title="商业模式与 996 的关系"></a>商业模式与 996 的关系</h2><ul>
+<li>普通企业的盈利是基于商品的利润。工作量增多带来的投入产出比相对较低。</li>
+<li>互联网行业的盈利是基于股本的增值。估值方法为公司的产品能力、用户数等因素。</li>
+<li>劳动与劳动的区分不在于脑体，而在于资本密集程度。资本市场的存在催生互联网行业和投行等领域的高薪 996。</li>
+<li>八小时工作制最早由英国空想社会主义者罗伯特・欧文于 1817 年 8 月提出。其后由于欧美资本家对劳工的剥削不断加剧，1886 年 5 月 1 日美国芝加哥爆发了历史最大的罢工，倡导实行八小时工作制。</li>
+<li>经济下行期强调、诉求加班文化的企业将会越来越多。在经济下行期，加班将不再只是劳资问题，而将是企业与企业之间军备竞赛的问题。企业主认为在经济下行期控制支出成本的同时提高工作产出，形成企业与企业之间的重商主义。为合理化这一观念，将会出现越来越多提倡奋斗、勤劳文化的论调。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/podcast-note-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
   
   
   
-  <div class="post-block">
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/differences-between-innodb-and-myisam/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -263,25 +392,18 @@
       <meta itemprop="name" content="Acuario">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/differences-between-innodb-and-myisam/" class="post-title-link" itemprop="url">InnoDB 与 MyISAM 的区别</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/differences-between-innodb-and-myisam/" class="post-title-link" itemprop="url">InnoDB 与 MyISAM 的区别</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -298,9 +420,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
 
@@ -318,24 +438,20 @@
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/differences-between-innodb-and-myisam/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="differences-between-innodb-and-myisam/" itemprop="commentCount"></span>
-    </a>
+    <a title="disqus" href="/differences-between-innodb-and-myisam/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="differences-between-innodb-and-myisam/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -346,8 +462,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>目前 MySQL 的数据库引擎一般使用 InnoDB 和 MyISAM，但两者存在一些差别。网上零零散散的文章看起来比较麻烦，这里以表格汇总对比二者区别。如有纰漏，还望读者在评论区指正。</p>
+          <p>目前 MySQL 的数据库引擎一般使用 InnoDB 和 MyISAM，但两者存在一些差别。网上零零散散的文章看起来比较麻烦，这里以表格汇总对比二者区别。如有纰漏，还望读者在评论区指正。</p>
 <table>
 <thead>
 <tr>
@@ -417,7 +532,6 @@
 <hr>
 <p>参考链接：<br><a href="https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/MySQL.md#%E4%B8%89%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E" target="_blank" rel="noopener">技术面试必备基础知识：MySQL</a><br><a href="http://cxymrzero.github.io/blog/2015/08/17/myisam-innodb/" target="_blank" rel="noopener">MyISAM 与 InnoDB 区别</a><br><a href="https://juejin.im/post/5b1685bef265da6e5c3c1c34" target="_blank" rel="noopener">MySQL 常见的两种存储引擎：MyISAM 与 InnoDB 的爱恨情仇</a></p>
 
-          
         
       
     </div>
@@ -425,10 +539,10 @@
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -436,13 +550,11 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/podcast-note-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -455,25 +567,18 @@
       <meta itemprop="name" content="Acuario">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/podcast-note-1/" class="post-title-link" itemprop="url">播客札记（一）</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/podcast-note-1/" class="post-title-link" itemprop="url">播客札记（一）：亲密关系&中医</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -489,10 +594,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-28 17:22:12" itemprop="dateModified" datetime="2019-04-28T17:22:12+08:00">2019-04-28</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-16 01:28:27" itemprop="dateModified" datetime="2019-09-16T01:28:27+08:00">2019-09-16</time>
               </span>
             
           
@@ -500,9 +603,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/播客札记/" itemprop="url" rel="index"><span itemprop="name">播客札记</span></a></span>
 
@@ -513,24 +614,20 @@
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/podcast-note-1/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="podcast-note-1/" itemprop="commentCount"></span>
-    </a>
+    <a title="disqus" href="/podcast-note-1/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="podcast-note-1/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -575,10 +672,10 @@
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -586,13 +683,11 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/delegate-v2ray-traffic-to-ss-or-ssr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -605,25 +700,18 @@
       <meta itemprop="name" content="Acuario">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/delegate-v2ray-traffic-to-ss-or-ssr/" class="post-title-link" itemprop="url">SS/SSR中转V2ray起飞教程</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/delegate-v2ray-traffic-to-ss-or-ssr/" class="post-title-link" itemprop="url">SS/SSR中转V2ray起飞教程</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -639,9 +727,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-06-07 23:07:53" itemprop="dateModified" datetime="2019-06-07T23:07:53+08:00">2019-06-07</time>
               </span>
             
@@ -650,9 +736,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
 
@@ -670,24 +754,20 @@
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/delegate-v2ray-traffic-to-ss-or-ssr/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="delegate-v2ray-traffic-to-ss-or-ssr/" itemprop="commentCount"></span>
-    </a>
+    <a title="disqus" href="/delegate-v2ray-traffic-to-ss-or-ssr/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="delegate-v2ray-traffic-to-ss-or-ssr/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -725,10 +805,10 @@
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -736,13 +816,11 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/set-up-tiny-tiny-rss-with-hyperapp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -755,25 +833,18 @@
       <meta itemprop="name" content="Acuario">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/set-up-tiny-tiny-rss-with-hyperapp/" class="post-title-link" itemprop="url">使用HyperApp搭建Tiny Tiny RSS</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/set-up-tiny-tiny-rss-with-hyperapp/" class="post-title-link" itemprop="url">使用HyperApp搭建Tiny Tiny RSS</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -789,9 +860,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-04-29 22:16:35" itemprop="dateModified" datetime="2019-04-29T22:16:35+08:00">2019-04-29</time>
               </span>
             
@@ -800,9 +869,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
 
@@ -820,24 +887,20 @@
           
 
           
-            
   
   <span class="post-meta-item">
     
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
     
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/set-up-tiny-tiny-rss-with-hyperapp/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="set-up-tiny-tiny-rss-with-hyperapp/" itemprop="commentCount"></span>
-    </a>
+    <a title="disqus" href="/set-up-tiny-tiny-rss-with-hyperapp/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="set-up-tiny-tiny-rss-with-hyperapp/" itemprop="commentCount"></span></a>
   </span>
   
   
-          <br>
 
         </div>
       </header>
@@ -871,10 +934,10 @@
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -882,135 +945,7 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/create-simple-http-server-with-python3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Acuario">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Acuario">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/create-simple-http-server-with-python3/" class="post-title-link" itemprop="url">非常简单的Python3 HTTP服务</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-26 14:35:09 / 修改时间：14:41:15" itemprop="dateCreated datePublished" datetime="2019-02-26T14:35:09+08:00">2019-02-26</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/create-simple-http-server-with-python3/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="create-simple-http-server-with-python3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>多年前在<a href="http://weibo.com/haoel?s=6cm7D0" title="左耳朵耗子" target="_blank" rel="noopener">左耳朵耗子</a>的博客上看到<a href="https://coolshell.cn/articles/1480.html" target="_blank" rel="noopener">《非常简单的 PYTHON HTTP 服务》</a>一文，在急需建立 HTTP Server 的场合十分有用，比如临时分享文件之类。在 HTTP Server 访问的根目录下只需执行一行命令就能搞定：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ python -m SimpleHTTPServer</span><br></pre></td></tr></table></figure></p>
-<p>但是随着 Python 2 逐渐被 Python 3 取代，上述命令无法继续使用。在 Python3 中没有 <code>SimpleHTTPServer</code>，而是直接使用<code>http.server</code> 即可。所以对应的 Python 3 命令是：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ python3 -m http.server</span><br></pre></td></tr></table></figure></p>
-<p>默认开启的 HTTP Server 服务监听的是 8000 端口，使用时注意系统防火墙是否放行。如需使用其他端口，只需在命令末尾加上端口号即可，如使用端口 1234：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ python3 -m http.server 1234</span><br></pre></td></tr></table></figure></p>
-<h1 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h1><p>上述 Python 运行的 HTTP 服务器必须前台运行命令，并实时输出 log，断开终端后自动停止服务。这时可以借助 <code>nohup</code> 命令使其后台运行：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ nohup python3 -m http.server &gt;&gt;/dev/null &amp;</span><br></pre></td></tr></table></figure></p>
-<p>当然你也可以使用其他方法如 <code>screen</code> 等工具实现后台运行，再此就不赘述了。不过既然有更复杂的需要，那还是老老实实用 Nginx 吧。</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-    
-  </section>
 
   
   <nav class="pagination">
@@ -1032,25 +967,37 @@
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image"
       src="/images/avatar.png"
       alt="Acuario">
   <p class="site-author-name" itemprop="name">Acuario</p>
-  <div class="site-description motion-element" itemprop="description"></div>
+  <div class="site-description" itemprop="description"></div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1061,30 +1008,6 @@
         
           
             <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
           
         
         <span class="site-state-item-count">11</span>
@@ -1100,183 +1023,7 @@
             <a href="/tags/">
           
         
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">87</span>
+        <span class="site-state-item-count">91</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1313,9 +1060,9 @@
   </div>
 
 
-  <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+  <div class="links-of-blogroll motion-element">
     <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
+      <i class="fa fa-fw fa-link"></i>
       Links
     </div>
     <ul class="links-of-blogroll-list">
@@ -1342,13 +1089,10 @@
     </ul>
   </div>
 
-        </div>
       </div>
         <div class="back-to-top motion-element">
           <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
+          <span>0%</span>
         </div>
       
 
@@ -1370,27 +1114,30 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
-  <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div><script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
 
 
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
     </span>
   
     <span class="post-meta-divider">|</span>
   
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
     </span>
   
 </div>
@@ -1402,37 +1149,26 @@
 
 
 
+
+
+
+
         
       </div>
     </footer>
-
-    
-
   </div>
 
   
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/pangu/dist/pangu.min.js?v=4.0.7"></script>
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
 
-  <script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
-
-  
-  <script src="/js/affix.js?v=7.3.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
-
-
-  
-
-  <script src="/js/next-boot.js?v=7.3.0"></script>
-
-  
-
-  
-
-  
 
 
   
@@ -1444,6 +1180,7 @@
 
 
 
+  <script src="/js/local-search.js?v=7.4.0"></script>
 
 
 
@@ -1457,21 +1194,13 @@
 
 
 
-  <script src="/js/local-search.js?v=7.3.0"></script>
 
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
-
-    
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -1482,7 +1211,6 @@
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
 </script>
-
 
 </body>
 </html>
