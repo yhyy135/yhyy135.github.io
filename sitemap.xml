@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://acuario.xyz/how-to-get-source/</loc>
+    
+    <lastmod>2019-10-07T08:42:16.156Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://acuario.xyz/podcast-note-4/</loc>
     
     <lastmod>2019-09-15T17:38:09.975Z</lastmod>
@@ -138,13 +145,6 @@
     <loc>https://acuario.xyz/create-simple-http-server-with-python3/</loc>
     
     <lastmod>2019-02-26T06:41:15.749Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://acuario.xyz/how-to-get-source/</loc>
-    
-    <lastmod>2019-02-26T05:43:38.666Z</lastmod>
     
   </url>
   
