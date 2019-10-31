@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Laravel 作为大名鼎鼎的 PHP Web 框架，有着「过度设计」的美誉（滑稽）。也就免不了附带着一些需要学习和摸索才能掌握的奇技淫巧（好吧其实只需要看看文档就行）。笔者结合自身的开发经验，把值得一提的东西梳理成文，便于读者在使用 Laravel 进行开发时事半功倍。 Composer已经 9102 年了，Composer 作为 PHP 的包管理工具，相信已经不需要做介绍了。使用 Larave">
+<meta name="keywords" content="学习笔记,教程,PHP,Laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel实用技巧">
+<meta property="og:url" content="https://acuario.xyz/some-skills-in-laravel/index.html">
+<meta property="og:site_name" content="Acuario">
+<meta property="og:description" content="Laravel 作为大名鼎鼎的 PHP Web 框架，有着「过度设计」的美誉（滑稽）。也就免不了附带着一些需要学习和摸索才能掌握的奇技淫巧（好吧其实只需要看看文档就行）。笔者结合自身的开发经验，把值得一提的东西梳理成文，便于读者在使用 Laravel 进行开发时事半功倍。 Composer已经 9102 年了，Composer 作为 PHP 的包管理工具，相信已经不需要做介绍了。使用 Larave">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-31T15:50:41.612Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel实用技巧">
+<meta name="twitter:description" content="Laravel 作为大名鼎鼎的 PHP Web 框架，有着「过度设计」的美誉（滑稽）。也就免不了附带着一些需要学习和摸索才能掌握的奇技淫巧（好吧其实只需要看看文档就行）。笔者结合自身的开发经验，把值得一提的东西梳理成文，便于读者在使用 Laravel 进行开发时事半功倍。 Composer已经 9102 年了，Composer 作为 PHP 的包管理工具，相信已经不需要做介绍了。使用 Larave">
+  <link rel="canonical" href="https://acuario.xyz/some-skills-in-laravel/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <title>Laravel实用技巧 | Acuario</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-83619854-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-83619854-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Acuario</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/some-skills-in-laravel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Laravel实用技巧
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-31 23:43:40 / 修改时间：23:50:41" itemprop="dateCreated datePublished" datetime="2019-10-31T23:43:40+08:00">2019-10-31</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/PHP/Laravel/" itemprop="url" rel="index"><span itemprop="name">Laravel</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/some-skills-in-laravel/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="some-skills-in-laravel/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Laravel 作为大名鼎鼎的 PHP Web 框架，有着「过度设计」的美誉（滑稽）。也就免不了附带着一些需要学习和摸索才能掌握的奇技淫巧（好吧其实只需要看看文档就行）。笔者结合自身的开发经验，把值得一提的东西梳理成文，便于读者在使用 Laravel 进行开发时事半功倍。</p>
+<h1 id="Composer"><a href="#Composer" class="headerlink" title="Composer"></a>Composer</h1><p>已经 9102 年了，Composer 作为 PHP 的包管理工具，相信已经不需要做介绍了。使用 Laravel 的过程中不可避免地会使用到各种各样的第三方包，Laravel 毫无疑问是使用 Composer 进行包管理的，对于国内开发者而言，第一件事显然是把 Composer 换为国内源，只需执行一下命令即可修改全局设置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ composer config -g repo.packagist composer https://packagist.phpcomposer.com</span><br></pre></td></tr></table></figure>
+<h1 id="调试代码"><a href="#调试代码" class="headerlink" title="调试代码"></a>调试代码</h1><h2 id="打印变量"><a href="#打印变量" class="headerlink" title="打印变量"></a>打印变量</h2><p>一般使用框架自带的 <code>dd()</code> 方法而不是 PHP 原生方法 <code>print_r()</code> 或 <code>var_dump()</code> 来打印变量信息，因为 <code>dd()</code> 方法可以打印多个任何类型变量：<code>dd($object, 123, [123, 324]);</code></p>
+<p>顺便一提，所谓 <em>dd</em> 的意思是 <strong>dump, die</strong>，而在最新的 Laravel 6 框架中，新增了 <code>ddd()</code> 方法，它是 <code>dd()</code> 方法的升级版，意思是 <strong>dump, die, debug</strong>，你可以在<a href="https://flareapp.io/blog/1-introducing-ddd-a-new-global-helper-for-laravel" target="_blank" rel="noopener">这篇文章</a>查看该方法的介绍。</p>
+<h2 id="打印-SQL-语句"><a href="#打印-SQL-语句" class="headerlink" title="打印 SQL 语句"></a>打印 SQL 语句</h2><p>在使用框架的 ORM 查询构造器时，可以通过 <code>toSql()</code> 方法输出原生 SQL 语句。</p>
+<p>SQL 语句中的参数值由于被 <code>?</code> 代替，可以使用 <code>getBindings()</code> 输出构造器中的查询条件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$builder = DB::table(&apos;user&apos;)-&gt;where(&apos;id&apos;, 1);</span><br><span class="line">$bindings = $builder-&gt;getBindings();</span><br><span class="line">$sql = str_replace(&apos;?&apos;, &apos;%s&apos;, $builder-&gt;toSql());</span><br><span class="line">$sql = sprintf($sql, ...$bindings);</span><br><span class="line"></span><br><span class="line">dd($sql);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="数据库迁移"><a href="#数据库迁移" class="headerlink" title="数据库迁移"></a>数据库迁移</h2><p>参考文档：<a href="https://learnku.com/index.php/docs/laravel/6.x/migrations/5173" target="_blank" rel="noopener">数据库迁移</a></p>
+<p>Laravel 提供了一整套的数据库迁移方案，便于开发使用代码直接创建、修改数据库的表结构，而无需繁琐地书写表结构的 SQL 语句。首先使用如下命令生成迁移文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php artisan make:migration do_some_migration</span><br></pre></td></tr></table></figure>
+<p>然后在 <code>/database/migrations/</code> 目录下找到对应的迁移文件 <code>2019_08_29_172043_do_some_migration.php</code>，根据业务需求设计表结构：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use Illuminate\Support\Facades\Schema;</span><br><span class="line">use Illuminate\Database\Schema\Blueprint;</span><br><span class="line">use Illuminate\Database\Migrations\Migration;</span><br><span class="line"></span><br><span class="line">class DoSomeMigration extends Migration</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Run the migrations.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function up()</span><br><span class="line">    &#123;</span><br><span class="line">        // 创建user表</span><br><span class="line">        Schema::create(&apos;user&apos;, function (Blueprint $table) &#123;</span><br><span class="line">            $table-&gt;increments(&apos;id&apos;);</span><br><span class="line">            $table-&gt;timestamps();         // 创建生成时间和修改时间字段</span><br><span class="line">            $table-&gt;softDeletes();        // 创建软删除字段</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 修改post表</span><br><span class="line">        Schema::table(&apos;post&apos;, function (Blueprint $table) &#123;</span><br><span class="line">            $table-&gt;uuid(&apos;user_id&apos;)-&gt;after(&apos;id&apos;)-&gt;comment(&apos;外键关联模型&apos;);  // 新增字段</span><br><span class="line">            $table-&gt;string(&apos;name&apos;, 50)-&gt;change();                          // 修改字段属性</span><br><span class="line">            $table-&gt;renameColumn(&apos;from&apos;, &apos;to&apos;);                            // 字段重命名</span><br><span class="line">            $table-&gt;dropColumn(&apos;votes&apos;);                                   // 删除字段</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Reverse the migrations.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function down()</span><br><span class="line">    &#123;</span><br><span class="line">        Schema::dropIfExists(&apos;user&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完成表结构设计之后执行如下命令进行数据库迁移，如果数据库配置无误的话，框架会按照迁移文件自动创建、修改表结构，完成数据库迁移操作：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php artisan migrate          // 完成所有未执行的迁移</span><br><span class="line">$ php artisan migrate --force  // 强制执行迁移</span><br><span class="line">$ php artisan migrate:rollback // 回滚所有迁移  </span><br><span class="line">$ php artisan migrate:refresh  // 回滚所有迁移，并重新执行所有迁移，相当于重建数据库</span><br></pre></td></tr></table></figure>
+<h2 id="数据库填充"><a href="#数据库填充" class="headerlink" title="数据库填充"></a>数据库填充</h2><p>参考文档：<a href="https://learnku.com/index.php/docs/laravel/6.x/seeding/5174" target="_blank" rel="noopener">数据填充</a></p>
+<p>后端开发最头疼的就是模拟数据了，特别是新建数据库以后还要一条一条记录手动 mock 那就太糟心了。Laravel 自带了一个数据库填充引擎，可以按照工厂填空类进行数据库填充测试数据。这里分三步走战略：</p>
+<ol>
+<li>准备对应模型类和数据填充工厂类</li>
+<li>生成数据填充执行类</li>
+<li>执行填充</li>
+</ol>
+<h3 id="准备类文件"><a href="#准备类文件" class="headerlink" title="准备类文件"></a>准备类文件</h3><p>创建工厂类之前你务必要先准备好对应的 <code>User</code> 模型，在本例中，<code>User</code> 模型文件位于 <code>/app/User.php</code>，然后创建工厂类 <code>/database/factories/UserFactory.php</code> ，并为每个字段写好数据填充要求：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use Illuminate\Support\Str;</span><br><span class="line">use Faker\Generator as Faker;</span><br><span class="line"></span><br><span class="line">$factory-&gt;define(App\User::class, function (Faker $faker) &#123;</span><br><span class="line">    return [</span><br><span class="line">        &apos;name&apos;              =&gt; $faker-&gt;name,</span><br><span class="line">        &apos;email&apos;             =&gt; $faker-&gt;unique()-&gt;safeEmail,</span><br><span class="line">        &apos;email_verified_at&apos; =&gt; now(),</span><br><span class="line">        &apos;password&apos;          =&gt; &apos;$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm&apos;, // secret</span><br><span class="line">        &apos;remember_token&apos;    =&gt; Str::random(10),</span><br><span class="line">    ];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="生成填充执行类"><a href="#生成填充执行类" class="headerlink" title="生成填充执行类"></a>生成填充执行类</h3><p>使用如下命令生成填充执行类文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php artisan make:seeder UserTableSeeder</span><br></pre></td></tr></table></figure>
+<p>修改 <code>/database/seeds/UserTableSeeder.php</code> 文件，约束填充的记录条数：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use Illuminate\Database\Seeder;</span><br><span class="line"></span><br><span class="line">class UserTableSeeder extends CommonSeeder</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Run the database seeds.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function run()</span><br><span class="line">    &#123;</span><br><span class="line">        static $createdAt;</span><br><span class="line"></span><br><span class="line">        //单独插入一条数据</span><br><span class="line">        App\User::insert([</span><br><span class="line">            &apos;id&apos;             =&gt; 1,</span><br><span class="line">            &apos;name&apos;           =&gt; &apos;admin&apos;,</span><br><span class="line">            &apos;password&apos;       =&gt; sha1(&apos;ooxxooxx&apos;),</span><br><span class="line">            &apos;email&apos;          =&gt; &apos;&apos;,</span><br><span class="line">            &apos;remember_token&apos; =&gt; str_random(60),</span><br><span class="line">            &apos;created_at&apos;     =&gt; $createdAt ?: $createAt = $this-&gt;randDate(),</span><br><span class="line">            &apos;updated_at&apos;     =&gt; $createdAt ?: $createdAt = $this-&gt;randDate(),</span><br><span class="line">        ]);</span><br><span class="line"></span><br><span class="line">        //生成 4 个用户</span><br><span class="line">        factory(App\User::class, 4)-&gt;create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>并在 <code>/database/seeds/DatabaseSeeder.php</code> 从添加需要填充的类文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use Illuminate\Database\Seeder;</span><br><span class="line"></span><br><span class="line">class DatabaseSeeder extends Seeder</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Run the database seeds.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function run()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;call([</span><br><span class="line">            PostTableSeeder::class,</span><br><span class="line">            UserTableSeeder::class,</span><br><span class="line">        ]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="执行填充"><a href="#执行填充" class="headerlink" title="执行填充"></a>执行填充</h3><p>执行数据库填充命令收货一堆假数据：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ php artisan db:seed                             // 执行 DatabaseSeeder.php 内定义的所有数据库填充</span><br><span class="line">$ php artisan db:seed --class=ExampleTableSeeder  // 执行指定填充类的数据填充</span><br></pre></td></tr></table></figure>
+<h2 id="伪造数据"><a href="#伪造数据" class="headerlink" title="伪造数据"></a>伪造数据</h2><p>可以看到上述填充类中使用了 <code>$faker</code> 这个玩意儿，其对应的是一个可堪使用的数据填充工具 <a href="https://github.com/fzaninotto/Faker" target="_blank" rel="noopener">Faker</a>，提供了诸如电话号码、地址、邮箱、用户名、文章标题、文章摘要、文章内容、图片链接等一系列的填充项，基本能够覆盖大部分需求。关于中文数据填充的相关操作可以阅读《<a href="https://blog.csdn.net/luyaran/article/details/74732423" target="_blank" rel="noopener">使用 Laravel 数据填充功能生成中文测试数据</a>》</p>
+<p>另外，框架自带的 <code>Illuminate\Support\Str</code> 也提供了很多丰富的字符串处理方法可堪使用。</p>
+<h2 id="查询构造器"><a href="#查询构造器" class="headerlink" title="查询构造器"></a>查询构造器</h2><p>参考文档：<a href="https://learnku.com/index.php/docs/laravel/6.x/queries/5171" target="_blank" rel="noopener">查询构造器</a></p>
+<p>这部分没太多可说的，掌握基本的 <code>select()</code>、<code>where()</code>、<code>whereIn()</code>、<code>group()</code>、<code>latest()</code>、<code>get()</code>、<code>paginate()</code> 基本可以完成 80% 的工作了，需要提到的是，由于查询构造器的查询方法返回值不同，这里需要格外注意：</p>
+<ul>
+<li><code>find($id)</code> 需要一个 id 并返回一个模型。如果不存在匹配的模型，则返回 <code>null</code>。</li>
+<li><code>findOrFail($id)</code> 需要一个 id 并返回一个模型。如果不存在匹配的模型，则会引发错误，它会抛出一个 <code>error</code>。</li>
+<li><code>first()</code> 返回在数据库中找到的第一条记录。如果不存在匹配的模型，则返回 <code>null</code>。</li>
+<li><code>firstOrFail()</code> 返回在数据库中找到的第一条记录。如果不存在匹配的模型，则会引发错误。它会抛出一个 <code>error</code>。</li>
+</ul>
+<h1 id="Eloquent-ORM"><a href="#Eloquent-ORM" class="headerlink" title="Eloquent ORM"></a>Eloquent ORM</h1><h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>参考文档：<a href="https://learnku.com/index.php/docs/laravel/6.x/eloquent/5176" target="_blank" rel="noopener">查询构造器</a></p>
+<p>在定义模型时，有两个模型类属性比较重要：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected $guarded = [&apos;id&apos;, &apos;deleted_at&apos;];      //不可批量更新字段</span><br><span class="line">protected $hidden  = [&apos;deleted_at&apos;];		    //查询时不可见字段</span><br></pre></td></tr></table></figure>
+<p>上述字段可以视为<strong>黑名单</strong>属性，对应的<strong>白名单</strong>属性为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected $fillable = [&apos;name&apos;];     //可批量更新字段</span><br><span class="line">protected $visible  = [&apos;tag&apos;];      //查询时可见字段</span><br></pre></td></tr></table></figure>
+<h2 id="软删除"><a href="#软删除" class="headerlink" title="软删除"></a>软删除</h2><p>相关操作参见：<a href="https://laravelacademy.org/post/1020.html" target="_blank" rel="noopener">Eloquent ORM 实例教程 —— 模型删除及软删除相关实现</a></p>
+<p>某些表字段设计为软删除，而非物理删除，在模型内使用软删除，只需两步：</p>
+<ol>
+<li>引用软删除 trait</li>
+<li>增加软删除字段</li>
+</ol>
+<h3 id="引用软删除-Trait"><a href="#引用软删除-Trait" class="headerlink" title="引用软删除 Trait"></a>引用软删除 Trait</h3><p>首先在目标模型上使用  <code>Illuminate\Database\Eloquent\SoftDeletes</code> trait：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App;</span><br><span class="line"></span><br><span class="line">use Illuminate\Database\Eloquent\Model;</span><br><span class="line">use Illuminate\Database\Eloquent\SoftDeletes;</span><br><span class="line"></span><br><span class="line">class Flight extends Model</span><br><span class="line">&#123;</span><br><span class="line">    use SoftDeletes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="增加软删除字段"><a href="#增加软删除字段" class="headerlink" title="增加软删除字段"></a>增加软删除字段</h3><p>这一部分不再赘述，可以参照前文数据库迁移部分，新增一个软删除字段，默认新增的软删除字段名为 <code>deleted_at</code>。</p>
+<p>你也可以手动修改数据库表结构增加自定义名称的软删除字段，当然，你需要在对应的模型中使用 <code>DELETED_AT</code> 类常量指定自定义的软删除字段名：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App;</span><br><span class="line"></span><br><span class="line">use Illuminate\Database\Eloquent\Model;</span><br><span class="line">use Illuminate\Database\Eloquent\SoftDeletes;</span><br><span class="line"></span><br><span class="line">class Flight extends Model</span><br><span class="line">&#123;</span><br><span class="line">    use SoftDeletes;</span><br><span class="line">    const DELETED_AT = &apos;custom_delete_colunm&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h3><p>一般来说，完成前述设置后已经可以正常使用软删除，当你在模型实例上使用 <code>delete()</code> 方法删除数据实例时，当前日期时间会写入 <code>deleted_at</code> 字段，表示该记录被软删除。同时，查询出来的结果也会自动排除已被软删除的记录。</p>
+<p>需要硬删除的话使用 <code>forceDelete()</code> 方法即可。</p>
+<p>为了使模型定义更加清晰，不妨在目标模型内设置类成员变量，显式指定 <code>deleted_at</code> 字段的类型：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected $dates = [&apos;deleted_at&apos;];</span><br></pre></td></tr></table></figure>
+<p>当然，如果你不想将该字段的值设为删除日期，也可以对其进行改造，具体改造方式可以参阅《<a href="http://blog.dreamlikes.cn/archives/892" target="_blank" rel="noopener">Laravel5软删除（SoftDeletes）的deleted_at改造</a>》</p>
+<h2 id="修改器"><a href="#修改器" class="headerlink" title="修改器"></a>修改器</h2><p>对数据库字段的特殊处理，可以使用 <a href="https://learnku.com/docs/laravel/5.7/eloquent-mutators/2297" target="_blank" rel="noopener">Eloquent 修改器</a> 对入库字段进行预处理，比如姓名首字母大写才能入库等等。</p>
+<p>另外，某字段储存为 json 格式，处理时需要转换为 PHP 数组，也只需在模型内声明 <code>$cast</code> 属性加入 array 类型转换，当你访问的时候就会自动被转换为 PHP 数组：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">protected $casts = [</span><br><span class="line">    &apos;options&apos; =&gt; &apos;array&apos;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<h2 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h2><p><code>cursor</code> 方法允许你使用游标遍历数据库，它只执行一次查询。处理大量的数据时， <code>cursor()</code> 方法可以大大减少内存的使用量，比如导入、导出数据时，如果直接 <code>foreach</code> 遍历变量，可能会犹豫变量太大导致内存溢出。此事使用基于迭代器的游标可以大大提升程序的鲁棒性：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">foreach (Flight::where(&apos;foo&apos;, &apos;bar&apos;)-&gt;cursor() as $flight) &#123;</span><br><span class="line">    //</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="关联模型"><a href="#关联模型" class="headerlink" title="关联模型"></a>关联模型</h2><p>参考文档：<a href="https://learnku.com/index.php/docs/laravel/6.x/eloquent-relationships/5177" target="_blank" rel="noopener">关联模型</a></p>
+<p>这一部分可以说是 Laravel 的精髓所在。框架设计的模型关联可以将多个模型之间的关联关系在 Model 中定义清楚，便于数据查询和后期维护，特别是在例如列表页、详情页等需求中轻松地获取有关联关系的将数据对象，完全无需自己手动拼接、处理数据。</p>
+<p>举两个例子：</p>
+<ul>
+<li><p>在 User 和 Post 模型中绑定关联关系后，就可以使用 <code>$post-&gt;comments</code> 来获取该文章对应的全部评论。</p>
+</li>
+<li><p>在列表查询时，可能需要减少多次查询，避免 <code>1+N</code> 次查询。比如文章列表：</p>
+<ol>
+<li>获取文章</li>
+<li>获取每篇文章的评论</li>
+</ol>
+</li>
+</ul>
+<p>ps. 数据库中文章表为 <code>post</code>，评论表为 <code>comment</code></p>
+<p>如果遍历 <code>$posts</code> 使用关联查询 <code>$post-&gt;comments</code> 将造成过多不必要的 SQL 查询。假设该页有 10 条 post 记录，正常情况将执行 <code>1+10=11</code> 条 SQL。为解决这种多查询问题，可以使用<a href="https://learnku.com/docs/laravel/5.8/eloquent-relationships/3932#eager-loading" target="_blank" rel="noopener">预加载</a>来实现最简查询。</p>
+<p>使用时，在查询语句中使用 <code>with()</code> 即可，如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$books = App\Book::with(&apos;author&apos;)-&gt;get();</span><br><span class="line"></span><br><span class="line">foreach ($books as $book) &#123;</span><br><span class="line">    echo $book-&gt;author-&gt;name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取关联对象的数量可以使用<a href="https://learnku.com/docs/laravel/5.8/eloquent-relationships/3932#counting-related-models" target="_blank" rel="noopener">关联模型计数</a> 的 <code>withCount()</code> 方法，它将放在结果模型的 <code>{relation}_count</code> 列，如：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$posts = App\Post::withCount(&apos;comments&apos;)-&gt;get();</span><br><span class="line"></span><br><span class="line">foreach ($posts as $post) &#123;</span><br><span class="line">    echo $post-&gt;comments_count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h1><p>处理跨域问题可以考虑使用 <a href="https://xueyuanjun.com/post/9273.html" target="_blank" rel="noopener">Laravel CORS 扩展包</a></p>
+<hr>
+<p>暂时就写这么多，上述技巧基本可以涵盖常见的 CURD 需求（滑稽。如果你有其他推荐的奇技淫巧不妨在评论区留言。</p>
+
+    </div>
+
+    
+    
+    <script src="/js/src/baffle.min.js"></script>
+<script>
+  let b = baffle(document.querySelectorAll('.post-title'));
+  b.set({
+    speed: 100,
+    characters: '/>░░▒▒▓▓██锟斤拷烫'
+  });
+  b.reveal(3500, 1000);
+</script>
+
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Acuario</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://acuario.xyz/some-skills-in-laravel/" title="Laravel实用技巧">https://acuario.xyz/some-skills-in-laravel/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+            
+              <a href="/tags/教程/" rel="tag"># 教程</a>
+            
+              <a href="/tags/PHP/" rel="tag"># PHP</a>
+            
+              <a href="/tags/Laravel/" rel="tag"># Laravel</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/podcast-note-4/" rel="next" title="播客札记（四）：消费主义&审美">
+                  <i class="fa fa-chevron-left"></i> 播客札记（四）：消费主义&审美
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Composer"><span class="nav-number">1.</span> <span class="nav-text">Composer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调试代码"><span class="nav-number">2.</span> <span class="nav-text">调试代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#打印变量"><span class="nav-number">2.1.</span> <span class="nav-text">打印变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印-SQL-语句"><span class="nav-number">2.2.</span> <span class="nav-text">打印 SQL 语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">3.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库迁移"><span class="nav-number">3.1.</span> <span class="nav-text">数据库迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库填充"><span class="nav-number">3.2.</span> <span class="nav-text">数据库填充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备类文件"><span class="nav-number">3.2.1.</span> <span class="nav-text">准备类文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成填充执行类"><span class="nav-number">3.2.2.</span> <span class="nav-text">生成填充执行类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行填充"><span class="nav-number">3.2.3.</span> <span class="nav-text">执行填充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪造数据"><span class="nav-number">3.3.</span> <span class="nav-text">伪造数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询构造器"><span class="nav-number">3.4.</span> <span class="nav-text">查询构造器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Eloquent-ORM"><span class="nav-number">4.</span> <span class="nav-text">Eloquent ORM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型"><span class="nav-number">4.1.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软删除"><span class="nav-number">4.2.</span> <span class="nav-text">软删除</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用软删除-Trait"><span class="nav-number">4.2.1.</span> <span class="nav-text">引用软删除 Trait</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加软删除字段"><span class="nav-number">4.2.2.</span> <span class="nav-text">增加软删除字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他说明"><span class="nav-number">4.2.3.</span> <span class="nav-text">其他说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改器"><span class="nav-number">4.3.</span> <span class="nav-text">修改器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游标"><span class="nav-number">4.4.</span> <span class="nav-text">游标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联模型"><span class="nav-number">4.5.</span> <span class="nav-text">关联模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨域"><span class="nav-number">5.</span> <span class="nav-text">跨域</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="Acuario">
+  <p class="site-author-name" itemprop="name">Acuario</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://songf.me/" title="https://songf.me/" rel="noopener" target="_blank">bennxs</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://meteoritey.github.io/" title="https://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.yeyanjie.com/" title="https://blog.yeyanjie.com/" rel="noopener" target="_blank">Jarvis Ye</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Acuario</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div><script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://acuraioo.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function disqus_config() {
+    this.page.url = "https://acuario.xyz/some-skills-in-laravel/";
+    this.page.identifier = "some-skills-in-laravel/";
+    this.page.title = 'Laravel实用技巧';};
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://acuraioo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+</body>
+</html>
