@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>实用浏览器小书签</title>
+      <link href="/shortcut-bookmarklet/"/>
+      <url>/shortcut-bookmarklet/</url>
+      
+        <content type="html"><![CDATA[<p>由于众所周知的原因，非会员下载百度网盘的速度慢的令人发指，所以目前最推荐的度盘下载工具是 <a href="https://pandownload.com/" target="_blank" rel="noopener">Pandownload</a>，但是软件本身需要登录百度账号，如果账号被限速也没辙。经笔者实测，发现 Pandownload 的<a href="https://www.baiduwp.com/" target="_blank" rel="noopener">网页版</a>配合 Aria2 可以无账号高速下载。不过这不是本文重点。</p><p>Pandownload 允许用户将度盘分享链接中的 <code>baidu</code> 修改为 <code>baiduwp</code> 后进行访问，可直接解析资源后下载。频繁点击 URL 修改实在麻烦。受<a href="/simplify-URL/">《用 JavaScript 为 URL 瘦身》</a>一文的启发，想到可以用 JS 制作小书签，即点即用。</p><p>不知道小书签为何物的话，可以参阅少数派的<a href="https://sspai.com/post/45662" target="_blank" rel="noopener">这篇文章</a></p><p>本文提供一些笔者自己收藏使用的小书签，拖动下方链接到浏览器收藏栏即可保存。</p><ul><li><p>下载百度网盘：<a href="javascript:(function(){ location.href = location.href.replace('baidu', 'baiduwp'); })();" target="_blank" rel="noopener">度盘下载</a></p></li><li><p>下载百度文库：<a href="javascript:(function(){ location.href = location.href.replace('baidu', 'baiduvvv'); })();" target="_blank" rel="noopener">文库下载</a></p></li><li><p>查看该网页在各大搜索引擎的网页快照：<a href="javascript:(function(){ location.href = location.href.replace(location.hostname, 'his.sh/'+location.hostname); })();" target="_blank" rel="noopener">Cache</a></p></li><li><p>繁体转换为简体：<a href="javascript:(function(){var s=document.getElementById('tongwenlet_cn');if(s!=null){document.body.removeChild(s);}var s=document.createElement('script');s.language='javascript';s.type='text/javascript';s.src='https://git.oschina.net/runningcheese/JiathisQR.js/raw/master/bookmarklet_cn.js';s.id='tongwenlet_cn';document.body.appendChild(s); })();" target="_blank" rel="noopener">繁转简</a></p></li><li><p>最好用的网页翻译——彩云小译：<a href="javascript: void((function () {  if (!document.body) {    return  }  var popup = document.querySelectorAll('.cyxy-target-popup');  if (popup && popup.length > 0) {    return  }  try {    var trs = document.createElement('script');    trs.type = 'text/javascript';    trs.charset = 'UTF-8';    trs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'caiyunapp.com/dest/trs.js';    document.body.appendChild(trs);  } catch (e) {    alert(e);  }  document.addEventListener('securitypolicyviolation', function handler(e) {    console.error('securitypolicyviolation', e);    alert('由于当前网站的内容安全策略(Content Security Policy)，小译无法启动翻译程序，您可以在Chrome Web商店搜索彩云小译（LingoCloud）下载插件，或者将网页保存在本地（右键 -> 另存为）进行翻译，也欢迎您在手机应用商店下载彩云小译App ：)');    document.removeEventListener('securitypolicyviolation', handler);  });})());" target="_blank" rel="noopener">小译</a></p></li><li><p>转换 HTTP 为 HTTPS：<a href="javascript:(function(){ if (location.href.indexOf('https://') == -1) { location.href = location.href.replace('http://', 'https://'); } })();" target="_blank" rel="noopener">https</a></p></li><li><p>复制 URL 但不转换内部中文：<a href="javascript:(function(){   const el = document.createElement('textarea');  el.value = decodeURIComponent(location.href);  document.body.appendChild(el);  el.select();  document.execCommand('copy');  document.body.removeChild(el); })();" target="_blank" rel="noopener">复制URL</a></p></li><li><p>去除 URL 跟踪代码：<a href="javascript: (function() { function getQueryString(name) { var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i'); var r = window.location.search.substr(1).match(reg); if (r != null) return r[2]; return null; } var site = window.location.href.match(/^http(s)?:\/\/[^?]*/); var id = getQueryString('id'); var q = getQueryString('q'); if (id != null) { var pureUrl = site[0] + '?id=' + id; } else if (q != null) { var pureUrl = site[0] + '?q=' + q; } else if (site[0].substr(site[0].length - 13) == 'view_shop.htm') { var pureUrl = window.location.protocol + '//' + window.location.host; } else { var pureUrl = site[0]; } /* Apple Store 将国家设置为中国 Start */ pureUrl = pureUrl.replace(/^http(s)?:\/\/itunes\.apple\.com\/(\w{2}\/)?([^\/]+)\/([^\/]+\/)?(id\d+).*/, 'https://itunes.apple.com/cn/$3/$5'); /* Apple Store 将国家设置为中国 End */ /* Chrome Store 地址精简优化 Start */ pureUrl = pureUrl.replace(/^http(s)?:\/\/chrome\.google\.com\/webstore\/detail\/[^\/]+\/([a-z]{32}).*/, 'https://chrome.google.com/webstore/detail/$2'); /* Chrome Store 地址精简优化 End */ if (pureUrl) { window.history.pushState({},0,pureUrl); } })();" target="_blank" rel="noopener">链接洗白白</a></p></li></ul><p>网络上有很多提供小书签的网站，比如<a href="https://www.runningcheese.com/bookmarklet" target="_blank" rel="noopener">这个</a>，如果你会 JavaScript 的话也可以自己制作。欢迎各位在评论区分享你的小书签。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 小书签 </tag>
+            
+            <tag> 浏览器 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Laravel实用技巧</title>
       <link href="/some-skills-in-laravel/"/>
       <url>/some-skills-in-laravel/</url>
@@ -617,6 +644,8 @@
             
             <tag> Linux </tag>
             
+            <tag> docker </tag>
+            
             <tag> 包管理 </tag>
             
             <tag> 换源 </tag>
@@ -626,8 +655,6 @@
             <tag> 镜像源 </tag>
             
             <tag> npm </tag>
-            
-            <tag> docker </tag>
             
             <tag> composer </tag>
             

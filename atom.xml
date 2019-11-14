@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://acuario.xyz/"/>
-  <updated>2019-10-31T15:50:41.612Z</updated>
+  <updated>2019-11-14T14:40:55.808Z</updated>
   <id>https://acuario.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>实用浏览器小书签</title>
+    <link href="https://acuario.xyz/shortcut-bookmarklet/"/>
+    <id>https://acuario.xyz/shortcut-bookmarklet/</id>
+    <published>2019-11-14T13:02:40.000Z</published>
+    <updated>2019-11-14T14:40:55.808Z</updated>
+    
+    <content type="html"><![CDATA[<p>由于众所周知的原因，非会员下载百度网盘的速度慢的令人发指，所以目前最推荐的度盘下载工具是 <a href="https://pandownload.com/" target="_blank" rel="noopener">Pandownload</a>，但是软件本身需要登录百度账号，如果账号被限速也没辙。经笔者实测，发现 Pandownload 的<a href="https://www.baiduwp.com/" target="_blank" rel="noopener">网页版</a>配合 Aria2 可以无账号高速下载。不过这不是本文重点。</p><p>Pandownload 允许用户将度盘分享链接中的 <code>baidu</code> 修改为 <code>baiduwp</code> 后进行访问，可直接解析资源后下载。频繁点击 URL 修改实在麻烦。受<a href="/simplify-URL/">《用 JavaScript 为 URL 瘦身》</a>一文的启发，想到可以用 JS 制作小书签，即点即用。</p><p>不知道小书签为何物的话，可以参阅少数派的<a href="https://sspai.com/post/45662" target="_blank" rel="noopener">这篇文章</a></p><p>本文提供一些笔者自己收藏使用的小书签，拖动下方链接到浏览器收藏栏即可保存。</p><ul><li><p>下载百度网盘：<a href="javascript:(function(){ location.href = location.href.replace('baidu', 'baiduwp'); })();" target="_blank" rel="noopener">度盘下载</a></p></li><li><p>下载百度文库：<a href="javascript:(function(){ location.href = location.href.replace('baidu', 'baiduvvv'); })();" target="_blank" rel="noopener">文库下载</a></p></li><li><p>查看该网页在各大搜索引擎的网页快照：<a href="javascript:(function(){ location.href = location.href.replace(location.hostname, 'his.sh/'+location.hostname); })();" target="_blank" rel="noopener">Cache</a></p></li><li><p>繁体转换为简体：<a href="javascript:(function(){var s=document.getElementById('tongwenlet_cn');if(s!=null){document.body.removeChild(s);}var s=document.createElement('script');s.language='javascript';s.type='text/javascript';s.src='https://git.oschina.net/runningcheese/JiathisQR.js/raw/master/bookmarklet_cn.js';s.id='tongwenlet_cn';document.body.appendChild(s); })();" target="_blank" rel="noopener">繁转简</a></p></li><li><p>最好用的网页翻译——彩云小译：<a href="javascript: void((function () {  if (!document.body) {    return  }  var popup = document.querySelectorAll('.cyxy-target-popup');  if (popup && popup.length > 0) {    return  }  try {    var trs = document.createElement('script');    trs.type = 'text/javascript';    trs.charset = 'UTF-8';    trs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'caiyunapp.com/dest/trs.js';    document.body.appendChild(trs);  } catch (e) {    alert(e);  }  document.addEventListener('securitypolicyviolation', function handler(e) {    console.error('securitypolicyviolation', e);    alert('由于当前网站的内容安全策略(Content Security Policy)，小译无法启动翻译程序，您可以在Chrome Web商店搜索彩云小译（LingoCloud）下载插件，或者将网页保存在本地（右键 -> 另存为）进行翻译，也欢迎您在手机应用商店下载彩云小译App ：)');    document.removeEventListener('securitypolicyviolation', handler);  });})());" target="_blank" rel="noopener">小译</a></p></li><li><p>转换 HTTP 为 HTTPS：<a href="javascript:(function(){ if (location.href.indexOf('https://') == -1) { location.href = location.href.replace('http://', 'https://'); } })();" target="_blank" rel="noopener">https</a></p></li><li><p>复制 URL 但不转换内部中文：<a href="javascript:(function(){   const el = document.createElement('textarea');  el.value = decodeURIComponent(location.href);  document.body.appendChild(el);  el.select();  document.execCommand('copy');  document.body.removeChild(el); })();" target="_blank" rel="noopener">复制URL</a></p></li><li><p>去除 URL 跟踪代码：<a href="javascript: (function() { function getQueryString(name) { var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i'); var r = window.location.search.substr(1).match(reg); if (r != null) return r[2]; return null; } var site = window.location.href.match(/^http(s)?:\/\/[^?]*/); var id = getQueryString('id'); var q = getQueryString('q'); if (id != null) { var pureUrl = site[0] + '?id=' + id; } else if (q != null) { var pureUrl = site[0] + '?q=' + q; } else if (site[0].substr(site[0].length - 13) == 'view_shop.htm') { var pureUrl = window.location.protocol + '//' + window.location.host; } else { var pureUrl = site[0]; } /* Apple Store 将国家设置为中国 Start */ pureUrl = pureUrl.replace(/^http(s)?:\/\/itunes\.apple\.com\/(\w{2}\/)?([^\/]+)\/([^\/]+\/)?(id\d+).*/, 'https://itunes.apple.com/cn/$3/$5'); /* Apple Store 将国家设置为中国 End */ /* Chrome Store 地址精简优化 Start */ pureUrl = pureUrl.replace(/^http(s)?:\/\/chrome\.google\.com\/webstore\/detail\/[^\/]+\/([a-z]{32}).*/, 'https://chrome.google.com/webstore/detail/$2'); /* Chrome Store 地址精简优化 End */ if (pureUrl) { window.history.pushState({},0,pureUrl); } })();" target="_blank" rel="noopener">链接洗白白</a></p></li></ul><p>网络上有很多提供小书签的网站，比如<a href="https://www.runningcheese.com/bookmarklet" target="_blank" rel="noopener">这个</a>，如果你会 JavaScript 的话也可以自己制作。欢迎各位在评论区分享你的小书签。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;由于众所周知的原因，非会员下载百度网盘的速度慢的令人发指，所以目前最推荐的度盘下载工具是 &lt;a href=&quot;https://pandownload.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Pandownload&lt;/a&gt;，但是软件本身需要登录
+      
+    
+    </summary>
+    
+      <category term="分享" scheme="https://acuario.xyz/categories/%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="小书签" scheme="https://acuario.xyz/tags/%E5%B0%8F%E4%B9%A6%E7%AD%BE/"/>
+    
+      <category term="浏览器" scheme="https://acuario.xyz/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>Laravel实用技巧</title>
@@ -840,6 +867,8 @@
     
       <category term="Linux" scheme="https://acuario.xyz/tags/Linux/"/>
     
+      <category term="docker" scheme="https://acuario.xyz/tags/docker/"/>
+    
       <category term="包管理" scheme="https://acuario.xyz/tags/%E5%8C%85%E7%AE%A1%E7%90%86/"/>
     
       <category term="换源" scheme="https://acuario.xyz/tags/%E6%8D%A2%E6%BA%90/"/>
@@ -849,8 +878,6 @@
       <category term="镜像源" scheme="https://acuario.xyz/tags/%E9%95%9C%E5%83%8F%E6%BA%90/"/>
     
       <category term="npm" scheme="https://acuario.xyz/tags/npm/"/>
-    
-      <category term="docker" scheme="https://acuario.xyz/tags/docker/"/>
     
       <category term="composer" scheme="https://acuario.xyz/tags/composer/"/>
     
@@ -907,29 +934,6 @@
       <category term="找资源" scheme="https://acuario.xyz/tags/%E6%89%BE%E8%B5%84%E6%BA%90/"/>
     
       <category term="电子书" scheme="https://acuario.xyz/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>回忆就像衣柜里的春夏秋冬</title>
-    <link href="https://acuario.xyz/memory-of-Aug/"/>
-    <id>https://acuario.xyz/memory-of-Aug/</id>
-    <published>2018-09-06T14:33:56.000Z</published>
-    <updated>2018-09-06T20:24:48.081Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://i.loli.net/2018/09/07/5b9159755c82a.png" alt="Electric July"></p><p>特别喜欢这张<a href="https://movie.douban.com/subject/26312156/" target="_blank" rel="noopener">电影</a>画面，或许是因为正好自己的经历和电影如此的相映成趣，好像自己就站在那个田野里，静静地看着远方。因为自己心里的那个人或许已经再没有办法陪伴在自己的身边，而自己也无力去攀上通向远方的断桥。</p><a id="more"></a><p>当阳光洒在脸颊和手臂上的时候，当雨水淋湿衣袖的时候，增添的有可能是温暖和冰冷的回忆，也有可能只是在博客文章里寥寥的几笔。温度的差异，提醒自己的不是谁喜欢着谁，而是那个当下，你真真切切地和谁在一起。因为有了不一样的经历，所以它才能够像是收在柜子里的衣服那样，任着自己的性子取出那些让自己喜欢的和不喜欢的，然后花点心思慢慢更衣。最后在别人眼里，看到的其实是自己想要让人看到的衣冠，而那些丑陋的行迹，终究只能自己一个人去思考与犹豫。</p><p>回忆就像衣柜里的春夏秋冬，那些久久没有临幸的外衣，渐渐生出了令人厌恶的霉点。因为家乡四季如春，没有令人难受的湿气，所以面对发了霉的东西慌了阵脚、不知所措，索性把它们一件一件摊开来，检视它们的每一个细节，然后一声叹息。挑三拣四后的思绪一团乱麻，索性全都扔进洗衣机，好好洗涤一番。</p><p>亦或是长了教训，把它们一件一件展开来，找个衣架挨个挂起来晾晒一番。却在这时候才发现那些经不住时间考验的回忆，已经开始泛黄，任凭我怎么漂白，依旧褪不去历史的影子。最怕的应该是心爱的那件回忆上，不知什么时候破了洞，已经再也没有办法补齐，只能任由它这样下去，或者再一声叹息，就这样将其丢弃。</p><p>朋友戏谑我说：</p><blockquote><p>你已经可以写“八月，又溜走了”</p></blockquote><p>我什么也没有说，多半不是因为我没法正面回应自己的拖延，而是因为自己心里的八月还没有结束。</p><blockquote><p>这个八月，我到底在做什么？</p></blockquote><p>我一遍遍这样问自己，发现其实心里的答案早就如此明晰，只是我不愿承认与接受而已。如果要认真解释的话，那多半是因为夏日初秋时分，我拥有了和电影里如出一辙的悸动与情愫。在这段感情里，我试着在探寻「自我」的意识与定义，就像听到的那期<a href="http://cxks.in/16?t=720" target="_blank" rel="noopener">播客</a>里说，<code>理解某一刻的情绪，或许不像解题目一样可以获得确定的答案；对某一个情绪的理解，最后可能是对情绪状态中对自我的关注，是一整幅拼图中的一个碎片。当我们关注到越来越多的碎片，我们就会越来越感受到自我</code>。我好像越发明白在感情中成长所指的意义——我们总是感谢一些人一些事，教会我们了什么道理，实际上在人与人的互动关系中，更多的是自我的体察与反思，最终得出或利己或利他的选择。当自己真真切切地失去的时候，才会比得到的时候更加透彻地领悟某些老生常谈的道理。于是说到底，<strong>有些道理，毕竟还是需要自己经历过的才会明白。在自己亲历之前，别人说再多次也不以为意。</strong></p><p>一个人的夜晚，身体已经十分疲惫，却还是不愿睡去。不同于以往的无聊与烦躁，现时最不愿面对的，是睡眠带来的安稳——平日渴求的安逸，没什么值得被记忆和记录的；而现在的我却如此害怕闭上双眼进入梦乡的时候，回忆的气泡慢慢破碎，等我醒来的时候一个也不剩。在我拼命想要去写下些什么东西的时候，思来想去的结果，除了矫情，好像也难以道出什么心情。在旁人看来无所谓的事情，终究只有自己才知道它放在心里的什么位置。经常想起马伊俐在<a href="https://v.youku.com/v_show/id_XMjkxODg4MDM1Ng==.html" target="_blank" rel="noopener">《圆桌派》</a>里对「作」的举例，于是在自己身上发现了印证——<em>永不安分，永不知足，永远折腾，永远没完</em>。也许是自己还没长大吧，不过又有谁心甘情愿地承认自己是巨婴罢？</p><p>九月已经过去了几个白昼，可对于我来说，八月才刚刚结束。</p><p>八月，与其说是溜走了，不如说，是我还没来得及告别，就只能眼睁睁看着他的背影渐渐远去。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://i.loli.net/2018/09/07/5b9159755c82a.png&quot; alt=&quot;Electric July&quot;&gt;&lt;/p&gt;
-&lt;p&gt;特别喜欢这张&lt;a href=&quot;https://movie.douban.com/subject/26312156/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;电影&lt;/a&gt;画面，或许是因为正好自己的经历和电影如此的相映成趣，好像自己就站在那个田野里，静静地看着远方。因为自己心里的那个人或许已经再没有办法陪伴在自己的身边，而自己也无力去攀上通向远方的断桥。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="https://acuario.xyz/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随笔" scheme="https://acuario.xyz/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
