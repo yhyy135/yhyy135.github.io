@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Acuario" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="如何为 Windows 的 Chrome 设置 Socks5 代理，网上千篇一律的文章都是教你使用 Chrome 扩展 Proxy SwitchyOmega 来实现，因为 Windows 的系统代理只支持 Socks4 而不支持 Socks5，所以设置系统的 Socks 代理其实是无效的。 无法使用代理突破网络封锁，又怎么在 Chrome 扩展商店下载使用 Proxy SwitchyOmega 呢">
+<meta name="keywords" content="教程,Windows,Chrome,PC,Proxy,Socks5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为Chrome for Windows设置临时Socks5代理">
+<meta property="og:url" content="https://acuario.xyz/setting-socks5-with-chrome-for-windows/index.html">
+<meta property="og:site_name" content="Acuario">
+<meta property="og:description" content="如何为 Windows 的 Chrome 设置 Socks5 代理，网上千篇一律的文章都是教你使用 Chrome 扩展 Proxy SwitchyOmega 来实现，因为 Windows 的系统代理只支持 Socks4 而不支持 Socks5，所以设置系统的 Socks 代理其实是无效的。 无法使用代理突破网络封锁，又怎么在 Chrome 扩展商店下载使用 Proxy SwitchyOmega 呢">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-25T14:06:34.972Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为Chrome for Windows设置临时Socks5代理">
+<meta name="twitter:description" content="如何为 Windows 的 Chrome 设置 Socks5 代理，网上千篇一律的文章都是教你使用 Chrome 扩展 Proxy SwitchyOmega 来实现，因为 Windows 的系统代理只支持 Socks4 而不支持 Socks5，所以设置系统的 Socks 代理其实是无效的。 无法使用代理突破网络封锁，又怎么在 Chrome 扩展商店下载使用 Proxy SwitchyOmega 呢">
+  <link rel="canonical" href="https://acuario.xyz/setting-socks5-with-chrome-for-windows/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+<script src="https://use.typekit.net/dzs0zzd.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <title>为Chrome for Windows设置临时Socks5代理 | Acuario</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-83619854-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-83619854-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Acuario</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/setting-socks5-with-chrome-for-windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">为Chrome for Windows设置临时Socks5代理
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-25 21:53:06 / 修改时间：22:06:34" itemprop="dateCreated datePublished" datetime="2019-11-25T21:53:06+08:00">2019-11-25</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/软件使用/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/setting-socks5-with-chrome-for-windows/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="setting-socks5-with-chrome-for-windows/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>如何为 Windows 的 Chrome 设置 Socks5 代理，网上千篇一律的文章都是教你使用 Chrome 扩展 <a href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?hl=zh-CN" target="_blank" rel="noopener">Proxy SwitchyOmega</a> 来实现，因为 Windows 的系统代理只支持 Socks4 而不支持 Socks5，所以设置系统的 Socks 代理其实是无效的。</p>
+<p>无法使用代理突破网络封锁，又怎么在 Chrome 扩展商店下载使用 Proxy SwitchyOmega 呢？（Chrome 67 以后不再支持安装本地 <code>.crx</code> 扩展）这就成了先有鸡还是先有蛋的问题。</p>
+<p>如果局域网内已有可用的 Socks5 代理服务，<strong>在不安装任何程序的情况下</strong>（我就是不想装什么 Proxifier），其实简单几步即可实现：</p>
+<ol>
+<li>关闭所有 Chrome 窗口和进程</li>
+<li><p>右键点击 Chrome 快捷方式，查看属性，获得 Chrome 程序的目标位置，如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开运行（Ctrl+R），输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;chrome.exe&gt;   --show-app-list  --proxy-server=&quot;SOCKS5://&lt;address&gt;:&lt;port&gt;&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>例如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe   --show-app-list  --proxy-server=&quot;SOCKS5://192.168.1.10:1080</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>运行上述命令后打开的 Chrome 已经自动设置了 Socks5 临时代理，如果 Socks 服务正常的话，你可以畅快地访问 Chrome 扩展商店安装 Proxy SwitchyOmega 了。后面的骚操作就不多说了。</li>
+</ol>
+<p>写到这里突然想起来，其实 Socks5 服务<strong>有没有在局域网内都无所谓</strong>，只要正确设置地址和端口即可。</p>
+<p>别忘了这是临时代理，除非运行上述命令启动 Chrome，否则重启 Chrome 代理设置失效。</p>
+
+    </div>
+
+    
+    
+    <script src="/js/src/baffle.min.js"></script>
+<script>
+  let b = baffle(document.querySelectorAll('.post-title'));
+  b.set({
+    speed: 100,
+    characters: '/>░░▒▒▓▓██锟斤拷烫'
+  });
+  b.reveal(3500, 1000);
+</script>
+
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Acuario</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://acuario.xyz/setting-socks5-with-chrome-for-windows/" title="为Chrome for Windows设置临时Socks5代理">https://acuario.xyz/setting-socks5-with-chrome-for-windows/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/教程/" rel="tag"># 教程</a>
+            
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+            
+              <a href="/tags/Chrome/" rel="tag"># Chrome</a>
+            
+              <a href="/tags/PC/" rel="tag"># PC</a>
+            
+              <a href="/tags/Proxy/" rel="tag"># Proxy</a>
+            
+              <a href="/tags/Socks5/" rel="tag"># Socks5</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/shortcut-bookmarklet/" rel="next" title="实用浏览器小书签">
+                  <i class="fa fa-chevron-left"></i> 实用浏览器小书签
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="Acuario">
+  <p class="site-author-name" itemprop="name">Acuario</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/yhyy135" title="GitHub &rarr; https://github.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://twitter.com/yhyy135" title="Twitter &rarr; https://twitter.com/yhyy135" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://droid4.us/" title="https://droid4.us/" rel="noopener" target="_blank">Droid4us</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://songf.me/" title="https://songf.me/" rel="noopener" target="_blank">bennxs</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://meteoritey.github.io/" title="https://meteoritey.github.io/" rel="noopener" target="_blank">Pithoi</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://acehjm.github.io/" title="https://acehjm.github.io/" rel="noopener" target="_blank">junaiu Ma</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.yeyanjie.com/" title="https://blog.yeyanjie.com/" rel="noopener" target="_blank">Jarvis Ye</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Acuario</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div><script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://acuraioo.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function disqus_config() {
+    this.page.url = "https://acuario.xyz/setting-socks5-with-chrome-for-windows/";
+    this.page.identifier = "setting-socks5-with-chrome-for-windows/";
+    this.page.title = '为Chrome for Windows设置临时Socks5代理';};
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://acuraioo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+</body>
+</html>

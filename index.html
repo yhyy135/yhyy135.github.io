@@ -248,6 +248,130 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/setting-socks5-with-chrome-for-windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/setting-socks5-with-chrome-for-windows/" class="post-title-link" itemprop="url">为Chrome for Windows设置临时Socks5代理</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-25 21:53:06 / 修改时间：22:06:34" itemprop="dateCreated datePublished" datetime="2019-11-25T21:53:06+08:00">2019-11-25</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/软件使用/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/setting-socks5-with-chrome-for-windows/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="setting-socks5-with-chrome-for-windows/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如何为 Windows 的 Chrome 设置 Socks5 代理，网上千篇一律的文章都是教你使用 Chrome 扩展 <a href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?hl=zh-CN" target="_blank" rel="noopener">Proxy SwitchyOmega</a> 来实现，因为 Windows 的系统代理只支持 Socks4 而不支持 Socks5，所以设置系统的 Socks 代理其实是无效的。</p>
+<p>无法使用代理突破网络封锁，又怎么在 Chrome 扩展商店下载使用 Proxy SwitchyOmega 呢？（Chrome 67 以后不再支持安装本地 <code>.crx</code> 扩展）这就成了先有鸡还是先有蛋的问题。</p>
+<p>如果局域网内已有可用的 Socks5 代理服务，<strong>在不安装任何程序的情况下</strong>（我就是不想装什么 Proxifier），其实简单几步即可实现：</p>
+<ol>
+<li>关闭所有 Chrome 窗口和进程</li>
+<li><p>右键点击 Chrome 快捷方式，查看属性，获得 Chrome 程序的目标位置，如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开运行（Ctrl+R），输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;chrome.exe&gt;   --show-app-list  --proxy-server=&quot;SOCKS5://&lt;address&gt;:&lt;port&gt;&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>例如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe   --show-app-list  --proxy-server=&quot;SOCKS5://192.168.1.10:1080</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>运行上述命令后打开的 Chrome 已经自动设置了 Socks5 临时代理，如果 Socks 服务正常的话，你可以畅快地访问 Chrome 扩展商店安装 Proxy SwitchyOmega 了。后面的骚操作就不多说了。</li>
+</ol>
+<p>写到这里突然想起来，其实 Socks5 服务<strong>有没有在局域网内都无所谓</strong>，只要正确设置地址和端口即可。</p>
+<p>别忘了这是临时代理，除非运行上述命令启动 Chrome，否则重启 Chrome 代理设置失效。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/shortcut-bookmarklet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -740,136 +864,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/mastering-regex-summary-6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Acuario">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Acuario">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/mastering-regex-summary-6/" class="post-title-link" itemprop="url">《精通正则表达式》学习笔记（六）</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-17 23:00:53 / 修改时间：23:00:57" itemprop="dateCreated datePublished" datetime="2019-08-17T23:00:53+08:00">2019-08-17</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/RegEx/" itemprop="url" rel="index"><span itemprop="name">RegEx</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/mastering-regex-summary-6/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="mastering-regex-summary-6/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><a href="/mastering-regex-summary-1/">《精通正则表达式》学习笔记（一）</a><br>Ch.1 正则表达式入门<br>Ch.2 入门示例拓展</li>
-<li><a href="/mastering-regex-summary-2/">《精通正则表达式》学习笔记（二）</a><br>Ch.3 正则表达式的特性和流派概览</li>
-<li><a href="/mastering-regex-summary-3/">《精通正则表达式》学习笔记（三）</a><br>Ch.4 表达式的匹配原理</li>
-<li><a href="/mastering-regex-summary-4/">《精通正则表达式》学习笔记（四）</a><br>Ch.5 正则表达式实用技巧</li>
-<li><a href="/mastering-regex-summary-5/">《精通正则表达式》学习笔记（五）</a><br>Ch.6 打造高效正则表达式</li>
-<li><a href="/mastering-regex-summary-6/">《精通正则表达式》学习笔记（六）</a><br>Ch.10 PHP 相关的正则表达式</li>
-</ul>
-<hr>
-<h1 id="PHP-的正则流派"><a href="#PHP-的正则流派" class="headerlink" title="PHP 的正则流派"></a>PHP 的正则流派</h1><ul>
-<li>PHP 的三种正则引擎是 <code>preg</code>、<code>creg</code> 和 <code>mb_ereg</code>。</li>
-<li>在默认情况下，preg 套件的正则表达式是以字节为单位的，所以「<code>\C</code>」默认等价于「<code>(?d:.)</code>」，由 <code>s</code> 修饰的点号。不过，如果使用了修饰符 <code>u</code>，则 preg 套件就会以 UTF-8 字母为单位，也就是说，一个字符可能由 6 个字节组成。即使这样，「<code>\C</code>」仍然匹配单个字节。</li>
-<li>「<code>\z</code>」和「<code>\Z</code>」都能够匹配字符串的末尾，而「<code>\Z</code>」同样能够匹配最后的换行符。</li>
-<li>「<code>$</code>」的意义取决于模式修饰符 <code>m</code> 和 <code>D</code>：如果没有设定任何修饰符，「<code>$</code>」等价于「<code>\Z</code>」（在字符串结尾的换行符，或者是字符串结尾）；如果使用了 <code>m</code>，则它能够匹配内嵌的换行符，如果使用了模式修饰符 <code>D</code>，它能够匹配「<code>\z</code>」（只有在字符串的结尾）。如果同时设置了 <code>m</code> 和 <code>D</code>，则忽略 <code>D</code>。</li>
-<li>PHP 正则引擎的处理方式完全是<strong>程序式</strong>的。</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/mastering-regex-summary-6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -922,7 +916,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -948,7 +942,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">94</span>
+        <span class="site-state-item-count">98</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
