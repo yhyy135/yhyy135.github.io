@@ -248,6 +248,122 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/how-to-use-reverse-proxy-to-hide-server-port/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Acuario">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Acuario">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/how-to-use-reverse-proxy-to-hide-server-port/" class="post-title-link" itemprop="url">Nginx配置反向代理隐藏服务端口</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-17 23:16:42 / 修改时间：23:23:21" itemprop="dateCreated datePublished" datetime="2018-05-17T23:16:42+08:00">2018-05-17</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/how-to-use-reverse-proxy-to-hide-server-port/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-to-use-reverse-proxy-to-hide-server-port/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于个人开发者来说，在一台 Linux 服务器或自己的 VPS 上，通常会部署多个 Web 服务，有的服务默认监听的是 80/443 端口，只需对 Nginx 进行简单的配置、设置伪静态等等即可完成，而有的服务既非静态网页，也不使用 Linux 中既有的 PHP 等程序，而是使用自己项目内部构建的程序（比如 Node.js、Tomcat 等），这些服务往往监听的是非 80/443 端口，在配置个人域名后，不得不在域名后加上服务器端口才能访问，既不美观，也不方便。是否有办法可以隐藏 URL 中的服务器端口，使用域名进行区分？</p>
+<p>例如：<br><a href="http://1.1.1.1:1111" target="_blank" rel="noopener">http://1.1.1.1:1111</a> -&gt; <a href="http://1.example.com" target="_blank" rel="noopener">http://1.example.com</a><br><a href="http://1.1.1.1:2222" target="_blank" rel="noopener">http://1.1.1.1:2222</a> -&gt; <a href="http://2.example.com" target="_blank" rel="noopener">http://2.example.com</a><br><a href="http://example.com:3333" target="_blank" rel="noopener">http://example.com:3333</a> -&gt; <a href="http://3.example.com" target="_blank" rel="noopener">http://3.example.com</a></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/how-to-use-reverse-proxy-to-hide-server-port/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://acuario.xyz/language-level-of-pork-mushrooms-and-cabbage-clip/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -670,121 +786,11 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://acuario.xyz/readers-clip/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Acuario">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Acuario">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/readers-clip/" class="post-title-link" itemprop="url">《读者》读书笔记</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2017-09-01 22:39:34 / 修改时间：22:43:06" itemprop="dateCreated datePublished" datetime="2017-09-01T22:39:34+08:00">2017-09-01</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书笔记/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/readers-clip/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="readers-clip/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>可是，足球又总能在最黑暗的时刻振奋人心。纳粹德军占领乌克兰的时候，曾经逼迫基辅迪纳摩的球员和希特勒的卫队来一场友谊赛。赛前他们收到警告：“如果你们敢赢，就死定了。”于是一开始“在恐惧与饥饿的折磨下，他们只好准备输球。不过到了最后，他们无法抗拒尊严的呼召”。球赛结束，十一位球员穿着队衣在悬崖边上被处死。 直到今天，他们的纪念碑还是乌克兰人民的圣地。</p>
-<hr>
-<p>为了教大家爱护榕树这种华南最常见、最特别的树种，詹教授写了这本《细说榕树》。虽不是学术专著，但果然是细说，大长我等香港人的见识。不嫌你耻笑，也是看了这本书，我才知道菩提原来也是一种榕树，而榕树结的果实居然就是无花果！准确地说，无花果和我们常见的榕树同是榕属植物。榕的学名是 Ficus，正是无花果的拉丁文叫法。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/readers-clip/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -832,7 +838,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -941,7 +947,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
